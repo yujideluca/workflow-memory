@@ -163,3 +163,10 @@ class DeclaredReplacementTests(unittest.TestCase):
         old = ev("a", key="k", days_ago=0.5, body="one", instance="migration")
         new = ev("b", key="k", days_ago=0.1, body="two", instance="code", supersedes=["a"])
         self.assertEqual(r.fold([old, new]), ([new], []))
+
+    def test_conflict_is_settled_once_a_later_ruling_replaces_it(self):
+        a = ev("a", key="k", days_ago=0.5, body="one", instance="app")
+        b = ev("b", key="k", days_ago=0.3, body="two", instance="code")
+        c = ev("c", key="k", days_ago=0.1, body="three", instance="code", supersedes=["b"])
+        self.assertEqual(r.fold([a, b])[1], [("a", "b")])
+        self.assertEqual(r.fold([a, b, c])[1], [])
