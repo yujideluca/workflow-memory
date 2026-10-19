@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-19 from 38 events. Do not edit: record changes as events.
+Generated 2026-10-19 from 39 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -20,7 +20,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [decision.ai-memory-inspiration] ai-memory (akitaonrails) is inspiration only; it is never installed. (#72e118)
 - [decision.memory-v3] The old claude-workflow-backup protocol is abandoned. workflow-memory is the new workflow: append-only event log, computed state, views built by a GitHub Action. (#a20747)
 - [tool.local-qwen] Local Qwen3.5-9B Q4 via llama-server on 127.0.0.1:8080 (16k context, about 5.4 GB VRAM; pkill -f llama-server stops it). Study: ~/Documents/Qwen-delegation-study-report.md: pseudo-code specs work best; delegating small functions saves no Claude tokens. (#13ce6b)
-- (4 more entries did not fit; they are in the log and searchable)
+- (5 more entries did not fit; they are in the log and searchable)
 
 ## Recording
 
