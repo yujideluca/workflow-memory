@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-19 from 44 events. Do not edit: record changes as events.
+Generated 2026-10-19 from 45 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -16,3 +16,4 @@ Generated 2026-10-19 from 44 events. Do not edit: record changes as events.
 - [global] work.build-then-ask: After a project and plan are approved, build it end to end without progress pauses; ask the open questions at the end. (user)
 - [project:assistant] auto.582bad4087: Sempre que for me perguntar sobre uma decisão de desenvolvimento, que não retorna a um tema já debatido, o contexto deve ser claro e se tiver a ver com muitas etapas nunca debatidas, um fluxograma deve esclarecer isso. (harvester)
 - [global] work.ask-with-context: When asking Giovanni about a development decision that is new (not a topic already debated), give clear context first: what is being decided, why, options, and your recommendation. If it involves many steps never discussed, include a flowchart. A badly framed question cannot be answered well. (user)
+- [global] telegram.send: When Giovanni says to send something via Telegram, use the tg-send bot (tg-send -f FILE caption), never the phone's Telegram app. tg-send has no --help: any argument is sent as a message, so read ~/.local/bin/tg-send instead of probing it. (user)
