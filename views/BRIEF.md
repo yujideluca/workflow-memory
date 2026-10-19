@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-19 from 45 events. Do not edit: record changes as events.
+Generated 2026-10-19 from 47 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -17,11 +17,10 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [work.build-then-ask] After a project and plan are approved, build it end to end without progress pauses; ask the open questions at the end. (#c1f1f8)
 - [work.ask-with-context] When asking Giovanni about a development decision that is new (not a topic already debated), give clear context first: what is being decided, why, options, and your recommendation. If it involves many steps never discussed, include a flowchart. A badly framed question cannot be answered well. (#abdad0)
 - [telegram.send] When Giovanni says to send something via Telegram, use the tg-send bot (tg-send -f FILE caption), never the phone's Telegram app. tg-send has no --help: any argument is sent as a message, so read ~/.local/bin/tg-send instead of probing it. (#febd94)
+- [telegram.where] tg-send messages arrive in the bot chat named 'Claude code bridge' (@Claude_1123bot), NOT in Telegram's Saved Messages. Giovanni looked in Saved Messages once and thought a file was missing/wrong; always say 'check the Claude code bridge chat' when sending. (#ccf937)
 - [decision.no-health-filter] Memory validation has no automatic health-vocabulary filter. Not storing clinical data about other people stays a standing preference, not a check. (#116712)
 - [decision.ai-memory-inspiration] ai-memory (akitaonrails) is inspiration only; it is never installed. (#72e118)
-- [decision.memory-v3] The old claude-workflow-backup protocol is abandoned. workflow-memory is the new workflow: append-only event log, computed state, views built by a GitHub Action. (#a20747)
-- [device.phone] Giovanni's phone is a Motorola edge 50 fusion, driven over adb for app tests. (#9430d4)
-- (5 more entries did not fit; they are in the log and searchable)
+- (7 more entries did not fit; they are in the log and searchable)
 
 ## Recording
 
