@@ -144,6 +144,8 @@ def resolve(events):
                 conflicts.append((prev["id"], e["id"]))
             latest[slot] = e
     active = [e for e in ordered if e["id"] not in superseded | hidden]
+    live = {e["id"] for e in active}
+    conflicts = [(a, b) for a, b in conflicts if b in live]  # a later ruling settles it
     return dict(active=active, conflicts=conflicts, evidence=evidence,
                 proposals=proposals)
 
