@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-19 from 19 events. Do not edit: record changes as events.
+Generated 2026-10-19 from 20 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -20,7 +20,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [project.quizapp] QuizApp lives in ~/dev/QuizApp (Kotlin, local git only, no remote): a German B2 quiz with 3 modes and Anki-style scheduling, tested on the phone over adb.
 - [device.phone] Giovanni's phone is a Motorola edge 50 fusion, driven over adb for app tests.
 - [person.profile] Giovanni is a pre-hospital emergency physician (SAMU/APH) in Brazil, preparing the Goethe B2 exam (Nov 2026) and the FSP to work in Germany.
-- (2 more entries did not fit; they are in the log and searchable)
+- (3 more entries did not fit; they are in the log and searchable)
 
 ## Recording a correction or a lasting preference
 
