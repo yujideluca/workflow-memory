@@ -6,7 +6,8 @@ from pathlib import Path
 
 from . import events as ev, hooks
 
-EVENTS = {"SessionStart": "hook-session-start", "UserPromptSubmit": "hook-prompt", "Stop": "hook-stop"}
+EVENTS = {"SessionStart": ("hook-session-start", 40), "UserPromptSubmit": ("hook-prompt", 10),
+          "Stop": ("hook-stop", 40)}
 
 
 def _is_ours(entry):
@@ -17,10 +18,10 @@ def apply(settings_path, mem_bin, remove=False):
     path = Path(settings_path)
     data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
     block = data.setdefault("hooks", {})
-    for event, sub in EVENTS.items():
+    for event, (sub, timeout) in EVENTS.items():
         kept = [e for e in block.get(event, []) if not _is_ours(e)]
         if not remove:
-            kept.append({"hooks": [{"type": "command", "command": f"python3 {mem_bin} {sub}"}]})
+            kept.append({"hooks": [{"type": "command", "command": f"python3 {mem_bin} {sub}", "timeout": timeout}]})
         if kept:
             block[event] = kept
         else:

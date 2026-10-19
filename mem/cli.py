@@ -82,8 +82,13 @@ def run(argv=None, stdin=None):
 
     if a.cmd == "add":
         text = stdin.read().strip() if a.text == "-" else a.text
-        return _write(root, now, a.type, text, a.scope, a.key, a.owner, instance,
-                      supersedes=[s for s in a.supersedes.split(",") if s])
+        replaces = [s for s in a.supersedes.split(",") if s]
+        if a.key and not replaces:  # say what is being replaced, so it is not a conflict
+            events, _ = validate.load_checked(root, now)
+            prev = [e for e in core.fold(events)[0] if e["scope"] == a.scope and e["key"] == a.key]
+            if prev and core.norm_tokens(prev[-1]["body"]) != core.norm_tokens(text):
+                replaces = [prev[-1]["id"]]
+        return _write(root, now, a.type, text, a.scope, a.key, a.owner, instance, supersedes=replaces)
     if a.cmd == "feedback":
         return _write(root, now, "feedback", "", instance=instance, target=a.target, signal=a.signal)
     if a.cmd in ("forget", "done", "claim"):

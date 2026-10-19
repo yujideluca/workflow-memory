@@ -1,6 +1,6 @@
 # Needs a decision
 
-Generated 2026-10-19 from 31 events. Do not edit: record changes as events.
+Generated 2026-10-19 from 35 events. Do not edit: record changes as events.
 
 ## Conflicting rulings (two writers, same key, same day)
 - 20261018T120000Z-migration-fad49f vs 20261019T022737Z-code-09cc71
