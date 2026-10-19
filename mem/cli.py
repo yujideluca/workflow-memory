@@ -60,6 +60,7 @@ def run(argv=None, stdin=None):
     sub.add_parser("search").add_argument("query")
     sub.add_parser("check", help="list invalid events; exit 1 if any")
     sub.add_parser("quarantine", help="move invalid events to quarantine/")
+    sub.add_parser("dismiss", help="delete a reviewed file from quarantine/").add_argument("name")
     sub.add_parser("promote", help="write global entries for habits seen in 2 projects")
     cp = sub.add_parser("compact", help="digest cold entries (proposal unless --apply)")
     cp.add_argument("--apply", action="store_true")
@@ -111,6 +112,14 @@ def run(argv=None, stdin=None):
         for path, why in validate.quarantine(root, now):
             print(f"quarantined {path}: {'; '.join(why)}")
         return 0
+    if a.cmd == "dismiss":
+        stem = Path(a.name).name.removesuffix(".md").removesuffix(".reason")
+        gone = [p for p in (root / "quarantine" / f"{stem}.md", root / "quarantine" / f"{stem}.reason")
+                if p.exists()]
+        for p in gone:
+            p.unlink()
+        print(f"dismissed {stem}" if gone else f"nothing named {stem} in quarantine/")
+        return 0 if gone else 1
     if a.cmd == "promote":
         events, _ = validate.load_checked(root, now)
         for e in harvest.promote(events, now):
