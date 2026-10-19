@@ -65,7 +65,11 @@ def build(root, now, instance="app", budget=BRIEF_BUDGET):
         prefs.append(f"- [{e['scope']}] {e.get('key') or '-'}: {e['body']}"
                      + (f" (restated {n}x)" if n else "") + f" ({e['owner']})")
     fbs = core._feedback(events)
-    review = [("Quarantined events (invalid or private)", [f"{p}: {'; '.join(r)}" for p, r in invalid]),
+    held = [f"{p.name}: {p.with_suffix('.reason').read_text(encoding='utf-8').strip()}"
+            if p.with_suffix(".reason").exists() else p.name
+            for p in sorted((Path(root) / "quarantine").glob("*.md"))]
+    review = [("Quarantined events (invalid or private; `mem dismiss NAME` when reviewed)",
+               [f"{p}: {'; '.join(r)}" for p, r in invalid] + held),
               ("Conflicting rulings (two writers, same key, same day)",
                [f"{a} vs {b}" for a, b in state["conflicts"]]),
               ("Harvester proposals that would change a user-owned entry",

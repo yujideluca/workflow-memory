@@ -363,6 +363,15 @@ class CliFlowTests(Tmp):
         self.assertIn("quarantined", self.run_cli("quarantine")[1])
         self.assertEqual(self.run_cli("check")[0], 0)
 
+    def test_quarantined_files_stay_visible_until_dismissed(self):
+        (self.root / "events/broken.md").write_text("junk")
+        self.run_cli("quarantine")
+        self.assertEqual(self.run_cli("check")[0], 0)  # the log itself is clean again
+        self.assertIn("broken.md", project.build(self.root, NOW)["REVIEW.md"])
+        self.assertEqual(self.run_cli("dismiss", "broken")[0], 0)
+        self.assertIn("Nothing needs a decision", project.build(self.root, NOW)["REVIEW.md"])
+        self.assertEqual(self.run_cli("dismiss", "broken")[0], 1)
+
     def test_compact_proposes_then_applies(self):
         old = mk(id="20260801T120000Z-code-aaaaaa", type="note", key=None, owner="agent",
                  ts=datetime(2026, 8, 1, 12, tzinfo=timezone.utc), body="Fixed /etc/foo.conf because E-42.")
