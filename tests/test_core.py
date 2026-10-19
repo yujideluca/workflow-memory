@@ -151,3 +151,15 @@ class RefAndUseTests(unittest.TestCase):
         self.assertIn("20260901T120000Z-code-aaaaaa", out["included"])
         self.assertIn("20260901T120001Z-code-bbbbbb", r.brief(events, [], NOW)["cold"])
         self.assertEqual(len(r.uses_from(uses)), 5)
+
+
+class DeclaredReplacementTests(unittest.TestCase):
+    def test_restating_with_a_supersedes_reference_does_not_erase_the_entry(self):
+        events = [ev("a", "pref", 5, key="k", body="use pnpm"),
+                  ev("b", "pref", 1, key="k", body="always use pnpm", supersedes=["a"])]
+        self.assertEqual([e["id"] for e in r.fold(events)[0]], ["a"])
+
+    def test_declared_replacement_by_another_writer_is_not_a_conflict(self):
+        old = ev("a", key="k", days_ago=0.5, body="one", instance="migration")
+        new = ev("b", key="k", days_ago=0.1, body="two", instance="code", supersedes=["a"])
+        self.assertEqual(r.fold([old, new]), ([new], []))

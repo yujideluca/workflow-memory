@@ -359,6 +359,17 @@ class CliFlowTests(Tmp):
         self.run_cli("forget", target)
         self.assertEqual(self.run_cli("search", "llama")[1], "")
 
+    def test_add_declares_the_entry_it_replaces(self):
+        self.run_cli("add", "--type", "pref", "--key", "pm", "--owner", "user", "use pnpm")
+        later = ["--now", "2026-10-18T13:00:00Z"]
+        self.assertEqual(self.run_cli(*later, "add", "--key", "pm", "--owner", "user", "use bun")[0], 0)
+        newest = max(ev.load(self.root)[0], key=lambda e: e["ts"])
+        self.assertEqual(len(newest["supersedes"]), 1)
+        self.assertEqual(self.run_cli("--now", "2026-10-18T14:00:00Z", "add", "--key", "pm", "--owner", "user",
+                                      "use bun")[0], 0)  # same text again: evidence, no supersedes
+        again = max(ev.load(self.root)[0], key=lambda e: e["ts"])
+        self.assertEqual(again["supersedes"], [])
+
     def test_check_and_quarantine_commands(self):
         (self.root / "events/broken.md").write_text("junk")
         self.assertEqual(self.run_cli("check")[0], 1)

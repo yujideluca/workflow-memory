@@ -119,19 +119,21 @@ def resolve(events):
         ):
             hidden.add(e["id"])  # a forgotten entry is not recreated from evidence
             continue
-        superseded.update(e.get("supersedes", []))
-        if not key:
-            continue
-        slot = (e["scope"], key)
-        prev = latest.get(slot)
-        if prev is None:
-            latest[slot] = e
-        elif norm_tokens(prev["body"]) == norm_tokens(e["body"]):
+        slot = (e["scope"], key) if key else None
+        prev = latest.get(slot) if slot else None
+        if prev is not None and norm_tokens(prev["body"]) == norm_tokens(e["body"]):
             hidden.add(e["id"])  # same ruling again: more evidence, line unchanged
             evidence.setdefault(prev["id"], []).append(e["ts"])
-        elif harvested and prev.get("owner") == "user":
+            continue
+        if prev is not None and harvested and prev.get("owner") == "user":
             hidden.add(e["id"])  # the harvester never rewrites what the user owns
             proposals.append(e["id"])
+            continue
+        superseded.update(e.get("supersedes", []))
+        if slot is None:
+            continue
+        if prev is None:
+            latest[slot] = e
         else:
             superseded.add(prev["id"])
             if (
