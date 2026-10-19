@@ -11,7 +11,8 @@ OWNERS = ("user", "agent", "harvester", "migration", "compactor", "action")
 _SCOPE = re.compile(r"^(global|project:[\w.\-]+|instance:[a-z0-9_]+)$")
 _KEY = re.compile(r"^[a-z0-9][a-z0-9._\-]*$")
 _INSTANCE = re.compile(r"^[a-z0-9_]+$")
-NEEDS_TARGET = ("feedback", "claim", "done", "forget")
+NEEDS_TARGET = ("feedback", "claim", "done", "forget", "use")
+MAX_USE_NOTE = 200
 
 PRIVACY = (
     ("secret", re.compile(
@@ -47,6 +48,8 @@ def check_event(e, now):
         why.append("empty text")
     if len(e["body"]) > MAX_BODY:
         why.append(f"text longer than {MAX_BODY} characters")
+    if e["type"] == "use" and len(e["body"]) > MAX_USE_NOTE:
+        why.append(f"use note longer than {MAX_USE_NOTE} characters")
     if e["type"] in NEEDS_TARGET and not e["target"]:
         why.append(f"{e['type']} needs a target")
     if e["type"] == "feedback" and e["signal"] not in ev.SIGNALS:

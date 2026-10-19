@@ -38,13 +38,30 @@ anywhere under `events/` is read.
 
 ## Relevance
 - Preferences never decay and are never dropped from the brief (a warning appears if they alone exceed the budget).
-- Other types decay with half-lives: decision and fact 180 days, digest 365, task 21, note 14. Each use (a line
-  in `usage/`, or restating a rule) stretches the half-life by `1 + log2(1 + uses)`.
+- Other types decay with half-lives: decision and fact 180 days, digest 365, task 8, note 7. Each use stretches
+  the half-life by `1 + log2(1 + uses)`. A use is reported by the AI instance that read the entry: a `use` event
+  (`target: ref1, ref2`, one short line saying how), written when it finishes a task; restating a rule counts too.
+  An entry is named by its short ref, the `#code` printed after it in the brief (the last segment of its id).
 - Cold entries (score below 0.15) leave the brief but stay searchable. `mem compact` writes a reversible
   `digest` event for cold entries older than 30 days; the sources stay in the log. It is a proposal in REVIEW
-  until `--apply`. The constants are first guesses: calibrate after a few weeks.
+  until `--apply`.
 - Search is a derived SQLite FTS5 index rebuilt from the log on each call, never committed. Vectors can be
   added later without touching the log.
+
+## Where the numbers come from
+`scripts/calibrate.py` measures Giovanni's real Claude Code usage (read-only) and prints the recommended
+constants next to the ones in the code. On 2026-10-19, from 39 sessions over 8 days:
+- Median first-turn context is 44,860 tokens and it is paid again on every turn (cache write once, reads after),
+  so the brief is capped at 2.5% of it: 1,122 tokens, about 4,000 characters at 3.6 characters per token (an
+  assumption for mixed Portuguese and English). `views/BRIEF.md` is 4,021 characters including 1,121 of fixed
+  how-to text, so the lines budget is 2,900.
+- The 90th-percentile gap between sessions of the same project is 1.89 days. An unused note goes cold after 8 of
+  those gaps and a task after 12, which gives half-lives of 7 and 8 days (a cold entry is one scoring under 0.15).
+  Compaction waits twice the note cold age: 30 days.
+- Facts and decisions describe a stable setup and cannot be calibrated from 8 days of history. They keep 180 days.
+  The script prints LOW CONFIDENCE until there are 30 days and 100 gaps; re-run it then (about 2026-11-20) and
+  change the constants it recommends.
+- Claude app chats are not in the transcripts, so their baseline context is unmeasured.
 
 ## Preferences harvested from Giovanni's own words (`mem/harvest.py`)
 Only the user's prompt text counts (never tool output or agent text), English and Portuguese, only sentences

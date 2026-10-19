@@ -59,10 +59,10 @@ class EventFileTests(Tmp):
         self.assertEqual(path.read_text(), before)
         self.assertEqual([p.name for p in path.parent.iterdir()], [path.name])
 
-    def test_bad_usage_line_never_blocks_the_rest(self):
-        (self.root / "usage/2026-10-18-code.jsonl").write_text(
-            'garbage\n{"target": "a", "ts": "2026-10-18T12:00:00Z"}\n{"x": 1}\n')
-        self.assertEqual([u["target"] for u in ev.load_usage(self.root)], ["a"])
+    def test_use_event_needs_a_target_and_a_short_note(self):
+        self.assertTrue(validate.check_event(mk(type="use", body="", target=None), NOW))
+        self.assertTrue(validate.check_event(mk(type="use", body="x" * 201, target="a"), NOW))
+        self.assertEqual(validate.check_event(mk(type="use", body="applied it", target="a, b"), NOW), [])
 
 
 class ValidateTests(Tmp):
@@ -146,7 +146,8 @@ class ProjectTests(Tmp):
         self.assertIn("[pm] use pnpm", brief)
         self.assertIn("`me/mem`", brief)
         self.assertIn("get_file_contents", brief)
-        self.assertNotIn("20261018T120000Z-code-aaaaaa", brief)  # ids only for Code
+        self.assertIn("(#aaaaaa)", brief)  # the short ref a chat uses to report use
+        self.assertIn("type: use", brief)
 
     def test_brief_says_when_entries_did_not_fit(self):
         for i in range(6):
@@ -231,7 +232,8 @@ class HookTests(Tmp):
         ev.write(self.root, mk())
         code, out = self.call(hooks.session_start, {"cwd": "/tmp/projA"})
         self.assertEqual(code, 0)
-        self.assertIn("[pm] use pnpm (20261018T120000Z-code-aaaaaa)", out)
+        self.assertIn("[pm] use pnpm (#aaaaaa)", out)
+        self.assertIn("mem use REF1,REF2", out)
         self.assertIn("mem add --type pref --owner user", out)
         self.assertIn("memory may be stale", out)  # not a git clone: pull is skipped
 
@@ -341,8 +343,8 @@ class CliFlowTests(Tmp):
         self.run_cli("task", "migrate memory")
         task = [e for e in ev.load(self.root)[0] if e["type"] == "task"][0]["id"]
         self.assertEqual(self.run_cli("claim", task)[0], 0)
-        self.assertEqual(self.run_cli("use", task)[0], 0)
-        self.assertTrue(list((self.root / "usage").glob("2026-10-18-code.jsonl")))
+        self.assertEqual(self.run_cli("use", task, "--note", "picked it up")[0], 0)
+        self.assertEqual([e["type"] for e in ev.load(self.root)[0]].count("use"), 1)
         self.assertIn("migrate memory", self.run_cli("brief")[1])
         self.run_cli("done", task)
         self.assertNotIn("migrate memory", self.run_cli("brief")[1])

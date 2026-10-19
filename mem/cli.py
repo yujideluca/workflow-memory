@@ -51,8 +51,9 @@ def run(argv=None, stdin=None):
     task.add_argument("text")
     claim = sub.add_parser("claim", help="claim a task; the earliest claim wins")
     claim.add_argument("target")
-    use = sub.add_parser("use", help="log that entries were applied")
-    use.add_argument("ids", nargs="+")
+    use = sub.add_parser("use", help="report which entries you applied, and how")
+    use.add_argument("refs", help="comma-separated refs or ids")
+    use.add_argument("--note", default="", help="how, in one short line")
     br = sub.add_parser("brief", help="print the brief for a project and instance")
     br.add_argument("--project")
     br.add_argument("--budget", type=int, default=project.BRIEF_BUDGET)
@@ -90,11 +91,10 @@ def run(argv=None, stdin=None):
     if a.cmd == "task":
         return _write(root, now, "task", a.text, a.scope, instance=instance)
     if a.cmd == "use":
-        ev.log_use(root, a.ids, instance, now)
-        return 0
+        return _write(root, now, "use", a.note, instance=instance, target=a.refs)
     if a.cmd == "brief":
         events, _ = validate.load_checked(root, now)
-        out = core.brief(events, ev.load_usage(root), now, project=a.project, instance=instance,
+        out = core.brief(events, [], now, project=a.project, instance=instance,
                          budget=a.budget, ids=a.ids)
         print("\n".join([out["header"], *out["lines"]]))
         return 0
@@ -127,7 +127,7 @@ def run(argv=None, stdin=None):
         return 0
     if a.cmd == "compact":
         events, _ = validate.load_checked(root, now)
-        digests = core.compaction_proposals(events, ev.load_usage(root), now)
+        digests = core.compaction_proposals(events, [], now)
         for d in digests:
             print(f"{'wrote' if a.apply else 'would write'} {d['id']} ({len(d['supersedes'])} entries)")
             if a.apply:

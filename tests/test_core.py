@@ -129,3 +129,25 @@ class DuplicateTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RefAndUseTests(unittest.TestCase):
+    def test_short_ref_names_the_event_and_ambiguous_refs_do_nothing(self):
+        events = [ev("20261018T120000Z-code-aaaaaa", "fact", 1, key="k", body="one"),
+                  ev("20261018T120001Z-code-bbbbbb", "fact", 1, body="two")]
+        gone = dict(id="f", type="forget", scope="global", key=None, body="", instance="code",
+                    ts=NOW, supersedes=[], target="aaaaaa")
+        self.assertEqual([e["id"] for e in r.fold(events + [gone])[0]], ["20261018T120001Z-code-bbbbbb"])
+        dup = events + [ev("20261019T120000Z-app-aaaaaa", "fact", 1, body="three"), gone]
+        self.assertEqual(len(r.fold(dup)[0]), 3)  # "aaaaaa" now matches two ids: nothing is forgotten
+
+    def test_use_events_keep_an_entry_alive_and_accept_several_targets(self):
+        events = [ev("20260901T120000Z-code-aaaaaa", "note", 40, body="old but used"),
+                  ev("20260901T120001Z-code-bbbbbb", "note", 40, body="old, never used")]
+        uses = [dict(id=f"u{i}", type="use", scope="global", key=None, body="applied", instance="app",
+                     ts=NOW - timedelta(days=d), supersedes=[], target="aaaaaa, bbbbbb" if i == 0 else "aaaaaa")
+                for i, d in enumerate((20, 10, 4, 1))]
+        out = r.brief(events[:1] + uses, [], NOW)
+        self.assertIn("20260901T120000Z-code-aaaaaa", out["included"])
+        self.assertIn("20260901T120001Z-code-bbbbbb", r.brief(events, [], NOW)["cold"])
+        self.assertEqual(len(r.uses_from(uses)), 5)

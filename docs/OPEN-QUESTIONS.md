@@ -21,8 +21,6 @@ starts, or touches the old setup. Each has a recommended answer.
    `events/**` through for the connector needs a plan that supports it on a private repo; do you want it?
 6. **The health vocabulary check** rejects words like patient, diagnosis, medication. It is blunt on purpose.
    Keep it, widen it or narrow it?
-7. **Numbers that are first guesses:** half-lives (decision and fact 180 days, task 21, note 14), the cold cutoff
-   0.15, compaction after 30 days, brief budget 3000 characters. Review after a few weeks of real use.
-8. **Not automated:** logging that an entry was used (`mem use ID`) is a command, not a hook, because reading a
-   brief does not prove use. If you want it automatic, say what should count as use.
-9. **Not tested:** the connector in a browser chat (phone chat and project chat were tested).
+7. **Re-calibrate around 2026-11-20** with `python3 scripts/calibrate.py` (it needs 30 days and 100 gaps; today
+   it has 8 days). Fact and decision half-lives (180 days) cannot be measured yet.
+8. **Not tested:** the connector in a browser chat (phone chat and project chat were tested).
