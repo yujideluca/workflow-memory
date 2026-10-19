@@ -22,7 +22,8 @@ Claude Code, the always-on assistant). It replaces the old claude-workflow-backu
 
 ## Commands (`bin/mem`, Python 3 standard library only)
 `add`, `feedback`, `forget`, `task`, `claim`, `done`, `use`, `brief`, `search`, `check`, `quarantine`,
-`promote`, `compact`, `build [--check]`, `sync [--pull] [--push]`, `install-hooks [--uninstall]`.
+`dismiss`, `promote`, `compact`, `build [--check]`, `sync [--pull] [--push]`, `install-hooks [--uninstall]`.
+`scripts/calibrate.py` recommends the constants from real usage; `scripts/migrate_legacy.py` was the one-time import.
 
 ## Tests
 `python3 -m unittest discover -s tests -t .`

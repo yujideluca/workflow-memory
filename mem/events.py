@@ -3,7 +3,6 @@
 A file is `---`, `key: value` lines, `---`, then the text. Unknown keys are
 ignored, so the format can grow without breaking old readers.
 """
-import json
 import os
 import re
 import secrets
@@ -12,7 +11,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 TYPES = ("pref", "fact", "decision", "task", "note", "digest",
-         "feedback", "claim", "done", "forget")
+         "feedback", "claim", "done", "forget", "use")
 SIGNALS = ("helpful", "not_helpful", "stale", "wrong")
 _STEM = re.compile(r"^(\d{8}T\d{6}Z)-([a-z0-9_]+)-")
 
@@ -110,24 +109,3 @@ def load(root):
         except (ValueError, UnicodeDecodeError) as err:
             bad.append((str(path.relative_to(root)), str(err)))
     return events, bad
-
-
-def load_usage(root):
-    out = []
-    for path in sorted((Path(root) / "usage").glob("*.jsonl")):
-        for line in path.read_text(encoding="utf-8").splitlines():
-            try:
-                row = json.loads(line)
-                out.append(dict(target=row["target"], ts=parse_ts(row["ts"])))
-            except (ValueError, KeyError, TypeError):
-                continue  # one bad line never blocks the rest
-    return out
-
-
-def log_use(root, targets, instance, now):
-    path = Path(root) / "usage" / f"{now:%Y-%m-%d}-{instance}.jsonl"
-    old = path.read_text(encoding="utf-8") if path.exists() else ""
-    rows = "".join(
-        json.dumps(dict(target=t, ts=now.strftime("%Y-%m-%dT%H:%M:%SZ"))) + "\n" for t in targets
-    )
-    atomic_write(path, old + rows)

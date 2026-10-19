@@ -24,8 +24,8 @@ def pull(root):
 
 
 def push(root, retries=4, sleep=time.sleep):
-    """Commit new events and usage rows, then push with backoff (2, 4, 8, 16 s)."""
-    _git(root, "add", "events", "usage")
+    """Commit new events, then push with backoff (2, 4, 8, 16 s)."""
+    _git(root, "add", "events")
     if _git(root, "diff", "--cached", "--quiet").returncode != 0:
         done = _git(root, *_identity(root), "commit", "-q", "-m", "mem: new events")
         if done.returncode != 0:

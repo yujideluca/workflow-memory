@@ -5,7 +5,7 @@ from pathlib import Path
 
 from . import core, events as ev, validate
 
-BRIEF_BUDGET = 3000
+BRIEF_BUDGET = 2900
 CONFIG = "mem.json"
 
 
@@ -18,37 +18,37 @@ def config(root):
 
 def _howto(root):
     repo = config(root).get("repo", "<owner>/<repo>")
-    return f"""## Recording a correction or a lasting preference
+    return f"""## Recording
 
-When the user corrects you or states a rule that should last, record it. Load the
-GitHub tools first (`get_file_contents`, `create_branch`, `create_or_update_file`),
-then create ONE new file on `main` of `{repo}`. Never edit an existing file.
+Load the GitHub tools first (`get_file_contents`, `create_branch`, `create_or_update_file`). Then create ONE new
+file on `main` of `{repo}`; never edit an existing one.
 
-path: `events/YYYY/MM/YYYYMMDDTHHMMSSZ-app-xxxxxx.md` (UTC time, xxxxxx = 6 random letters or digits)
+path: `events/YYYY/MM/YYYYMMDDTHHMMSSZ-app-xxxxxx.md` (UTC time, xxxxxx = 6 random characters)
 
 ```
 ---
-type: pref
+type: pref          # pref, fact, decision, task
 scope: global
-key: short.topic.name
-owner: user
+key: short.topic    # the same key replaces the old rule
+owner: user         # only for what the user said
 instance: app
 ts: 2026-01-31T12:00:00Z
 ---
-The rule, in the user's own words, one or two sentences.
+The rule, in the user's words.
 ```
 
-`type` is pref, fact, decision or task. A new pref with the same `key` replaces the old one.
-Never write secrets, contact data or health information about anyone: such files are quarantined.
+When you finish a task, report the entries that shaped your answer: a file with `type: use`,
+`target: ref1, ref2` (the #codes) and one short line of text. For a wrong or outdated entry use
+`type: feedback`, `target: ref`, `signal: wrong` (or stale, helpful, not_helpful).
+No secrets, contact data or health information: such files are quarantined.
 """
 
 
 def build(root, now, instance="app", budget=BRIEF_BUDGET):
     """Return {view name: text}. Pure given the files and `now`."""
     events, invalid = validate.load_checked(root, now)
-    usage = ev.load_usage(root)
     state = core.resolve(events)
-    out = core.brief(events, usage, now, instance=instance, budget=budget)
+    out = core.brief(events, [], now, instance=instance, budget=budget, ids=True)
     stamp = f"Generated {now:%Y-%m-%d} from {len(events)} events. Do not edit: record changes as events."
     brief = "\n".join([
         "# Memory brief", "", stamp, "", out["header"], "", *out["lines"],
@@ -80,7 +80,7 @@ def build(root, now, instance="app", budget=BRIEF_BUDGET):
               ("Near-duplicate entries",
                [f"{a} ~ {b}" for a, b in core.near_duplicates(events)]),
               ("Cold entries ready to compact (run `mem compact --apply`)",
-               [d["body"][:100] for d in core.compaction_proposals(events, usage, now)]),
+               [d["body"][:100] for d in core.compaction_proposals(events, [], now)]),
               ("Warnings", out["warnings"])]
     lines = ["# Needs a decision", "", stamp, ""]
     shown = [(title, items) for title, items in review if items]

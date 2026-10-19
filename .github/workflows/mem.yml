@@ -4,7 +4,7 @@ name: mem
 # because relevance decays with time. No machine of yours has to be on.
 on:
   push:
-    paths: ["events/**", "usage/**", "mem/**", "tests/**", ".github/workflows/mem.yml"]
+    paths: ["events/**", "mem/**", "tests/**", ".github/workflows/mem.yml"]
   schedule:
     - cron: "17 6 * * *"
   workflow_dispatch:
@@ -36,7 +36,7 @@ jobs:
         run: |
           git config user.name "mem-action"
           git config user.email "mem-action@users.noreply.github.com"
-          git add events usage quarantine views
+          git add events quarantine views
           if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
           git commit -m "mem: quarantine, promote, views"
           for wait in 0 2 4 8 16; do

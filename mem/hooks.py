@@ -49,7 +49,7 @@ def session_start(root, payload, now, instance):
     try:
         status = sync.pull(root)
         events, invalid = validate.load_checked(root, now)
-        out = core.brief(events, ev.load_usage(root), now, project=_project(payload),
+        out = core.brief(events, [], now, project=_project(payload),
                          instance=instance, budget=project.BRIEF_BUDGET, ids=True)
         texts = project.build(root, now, instance)
         pending = project.review_count(texts)
@@ -63,7 +63,9 @@ def session_start(root, payload, now, instance):
         lines += [
             "Record a correction or lasting preference from Giovanni: "
             f"python3 {root}/bin/mem add --type pref --owner user --key topic \"the rule\".",
-            "Say an entry helped or was wrong: mem feedback <id> helpful|not_helpful|stale|wrong.",
+            "When you finish a task, report which entries you used and how, briefly: "
+            "mem use REF1,REF2 --note \"how\" (REF is the #code after an entry).",
+            "Say an entry was wrong or outdated: mem feedback REF wrong|stale (or helpful|not_helpful).",
         ]
         print("\n".join(lines))
     except Exception:

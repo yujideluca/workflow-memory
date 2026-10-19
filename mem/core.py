@@ -21,11 +21,11 @@ TIERS = {
     "decision": (180, 2.0),
     "fact": (180, 1.5),
     "digest": (365, 1.2),
-    "task": (21, 1.0),
-    "note": (14, 0.7),
+    "task": (8, 1.0),
+    "note": (7, 0.7),
 }
 # control events: they act on other events and are never shown themselves
-CONTROL = {"feedback", "claim", "done", "forget"}
+CONTROL = {"feedback", "claim", "done", "forget", "use"}
 COLD_THRESHOLD = 0.15
 CONFLICT_WINDOW = timedelta(hours=24)
 DUP_THRESHOLD = 0.8
@@ -42,6 +42,46 @@ _DURABLE = re.compile(
 )
 
 
+def ref(event_id):
+    """Short handle for an event: the last segment of its id."""
+    return event_id.rsplit("-", 1)[-1]
+
+
+def normalize(events):
+    """Copies without duplicates, with targets and supersedes resolved to full ids.
+
+    A short ref names an event when exactly one id ends with it. `use` events
+    may list several targets, kept in `targets`.
+    """
+    unique = {e["id"]: e for e in events}
+    ends = {}
+    for i in unique:
+        ends.setdefault(ref(i), []).append(i)
+
+    def canon(t):
+        t = t.strip()
+        if t in unique:
+            return t
+        hit = ends.get(t, [])
+        return hit[0] if len(hit) == 1 else t
+
+    out = []
+    for e in unique.values():
+        e = dict(e)
+        if e.get("target"):
+            e["targets"] = [canon(p) for p in e["target"].split(",") if p.strip()]
+            e["target"] = e["targets"][0] if e["targets"] else e["target"]
+        e["supersedes"] = [canon(s) for s in e.get("supersedes", [])]
+        out.append(e)
+    return out
+
+
+def uses_from(events):
+    """Usage stamps from `use` events: the instance that read an entry reports it."""
+    return [dict(target=t, ts=e["ts"]) for e in normalize(events)
+            if e["type"] == "use" for t in e.get("targets", [])]
+
+
 def norm_tokens(text):
     """Comparison form: same words, same order, same negations; fillers dropped."""
     words = re.findall(r"\w+", text.lower().replace("'", ""))
@@ -54,7 +94,7 @@ def key_tokens(text):
 
 def resolve(events):
     """Order-independent, idempotent state: active events plus side findings."""
-    unique = {e["id"]: e for e in events}  # re-delivered events count once
+    unique = {e["id"]: e for e in normalize(events)}  # re-delivered events count once
     ordered = sorted(unique.values(), key=lambda e: (e["ts"], e["id"]))
     superseded, hidden = set(), set()
     tombstones = {}
@@ -117,7 +157,7 @@ def claim_winner(events, task_id):
     Limit: an append-only log has no atomic compare-and-set, so a losing
     instance may act on the task before it sees the result.
     """
-    unique = {e["id"]: e for e in events}
+    unique = {e["id"]: e for e in normalize(events)}
     claims = sorted(
         (e for e in unique.values() if e["type"] == "claim" and e.get("target") == task_id),
         key=lambda e: (e["ts"], e["id"]),
@@ -130,7 +170,7 @@ def claim_winner(events, task_id):
 
 def _feedback(events):
     counts = {}
-    for e in {e["id"]: e for e in events}.values():
+    for e in normalize(events):
         if e["type"] == "feedback":
             counts.setdefault(e["target"], Counter())[e["signal"]] += 1
     return counts
@@ -159,13 +199,13 @@ def in_scope(e, project=None, instance=None):
 
 def _line(e, ids=False):
     text = f"[{e['key']}] {e['body']}" if e.get("key") else e["body"]
-    return f"- {text} ({e['id']})" if ids else f"- {text}"
+    return f"- {text} (#{ref(e['id'])})" if ids else f"- {text}"
 
 
 def brief(events, usage, now, project=None, instance=None, budget=4000, ids=False):
     state = resolve(events)
     fbs = _feedback(events)
-    usage = list(usage) + [
+    usage = list(usage) + uses_from(events) + [
         {"target": t, "ts": ts} for t, stamps in state["evidence"].items() for ts in stamps
     ]
     scoped = [e for e in state["active"] if in_scope(e, project, instance)]
@@ -210,6 +250,7 @@ def compaction_proposals(events, usage, now, min_age_days=30):
     """One digest event per scope for cold, old, unpinned entries. Never deletes."""
     active, _ = fold(events)
     fbs = _feedback(events)
+    usage = list(usage) + uses_from(events)
     groups = {}
     for e in active:
         if TIERS[e["type"]][0] is None or e["type"] == "digest":
