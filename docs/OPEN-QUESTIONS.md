@@ -10,10 +10,9 @@
   symlinks into its `code/skills/` and the status-line progress bar runs from its `tools/`, so do not delete it.
 - The launcher `~/.local/bin/claude-assistant` now exports `MEM_INSTANCE=assistant` (backup: `.pre-mem`). It
   takes effect the next time the service restarts; the running assistant session was not restarted.
+- claude.ai Settings text pasted by Giovanni (`docs/CLAUDE-AI.md`).
+- Health-vocabulary filter: not implemented, by Giovanni's decision.
 
-## Waiting for Giovanni
-1. **claude.ai Settings text** (`docs/CLAUDE-AI.md`): paste it, replacing the line that reads `code/CORE.md`.
-   Until then the app chats do not read this memory.
-2. **Health vocabulary check:** keep, widen or narrow the word list in `mem/validate.py`?
-3. **Re-calibrate around 2026-11-20** with `python3 scripts/calibrate.py`.
-4. **Not tested:** the connector in a browser chat.
+## Waiting
+1. **Re-calibrate around 2026-11-20** with `python3 scripts/calibrate.py`.
+2. **Not tested:** the connector in a browser chat.

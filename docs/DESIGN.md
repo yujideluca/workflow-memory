@@ -79,7 +79,8 @@ key is heuristic ("use pnpm" and "use o pnpm" do not match); that errs toward tw
 
 ## Privacy
 Enforced in the repo, whoever the writer is: `validate.py` rejects tokens and keys, email addresses, phone
-numbers, CPF and health vocabulary (patient, diagnosis, medication and similar). Rejected files move to
+numbers and CPF. There is deliberately no health-vocabulary filter (Giovanni's decision, 2026-10-19); not
+storing clinical data about other people is a standing preference, not an automatic check. Rejected files move to
 `quarantine/` with a `.reason` note and appear in REVIEW. A stored entry sets defaults and never authorizes
 anything. Precedence: current instruction, repo rules file, project memory, profile. The repo must be private.
 
@@ -89,5 +90,3 @@ anything. Precedence: current instruction, repo rules file, project memory, prof
 - The GitHub connector can write any path on any branch. An instruction is not enforcement. Self-healing
   covers views (rebuilt every run) and events (validated), but not edits to code. Protect `main` if that matters.
 - What the app reads lags the laptop until the laptop pushes; Claude Code pushes at the end of each session.
-- The health vocabulary check is blunt: a legitimate note that mentions such a word is quarantined, and
-  Giovanni decides.

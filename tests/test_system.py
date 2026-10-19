@@ -78,14 +78,13 @@ class ValidateTests(Tmp):
             "write to giovanni@example.com": "email",
             "ligue +55 11 91234-5678": "phone",
             "cpf 123.456.789-09": "CPF",
-            "o paciente chegou": "health",
-            "patient history": "health",
         }
         for body, label in cases.items():
             self.assertTrue(any(label in r for r in self.reasons(body=body)), body)
 
     def test_technical_words_and_plain_numbers_pass(self):
-        for body in ("run the diagnostics tool", "date 20261018 and id 12345678", "use bun, not pnpm"):
+        for body in ("run the diagnostics tool", "date 20261018 and id 12345678", "use bun, not pnpm",
+                     "o paciente e a medicação não são filtrados"):
             self.assertEqual(self.reasons(body=body), [], body)
 
     def test_structure_rules(self):
@@ -101,7 +100,7 @@ class ValidateTests(Tmp):
 
     def test_quarantine_moves_files_wherever_they_were_written(self):
         ev.write(self.root, mk())
-        ev.write(self.root, mk(id="20261018T120001Z-app-bbbbbb", body="the paciente list"))
+        ev.write(self.root, mk(id="20261018T120001Z-app-bbbbbb", body="contact bob@example.com"))
         odd = self.root / "events/misplaced/20261018T120002Z-app-cccccc.md"
         odd.parent.mkdir()
         odd.write_text("---\ntype: pref\nts: 2026-10-18T12:00:02Z\n---\nghp_" + "b" * 30 + "\n")

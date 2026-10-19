@@ -40,7 +40,7 @@ The rule, in the user's words.
 When you finish a task, report the entries that shaped your answer: a file with `type: use`,
 `target: ref1, ref2` (the #codes) and one short line of text. For a wrong or outdated entry use
 `type: feedback`, `target: ref`, `signal: wrong` (or stale, helpful, not_helpful).
-No secrets, contact data or health information: such files are quarantined.
+No secrets or contact data: such files are quarantined.
 """
 
 

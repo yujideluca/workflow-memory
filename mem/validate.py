@@ -22,9 +22,6 @@ PRIVACY = (
     ("email address", re.compile(r"[\w.+\-]+@[\w\-]+\.[\w.\-]+")),
     ("phone number", re.compile(r"(?:\+\d{1,3}[\s.\-]?)?\(?\d{2}\)?[\s.\-]\d{4,5}[\s.\-]\d{4}")),
     ("CPF", re.compile(r"\b\d{3}\.\d{3}\.\d{3}-\d{2}\b")),
-    ("health information", re.compile(
-        r"\b(pacientes?|patients?|prontu[aá]rios?|sintomas?|symptoms?|medica[cç][aã]o|"
-        r"medications?|diagn[oó]stico|diagnosis|CID-?\d+|ICD-?\d+)\b", re.I)),
 )
 
 

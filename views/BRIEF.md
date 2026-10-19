@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-19 from 35 events. Do not edit: record changes as events.
+Generated 2026-10-19 from 36 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -15,12 +15,12 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [person.profile] Giovanni is a pre-hospital emergency physician in Brazil, preparing the Goethe B2 exam (Nov 2026) and the FSP to work in Germany. (#9f3a0e)
 - [policy.third-party-data] Never store clinical, secret or contact data about other people in memory. If a case needs it, Giovanni will ask for a specific procedure. (#baab57)
 - [work.build-then-ask] After a project and plan are approved, build it end to end without progress pauses; ask the open questions at the end. (#c1f1f8)
+- [decision.no-health-filter] Memory validation has no automatic health-vocabulary filter. Not storing clinical data about other people stays a standing preference, not a check. (#116712)
 - [decision.ai-memory-inspiration] ai-memory (akitaonrails) is inspiration only; it is never installed. (#72e118)
 - [decision.memory-v3] The old claude-workflow-backup protocol is abandoned. workflow-memory is the new workflow: append-only event log, computed state, views built by a GitHub Action. (#a20747)
 - [tool.local-qwen] Local Qwen3.5-9B Q4 via llama-server on 127.0.0.1:8080 (16k context, about 5.4 GB VRAM; pkill -f llama-server stops it). Study: ~/Documents/Qwen-delegation-study-report.md: pseudo-code specs work best; delegating small functions saves no Claude tokens. (#13ce6b)
 - [service.claude-assistant] claude-assistant (systemd user service, linger on) runs 'claude remote-control' in tmux socket 'claude', home ~/assistant, app name yuji-nitro-assistant. bypassPermissions was Giovanni's own choice (2026-10-11): never change it without asking. Watch with claude-assistant attach (Ctrl+b d leaves); restart with systemctl --user restart claude-assistant. (#42ac74)
-- [project.quizapp] QuizApp lives in ~/dev/QuizApp (Kotlin, local git only, no remote): a German B2 quiz with 3 modes and Anki-style scheduling, tested on the phone over adb. (#7a3968)
-- (2 more entries did not fit; they are in the log and searchable)
+- (3 more entries did not fit; they are in the log and searchable)
 
 ## Recording
 
@@ -44,5 +44,5 @@ The rule, in the user's words.
 When you finish a task, report the entries that shaped your answer: a file with `type: use`,
 `target: ref1, ref2` (the #codes) and one short line of text. For a wrong or outdated entry use
 `type: feedback`, `target: ref`, `signal: wrong` (or stale, helpful, not_helpful).
-No secrets, contact data or health information: such files are quarantined.
+No secrets or contact data: such files are quarantined.
 
