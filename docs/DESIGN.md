@@ -38,7 +38,7 @@ anywhere under `events/` is read.
 
 ## Relevance
 - Preferences never decay and are never dropped from the brief (a warning appears if they alone exceed the budget).
-- Other types decay with half-lives: decision and fact 180 days, digest 365, task 8, note 7. Each use stretches
+- Other types decay with half-lives: decision and fact 180 days, digest 365, note 7. A task never decays (see Open items). Each use stretches
   the half-life by `1 + log2(1 + uses)`. A use is reported by the AI instance that read the entry: a `use` event
   (`target: ref1, ref2`, one short line saying how), written when it finishes a task; restating a rule counts too.
   An entry is named by its short ref, the `#code` printed after it in the brief (the last segment of its id).
@@ -56,7 +56,7 @@ constants next to the ones in the code. On 2026-10-19, from 39 sessions over 8 d
   assumption for mixed Portuguese and English). `views/BRIEF.md` is 4,021 characters including 1,121 of fixed
   how-to text, so the lines budget is 2,900.
 - The 90th-percentile gap between sessions of the same project is 1.89 days. An unused note goes cold after 8 of
-  those gaps and a task after 12, which gives half-lives of 7 and 8 days (a cold entry is one scoring under 0.15).
+  those gaps and which gives a half-life of 7 days for notes (a cold entry is one scoring under 0.15).
   Compaction waits twice the note cold age: 30 days.
 - Facts and decisions describe a stable setup and cannot be calibrated from 8 days of history. They keep 180 days.
   The script prints LOW CONFIDENCE until there are 30 days and 100 gaps; re-run it then (about 2026-11-20) and
@@ -90,3 +90,13 @@ anything. Precedence: current instruction, repo rules file, project memory, prof
 - The GitHub connector can write any path on any branch. An instruction is not enforcement. Self-healing
   covers views (rebuilt every run) and events (validated), but not edits to code. Protect `main` if that matters.
 - What the app reads lags the laptop until the laptop pushes; Claude Code pushes at the end of each session.
+
+## Open items (pendencies)
+
+A pendency, or a known problem nobody has handled yet, is a `task`: `mem task --check HOW "text"`. `--check`
+is mandatory and says how to verify that the item still applies (a command, a file, a page). Tasks are pinned:
+they do not decay, so an open item cannot fade out of the brief unseen; only `mem done REF` closes one. They are
+listed as `[open item]` and the session-start hook adds a rule whenever any exist: before reminding Giovanni of
+one, run its check in the current context; if it no longer applies, close it and do not report it as pending; if
+it could not be checked, say "unchecked" and say how it was verified. Why: on 2026-10-20 an item was reported
+as open from memory of the conversation, after the system had already settled it.

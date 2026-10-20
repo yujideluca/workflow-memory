@@ -339,7 +339,7 @@ class CliFlowTests(Tmp):
 
     def test_stdin_task_claim_done_and_use(self):
         self.assertEqual(self.run_cli("add", "--type", "fact", "-", stdin="from stdin\n")[0], 0)
-        self.run_cli("task", "migrate memory")
+        self.run_cli("task", "migrate memory", "--check", "ls the new folder")
         task = [e for e in ev.load(self.root)[0] if e["type"] == "task"][0]["id"]
         self.assertEqual(self.run_cli("claim", task)[0], 0)
         self.assertEqual(self.run_cli("use", task, "--note", "picked it up")[0], 0)
