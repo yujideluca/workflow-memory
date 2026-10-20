@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-20 from 80 events. Do not edit: record changes as events.
+Generated 2026-10-20 from 82 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -17,10 +17,9 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [work.build-then-ask] After a project and plan are approved, build it end to end without progress pauses; ask the open questions at the end. (#c1f1f8)
 - [work.ask-with-context] When asking Giovanni about a development decision that is new (not a topic already debated), give clear context first: what is being decided, why, options, and your recommendation. If it involves many steps never discussed, include a flowchart. A badly framed question cannot be answered well. (#abdad0)
 - [telegram] To send via Telegram use the tg-send bot (tg-send -f FILE caption), never the phone app; read ~/.local/bin/tg-send, it has no --help (any argument is sent as a message). Messages arrive in the 'Claude code bridge' chat (@Claude_1123bot), NOT Saved Messages: always tell Giovanni to check that chat. (#c09dc8)
+- [pendencies.verify-before-reminding] Track pendencies and known unhandled problems as tasks: mem task --check HOW "text". Before reminding Giovanni of one, run its check; if it no longer applies, mem done REF and do not mention it as pending; if unchecked, say so. Never call an item open from memory alone. (#0d25f7)
 - [decision.no-health-filter] Memory validation has no automatic health-vocabulary filter. Not storing clinical data about other people stays a standing preference, not a check. (#116712)
-- [decision.ai-memory-inspiration] ai-memory (akitaonrails) is inspiration only; it is never installed. (#72e118)
-- [decision.memory-v3] The old claude-workflow-backup protocol is abandoned. workflow-memory is the new workflow: append-only event log, computed state, views built by a GitHub Action. (#a20747)
-- (6 more entries did not fit; they are in the log and searchable)
+- (8 more entries did not fit; they are in the log and searchable)
 
 ## Recording
 
