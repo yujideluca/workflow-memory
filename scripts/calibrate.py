@@ -9,7 +9,7 @@ Rules (the only judgement calls, stated so they can be argued with):
 - Brief budget: the brief may cost at most SHARE of the median first-turn context, because that context is
   paid again on every turn (cache write once, cache reads after).
 - Note half-life: an unused note goes cold after K_NOTE times the 90th-percentile gap between sessions of
-  the same project. Task half-life: the same with K_TASK. Cold means the score fell under COLD_THRESHOLD.
+  the same project. Tasks do not decay (open items). Cold means the score fell under COLD_THRESHOLD.
 - Facts and decisions describe a stable setup and cannot be calibrated from days of history; they keep their
   value until enough history exists (the script says when it does).
 """
@@ -27,7 +27,7 @@ from mem import core, project  # noqa: E402
 
 SHARE = 0.025
 CHARS_PER_TOKEN = 3.6  # mixed Portuguese and English; an assumption, not measured
-K_NOTE, K_TASK = 8, 12
+K_NOTE = 8
 MIN_WINDOW_DAYS, MIN_GAPS = 30, 100
 
 
@@ -78,14 +78,11 @@ def main():
     overhead = len(brief) - lines_chars
     total = baseline * SHARE * CHARS_PER_TOKEN
     note_cold = K_NOTE * gap90
-    task_cold = K_TASK * gap90
     rec = {
         "brief file chars (lines + how-to)": (round(total), project.BRIEF_BUDGET + overhead),
         "brief lines budget": (round(total - overhead), project.BRIEF_BUDGET),
         "note half-life (days)": (round(note_cold / math.log2(core.TIERS["note"][1] / cold), 1),
                                   core.TIERS["note"][0]),
-        "task half-life (days)": (round(task_cold / math.log2(core.TIERS["task"][1] / cold), 1),
-                                  core.TIERS["task"][0]),
         "compact cold entries older than (days)": (round(2 * note_cold), 30),
     }
     print(f"sessions {len(rows)}, window {window} days, gaps {len(gaps)}")
