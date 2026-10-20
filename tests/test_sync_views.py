@@ -1,5 +1,6 @@
 """mem sync must survive a locally rebuilt views/ and must never report success over a broken pull."""
 import os, subprocess, tempfile, unittest
+from unittest import mock
 from pathlib import Path
 from mem import sync
 
@@ -17,14 +18,16 @@ def mem(cwd, *a):
 
 class SyncViews(unittest.TestCase):
     def setUp(self):
+        # sync.push runs its own git commands; a CI runner has no identity, and a rebase needs one
+        patch = mock.patch.dict(os.environ, {k: v for k, v in ENV.items() if k.startswith("GIT_")})
+        patch.start()
+        self.addCleanup(patch.stop)
         self.tmp = tempfile.TemporaryDirectory()
         t = Path(self.tmp.name)
         git(t, "clone", "-q", "--bare", str(ROOT), "remote.git")
         git(t, "clone", "-q", "remote.git", "me")
         git(t, "clone", "-q", "remote.git", "bot")
         self.me, self.bot = t / "me", t / "bot"
-        for d in (self.me, self.bot):
-            git(d, "checkout", "-q", "-B", "main", "origin/main") if False else None
 
     def tearDown(self):
         self.tmp.cleanup()
