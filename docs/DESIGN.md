@@ -93,10 +93,41 @@ anything. Precedence: current instruction, repo rules file, project memory, prof
 
 ## Open items (pendencies)
 
-A pendency, or a known problem nobody has handled yet, is a `task`: `mem task --check HOW "text"`. `--check`
-is mandatory and says how to verify that the item still applies (a command, a file, a page). Tasks are pinned:
-they do not decay, so an open item cannot fade out of the brief unseen; only `mem done REF` closes one. They are
-listed as `[open item]` and the session-start hook adds a rule whenever any exist: before reminding Giovanni of
-one, run its check in the current context; if it no longer applies, close it and do not report it as pending; if
-it could not be checked, say "unchecked" and say how it was verified. Why: on 2026-10-20 an item was reported
-as open from memory of the conversation, after the system had already settled it.
+What is still open, kept in front of Giovanni until it is dealt with, so goals and known problems are not lost
+between sessions or between Claude Code and the Claude app. It is its own flow (`mem/pendency.py`) with its own
+budget; nothing else competes with it.
+
+- **What it is.** A `task` event: `what is open | check: how to verify it still applies`, with an optional
+  `category`. `mem task --check HOW [--category C] "text"`; the CLI refuses a task without a check. A chat may
+  write the same file by hand (the how-to in `views/BRIEF.md` says how); one without a check is shown as
+  "(no check recorded)" and listed under Warnings in `views/REVIEW.md`.
+- **Nothing lapses.** An open item is announced at the start of every chat until Giovanni decides. Three exits:
+  solved (`mem done REF`), parked (`mem archive REF`: no more notifications, still listed with
+  `mem pending --archived` and searchable; `mem reopen REF` brings it back when it becomes a problem) and
+  deleted (`mem forget REF`: gone from every view and from search; the file stays in the append-only log, like
+  any entry). A check (`mem use REF --note HOW`) records when and how it was last verified and changes nothing else.
+- **Scope.** Shown everywhere by default: any project, any chat. Only when Giovanni says so is an item, or a whole
+  category, made scope-dependent: `mem scope project:X REF` or `mem scope project:X --category C`. That writes a
+  `rescope` event; a category rule covers present and future items of that category; the latest applicable
+  rescope wins (by timestamp; a tie is settled by event id, so two marks in the same second are arbitrary);
+  `mem scope global ...` undoes it. The Claude app has no project, so its file shows global items only.
+- **Budget.** 2,000 tokens (7,200 characters at the same 3.6 characters per token as the brief), separate from
+  the 2,900-character entry budget. `core.brief` ignores tasks, so neither budget can take room from the other.
+  Within the ceiling the most recently active items come first; the rest are counted ("N more did not fit") and
+  raise a warning that points at solve, archive or delete. One item never takes more than 500 characters. Worst
+  case the ceiling is 4.4% of the median first turn (45,740 tokens on 2026-10-20); with no open items it costs
+  nothing. Archived items take no budget.
+- **Where it shows.** The session-start hook (global items plus those of the current project), `mem brief`, and
+  `views/BRIEF.md` for the Claude app. `mem pending [--archived|--all]` lists every item, whatever its scope.
+- **Rules it carries.** Session start always tells the reader how to record, solve, park, delete and scope an
+  item. When items are shown it adds the verify rule: before reminding Giovanni of one, run its check in the
+  current context; if it no longer applies, close it and do not present it as pending; if it could not be checked,
+  say "unchecked" and how it was verified.
+- **What else knows about it.** `events.py` (types `archive`, `reopen`, `rescope`; field `category`),
+  `validate.py` (targets, category), `core.py` (control events are hidden; `compaction_proposals` never digests a
+  task), `search.py` (finds open and archived items), `project.build` (section and warnings),
+  `scripts/calibrate.py` (counts entry lines only, reports the ceiling). `tests/test_pendency.py` covers each of
+  these; a mutation check (25 mutants) was run against it.
+
+Why it exists: on 2026-10-20 an item was reported as open from memory of the conversation, after the system had
+already settled it.

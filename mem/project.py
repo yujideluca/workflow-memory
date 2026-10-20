@@ -3,7 +3,7 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from . import core, events as ev, validate
+from . import core, events as ev, pendency, validate
 
 BRIEF_BUDGET = 2900
 CONFIG = "mem.json"
@@ -40,6 +40,9 @@ The rule, in the user's words.
 When you finish a task, report the entries that shaped your answer: a file with `type: use`,
 `target: ref1, ref2` (the #codes) and one short line of text. For a wrong or outdated entry use
 `type: feedback`, `target: ref`, `signal: wrong` (or stale, helpful, not_helpful).
+Open items: `type: task`, text `what is open | check: how to verify it still applies`, optional `category: x`.
+Verify: `type: use`, `target: ref`, a line on how. Solved: `type: done`; park: `type: archive` (`reopen`
+undoes it); delete: `type: forget`; each with `target: ref`.
 No secrets or contact data: such files are quarantined.
 """
 
@@ -50,10 +53,13 @@ def build(root, now, instance="app", budget=BRIEF_BUDGET):
     state = core.resolve(events)
     out = core.brief(events, [], now, instance=instance, budget=budget, ids=True)
     stamp = f"Generated {now:%Y-%m-%d} from {len(events)} events. Do not edit: record changes as events."
+    pend = pendency.section(events, instance=instance)  # a chat has no project: global items only
+    pend_lines = pendency.render(pend)
     brief = "\n".join([
         "# Memory brief", "", stamp, "", out["header"], "", *out["lines"],
         *([f"- ({len(out['over_budget'])} more entries did not fit; they are in the log and searchable)"]
           if out["over_budget"] else []),
+        *(["", "## Open items", "", *pend_lines] if pend_lines else []),
         "", _howto(root),
     ])
     prefs = ["# Preferences in force", "", stamp, ""]
@@ -81,7 +87,7 @@ def build(root, now, instance="app", budget=BRIEF_BUDGET):
                [f"{a} ~ {b}" for a, b in core.near_duplicates(events)]),
               ("Cold entries ready to compact (run `mem compact --apply`)",
                [d["body"][:100] for d in core.compaction_proposals(events, [], now)]),
-              ("Warnings", out["warnings"])]
+              ("Warnings", out["warnings"] + pend["warnings"])]
     lines = ["# Needs a decision", "", stamp, ""]
     shown = [(title, items) for title, items in review if items]
     for title, items in shown:
