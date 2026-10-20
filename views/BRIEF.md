@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-20 from 83 events. Do not edit: record changes as events.
+Generated 2026-10-20 from 85 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -17,8 +17,8 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [work.build-then-ask] After a project and plan are approved, build it end to end without progress pauses; ask the open questions at the end. (#c1f1f8)
 - [work.ask-with-context] When asking Giovanni about a development decision that is new (not a topic already debated), give clear context first: what is being decided, why, options, and your recommendation. If it involves many steps never discussed, include a flowchart. A badly framed question cannot be answered well. (#abdad0)
 - [telegram] To send via Telegram use the tg-send bot (tg-send -f FILE caption), never the phone app; read ~/.local/bin/tg-send, it has no --help (any argument is sent as a message). Messages arrive in the 'Claude code bridge' chat (@Claude_1123bot), NOT Saved Messages: always tell Giovanni to check that chat. (#c09dc8)
-- [pendencies.verify-before-reminding] Track pendencies and unhandled problems as open items (mem task --check HOW; they lapse in 3 days unless checked). Before reminding Giovanni of one, run its check; if it no longer applies, mem done REF and do not mention it as pending; if unchecked, say so. Never call an item open from memory alone. (#7434eb)
-- [decision.no-health-filter] Memory validation has no automatic health-vocabulary filter. Not storing clinical data about other people stays a standing preference, not a check. (#116712)
+- [pendencies.verify-before-reminding] Pendencies (unfinished goals, known problems) are open items: record them with mem task --check HOW. They show in every chat until solved, archived or deleted; project-specific only when Giovanni says so. Before reminding Giovanni of one, run its check; if it no longer applies, close it; if unchecked, say so. Never call an item open from memory alone. (#ad71c7)
+- [decision.ai-memory-inspiration] ai-memory (akitaonrails) is inspiration only; it is never installed. (#72e118)
 - (8 more entries did not fit; they are in the log and searchable)
 
 ## Recording
@@ -43,5 +43,8 @@ The rule, in the user's words.
 When you finish a task, report the entries that shaped your answer: a file with `type: use`,
 `target: ref1, ref2` (the #codes) and one short line of text. For a wrong or outdated entry use
 `type: feedback`, `target: ref`, `signal: wrong` (or stale, helpful, not_helpful).
+Open items: `type: task`, text `what is open | check: how to verify it still applies`, optional `category: x`.
+Verify: `type: use`, `target: ref`, a line on how. Solved: `type: done`; park: `type: archive` (`reopen`
+undoes it); delete: `type: forget`; each with `target: ref`.
 No secrets or contact data: such files are quarantined.
 
