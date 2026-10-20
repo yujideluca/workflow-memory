@@ -1,6 +1,6 @@
 # Needs a decision
 
-Generated 2026-10-20 from 55 events. Do not edit: record changes as events.
+Generated 2026-10-20 from 56 events. Do not edit: record changes as events.
 
 ## Warnings
 - pinned entries exceed the budget

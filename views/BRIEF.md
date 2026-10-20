@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-20 from 55 events. Do not edit: record changes as events.
+Generated 2026-10-20 from 56 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -19,6 +19,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [telegram.send] When Giovanni says to send something via Telegram, use the tg-send bot (tg-send -f FILE caption), never the phone's Telegram app. tg-send has no --help: any argument is sent as a message, so read ~/.local/bin/tg-send instead of probing it. (#febd94)
 - [telegram.where] tg-send messages arrive in the bot chat named 'Claude code bridge' (@Claude_1123bot), NOT in Telegram's Saved Messages. Giovanni looked in Saved Messages once and thought a file was missing/wrong; always say 'check the Claude code bridge chat' when sending. (#ccf937)
 - [web.follow-user-version] Whenever the German Quiz user (stable) version is updated, also update the web version (https://yujideluca.github.io/german-quiz-web/, repo ~/dev/QuizWeb): port the change, bump sw.js VERSION, push, confirm the live site, and give the link in the report. tools/check_web_sync.sh enforces it; do not wait to be asked. (#e0e55d)
+- [quiz.spacing-rules] German Quiz spacing is a first principle: new card correct -> 3 days; wrong -> 10 min and never earlier (not requeued in session, not first card on leave-and-return); each correct answer pushes the next showing later. Verify the leave-and-return flow, not only the scheduler. (#ff9e47)
 - (9 more entries did not fit; they are in the log and searchable)
 
 ## Recording
