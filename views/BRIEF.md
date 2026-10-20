@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-20 from 75 events. Do not edit: record changes as events.
+Generated 2026-10-20 from 78 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
