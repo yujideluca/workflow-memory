@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-20 from 82 events. Do not edit: record changes as events.
+Generated 2026-10-20 from 83 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -21,4 +21,4 @@ Generated 2026-10-20 from 82 events. Do not edit: record changes as events.
 - [project:QuizApp] quiz.qa-process: German Quiz testing follows SQA and V&V: requirement row (docs/REQUIREMENTS.md) first, tagged test, then code; tools/quality_gate.sh before every publish (promote adds mutation check). Tests must check the player-visible flow, not restate the code. (user)
 - [project:QuizWeb] web.follow-user-version: Whenever the German Quiz user (stable) version is updated, also update the web version (https://yujideluca.github.io/german-quiz-web/, repo ~/dev/QuizWeb): port the change, bump sw.js VERSION, push, confirm the live site, and give the link in the report. tools/check_web_sync.sh enforces it; do not wait to be asked. (user)
 - [project:QuizWeb] quiz.spacing-rules: German Quiz spacing is a first principle: new card correct -> 3 days; wrong -> 10 min and never earlier (not requeued in session, not first card on leave-and-return); each correct answer pushes the next showing later. Verify the leave-and-return flow, not only the scheduler. (user)
-- [global] pendencies.verify-before-reminding: Track pendencies and known unhandled problems as tasks: mem task --check HOW "text". Before reminding Giovanni of one, run its check; if it no longer applies, mem done REF and do not mention it as pending; if unchecked, say so. Never call an item open from memory alone. (user)
+- [global] pendencies.verify-before-reminding: Track pendencies and unhandled problems as open items (mem task --check HOW; they lapse in 3 days unless checked). Before reminding Giovanni of one, run its check; if it no longer applies, mem done REF and do not mention it as pending; if unchecked, say so. Never call an item open from memory alone. (user)
