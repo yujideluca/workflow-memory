@@ -21,26 +21,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - name: Tests
         run: python -m unittest discover -s tests -t .
-      - name: Quarantine invalid or private events
-        run: python -m mem quarantine
-      - name: Promote habits seen in two projects
-        run: python -m mem --instance action promote
-      - name: Regenerate views
-        run: python -m mem build
-      - name: Commit changes
+      - name: Derive and publish
         run: |
           git config user.name "mem-action"
           git config user.email "mem-action@users.noreply.github.com"
-          git add events quarantine views
-          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
-          git commit -m "mem: quarantine, promote, views"
+          # views/, quarantine/ and promoted entries are derived from events/. Never merge derived
+          # files: on a lost race, start again from the newest main and derive them again.
           for wait in 0 2 4 8 16; do
             sleep $wait
-            git pull --rebase --quiet && git push && exit 0
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            python -m mem quarantine
+            python -m mem --instance action promote
+            python -m mem build
+            git add events quarantine views
+            if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+            git commit -q -m "mem: quarantine, promote, views"
+            git push -q && exit 0
           done
           echo "push failed" >&2; exit 1

@@ -23,6 +23,10 @@ def pull(root):
     return "pulled" if done.returncode == 0 else "pull skipped: " + (done.stderr.strip().splitlines() or ["unknown"])[0][:120]
 
 
+def _unmerged(root):
+    return bool(_git(root, "diff", "--name-only", "--diff-filter=U").stdout.strip())
+
+
 def push(root, retries=4, sleep=time.sleep):
     """Commit new events, then push with backoff (2, 4, 8, 16 s)."""
     _git(root, "add", "events")
@@ -35,7 +39,12 @@ def push(root, retries=4, sleep=time.sleep):
         return "nothing to push"
     for attempt in range(retries + 1):
         try:
-            _git(root, "pull", "--rebase", "--autostash", "--quiet", timeout=30)
+            # views/ is generated (CI owns it, `mem build` rewrites it): a local rebuild is never worth
+            # a merge. Drop it so the pull cannot conflict; the next `mem build` regenerates it.
+            _git(root, "checkout", "--", "views")
+            pulled = _git(root, "pull", "--rebase", "--autostash", "--quiet", timeout=30)
+            if _unmerged(root):     # offline or rejected is retried below; a conflict is not "pushed"
+                return "conflict after pull, nothing pushed: " + (pulled.stderr.strip().splitlines() or ["see git status"])[-1][:120]
             done = _git(root, "push", "--quiet", timeout=30)
         except subprocess.TimeoutExpired:
             done = None
