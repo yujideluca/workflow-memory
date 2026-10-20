@@ -48,6 +48,20 @@ class SyncViews(unittest.TestCase):
         self.assertEqual(git(self.me, "rev-list", "--count", "@{u}..HEAD").strip(), "0")
         self.assertEqual(sync.pull(self.me), "pulled")
 
+    def test_sync_works_on_a_machine_without_a_git_identity(self):
+        # a CI runner or a fresh laptop: no user.name/email anywhere. The commit AND the rebase
+        # (and its autostash) inside sync.push must still work.
+        home = Path(self.tmp.name) / "emptyhome"
+        home.mkdir()
+        bare = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
+        bare.update(HOME=str(home), GIT_CONFIG_NOSYSTEM="1", GIT_CONFIG_GLOBAL="/dev/null")
+        self._bot_pushes_views()
+        mem(self.me, "add", "--type", "note", "--owner", "user", "--key", "t.mine", "mine")
+        mem(self.me, "build")                                   # dirty tracked views: forces an autostash
+        with mock.patch.dict(os.environ, bare, clear=True):
+            self.assertEqual(sync.push(self.me, retries=0, sleep=lambda s: None), "pushed")
+        self.assertEqual(git(self.me, "rev-list", "--count", "@{u}..HEAD").strip(), "0")
+
     def test_event_conflict_is_reported_not_called_pushed(self):
         # a rebase that cannot complete must never be reported as "pushed"
         mem(self.me, "add", "--type", "note", "--owner", "user", "--key", "t.mine", "mine")

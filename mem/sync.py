@@ -42,7 +42,7 @@ def push(root, retries=4, sleep=time.sleep):
             # views/ is generated (CI owns it, `mem build` rewrites it): a local rebuild is never worth
             # a merge. Drop it so the pull cannot conflict; the next `mem build` regenerates it.
             _git(root, "checkout", "--", "views")
-            pulled = _git(root, "pull", "--rebase", "--autostash", "--quiet", timeout=30)
+            pulled = _git(root, *_identity(root), "pull", "--rebase", "--autostash", "--quiet", timeout=30)
             if _unmerged(root):     # offline or rejected is retried below; a conflict is not "pushed"
                 return "conflict after pull, nothing pushed: " + (pulled.stderr.strip().splitlines() or ["see git status"])[-1][:120]
             done = _git(root, "push", "--quiet", timeout=30)
