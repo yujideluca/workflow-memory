@@ -46,8 +46,10 @@ def run(argv=None, stdin=None):
     fb.add_argument("signal", choices=ev.SIGNALS)
     for name in ("forget", "done"):
         sub.add_parser(name).add_argument("target")
-    task = sub.add_parser("task", help="open a task")
+    task = sub.add_parser("task", help="open an item (pendency) with the check that tells if it still applies")
     task.add_argument("--scope", default="global")
+    task.add_argument("--check", required=True,
+                      help="how to verify it still applies (a command, a file, a page); it is run before any reminder")
     task.add_argument("text")
     claim = sub.add_parser("claim", help="claim a task; the earliest claim wins")
     claim.add_argument("target")
@@ -94,7 +96,7 @@ def run(argv=None, stdin=None):
     if a.cmd in ("forget", "done", "claim"):
         return _write(root, now, a.cmd, "", instance=instance, target=a.target)
     if a.cmd == "task":
-        return _write(root, now, "task", a.text, a.scope, instance=instance)
+        return _write(root, now, "task", f"{a.text} | check: {a.check}", a.scope, instance=instance)
     if a.cmd == "use":
         return _write(root, now, "use", a.note, instance=instance, target=a.refs)
     if a.cmd == "brief":

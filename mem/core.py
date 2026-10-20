@@ -21,7 +21,7 @@ TIERS = {
     "decision": (180, 2.0),
     "fact": (180, 1.5),
     "digest": (365, 1.2),
-    "task": (8, 1.0),
+    "task": (None, 1.0),   # an open item: pinned until `mem done`, so it cannot fade out unseen
     "note": (7, 0.7),
 }
 # control events: they act on other events and are never shown themselves
@@ -201,8 +201,15 @@ def in_scope(e, project=None, instance=None):
     return e["scope"] in ("global", f"project:{project}", f"instance:{instance}")
 
 
+def open_items(events, project=None, instance=None):
+    """Tasks still open (not closed with `done`) and visible in this scope."""
+    return [e for e in fold(events)[0] if e["type"] == "task" and in_scope(e, project, instance)]
+
+
 def _line(e, ids=False):
     text = f"[{e['key']}] {e['body']}" if e.get("key") else e["body"]
+    if e["type"] == "task":
+        text = f"[open item] {e['body']}"
     return f"- {text} (#{ref(e['id'])})" if ids else f"- {text}"
 
 
