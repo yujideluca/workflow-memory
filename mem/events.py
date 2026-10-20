@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 TYPES = ("pref", "fact", "decision", "task", "note", "digest",
-         "feedback", "claim", "done", "forget", "use")
+         "feedback", "claim", "done", "forget", "use", "archive", "reopen", "rescope")
 SIGNALS = ("helpful", "not_helpful", "stale", "wrong")
 _STEM = re.compile(r"^(\d{8}T\d{6}Z)-([a-z0-9_]+)-")
 
@@ -52,12 +52,13 @@ def parse(text, stem):
         owner=head.get("owner", "agent"),
         supersedes=[s.strip() for s in head.get("supersedes", "").split(",") if s.strip()],
         target=head.get("target") or None, signal=head.get("signal") or None,
+        category=head.get("category") or None,
     )
 
 
 def render(e):
     head = [f"type: {e['type']}", f"scope: {e.get('scope', 'global')}"]
-    for name in ("key", "instance", "owner", "target", "signal"):
+    for name in ("key", "instance", "owner", "target", "signal", "category"):
         if e.get(name):
             head.append(f"{name}: {e[name]}")
     if e.get("supersedes"):

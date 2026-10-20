@@ -11,7 +11,7 @@ OWNERS = ("user", "agent", "harvester", "migration", "compactor", "action")
 _SCOPE = re.compile(r"^(global|project:[\w.\-]+|instance:[a-z0-9_]+)$")
 _KEY = re.compile(r"^[a-z0-9][a-z0-9._\-]*$")
 _INSTANCE = re.compile(r"^[a-z0-9_]+$")
-NEEDS_TARGET = ("feedback", "claim", "done", "forget", "use")
+NEEDS_TARGET = ("feedback", "claim", "done", "forget", "use", "archive", "reopen")
 MAX_USE_NOTE = 200
 
 PRIVACY = (
@@ -51,6 +51,13 @@ def check_event(e, now):
         why.append(f"{e['type']} needs a target")
     if e["type"] == "feedback" and e["signal"] not in ev.SIGNALS:
         why.append(f"feedback needs a signal in {ev.SIGNALS}")
+    if e.get("category"):
+        if e["type"] not in ("task", "rescope"):
+            why.append("category only applies to a task or a rescope")
+        elif not _KEY.match(e["category"]):
+            why.append(f"bad category {e['category']!r}")
+    if e["type"] == "rescope" and not (e["target"] or e.get("category")):
+        why.append("rescope needs a target or a category")
     if e["ts"] > now + timedelta(days=1):
         why.append("timestamp is in the future")
     why += [f"contains {name}" for name in privacy_reasons(" ".join([e["body"], e["key"] or ""]))]

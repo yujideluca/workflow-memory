@@ -23,7 +23,7 @@ from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from mem import core, project  # noqa: E402
+from mem import core, pendency, project  # noqa: E402
 
 SHARE = 0.025
 CHARS_PER_TOKEN = 3.6  # mixed Portuguese and English; an assumption, not measured
@@ -56,6 +56,28 @@ def percentile(values, p):
     return values[min(int(len(values) * p), len(values) - 1)]
 
 
+def entry_lines_chars(brief):
+    """Characters of the entry lines: the '- ' lines before the first '## ' section."""
+    total = 0
+    for line in brief.splitlines():
+        if line.startswith("## "):
+            break
+        if line.startswith("- "):
+            total += len(line) + 1
+    return total
+
+
+def open_items_chars(brief):
+    """Characters of the '## Open items' section, which is budgeted separately."""
+    out, inside = 0, False
+    for line in brief.splitlines():
+        if line.startswith("## "):
+            inside = line.startswith("## Open items")
+        if inside:
+            out += len(line) + 1
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--projects", default=str(Path.home() / ".claude/projects"))
@@ -74,8 +96,8 @@ def main():
 
     sample = project.build(Path(__file__).resolve().parent.parent, datetime.now().astimezone())
     brief = sample["BRIEF.md"]
-    lines_chars = sum(len(x) + 1 for x in brief.splitlines() if x.startswith("- "))
-    overhead = len(brief) - lines_chars
+    lines_chars = entry_lines_chars(brief)
+    overhead = len(brief) - lines_chars - open_items_chars(brief)   # open items have their own budget
     total = baseline * SHARE * CHARS_PER_TOKEN
     note_cold = K_NOTE * gap90
     rec = {
@@ -93,6 +115,8 @@ def main():
     print(f"{'constant':42} {'recommended':>12} {'in code':>9}")
     for name, (new, old) in rec.items():
         print(f"{name:42} {new:>12} {old:>9}")
+    print(f"open items: own ceiling {pendency.BUDGET_TOKENS:,} tokens = {pendency.BUDGET_TOKENS / baseline:.1%} "
+          "of the median first turn, paid only while items are open (separate from the brief budget)")
     if window < MIN_WINDOW_DAYS or len(gaps) < MIN_GAPS:
         print(f"LOW CONFIDENCE: window {window} < {MIN_WINDOW_DAYS} days or gaps {len(gaps)} < {MIN_GAPS}. "
               "Fact (180 d) and decision (180 d) half-lives are not calibrated; re-run later.")

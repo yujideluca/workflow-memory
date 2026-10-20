@@ -82,9 +82,10 @@ class BriefTests(unittest.TestCase):
             ev("task", "task", days_ago=2, body="migrate memory"),
         ]
         out = r.brief(events, [], NOW)
-        for must in ("lang", "why", "task"):
+        for must in ("lang", "why"):
             self.assertIn(must, out["included"])
         self.assertNotIn("stale", out["included"])
+        self.assertNotIn("task", out["included"])   # open items have their own section and budget (pendency.py)
 
 
 class CompactionTests(unittest.TestCase):

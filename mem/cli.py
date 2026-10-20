@@ -5,7 +5,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import core, events as ev, harvest, hooks, install, project, search, sync, validate
+from . import core, events as ev, harvest, hooks, install, pendency, project, search, sync, validate
 
 DEFAULT_ROOT = Path(__file__).resolve().parent.parent
 
@@ -15,10 +15,10 @@ def _now(args):
 
 
 def _write(root, now, kind, text="", scope="global", key=None, owner="agent",
-           instance="cli", target=None, signal=None, supersedes=()):
+           instance="cli", target=None, signal=None, supersedes=(), category=None):
     e = dict(id=ev.new_id(now, instance), ts=now, type=kind, scope=scope, key=key, body=text,
              instance=instance, owner=owner, supersedes=list(supersedes), target=target,
-             signal=signal)
+             signal=signal, category=category)
     why = validate.check_event(e, now)
     if why:
         print("refused: " + "; ".join(why), file=sys.stderr)
@@ -44,18 +44,26 @@ def run(argv=None, stdin=None):
     fb = sub.add_parser("feedback", help="say an entry helped or was wrong")
     fb.add_argument("target")
     fb.add_argument("signal", choices=ev.SIGNALS)
-    for name in ("forget", "done"):
+    for name in ("forget", "done", "archive", "reopen"):
         sub.add_parser(name).add_argument("target")
     task = sub.add_parser("task", help="open an item (pendency) with the check that tells if it still applies")
     task.add_argument("--scope", default="global")
     task.add_argument("--check", required=True,
                       help="how to verify it still applies (a command, a file, a page); it is run before any reminder")
+    task.add_argument("--category", help="a group of open items, e.g. quiz; a whole category can be rescoped")
     task.add_argument("text")
     claim = sub.add_parser("claim", help="claim a task; the earliest claim wins")
     claim.add_argument("target")
     use = sub.add_parser("use", help="report which entries you applied, and how")
     use.add_argument("refs", help="comma-separated refs or ids")
     use.add_argument("--note", default="", help="how, in one short line")
+    pend = sub.add_parser("pending", help="list open items (pendencies), whatever their scope")
+    pend.add_argument("--archived", action="store_true", help="list the parked ones instead")
+    pend.add_argument("--all", action="store_true", help="list open and parked together")
+    sc = sub.add_parser("scope", help="make an open item, or a whole category, depend on a scope (or global again)")
+    sc.add_argument("scope", help="global, project:NAME or instance:NAME")
+    sc.add_argument("ref", nargs="?", help="the open item")
+    sc.add_argument("--category", help="every open item of this category, present and future")
     br = sub.add_parser("brief", help="print the brief for a project and instance")
     br.add_argument("--project")
     br.add_argument("--budget", type=int, default=project.BRIEF_BUDGET)
@@ -93,18 +101,35 @@ def run(argv=None, stdin=None):
         return _write(root, now, a.type, text, a.scope, a.key, a.owner, instance, supersedes=replaces)
     if a.cmd == "feedback":
         return _write(root, now, "feedback", "", instance=instance, target=a.target, signal=a.signal)
-    if a.cmd in ("forget", "done", "claim"):
+    if a.cmd in ("forget", "done", "claim", "archive", "reopen"):
         return _write(root, now, a.cmd, "", instance=instance, target=a.target)
     if a.cmd == "task":
-        return _write(root, now, "task", f"{a.text} | check: {a.check}", a.scope, instance=instance)
+        return _write(root, now, "task", f"{a.text} {pendency.CHECK_MARK} {a.check}", a.scope,
+                      instance=instance, category=a.category)
     if a.cmd == "use":
         return _write(root, now, "use", a.note, instance=instance, target=a.refs)
     if a.cmd == "brief":
         events, _ = validate.load_checked(root, now)
         out = core.brief(events, [], now, project=a.project, instance=instance,
                          budget=a.budget, ids=a.ids)
-        print("\n".join([out["header"], *out["lines"]]))
+        extra = pendency.render(pendency.section(events, a.project, instance))
+        print("\n".join([out["header"], *out["lines"], *extra]))
         return 0
+    if a.cmd == "pending":
+        events, _ = validate.load_checked(root, now)
+        for i in pendency.items(events):
+            if a.all or i["archived"] == a.archived:
+                e = i["event"]
+                state = "ARCHIVED" if i["archived"] else "OPEN"
+                tag = " ".join(x for x in (i["category"], i["scope"]) if x and x != "global")
+                print(f"#{core.ref(e['id'])}  {state}  since {i['since']:%Y-%m-%d}"
+                      f"{'  [' + tag + ']' if tag else ''}  {' '.join(e['body'].split())}")
+        return 0
+    if a.cmd == "scope":
+        if bool(a.ref) == bool(a.category):
+            print("refused: give either an item or --category", file=sys.stderr)
+            return 2
+        return _write(root, now, "rescope", "", a.scope, instance=instance, target=a.ref, category=a.category)
     if a.cmd == "search":
         events, _ = validate.load_checked(root, now)
         for eid in search.Index(events, instance=instance).search(a.query):

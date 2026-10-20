@@ -21,7 +21,7 @@ Claude Code, the always-on assistant). It replaces the old claude-workflow-backu
 | Anything else | write a file in the format of `docs/DESIGN.md`; unknown fields are ignored |
 
 ## Commands (`bin/mem`, Python 3 standard library only)
-`add`, `feedback`, `forget`, `task`, `claim`, `done`, `use`, `brief`, `search`, `check`, `quarantine`,
+`add`, `feedback`, `forget`, `task`, `pending`, `scope`, `archive`, `reopen`, `claim`, `done`, `use`, `brief`, `search`, `check`, `quarantine`,
 `dismiss`, `promote`, `compact`, `build [--check]`, `sync [--pull] [--push]`, `install-hooks [--uninstall]`.
 `scripts/calibrate.py` recommends the constants from real usage; `scripts/migrate_legacy.py` was the one-time import.
 

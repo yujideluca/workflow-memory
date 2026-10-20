@@ -6,7 +6,7 @@ import traceback
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import core, events as ev, harvest, project, sync, validate
+from . import core, events as ev, harvest, pendency, project, sync, validate
 
 STATE = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local/state")) / "mem"
 MARK = "mem hook-"
@@ -58,11 +58,10 @@ def session_start(root, payload, now, instance):
             lines.append(f"({len(out['over_budget'])} more entries did not fit: mem search \"words\").")
         if pending:
             lines.append(f"{pending} item(s) wait for Giovanni in views/REVIEW.md.")
-        if core.open_items(events, _project(payload), instance):
-            lines.append("Open items above are reminders, not facts. Before reminding Giovanni of one, run its "
-                         "check and verify it still applies in this context: if it no longer does, close it "
-                         "(mem done REF) and do not present it as pending; if you could not check it, say "
-                         "'unchecked'. State how you verified.")
+        sec = pendency.section(events, _project(payload), instance)
+        lines += pendency.render(sec)
+        if sec["shown"]:
+            lines.append(pendency.VERIFY_RULE)
         if not status.startswith("pulled"):
             lines.append(f"(memory may be stale: {status})")
         lines += [
@@ -71,6 +70,7 @@ def session_start(root, payload, now, instance):
             "When you finish a task, report which entries you used and how, briefly: "
             "mem use REF1,REF2 --note \"how\" (REF is the #code after an entry).",
             "Say an entry was wrong or outdated: mem feedback REF wrong|stale (or helpful|not_helpful).",
+            pendency.CREATE_RULE,
         ]
         print("\n".join(lines))
     except Exception:
