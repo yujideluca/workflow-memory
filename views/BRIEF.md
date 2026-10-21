@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-20 from 86 events. Do not edit: record changes as events.
+Generated 2026-10-21 from 88 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -24,7 +24,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] Finish phone terminal: add phone's public SSH key to laptop (sudo bash ~/dev/remote-terminal/setup-sudo.sh "ssh-ed25519 ..."), chmod 600 ~/.ssh/authorized_keys, then test from phone. Also pending: NVIDIA driver (sudo apt install nvidia-driver-595-open, reboot). | check: grep -q '^ssh-' ~/.ssh/authorized_keys (since 2026-10-20, #a4c4c5)
+- [open item] Install NVIDIA driver: sudo apt install nvidia-driver-595-open (ubuntu-drivers recommended; 580 was the old series), reboot with the laptop in reach (Secure Boot may ask for a MOK password at boot). Then restart llama-server on :8080. | check: lsmod | grep -q '^nvidia' (since 2026-10-21, #dccdcf)
 
 ## Recording
 
