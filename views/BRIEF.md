@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-22 from 99 events. Do not edit: record changes as events.
+Generated 2026-10-22 from 100 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -21,7 +21,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [work.no-qwen] Local Qwen is not part of the workflow: do not use or propose it for coding or delegation. Its files were deleted 2026-10-21. (#303850)
 - [work.maintenance] Software projects follow the golden path: ADRs for structural decisions, requirements before code, one quality gate run by CI on every push, debt as GitHub Issues labelled debt/P1-P3, about one session in five on debt or prevention, monthly architecture review. New projects start from ~/dev/project-template. (#d975f2)
 - [release.promote] A version may be promoted to the user channel once it survives the automated tests updated for what it changes (gate with mutation + tests changed with the code); then promoting is Giovanni's decision. No minimum time in beta; do not argue for one. (#d71784)
-- (8 more entries did not fit; they are in the log and searchable)
+- (9 more entries did not fit; they are in the log and searchable)
 
 ## Open items
 
