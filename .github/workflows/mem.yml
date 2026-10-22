@@ -47,3 +47,23 @@ jobs:
             git push -q && exit 0
           done
           echo "push failed" >&2; exit 1
+
+  # Fitness function for the first invariant: an event file is never edited in place (docs/adr/0002).
+  # A separate job, so a violation turns the run red without stopping the views from being rebuilt.
+  # Moves to quarantine/ are renames, not edits, and are allowed.
+  append-only:
+    if: github.event_name == 'push' && github.event.before != '0000000000000000000000000000000000000000'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: No event file edited in place
+        run: |
+          edited=$(git diff --name-only --diff-filter=M "${{ github.event.before }}" "${{ github.sha }}" -- events/)
+          if [ -n "$edited" ]; then
+            echo "Event files were edited in place; record a change as a new event instead (bin/mem add --supersedes ID):"
+            echo "$edited"
+            exit 1
+          fi
+          echo "append-only: ok"
