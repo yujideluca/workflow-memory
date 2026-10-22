@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-22 from 95 events. Do not edit: record changes as events.
+Generated 2026-10-22 from 98 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -23,3 +23,4 @@ Generated 2026-10-22 from 95 events. Do not edit: record changes as events.
 - [project:QuizWeb] quiz.spacing-rules: German Quiz spacing is a first principle: new card correct -> 3 days; wrong -> 10 min and never earlier (not requeued in session, not first card on leave-and-return); each correct answer pushes the next showing later. Verify the leave-and-return flow, not only the scheduler. (user)
 - [global] pendencies.verify-before-reminding: Pendencies (unfinished goals, known problems) are open items: record them with mem task --check HOW. They show in every chat until solved, archived or deleted; project-specific only when Giovanni says so. Before reminding Giovanni of one, run its check; if it no longer applies, close it; if unchecked, say so. Never call an item open from memory alone. (user)
 - [global] work.no-qwen: Local Qwen is not part of the workflow: do not use or propose it for coding or delegation. Its files were deleted 2026-10-21. (user)
+- [global] work.maintenance: Software projects follow the golden path: ADRs for structural decisions, requirements before code, one quality gate run by CI on every push, debt as GitHub Issues labelled debt/P1-P3, about one session in five on debt or prevention, monthly architecture review. New projects start from ~/dev/project-template. (user)

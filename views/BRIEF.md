@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-22 from 95 events. Do not edit: record changes as events.
+Generated 2026-10-22 from 98 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -19,11 +19,13 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [telegram] To send via Telegram use the tg-send bot (tg-send -f FILE caption), never the phone app; read ~/.local/bin/tg-send, it has no --help (any argument is sent as a message). Messages arrive in the 'Claude code bridge' chat (@Claude_1123bot), NOT Saved Messages: always tell Giovanni to check that chat. (#c09dc8)
 - [pendencies.verify-before-reminding] Pendencies (unfinished goals, known problems) are open items: record them with mem task --check HOW. They show in every chat until solved, archived or deleted; project-specific only when Giovanni says so. Before reminding Giovanni of one, run its check; if it no longer applies, close it; if unchecked, say so. Never call an item open from memory alone. (#ad71c7)
 - [work.no-qwen] Local Qwen is not part of the workflow: do not use or propose it for coding or delegation. Its files were deleted 2026-10-21. (#303850)
+- [work.maintenance] Software projects follow the golden path: ADRs for structural decisions, requirements before code, one quality gate run by CI on every push, debt as GitHub Issues labelled debt/P1-P3, about one session in five on debt or prevention, monthly architecture review. New projects start from ~/dev/project-template. (#d975f2)
 - (8 more entries did not fit; they are in the log and searchable)
 
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item maintenance] Monthly architecture review of all ~/dev projects (first one due by 2026-11-22): run the checklist in ~/dev/project-template/docs/MAINTENANCE.md, add a Preventive row 'Monthly architecture review' to each project's decision log | check: ! grep -qE "^\| $(date +%Y-%m)-[0-9]{2} \| Preventive \| \*\*Monthly architecture review" ~/dev/QuizApp/DESIGN.md (open = no review row this month; checklist in ~/dev/project-template/docs/MAINTENANCE.md) (since 2026-10-22, #4dcb2c)
 - [open item] Phased apt updates (tmux, ubuntu-pro-client, ubuntu-pro-client-l10n) still held back since 2026-10-21; Giovanni chose to wait; rerun sudo apt upgrade in a few days | check: ! apt list --upgradable 2>/dev/null | grep -q -E '^(tmux|ubuntu-pro-client)/' (since 2026-10-21, #2526ce)
 
 ## Recording
