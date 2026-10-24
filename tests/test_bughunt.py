@@ -47,6 +47,25 @@ class PrivacyBoundaryTests(unittest.TestCase):
             with self.subTest(text):
                 self.assertEqual([], self.reasons(text))
 
+    def test_the_shared_list_also_blocks_what_only_the_wiki_list_used_to_know(self):
+        # one list for both programs (issue #3): Google client secrets, Telegram bot tokens, "password: value", bearer tokens
+        for text in ("GOCSPX-" + "a1B2c3D4e5F6g7", "123456789:" + "a1B2c3D4e5F6g7H8i9J0k1L2m3N4o5P6q", "password: hunter2hunter2",
+                     "Authorization: Bearer " + "a1B2c3D4e5F6g7H8i9J0k1"):
+            with self.subTest(text[:12]):
+                self.assertIn("secret", self.reasons(text))
+        self.assertEqual([], self.reasons("the token is stored in the keyring"))
+
+    def test_every_row_of_the_shared_file_is_well_formed(self):
+        from pathlib import Path
+        rows = [l.split("\t") for l in (Path(v.__file__).with_name("privacy-patterns.tsv")).read_text().splitlines()
+                if l.strip() and not l.startswith("#")]
+        self.assertGreaterEqual(len(rows), 15)
+        for kind, flags, what, regex in rows:
+            self.assertIn(kind, ("secret", "phone", "cpf"))
+            self.assertIn(flags, ("i", "-"))
+            self.assertTrue(what)
+            self.assertFalse(regex.startswith("(?i)"), "flags go in the flags column, not inline")
+
     def test_email_and_cpf(self):
         self.assertIn("email address", self.reasons("write to a.b+c@example.org"))
         self.assertIn("CPF", self.reasons("CPF 123.456.789-09"))

@@ -14,22 +14,28 @@ _INSTANCE = re.compile(r"^[a-z0-9_]+$")
 NEEDS_TARGET = ("feedback", "claim", "done", "forget", "use", "archive", "reopen")
 MAX_USE_NOTE = 200
 
-PRIVACY = (
-    ("secret", re.compile(
-        r"gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|glpat-[A-Za-z0-9_\-]{20,}|AIza[0-9A-Za-z_\-]{30,}|"
-        r"sk-[A-Za-z0-9_\-]{20,}|AKIA[0-9A-Z]{16}|"
-        r"-----BEGIN [A-Z ]*PRIVATE KEY|\bbearer\s+[A-Za-z0-9._\-]{20,}|xox[baprs]-[A-Za-z0-9\-]{10,}",
-        re.I)),
-    ("email address", re.compile(r"[\w.+\-]+@[\w\-]+\.[\w.\-]+")),
-    ("phone number", re.compile(
-        r"(?:\+\d{1,3}[\s.\-]?)?\(?\d{2}\)?[\s.\-]\d{4,5}[\s.\-]\d{4}|"
-        r"\+\d{1,3}(?:[\s.\-()]?\d){8,}")),   # international form: + and at least nine digits, any separators
-    ("CPF", re.compile(r"\b\d{3}\.\d{3}\.\d{3}-\d{2}\b")),
-)
+
+def _load_privacy():
+    """kind -> compiled patterns, from privacy-patterns.tsv (the one list, shared with the wiki)."""
+    names = {"secret": "secret", "phone": "phone number", "cpf": "CPF"}
+    by_kind = {}
+    for line in Path(__file__).with_name("privacy-patterns.tsv").read_text(encoding="utf-8").splitlines():
+        if not line.strip() or line.startswith("#"):
+            continue
+        kind, flags, _what, regex = line.split("\t")
+        by_kind.setdefault(names[kind], []).append(re.compile(regex, re.I if flags == "i" else 0))
+    return by_kind
+
+
+PRIVACY_BY_KIND = _load_privacy()
+_EMAIL = re.compile(r"[\w.+\-]+@[\w\-]+\.[\w.\-]+")
 
 
 def privacy_reasons(text):
-    return [name for name, rx in PRIVACY if rx.search(text)]
+    hit = {name for name, rxs in PRIVACY_BY_KIND.items() if any(rx.search(text) for rx in rxs)}
+    if _EMAIL.search(text):
+        hit.add("email address")
+    return [name for name in ("secret", "email address", "phone number", "CPF") if name in hit]
 
 
 def check_event(e, now):
