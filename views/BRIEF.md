@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-24 from 108 events. Do not edit: record changes as events.
+Generated 2026-10-24 from 110 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -27,6 +27,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] pipeline-check: Giovanni installs gh and logs in (sudo apt install gh; gh auth login); then verify CI green + branch protection check, push branch pipeline-check to prove an architecture violation fails CI, and ask before enabling protection requiring job gate | check: test -x /usr/bin/gh && gh auth status >/dev/null 2>&1 (since 2026-10-24, #04a028)
 - [open item maintenance] Monthly architecture review of all ~/dev projects (first one due by 2026-11-22): run the checklist in ~/dev/project-template/docs/MAINTENANCE.md, add a Preventive row 'Monthly architecture review' to each project's decision log | check: ! grep -qE "^\| $(date +%Y-%m)-[0-9]{2} \| Preventive \| \*\*Monthly architecture review" ~/dev/QuizApp/DESIGN.md (open = no review row this month; checklist in ~/dev/project-template/docs/MAINTENANCE.md) (since 2026-10-22, #4dcb2c)
 - [open item] Phased apt updates (tmux, ubuntu-pro-client, ubuntu-pro-client-l10n) still held back since 2026-10-21; Giovanni chose to wait; rerun sudo apt upgrade in a few days | check: ! apt list --upgradable 2>/dev/null | grep -q -E '^(tmux|ubuntu-pro-client)/' (since 2026-10-21, #2526ce)
 
