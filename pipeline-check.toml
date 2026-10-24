@@ -33,3 +33,6 @@ decision_log = "docs/DESIGN.md"
 
 [pre_push]
 guard = ["mem/", "bin/", "scripts/", "tests/", "tools/", "docs/", "pipeline-check", ".github/"]   # path prefixes whose change makes a push of main worth checking; [] = every push
+
+[shellcheck]
+extra_files = ["tools/hooks/pre-push"]
