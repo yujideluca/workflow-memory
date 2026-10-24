@@ -124,6 +124,8 @@ def resolve(events):
         if prev is not None and norm_tokens(prev["body"]) == norm_tokens(e["body"]):
             hidden.add(e["id"])  # same ruling again: more evidence, line unchanged
             evidence.setdefault(prev["id"], []).append(e["ts"])
+            # what it replaces is still replaced, except the entry it merely restates
+            superseded.update(i for i in e.get("supersedes", []) if i != prev["id"])
             continue
         if prev is not None and harvested and prev.get("owner") == "user":
             hidden.add(e["id"])  # the harvester never rewrites what the user owns

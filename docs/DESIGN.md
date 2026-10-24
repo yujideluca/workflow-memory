@@ -131,3 +131,12 @@ budget; nothing else competes with it.
 
 Why it exists: on 2026-10-20 an item was reported as open from memory of the conversation, after the system had
 already settled it.
+
+## Decision log
+
+Newest first. **Type** is the ISO/IEC/IEEE 14764 category (corrective, adaptive, perfective, preventive). Structural decisions also have an ADR in `docs/adr/`.
+
+| Date | Type | Decision | Why |
+|---|---|---|---|
+| 2026-10-24 | Corrective | **First maintenance review: bug-finding tests and four fixes** (`docs/TESTES-AUTOMATIZADOS.md`, `tests/test_bughunt.py`): event headers are collapsed to one line (a newline could forge `owner: user`), GitHub fine-grained, GitLab and Google API tokens count as secrets, international phone numbers count as contact data, a repeated ruling keeps its `supersedes` | The privacy boundary and the file format had gaps no existing test looked at; the check was written from the rules, not from the code |
+| 2026-10-24 | Preventive | **`pipeline-check` adopted** ([ADR-0004](adr/0004-program-measures-skill-judges.md)): the shared program (own repository, pinned in `pipeline-check.version`) runs the unit tests once in CI and locally, plus a local pre-push check for code paths | The tests ran only on pushes touching the data paths and nothing blocked a bad push of the tools themselves |
