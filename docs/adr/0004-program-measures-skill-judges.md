@@ -29,6 +29,10 @@ protection that requires the CI job; that setting is changed only by Giovanni.
 - **Let the skill measure** — judgement and measurement mix, and nothing blocks when Claude forgets.
 - **Python/Shell checks only in the gate** — no single report, no warning band.
 
+## Update 2026-10-24
+
+The program is not copied into projects: it lives in `yujideluca/pipeline-check` and a project pins a tag in `pipeline-check.version`.
+
 ## Consequences
 
 CI builds a Rust program on each run (cached). Limits change only in a commit with a decision-log row. REQ PC-1..PC-11
