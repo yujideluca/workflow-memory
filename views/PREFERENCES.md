@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-24 from 123 events. Do not edit: record changes as events.
+Generated 2026-10-24 from 124 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -29,3 +29,4 @@ Generated 2026-10-24 from 123 events. Do not edit: record changes as events.
 - [global] work.fix-findings: Findings from a maintenance review that Giovanni answers 'deve' are fixed in the same session, with the test first; hypotheses wait for his answer. (user)
 - [global] work.shared-tools: A tool used by more than one project lives once, in its own repository, and is consumed by pinned version, never copied (example: pipeline-check, github.com/yujideluca/pipeline-check). (user)
 - [global] work.github-standard: Every project has a versioned repository on GitHub (private unless it must be public); a folder in ~/dev without git and a remote is a gap to fix. (user)
+- [global] work.web-no-own-version: QuizWeb has no version of its own: it only ports the latest released (promoted) version of the QuizApp; work for an unreleased app version waits on a branch. sw.js VERSION is only a cache key. (user)

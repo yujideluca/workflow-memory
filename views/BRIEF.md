@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-24 from 123 events. Do not edit: record changes as events.
+Generated 2026-10-24 from 124 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -25,6 +25,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [work.fix-findings] Findings from a maintenance review that Giovanni answers 'deve' are fixed in the same session, with the test first; hypotheses wait for his answer. (#566908)
 - [work.shared-tools] A tool used by more than one project lives once, in its own repository, and is consumed by pinned version, never copied (example: pipeline-check, github.com/yujideluca/pipeline-check). (#63efec)
 - [work.github-standard] Every project has a versioned repository on GitHub (private unless it must be public); a folder in ~/dev without git and a remote is a gap to fix. (#9b6938)
+- [work.web-no-own-version] QuizWeb has no version of its own: it only ports the latest released (promoted) version of the QuizApp; work for an unreleased app version waits on a branch. sw.js VERSION is only a cache key. (#d1cc68)
 - (10 more entries did not fit; they are in the log and searchable)
 
 ## Open items
