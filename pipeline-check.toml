@@ -1,0 +1,32 @@
+# Limits for tools/pipeline-check (ADR-0004). Changed only by Giovanni, in a commit that says why.
+# "Standard library only" and "events are append-only" are enforced by tests and by the mem.yml job `append-only`.
+projeto = "workflow-memory"
+aviso_a = 0.8
+
+[gate]
+command = "tools/quality_gate.sh"
+required = true
+
+[architecture]
+pure_dirs = []
+
+[[fitness]]
+id = "arquivo-maior"
+kind = "max_file_lines"
+limit = 400
+dirs = ["mem", "bin", "scripts"]
+extensions = ["py"]
+
+[[fitness]]
+id = "gate-segundos"
+kind = "gate_seconds"
+limit = 300
+
+[github]
+repo = "yujideluca/workflow-memory"
+branch = "main"
+required_check = "gate"
+
+[dora]
+days = 30
+decision_log = "docs/DESIGN.md"
