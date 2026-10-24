@@ -16,11 +16,14 @@ MAX_USE_NOTE = 200
 
 PRIVACY = (
     ("secret", re.compile(
-        r"gh[pousr]_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9_\-]{20,}|AKIA[0-9A-Z]{16}|"
+        r"gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|glpat-[A-Za-z0-9_\-]{20,}|AIza[0-9A-Za-z_\-]{30,}|"
+        r"sk-[A-Za-z0-9_\-]{20,}|AKIA[0-9A-Z]{16}|"
         r"-----BEGIN [A-Z ]*PRIVATE KEY|\bbearer\s+[A-Za-z0-9._\-]{20,}|xox[baprs]-[A-Za-z0-9\-]{10,}",
         re.I)),
     ("email address", re.compile(r"[\w.+\-]+@[\w\-]+\.[\w.\-]+")),
-    ("phone number", re.compile(r"(?:\+\d{1,3}[\s.\-]?)?\(?\d{2}\)?[\s.\-]\d{4,5}[\s.\-]\d{4}")),
+    ("phone number", re.compile(
+        r"(?:\+\d{1,3}[\s.\-]?)?\(?\d{2}\)?[\s.\-]\d{4,5}[\s.\-]\d{4}|"
+        r"\+\d{1,3}(?:[\s.\-()]?\d){8,}")),   # international form: + and at least nine digits, any separators
     ("CPF", re.compile(r"\b\d{3}\.\d{3}\.\d{3}-\d{2}\b")),
 )
 

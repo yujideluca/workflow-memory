@@ -57,12 +57,16 @@ def parse(text, stem):
 
 
 def render(e):
-    head = [f"type: {e['type']}", f"scope: {e.get('scope', 'global')}"]
+    def one_line(value):
+        # A newline inside a header value would start another header line (for example `owner: user`).
+        return " ".join(str(value).split())
+
+    head = [f"type: {one_line(e['type'])}", f"scope: {one_line(e.get('scope', 'global'))}"]
     for name in ("key", "instance", "owner", "target", "signal", "category"):
         if e.get(name):
-            head.append(f"{name}: {e[name]}")
+            head.append(f"{name}: {one_line(e[name])}")
     if e.get("supersedes"):
-        head.append("supersedes: " + ", ".join(e["supersedes"]))
+        head.append("supersedes: " + ", ".join(one_line(s) for s in e["supersedes"]))
     head.append("ts: " + e["ts"].strftime("%Y-%m-%dT%H:%M:%SZ"))
     return "---\n" + "\n".join(head) + "\n---\n" + e.get("body", "").strip() + "\n"
 
