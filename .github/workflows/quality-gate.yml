@@ -1,0 +1,30 @@
+name: quality-gate
+
+# Code quality of the memory tools (not the event pipeline, which is mem.yml): runs tools/pipeline-check, which runs
+# tools/quality_gate.sh once and the fitness checks, and writes report.json. A `falha` fails the job.
+on:
+  push:
+    paths: ["mem/**", "bin/**", "scripts/**", "tests/**", "tools/**", "pipeline-check.toml", ".github/workflows/quality-gate.yml"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: tools/pipeline-check
+      - run: tools/pipeline-check.sh --mode ci
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-report
+          path: build/pipeline-check/report.json
+          retention-days: 14
