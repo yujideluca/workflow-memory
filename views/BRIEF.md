@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-24 from 124 events. Do not edit: record changes as events.
+Generated 2026-10-24 from 133 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -31,11 +31,9 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Choose a licence for the public pipeline-check repository (pros and cons were sent 2026-10-24); until then it is all rights reserved | check: test -f ~/dev/pipeline-check/LICENSE (since 2026-10-24, #e62c37)
 - [open item] QuizWeb branch first-maintenance-review (web import validation, sharp s search, zero-goal bar) matches app changes already on QuizApp main: ship it with the next app version (rename to web-<versionName> at promote time; QuizApp CI picks that branch); do not merge it to QuizWeb main before the app is promoted (WB-1 / web follows the user version) | check: cd ~/dev/QuizWeb && git ls-remote --heads origin first-maintenance-review | grep -q . (since 2026-10-24, #7c55a5)
-- [open item] Debt proposals from the first reviews, to create as GitHub issues once approved: P2 privacy-pattern list exists twice (wiki Privacy.ex, workflow-memory validate.py); P2 check_traceability.py copied in six repositories (move into pipeline-check); P2 StudyViewModel.kt at 365 of 400 lines (QuizApp); P3 install shellcheck (sudo apt install shellcheck); P3 install cargo-llvm-cov and cargo-mutants; P3 tests for remote-terminal in a container; QuizWeb main has no branch protection (public repo; option… (since 2026-10-24, #52b453)
-- [open item] Skills: review ~/.claude/skill-proposals-2026-10-24.md (4 skills still cite the retired gui-code-protocol / claude-workflow-backup); approve or reject, then edit and delete the file | check: test -f ~/.claude/skill-proposals-2026-10-24.md (since 2026-10-24, #0325cd)
 - [open item] Monthly architecture review of all ~/dev projects (next due by 2026-11-22): run the skill revisao-manutencao (it runs tools/pipeline-check.sh in each project, reads build/pipeline-check/report.json, proposes debt issues P1-P3 and a Preventive row; checklist in ~/dev/project-template/docs/MAINTENANCE.md). First review done 2026-10-24 for QuizApp and pipeline-check; other projects adopted pipeline-check on branches awaiting merge | check: ! grep -qE "^\| $(date +%Y-%m)-[0-9]{2} \| Preventive \| \… (since 2026-10-24, #c091ff)
-- [open item] pipeline-check: Giovanni installs gh and logs in (sudo apt install gh; gh auth login); then verify CI green + branch protection check, push branch pipeline-check to prove an architecture violation fails CI, and ask before enabling protection requiring job gate | check: test -x /usr/bin/gh && gh auth status >/dev/null 2>&1 (since 2026-10-24, #04a028)
 - [open item] Phased apt updates (tmux, ubuntu-pro-client, ubuntu-pro-client-l10n) still held back since 2026-10-21; Giovanni chose to wait; rerun sudo apt upgrade in a few days | check: ! apt list --upgradable 2>/dev/null | grep -q -E '^(tmux|ubuntu-pro-client)/' (since 2026-10-21, #2526ce)
 
 ## Recording
