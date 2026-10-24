@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-24 from 145 events. Do not edit: record changes as events.
+Generated 2026-10-24 from 150 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -35,3 +35,7 @@ Generated 2026-10-24 from 145 events. Do not edit: record changes as events.
 - [project:yuji] auto.25ffec4890: Never prioritize superficial resemblance to Wikipedia over factual integrity. (harvester)
 - [global] work.no-retired-refs: A retired protocol or tool is not named in anything that works today (skills, CLAUDE.md, memory, READMEs, scripts); only history (ADRs, decision logs, the wiki page of the retired thing) may mention it. (user)
 - [global] wiki.plain-language: Wiki pages must help someone with no previous knowledge of the system or its technical language: define a term where it first appears, link complex terms to a definition, spell out an acronym or abbreviation at its first use on each page, and let a skill page carry the skill's own definition. (user)
+- [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
+- [project:yuji] auto.941ebc08dd: (2) If shellcheck is not installed: the check reports `pulado` (skipped), never `ok`, so a check that did not run does not look like a pass. (harvester)
+- [project:yuji] auto.a23149eae4: (2) If shellcheck is not installed: the check reports "pulado" (skipped), never "ok". (harvester)
+- [project:yuji] auto.370233d422: It never reports "ok" for a check that did not run. (harvester)
