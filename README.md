@@ -1,7 +1,7 @@
 # workflow-memory
 
 Shared, long-lived memory for every AI instance Giovanni uses (Claude in the app, in projects, on the phone,
-Claude Code, the always-on assistant). It replaces the old claude-workflow-backup protocol.
+Claude Code, the always-on assistant).
 
 ## The idea in four lines
 1. **The log is the memory.** Every fact, preference, decision or task is one new file in `events/`.
