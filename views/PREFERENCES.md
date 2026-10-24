@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-24 from 133 events. Do not edit: record changes as events.
+Generated 2026-10-24 from 140 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -33,3 +33,4 @@ Generated 2026-10-24 from 133 events. Do not edit: record changes as events.
 - [project:yuji] auto.46d7d18ed7: Prefer direct, precise prose and clearly structured paragraphs. (harvester)
 - [project:yuji] auto.1594cbd908: Prefer direct citations to the original research or authoritative source. (harvester)
 - [project:yuji] auto.25ffec4890: Never prioritize superficial resemblance to Wikipedia over factual integrity. (harvester)
+- [global] work.no-retired-refs: A retired protocol or tool is not named in anything that works today (skills, CLAUDE.md, memory, READMEs, scripts); only history (ADRs, decision logs, the wiki page of the retired thing) may mention it. (user)
