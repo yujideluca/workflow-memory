@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-24 from 150 events. Do not edit: record changes as events.
+Generated 2026-10-24 from 152 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -33,6 +33,8 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Run skill-creator's description optimizer (run_loop.py, needs claude -p) on the description of wiki-page-writer; Giovanni asked on 2026-10-24 to do it at 18:00; note the result on the wiki page skill-wiki-page-writer | check: grep -q "description optimizer was run" /home/yuji/dev/wiki/content/skill-wiki-page-writer.md (since 2026-10-24, #5d0b7a)
+- [open item] Investigate why wiki stale says no stale pages while the Stop hook lists pages (stale.ex); report cause and proposal to Giovanni; no wiki code change without his decision; asked on 2026-10-24 to do it at 18:00 | check: grep -q "wiki stale cause" /home/yuji/dev/wiki/content/wiki-check.md (since 2026-10-24, #274db0)
 - [open item] Choose a licence for the public pipeline-check repository (options and trade-offs were sent 2026-10-24); until then it is all rights reserved | check: ! test -f ~/dev/pipeline-check/LICENSE (since 2026-10-24, #fe7195)
 - [open item] Wiki: merge branch shellcheck-0.4b (pipeline-check v0.4.0, CI green on b20eae0) into main once the wiki working tree is clean (another session was editing content/ and the acronym rule on 2026-10-24); then update the wiki pages (pipeline-check: traceability PC-14, shellcheck PC-15, v0.4.0; remote-terminal: sandbox test; the four edited skills), run wiki publish -m, and fix wiki issue #2 (hook tests pollute the repo under GIT_DIR) | check: git -C ~/dev/wiki ls-remote --heads origin shellcheck-0.… (since 2026-10-24, #415eba)
 - [open item] QuizWeb branch first-maintenance-review (web import validation, sharp s search, zero-goal bar) matches app changes already on QuizApp main: ship it with the next app version (rename to web-<versionName> at promote time; QuizApp CI picks that branch); do not merge it to QuizWeb main before the app is promoted (WB-1 / web follows the user version) | check: cd ~/dev/QuizWeb && git ls-remote --heads origin first-maintenance-review | grep -q . (since 2026-10-24, #7c55a5)
