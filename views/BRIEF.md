@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-25 from 192 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 194 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -38,6 +38,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Wiki: measure the phone lens (rectangular focus, LN-4) on Giovanni's real phone with adb reverse + DevTools frame timing (pan, pinch, tap) once the phone is unlocked; then fix the DESIGN.md row | check: ! grep -q "on Giovanni's phone not yet measured" ~/dev/wiki/DESIGN.md (since 2026-10-25, #65ab3f)
 - [open item] QuizWeb branch first-maintenance-review (web import validation, sharp s search, zero-goal bar) matches app changes already on QuizApp main: ship it with the next app version (rename to web-<versionName> at promote time; QuizApp CI picks that branch); do not merge it to QuizWeb main before the app is promoted (WB-1 / web follows the user version) | check: cd ~/dev/QuizWeb && git ls-remote --heads origin first-maintenance-review | grep -q . (since 2026-10-24, #7c55a5)
 - [open item] Monthly architecture review of all ~/dev projects (next due by 2026-11-22): run the skill revisao-manutencao (it runs tools/pipeline-check.sh in each project, reads build/pipeline-check/report.json, proposes debt issues P1-P3 and a Preventive row; checklist in ~/dev/project-template/docs/MAINTENANCE.md). First review done 2026-10-24 for QuizApp and pipeline-check; other projects adopted pipeline-check on branches awaiting merge | check: ! grep -qE "^\| $(date +%Y-%m)-[0-9]{2} \| Preventive \| \… (since 2026-10-24, #c091ff)
 
