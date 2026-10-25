@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-25 from 204 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 208 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -35,11 +35,13 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [work.test-ui-on-phone] Test any phone-facing web UI on Giovanni's real phone (Motorola, adb), not only in a narrowed desktop browser: serve the build with adb reverse and read frame times with Chrome DevTools over adb forward; the public wiki address needs Giovanni's own Google sign-in, so do not sign in for them. (#f7008d)
 - [work.phone-stay-awake] Giovanni's phone must stay awake for other projects: never turn off or change its stay-awake setting (svc power stayon, stay_on_while_plugged_in, screen timeout). If a test needs the screen on, only send a wake key; read a device setting before changing it and put back exactly what was there. (#03ca1c)
 - [wiki.complete-skill-content] In the wiki project, every skill page must contain the complete source SKILL.md description and instructions, not a shortened summary. The page-generation trigger and writer must locate and read the complete source before writing, and keep the full content on the page and its language versions. (#12386c)
+- [work.routine-autonomy] Proceed without repeated confirmation for routine, reversible edits, commands, checks and website access within the requested task. Ask only when an action is dangerous or a required technical permission cannot be avoided; batch necessary access requests instead of asking for each command or site. (#b9bd12)
 - (10 more entries did not fit; they are in the log and searchable)
 
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Publish Codex Status wiki documentation from branch codex-pbar-docs (remote saved, commit 2f2a3a6). Isolated wiki check/publish currently fails on 60 pre-existing missing skill-source copies; do not publish unrelated uncommitted wiki work. Reconcile after that wiki work is committed, then wiki check --local and wiki publish. | check: ! git -C /home/yuji/dev/wiki merge-base --is-ancestor codex-pbar-docs main (since 2026-10-25, #d3fe88)
 - [open item] QuizWeb branch first-maintenance-review (web import validation, sharp s search, zero-goal bar) matches app changes already on QuizApp main: ship it with the next app version (rename to web-<versionName> at promote time; QuizApp CI picks that branch); do not merge it to QuizWeb main before the app is promoted (WB-1 / web follows the user version) | check: cd ~/dev/QuizWeb && git ls-remote --heads origin first-maintenance-review | grep -q . (since 2026-10-24, #7c55a5)
 - [open item] Monthly architecture review of all ~/dev projects (next due by 2026-11-22): run the skill revisao-manutencao (it runs tools/pipeline-check.sh in each project, reads build/pipeline-check/report.json, proposes debt issues P1-P3 and a Preventive row; checklist in ~/dev/project-template/docs/MAINTENANCE.md). First review done 2026-10-24 for QuizApp and pipeline-check; other projects adopted pipeline-check on branches awaiting merge | check: ! grep -qE "^\| $(date +%Y-%m)-[0-9]{2} \| Preventive \| \… (since 2026-10-24, #c091ff)
 
