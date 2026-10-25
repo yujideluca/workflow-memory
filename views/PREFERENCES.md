@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-25 from 164 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 170 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -39,3 +39,4 @@ Generated 2026-10-25 from 164 events. Do not edit: record changes as events.
 - [project:yuji] auto.941ebc08dd: (2) If shellcheck is not installed: the check reports `pulado` (skipped), never `ok`, so a check that did not run does not look like a pass. (harvester)
 - [project:yuji] auto.a23149eae4: (2) If shellcheck is not installed: the check reports "pulado" (skipped), never "ok". (harvester)
 - [project:yuji] auto.370233d422: It never reports "ok" for a check that did not run. (harvester)
+- [global] work.act-on-ok: When Giovanni says 'solve it', do the work (create issues, write log rows, fix) instead of listing proposals; check memory and past messages for decisions already made (e.g. pipeline-check licence = MIT) before asking. (user)
