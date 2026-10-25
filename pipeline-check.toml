@@ -26,6 +26,7 @@ limit = 300
 repo = "yujideluca/workflow-memory"
 branch = "main"
 required_check = "gate"
+protection_exception = "the mem job pushes derived files to main with the built-in token, which a required check rejects (simulation 2026-10-25); the local pre-push check stands in"
 
 [dora]
 days = 30
