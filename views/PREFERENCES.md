@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-25 from 213 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 215 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -47,3 +47,4 @@ Generated 2026-10-25 from 213 events. Do not edit: record changes as events.
 - [global] work.phone-stay-awake: Giovanni's phone must stay awake for other projects: never turn off or change its stay-awake setting (svc power stayon, stay_on_while_plugged_in, screen timeout). If a test needs the screen on, only send a wake key; read a device setting before changing it and put back exactly what was there. (user)
 - [global] wiki.complete-skill-content: In the wiki project, every skill page must contain the complete source SKILL.md description and instructions, not a shortened summary. The page-generation trigger and writer must locate and read the complete source before writing, and keep the full content on the page and its language versions. (user)
 - [global] work.routine-autonomy: Proceed without repeated confirmation for routine, reversible edits, commands, checks and website access within the requested task. Ask only when an action is dangerous or a required technical permission cannot be avoided; batch necessary access requests instead of asking for each command or site. (user)
+- [global] codex.status-display: Keep Codex statuses in the existing display below the input; no separate window or ASCII bars in chat. Desired task display: percentage plus completed/total steps. Tell Giovanni when a supported display improvement becomes available; do not claim background monitoring. (user)

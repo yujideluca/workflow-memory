@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-25 from 213 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 215 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -36,6 +36,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [work.phone-stay-awake] Giovanni's phone must stay awake for other projects: never turn off or change its stay-awake setting (svc power stayon, stay_on_while_plugged_in, screen timeout). If a test needs the screen on, only send a wake key; read a device setting before changing it and put back exactly what was there. (#03ca1c)
 - [wiki.complete-skill-content] In the wiki project, every skill page must contain the complete source SKILL.md description and instructions, not a shortened summary. The page-generation trigger and writer must locate and read the complete source before writing, and keep the full content on the page and its language versions. (#12386c)
 - [work.routine-autonomy] Proceed without repeated confirmation for routine, reversible edits, commands, checks and website access within the requested task. Ask only when an action is dangerous or a required technical permission cannot be avoided; batch necessary access requests instead of asking for each command or site. (#b9bd12)
+- [codex.status-display] Keep Codex statuses in the existing display below the input; no separate window or ASCII bars in chat. Desired task display: percentage plus completed/total steps. Tell Giovanni when a supported display improvement becomes available; do not claim background monitoring. (#662347)
 - (10 more entries did not fit; they are in the log and searchable)
 
 ## Open items
