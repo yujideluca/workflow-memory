@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-25 from 203 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 204 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -45,3 +45,4 @@ Generated 2026-10-25 from 203 events. Do not edit: record changes as events.
 - [global] release.pool-promote: Question-pool updates (tools/data, i18n) that pass the automated pipeline (gate + mutation check, then beta) may be promoted to the stable app and the web version without asking again; app code releases still need Giovanni's go-ahead (2026-10-25). (user)
 - [global] work.test-ui-on-phone: Test any phone-facing web UI on Giovanni's real phone (Motorola, adb), not only in a narrowed desktop browser: serve the build with adb reverse and read frame times with Chrome DevTools over adb forward; the public wiki address needs Giovanni's own Google sign-in, so do not sign in for them. (user)
 - [global] work.phone-stay-awake: Giovanni's phone must stay awake for other projects: never turn off or change its stay-awake setting (svc power stayon, stay_on_while_plugged_in, screen timeout). If a test needs the screen on, only send a wake key; read a device setting before changing it and put back exactly what was there. (user)
+- [global] wiki.complete-skill-content: In the wiki project, every skill page must contain the complete source SKILL.md description and instructions, not a shortened summary. The page-generation trigger and writer must locate and read the complete source before writing, and keep the full content on the page and its language versions. (user)
