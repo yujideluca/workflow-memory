@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-25 from 176 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 177 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
