@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-25 from 243 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 245 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -48,5 +48,5 @@ Generated 2026-10-25 from 243 events. Do not edit: record changes as events.
 - [global] wiki.complete-skill-content: In the wiki project, every skill page must contain the complete source SKILL.md description and instructions, not a shortened summary. The page-generation trigger and writer must locate and read the complete source before writing, and keep the full content on the page and its language versions. (user)
 - [global] work.routine-autonomy: Proceed without repeated confirmation for routine, reversible edits, commands, checks and website access within the requested task. Ask only when an action is dangerous or a required technical permission cannot be avoided; batch necessary access requests instead of asking for each command or site. (user)
 - [global] work.acceptance-evidence: Correction after repeated false completion claims: define success as the user's observable outcome before acting. Configuration, installation and passing component tests do not prove that outcome. Verify the actual execution path and visible behavior; if inaccessible, state precisely what remains unverified and keep the task incomplete. Investigate available evidence before asking the user; perform authorized routine work yourself. Lead reports with the result, evidence and remaining limitation in plain language. (user)
-- [global] codex.status-display: Codex terminal task status must remain visible during work and idle, showing task progress percentage and estimated remaining time as well as completed steps. The agent maintains the count and estimate; no user bookkeeping. Do not add token, context or quota fields. (user)
 - [global] codex.skills-ownership: Maintain Codex-owned versions of incompatible Claude skills in the separate codex-skills GitHub project, using Claude skills as the basis without editing their originals; management tooling is Python. (user)
+- [global] codex.status-display: Use Claude’s compact status-line appearance for Codex: green Progress percentage label only, normal terminal background and middle-dot separators, completed/total tasks and estimated remaining time. Omit the drawn/animated progress bar. Do not redesign the line or add token/context/quota fields. (user)
