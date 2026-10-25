@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-25 from 218 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 222 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -36,12 +36,13 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [work.phone-stay-awake] Giovanni's phone must stay awake for other projects: never turn off or change its stay-awake setting (svc power stayon, stay_on_while_plugged_in, screen timeout). If a test needs the screen on, only send a wake key; read a device setting before changing it and put back exactly what was there. (#03ca1c)
 - [wiki.complete-skill-content] In the wiki project, every skill page must contain the complete source SKILL.md description and instructions, not a shortened summary. The page-generation trigger and writer must locate and read the complete source before writing, and keep the full content on the page and its language versions. (#12386c)
 - [work.routine-autonomy] Proceed without repeated confirmation for routine, reversible edits, commands, checks and website access within the requested task. Ask only when an action is dangerous or a required technical permission cannot be avoided; batch necessary access requests instead of asking for each command or site. (#b9bd12)
-- [codex.status-display] Keep Codex statuses in the existing display below the input; no separate window or ASCII bars in chat. Desired task display: percentage plus completed/total steps. Tell Giovanni when a supported display improvement becomes available; do not claim background monitoring. (#662347)
+- [codex.status-display] Codex status bar must show only the task progress counter (for example 3/10 tasks). Do not add input/output tokens or other status fields. (#22dd16)
 - (10 more entries did not fit; they are in the log and searchable)
 
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Update pending codex-pbar-docs wiki documentation to reflect task-progress only, replacing the former token/context/quota fields. Wiki publication currently blocked by unrelated uncommitted content and source changes in main; preserve those edits. | check: test "$(python3 -c 'import tomllib; print(tomllib.load(open("/home/yuji/.codex/config.toml","rb"))["tui"]["status_line"])')" = "['task-progress']" && ! git -C /home/yuji/dev/wiki grep -q 'task-progress only' -- content (since 2026-10-25, #dca3ae)
 - [open item] Codex status: native terminal footer has context capacity and session counters; desktop service masked and launcher blocked. Custom animated progress bar is still not integrated below input. Current desktop-chat host does not use tui.status_line; investigate supported host extension before claiming visible integration. Five-hour/weekly schema has percentages, no token allowance. | check: test -L /home/yuji/.config/systemd/user/codex-pbar.service && ! git -C /home/yuji/dev/codex-pbar grep -q ter… (since 2026-10-25, #fda16d)
 - [open item] Document the resumed Codex terminal-footer setup: tui.status_line is configured; codex-pbar.service disabled and stopped. Wiki main has unrelated ongoing changes, including content/wiki-content.md and skill pages; reconcile with codex-pbar documentation branch before publishing. | check: test -e /home/yuji/.config/systemd/user/graphical-session.target.wants/codex-pbar.service || ! git -C /home/yuji/dev/wiki grep -q "status_line" -- content (since 2026-10-25, #61a440)
 - [open item] Publish Codex Status wiki documentation from branch codex-pbar-docs (remote saved, commit 2f2a3a6). Isolated wiki check/publish currently fails on 60 pre-existing missing skill-source copies; do not publish unrelated uncommitted wiki work. Reconcile after that wiki work is committed, then wiki check --local and wiki publish. | check: ! git -C /home/yuji/dev/wiki merge-base --is-ancestor codex-pbar-docs main (since 2026-10-25, #d3fe88)
