@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-25 from 249 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 253 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -50,3 +50,4 @@ Generated 2026-10-25 from 249 events. Do not edit: record changes as events.
 - [global] work.acceptance-evidence: Correction after repeated false completion claims: define success as the user's observable outcome before acting. Configuration, installation and passing component tests do not prove that outcome. Verify the actual execution path and visible behavior; if inaccessible, state precisely what remains unverified and keep the task incomplete. Investigate available evidence before asking the user; perform authorized routine work yourself. Lead reports with the result, evidence and remaining limitation in plain language. (user)
 - [global] codex.skills-ownership: Maintain Codex-owned versions of incompatible Claude skills in the separate codex-skills GitHub project, using Claude skills as the basis without editing their originals; management tooling is Python. (user)
 - [global] codex.status-display: Use Claude’s compact status-line appearance for Codex: green Progress percentage label only, normal terminal background and middle-dot separators, completed/total tasks and estimated remaining time. Omit the drawn/animated progress bar. Do not redesign the line or add token/context/quota fields. (user)
+- [global] work.troubleshoot-documentation: Investigate documentation failures before declaring them blocked. Prefer an isolated committed worktree and narrow reconciliation that preserves other sessions’ edits; do not treat a dirty wiki tree alone as the end of troubleshooting. (user)
