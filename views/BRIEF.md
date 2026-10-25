@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-25 from 225 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 227 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -37,6 +37,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [wiki.complete-skill-content] In the wiki project, every skill page must contain the complete source SKILL.md description and instructions, not a shortened summary. The page-generation trigger and writer must locate and read the complete source before writing, and keep the full content on the page and its language versions. (#12386c)
 - [work.routine-autonomy] Proceed without repeated confirmation for routine, reversible edits, commands, checks and website access within the requested task. Ask only when an action is dangerous or a required technical permission cannot be avoided; batch necessary access requests instead of asking for each command or site. (#b9bd12)
 - [codex.status-display] Codex status bar must show only the task progress counter (for example 3/10 tasks). Do not add input/output tokens or other status fields. (#22dd16)
+- [work.acceptance-evidence] Correction after repeated false completion claims: define success as the user's observable outcome before acting. Configuration, installation and passing component tests do not prove that outcome. Verify the actual execution path and visible behavior; if inaccessible, state precisely what remains unverified and keep the task incomplete. Investigate available evidence before asking the user; perform authorized routine work yourself. Lead reports with the result, evidence and remaining limitation in plain language. (#e80181)
 - (10 more entries did not fit; they are in the log and searchable)
 
 ## Open items
