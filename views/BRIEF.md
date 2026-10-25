@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-25 from 227 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 232 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -43,6 +43,10 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] machine-bootstrap: Giovanni must run 'cd ~/dev/machine-bootstrap && python3 -m mb secrets-backup' once (only they can type the passphrase; it also saves the QuizApp release key); then keep the passphrase on paper, not on this computer | check: ls /run/media/yuji/0a34cf43-b7a8-4198-bb85-690e4c0149c4/machine-bootstrap/secrets/mb-secrets-*.tar.gpg (since 2026-10-25, #df85fa)
+- [open item] machine-bootstrap has no commit and no GitHub repository yet: commit locally, then Giovanni decides public or private (state/ holds package lists and settings, no secrets) and pushes; the monthly review needs it (work.github-standard) | check: git -C ~/dev/machine-bootstrap ls-remote origin 2>/dev/null | grep -q . (since 2026-10-25, #a0dde6)
+- [open item] wiki pages for machine-bootstrap are written (EN/DE/pt-BR, wiki check passes) but NOT published: ~/dev/wiki has other sessions' uncommitted edits; publish when the tree is clean (wiki publish -m 'machine-bootstrap page') | check: git -C ~/dev/wiki status --short content/machine-bootstrap.md | grep -q '^??' (since 2026-10-25, #67936b)
+- [open item] rclone gdrive uses the shared client_id that stops working during 2026 (it is already 2026-10): create an own client_id (rclone.org/drive/#making-your-own-client-id) or the Drive copy of the secrets will fail | check: ! rclone lsd gdrive: 2>&1 | grep -q 'shared Google Drive client_id' (since 2026-10-25, #0ee03e)
 - [open item] Update pending codex-pbar-docs wiki documentation to reflect task-progress only, replacing the former token/context/quota fields. Wiki publication currently blocked by unrelated uncommitted content and source changes in main; preserve those edits. | check: test "$(python3 -c 'import tomllib; print(tomllib.load(open("/home/yuji/.codex/config.toml","rb"))["tui"]["status_line"])')" = "['task-progress']" && ! git -C /home/yuji/dev/wiki grep -q 'task-progress only' -- content (since 2026-10-25, #dca3ae)
 - [open item] Codex status: native terminal footer has context capacity and session counters; desktop service masked and launcher blocked. Custom animated progress bar is still not integrated below input. Current desktop-chat host does not use tui.status_line; investigate supported host extension before claiming visible integration. Five-hour/weekly schema has percentages, no token allowance. | check: test -L /home/yuji/.config/systemd/user/codex-pbar.service && ! git -C /home/yuji/dev/codex-pbar grep -q ter… (since 2026-10-25, #fda16d)
 - [open item] Document the resumed Codex terminal-footer setup: tui.status_line is configured; codex-pbar.service disabled and stopped. Wiki main has unrelated ongoing changes, including content/wiki-content.md and skill pages; reconcile with codex-pbar documentation branch before publishing. | check: test -e /home/yuji/.config/systemd/user/graphical-session.target.wants/codex-pbar.service || ! git -C /home/yuji/dev/wiki grep -q "status_line" -- content (since 2026-10-25, #61a440)
