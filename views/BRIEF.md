@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-25 from 178 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 181 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -30,12 +30,12 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [wiki.plain-language] Wiki pages must help someone with no previous knowledge of the system or its technical language: define a term where it first appears, link complex terms to a definition, spell out an acronym or abbreviation at its first use on each page, and let a skill page carry the skill's own definition. (#f4e33f)
 - [work.act-on-ok] When Giovanni says 'solve it', do the work (create issues, write log rows, fix) instead of listing proposals; check memory and past messages for decisions already made (e.g. pipeline-check licence = MIT) before asking. (#c1c894)
 - [repos.public] Repos that need branch protection are public, because GitHub Free has no protection on private repos. german-quiz, remote-terminal, wiki, workflow-memory and processing-sketches were made public on 2026-10-25 after a clean secret scan. (#b5a8cf)
+- [repos.workflow-memory-unprotected] workflow-memory is intentionally without branch protection: its mem job pushes derived files to main with the built-in token and a required check rejects that push (simulation 2026-10-25). Local pre-push check stands in; pipeline-check.toml has protection_exception, so protecao-de-branch is an accepted aviso there, not a failure. (#398bdc)
 - (10 more entries did not fit; they are in the log and searchable)
 
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] workflow-memory (public since 2026-10-25) has no branch protection: its mem-action job pushes derived files to main with GITHUB_TOKEN, which a required 'gate' check could block. Giovanni must choose: PAT/deploy-key for mem-action, ruleset bypass, or accept the pre-push hook. Then close pipeline-check issue #4. | check: gh api repos/yujideluca/workflow-memory/branches/main/protection --jq .url (since 2026-10-25, #ea8158)
 - [open item] QuizWeb branch first-maintenance-review (web import validation, sharp s search, zero-goal bar) matches app changes already on QuizApp main: ship it with the next app version (rename to web-<versionName> at promote time; QuizApp CI picks that branch); do not merge it to QuizWeb main before the app is promoted (WB-1 / web follows the user version) | check: cd ~/dev/QuizWeb && git ls-remote --heads origin first-maintenance-review | grep -q . (since 2026-10-24, #7c55a5)
 - [open item] Monthly architecture review of all ~/dev projects (next due by 2026-11-22): run the skill revisao-manutencao (it runs tools/pipeline-check.sh in each project, reads build/pipeline-check/report.json, proposes debt issues P1-P3 and a Preventive row; checklist in ~/dev/project-template/docs/MAINTENANCE.md). First review done 2026-10-24 for QuizApp and pipeline-check; other projects adopted pipeline-check on branches awaiting merge | check: ! grep -qE "^\| $(date +%Y-%m)-[0-9]{2} \| Preventive \| \… (since 2026-10-24, #c091ff)
 
