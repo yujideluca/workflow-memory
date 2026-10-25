@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-25 from 262 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 264 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -46,6 +46,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Publish Codex fullscreen footer documentation from codex/footer-bottom (/tmp/wiki-footer-bottom). Configuration is installed and tested; isolated wiki publish fails on 60 existing missing skill-source copies. Preserve unrelated wiki edits. | check: git -C /home/yuji/dev/wiki merge-base --is-ancestor codex/footer-bottom main (since 2026-10-25, #ec66d7)
 - [open item] Publish codex-status-line wiki page (EN/DE/pt-BR) prepared in /tmp/wiki-codex-quota-fields. Isolated publish blocked by pre-existing missing complete skill-source copies; preserve unrelated main edits. | check: test -f /tmp/wiki-codex-quota-fields/content/codex-status-line.md && ! git -C /home/yuji/dev/wiki cat-file -e HEAD:content/codex-status-line.md 2>/dev/null (since 2026-10-25, #7fc007)
 - [open item] Publish the validated persistent Codex terminal-footer wiki page and its glossary/pbar links after unrelated wiki edits are reconciled. Terminal footer itself is installed and live; code commit 8569ff4. Preserve other sessions edits; do not publish the older codex-pbar-docs description of token/context fields. | check: git -C /home/yuji/dev/wiki status --porcelain -- content/codex-pbar.md content/codex-pbar.de.md content/codex-pbar.pt-BR.md | rg -q . (since 2026-10-25, checked 2026-10-25, #7d6612)
 - [open item] Document the resumed Codex terminal-footer setup: tui.status_line is configured; codex-pbar.service disabled and stopped. Wiki main has unrelated ongoing changes, including content/wiki-content.md and skill pages; reconcile with codex-pbar documentation branch before publishing. | check: test -e /home/yuji/.config/systemd/user/graphical-session.target.wants/codex-pbar.service || ! git -C /home/yuji/dev/wiki grep -q "status_line" -- content (since 2026-10-25, checked 2026-10-25, #61a440)
