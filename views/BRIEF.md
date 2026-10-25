@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-25 from 238 events. Do not edit: record changes as events.
+Generated 2026-10-25 from 241 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -38,11 +38,13 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [work.routine-autonomy] Proceed without repeated confirmation for routine, reversible edits, commands, checks and website access within the requested task. Ask only when an action is dangerous or a required technical permission cannot be avoided; batch necessary access requests instead of asking for each command or site. (#b9bd12)
 - [work.acceptance-evidence] Correction after repeated false completion claims: define success as the user's observable outcome before acting. Configuration, installation and passing component tests do not prove that outcome. Verify the actual execution path and visible behavior; if inaccessible, state precisely what remains unverified and keep the task incomplete. Investigate available evidence before asking the user; perform authorized routine work yourself. Lead reports with the result, evidence and remaining limitation in plain language. (#e80181)
 - [codex.status-display] Codex terminal task status must remain visible during work and idle, showing task progress percentage and estimated remaining time as well as completed steps. The agent maintains the count and estimate; no user bookkeeping. Do not add token, context or quota fields. (#af2262)
+- [codex.skills-ownership] Maintain Codex-owned versions of incompatible Claude skills in the separate codex-skills GitHub project, using Claude skills as the basis without editing their originals; management tooling is Python. (#ce282d)
 - (10 more entries did not fit; they are in the log and searchable)
 
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Reconcile and publish Codex skills wiki proposals from ~/dev/codex-skills/docs/wiki. Prepared 87 files pass isolated wiki check; live skills pages have unrelated edits and stale Codex source snapshots after installation. Do not overwrite or publish others’ work. | check: ! git -C /home/yuji/dev/wiki cat-file -e HEAD:content/codex-skills.md 2>/dev/null (since 2026-10-25, #162f1c)
 - [open item] Publish the validated persistent Codex terminal-footer wiki page and its glossary/pbar links after unrelated wiki edits are reconciled. Terminal footer itself is installed and live; code commit 8569ff4. Preserve other sessions edits; do not publish the older codex-pbar-docs description of token/context fields. | check: git -C /home/yuji/dev/wiki status --porcelain -- content/codex-pbar.md content/codex-pbar.de.md content/codex-pbar.pt-BR.md | rg -q . (since 2026-10-25, checked 2026-10-25, #7d6612)
 - [open item] machine-bootstrap: Giovanni must run 'cd ~/dev/machine-bootstrap && python3 -m mb secrets-backup' once (only they can type the passphrase; it also saves the QuizApp release key); then keep the passphrase on paper, not on this computer | check: ls /run/media/yuji/0a34cf43-b7a8-4198-bb85-690e4c0149c4/machine-bootstrap/secrets/mb-secrets-*.tar.gpg (since 2026-10-25, #df85fa)
 - [open item] machine-bootstrap has no commit and no GitHub repository yet: commit locally, then Giovanni decides public or private (state/ holds package lists and settings, no secrets) and pushes; the monthly review needs it (work.github-standard) | check: git -C ~/dev/machine-bootstrap ls-remote origin 2>/dev/null | grep -q . (since 2026-10-25, #a0dde6)
