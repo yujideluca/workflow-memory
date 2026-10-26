@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-26 from 413 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 416 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -50,8 +50,6 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] Wiki dependency fetch also reports Bandit 1.13.1 security advisories (HTTP/2 resource exhaustion and WebSocket closing behavior), alongside the existing plug_crypto advisory. Found during rclone migration documentation checks; dependencies unchanged. | check: cd /home/yuji/dev/wiki/server && mix hex.audit (since 2026-10-26, checked 2026-10-26, #b98ffb)
-- [open item] Wiki dependency audit: mix deps.get reported plug_crypto 2.2.0 advisory CVE-2026-105963 (secret key base can appear in stack traces for wrong-typed Plug.Crypto arguments). Found during isolated documentation verification on 2026-10-26; no dependency changed. Assess applicability and upgrade through the wiki gate. | check: cd ~/dev/wiki/server && mix hex.audit (since 2026-10-26, checked 2026-10-26, #f678c4)
 - [open item] Rclone now uses the replacement client secret and full Drive access; the existing backup is verified unchanged by downloaded SHA256. Revocation of the exposed original Google client secret remains unverified; credential-change UI requires Giovanni handoff. | check: Open the Google Cloud OAuth client and inspect the secret list; confirm the original secret created 2026-10-26 09:23 is revoked. (since 2026-10-26, #4b9ee4)
 - [open item] Monthly architecture review next due 2026-11-22. Verified 2026-10-26: monthly rows exist for QuizApp, pipeline-check, processing-sketches, project-template, remote-terminal, wiki and workflow-memory. codex-pbar and codex-skills have end-of-task maintenance rows; QuizWeb has a first-review report but no DESIGN.md. machine-bootstrap has no monthly row and its automated-test review document is still the template copy. german-quiz-releases is a data feed without a pipeline config. | check: rg -n 'M… (since 2026-10-26, checked 2026-10-26, #d12c08)
 
