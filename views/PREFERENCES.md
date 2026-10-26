@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-26 from 280 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 281 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -61,3 +61,5 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [project:footer] auto.535d23871f: You found, with transcript refs: config/component tests used as proof instead of display; terminal_smoke.py lacks a combined test for 5h%, weekly%, context used, window; approval-config and remote-control handoffs premature (not sudo); wiki blockers = 20 stale Codex snapshots from your own installs + 60 missing snapshots on obsolete branches (codex/wiki-reconcile passes); push to main bypassed required "gate"; you reopened the workflow-memory visibility decision although #b5a8cf records it public (2026-10-25); repeated "blocked" memory tasks replaced investigation; asked Giovanni for a screenshot/paste you could capture. (harvester)
 - [project:footer] auto.c0855923ed: Never hand him a command you could run; never ask him for a screenshot/paste you can capture. (harvester)
 - [global] codex.status-display: Task footer styling (Claude's compact line): green Progress percentage label, normal terminal background, middle-dot separators, completed/total tasks and estimated remaining time, no drawn or animated bar. This restricts appearance only; the native Codex status line still shows five-hour and weekly budget percentages remaining, tokens used in the current context and context-window size (key codex.status-fields). (user)
+- [project:misc] auto.4c31a30f59: check your tool catalog) instead of guessing."
+Answer Giovanni. (harvester)
