@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-26 from 400 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 404 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -50,7 +50,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] Replacement rclone client secret installed and OAuth reconnect succeeded on 2026-10-26. Active scope is drive.file and existing backups are not visible under the new own client. Awaiting Giovanni confirmation for full Drive permission; wiki migration update is in progress in isolated /tmp/wiki-rclone-secret-20261026. Original secret revocation not verified. | check: python3 -c 'import configparser; c=configparser.ConfigParser(interpolation=None); c.read("/home/yuji/.config/rclone/rclone.conf");… (since 2026-10-26, checked 2026-10-26, #5027af)
+- [open item] Rclone now uses the replacement client secret and full Drive access; the existing backup is verified unchanged by downloaded SHA256. Revocation of the exposed original Google client secret remains unverified; credential-change UI requires Giovanni handoff. | check: Open the Google Cloud OAuth client and inspect the secret list; confirm the original secret created 2026-10-26 09:23 is revoked. (since 2026-10-26, #4b9ee4)
 - [open item] Wiki dependency fetch also reports Bandit 1.13.1 security advisories (HTTP/2 resource exhaustion and WebSocket closing behavior), alongside the existing plug_crypto advisory. Found during rclone migration documentation checks; dependencies unchanged. | check: cd /home/yuji/dev/wiki/server && mix hex.audit (since 2026-10-26, #b98ffb)
 - [open item] Wiki dependency audit: mix deps.get reported plug_crypto 2.2.0 advisory CVE-2026-105963 (secret key base can appear in stack traces for wrong-typed Plug.Crypto arguments). Found during isolated documentation verification on 2026-10-26; no dependency changed. Assess applicability and upgrade through the wiki gate. | check: cd ~/dev/wiki/server && mix hex.audit (since 2026-10-26, checked 2026-10-26, #f678c4)
 - [open item] Monthly architecture review next due 2026-11-22. Verified 2026-10-26: monthly rows exist for QuizApp, pipeline-check, processing-sketches, project-template, remote-terminal, wiki and workflow-memory. codex-pbar and codex-skills have end-of-task maintenance rows; QuizWeb has a first-review report but no DESIGN.md. machine-bootstrap has no monthly row and its automated-test review document is still the template copy. german-quiz-releases is a data feed without a pipeline config. | check: rg -n 'M… (since 2026-10-26, checked 2026-10-26, #d12c08)
