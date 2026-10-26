@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-26 from 381 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 383 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -49,6 +49,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Codex remote tmux wiki catch-up: six validated pages are in ~/dev/wiki/content, isolated commit a513bb6 in /tmp/wiki-codex-remote (main), patch /tmp/codex-remote-wiki-catchup.patch. wiki check --local passes and build passes with writable ELM_HOME cache copy. Publication remains blocked by sandbox: primary .git read-only, GitHub SSH system config permission failure and API network unavailable; full pipeline gate blocked by Mix test socket EPERM. Publish through required gate when access permits… (since 2026-10-26, #4a7450)
 - [open item] Rclone own-client application is created and published in production, Drive API enabled, policy accepted, full Drive scope configured, privacy notice published. User must click Add secret on the open Google client page and replace the exposed original secret before rclone can use this client. Browser policy requires user credential-change handoff. Initial exposed credential is stored privately at ~/.config/rclone/migration-20261026/client-credentials.json; do not use it. Existing gdrive config … (since 2026-10-26, #40bdb0)
 - [open item] Wiki dependency audit: mix deps.get reported plug_crypto 2.2.0 advisory CVE-2026-105963 (secret key base can appear in stack traces for wrong-typed Plug.Crypto arguments). Found during isolated documentation verification on 2026-10-26; no dependency changed. Assess applicability and upgrade through the wiki gate. | check: cd ~/dev/wiki/server && mix hex.audit (since 2026-10-26, checked 2026-10-26, #f678c4)
 - [open item] Monthly architecture review next due 2026-11-22. Verified 2026-10-26: monthly rows exist for QuizApp, pipeline-check, processing-sketches, project-template, remote-terminal, wiki and workflow-memory. codex-pbar and codex-skills have end-of-task maintenance rows; QuizWeb has a first-review report but no DESIGN.md. machine-bootstrap has no monthly row and its automated-test review document is still the template copy. german-quiz-releases is a data feed without a pipeline config. | check: rg -n 'M… (since 2026-10-26, checked 2026-10-26, #d12c08)
