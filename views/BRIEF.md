@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-26 from 327 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 329 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -47,7 +47,6 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] machine-bootstrap: Giovanni must run 'cd ~/dev/machine-bootstrap && python3 -m mb secrets-backup' once (only they can type the passphrase; it also saves the QuizApp release key); then keep the passphrase on paper, not on this computer | check: ls /run/media/yuji/0a34cf43-b7a8-4198-bb85-690e4c0149c4/machine-bootstrap/secrets/mb-secrets-*.tar.gpg (since 2026-10-25, checked 2026-10-26, #df85fa)
 - [open item] machine-bootstrap has no commit and no GitHub repository yet: commit locally, then Giovanni decides public or private (state/ holds package lists and settings, no secrets) and pushes; the monthly review needs it (work.github-standard) | check: git -C ~/dev/machine-bootstrap ls-remote origin 2>/dev/null | grep -q . (since 2026-10-25, checked 2026-10-26, #a0dde6)
 - [open item] rclone gdrive uses the shared client_id that stops working during 2026 (it is already 2026-10): create an own client_id (rclone.org/drive/#making-your-own-client-id) or the Drive copy of the secrets will fail | check: ! rclone lsd gdrive: 2>&1 | grep -q 'shared Google Drive client_id' (since 2026-10-25, checked 2026-10-26, #0ee03e)
 - [open item] Codex status: native terminal footer has context capacity and session counters; desktop service masked and launcher blocked. Custom animated progress bar is still not integrated below input. Current desktop-chat host does not use tui.status_line; investigate supported host extension before claiming visible integration. Five-hour/weekly schema has percentages, no token allowance. | check: test -L /home/yuji/.config/systemd/user/codex-pbar.service && ! git -C /home/yuji/dev/codex-pbar grep -q ter… (since 2026-10-25, checked 2026-10-26, #fda16d)
