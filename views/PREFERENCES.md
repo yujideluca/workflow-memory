@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-26 from 332 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 333 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -29,7 +29,6 @@ Generated 2026-10-26 from 332 events. Do not edit: record changes as events.
 - [global] work.fix-findings: Findings from a maintenance review that Giovanni answers 'deve' are fixed in the same session, with the test first; hypotheses wait for his answer. (user)
 - [global] work.shared-tools: A tool used by more than one project lives once, in its own repository, and is consumed by pinned version, never copied (example: pipeline-check, github.com/yujideluca/pipeline-check). (user)
 - [global] work.github-standard: Every project has a versioned repository on GitHub (private unless it must be public); a folder in ~/dev without git and a remote is a gap to fix. (user)
-- [global] work.web-no-own-version: QuizWeb has no version of its own: it only ports the latest released (promoted) version of the QuizApp; work for an unreleased app version waits on a branch. sw.js VERSION is only a cache key. (user)
 - [project:yuji] auto.46d7d18ed7: Prefer direct, precise prose and clearly structured paragraphs. (harvester)
 - [project:yuji] auto.1594cbd908: Prefer direct citations to the original research or authoritative source. (harvester)
 - [project:yuji] auto.25ffec4890: Never prioritize superficial resemblance to Wikipedia over factual integrity. (harvester)
@@ -65,3 +64,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [project:audition2] auto.2b6ccf7b3d: Prefer the smallest change (for example only WIKI_SITE_DIR) and tell me if the running release in server/_build needs rebuilding for the new content. (harvester)
 - [global] work.single-branch: Keep every repository on one branch, main. Use a branch only briefly to get CI before promoting to main, then delete it (local and remote) and remove its worktree. Never leave parallel feature, session or draft branches; fold their work into main. (user)
 - [global] style.explain-new-information: When introducing new information or a pendency, name the specific component and change; avoid vague references such as migration without saying what moves and why. (user)
+- [global] work.web-no-own-version: QuizWeb may ship a standalone maintenance release when it contains relevant changes, without waiting for another Android release. Ports of unreleased Android features still follow app promotion. Supersedes the blanket no-standalone-release rule. (user)

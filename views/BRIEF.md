@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-26 from 332 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 333 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -25,7 +25,6 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [work.fix-findings] Findings from a maintenance review that Giovanni answers 'deve' are fixed in the same session, with the test first; hypotheses wait for his answer. (#566908)
 - [work.shared-tools] A tool used by more than one project lives once, in its own repository, and is consumed by pinned version, never copied (example: pipeline-check, github.com/yujideluca/pipeline-check). (#63efec)
 - [work.github-standard] Every project has a versioned repository on GitHub (private unless it must be public); a folder in ~/dev without git and a remote is a gap to fix. (#9b6938)
-- [work.web-no-own-version] QuizWeb has no version of its own: it only ports the latest released (promoted) version of the QuizApp; work for an unreleased app version waits on a branch. sw.js VERSION is only a cache key. (#d1cc68)
 - [work.no-retired-refs] A retired protocol or tool is not named in anything that works today (skills, CLAUDE.md, memory, READMEs, scripts); only history (ADRs, decision logs, the wiki page of the retired thing) may mention it. (#164a12)
 - [wiki.plain-language] Wiki pages must help someone with no previous knowledge of the system or its technical language: define a term where it first appears, link complex terms to a definition, spell out an acronym or abbreviation at its first use on each page, and let a skill page carry the skill's own definition. (#f4e33f)
 - [work.act-on-ok] When Giovanni says 'solve it', do the work (create issues, write log rows, fix) instead of listing proposals; check memory and past messages for decisions already made (e.g. pipeline-check licence = MIT) before asking. (#c1c894)
@@ -43,6 +42,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [codex.status-display] Task footer styling (Claude's compact line): green Progress percentage label, normal terminal background, middle-dot separators, completed/total tasks and estimated remaining time, no drawn or animated bar. This restricts appearance only; the native Codex status line still shows five-hour and weekly budget percentages remaining, tokens used in the current context and context-window size (key codex.status-fields). (#87a4b1)
 - [work.single-branch] Keep every repository on one branch, main. Use a branch only briefly to get CI before promoting to main, then delete it (local and remote) and remove its worktree. Never leave parallel feature, session or draft branches; fold their work into main. (#cefeb3)
 - [style.explain-new-information] When introducing new information or a pendency, name the specific component and change; avoid vague references such as migration without saying what moves and why. (#a7bb57)
+- [work.web-no-own-version] QuizWeb may ship a standalone maintenance release when it contains relevant changes, without waiting for another Android release. Ports of unreleased Android features still follow app promotion. Supersedes the blanket no-standalone-release rule. (#a94fd9)
 - (10 more entries did not fit; they are in the log and searchable)
 
 ## Open items
