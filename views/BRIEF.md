@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-26 from 330 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 332 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -42,6 +42,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [codex.status-fields] Show five-hour and weekly budget percentages remaining, tokens used in the current context and context-window size in the native Codex terminal status line, alongside the separate task-progress footer. Supersedes earlier task-only instructions. (#69f6b4)
 - [codex.status-display] Task footer styling (Claude's compact line): green Progress percentage label, normal terminal background, middle-dot separators, completed/total tasks and estimated remaining time, no drawn or animated bar. This restricts appearance only; the native Codex status line still shows five-hour and weekly budget percentages remaining, tokens used in the current context and context-window size (key codex.status-fields). (#87a4b1)
 - [work.single-branch] Keep every repository on one branch, main. Use a branch only briefly to get CI before promoting to main, then delete it (local and remote) and remove its worktree. Never leave parallel feature, session or draft branches; fold their work into main. (#cefeb3)
+- [style.explain-new-information] When introducing new information or a pendency, name the specific component and change; avoid vague references such as migration without saying what moves and why. (#a7bb57)
 - (10 more entries did not fit; they are in the log and searchable)
 
 ## Open items
