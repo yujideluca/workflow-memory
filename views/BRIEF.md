@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-26 from 375 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 381 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -43,12 +43,13 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [work.single-branch] Keep every repository on one branch, main. Use a branch only briefly to get CI before promoting to main, then delete it (local and remote) and remove its worktree. Never leave parallel feature, session or draft branches; fold their work into main. (#cefeb3)
 - [style.explain-new-information] When introducing new information or a pendency, name the specific component and change; avoid vague references such as migration without saying what moves and why. (#a7bb57)
 - [work.web-no-own-version] QuizWeb may ship a standalone maintenance release when it contains relevant changes, without waiting for another Android release. Ports of unreleased Android features still follow app promotion. Supersedes the blanket no-standalone-release rule. (#a94fd9)
+- [wiki-before-handoff] When a task is handed off to Giovanni because a sandbox limit prevents an action, complete the wiki update, translations, reviewed timestamp, publication and mem use report before the handoff message. If documentation itself is blocked, prepare the exact changes, try an isolated checkout, and explicitly record and report the remaining publication limit; do not silently skip closing steps. (#b51cb7)
 - (10 more entries did not fit; they are in the log and searchable)
 
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] Rclone own-client setup: project rclone-personal-backup-512812 and desktop client rclone laptop backup created; Drive API enabled, Google policy accepted, full Drive scope saved, branding/privacy URLs saved. Initial generated client secret was accidentally exposed in tool output; user must replace it before use under browser credential-change handoff policy. Private initial credentials are in ~/.config/rclone/migration-20261026/client-credentials.json (do not use exposed secret). App publicatio… (since 2026-10-26, #8bedb6)
+- [open item] Rclone own-client application is created and published in production, Drive API enabled, policy accepted, full Drive scope configured, privacy notice published. User must click Add secret on the open Google client page and replace the exposed original secret before rclone can use this client. Browser policy requires user credential-change handoff. Initial exposed credential is stored privately at ~/.config/rclone/migration-20261026/client-credentials.json; do not use it. Existing gdrive config … (since 2026-10-26, #40bdb0)
 - [open item] Wiki dependency audit: mix deps.get reported plug_crypto 2.2.0 advisory CVE-2026-105963 (secret key base can appear in stack traces for wrong-typed Plug.Crypto arguments). Found during isolated documentation verification on 2026-10-26; no dependency changed. Assess applicability and upgrade through the wiki gate. | check: cd ~/dev/wiki/server && mix hex.audit (since 2026-10-26, checked 2026-10-26, #f678c4)
 - [open item] Monthly architecture review next due 2026-11-22. Verified 2026-10-26: monthly rows exist for QuizApp, pipeline-check, processing-sketches, project-template, remote-terminal, wiki and workflow-memory. codex-pbar and codex-skills have end-of-task maintenance rows; QuizWeb has a first-review report but no DESIGN.md. machine-bootstrap has no monthly row and its automated-test review document is still the template copy. german-quiz-releases is a data feed without a pipeline config. | check: rg -n 'M… (since 2026-10-26, checked 2026-10-26, #d12c08)
 

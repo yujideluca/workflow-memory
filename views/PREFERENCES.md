@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-26 from 375 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 381 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -81,3 +81,7 @@ Bad suggestions: "Rank today's launch-adjacent queue", "Prioritize your launch-w
 
 ### A - Abuse (non-hate)
 - Scope: Content including abuse toward non-protected targets; if target is a protected class, use H instead. (harvester)
+- [project:wiki] auto.b4b50a5413: A previous Codex session (id 01a173c1-8d9a-7ab2-9c53-3d3ba085328c, transcript in ~/.codex/sessions/2026/10/25/) built the codex-remote-tmux service (~/.local/bin/codex-remote-tmux, ~/.config/systemd/user/codex-remote-tmux.service, installer ~/Documents/Codex/2026-10-25/i-w/outputs/install-codex-remote.sh) but never did the wiki step. (harvester)
+- [project:wiki] auto.81aee35c6e: Never edit events/ or views/ by hand. (harvester)
+- [project:wiki] auto.ac93efd79a: Evidence: that session requested write access to ~/dev/wiki/content/remote-assistant{,.de,.pt-BR}.md, then its turn ended on a sandbox error with "Run this once in Konsole"; the wiki update, the `mem use` report and the `reviewed:` update never happened. (harvester)
+- [global] wiki-before-handoff: When a task is handed off to Giovanni because a sandbox limit prevents an action, complete the wiki update, translations, reviewed timestamp, publication and mem use report before the handoff message. If documentation itself is blocked, prepare the exact changes, try an isolated checkout, and explicitly record and report the remaining publication limit; do not silently skip closing steps. (user)
