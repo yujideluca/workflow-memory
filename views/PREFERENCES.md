@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-26 from 362 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 371 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -67,3 +67,13 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] work.web-no-own-version: QuizWeb may ship a standalone maintenance release when it contains relevant changes, without waiting for another Android release. Ports of unreleased Android features still follow app promotion. Supersedes the blanket no-standalone-release rule. (user)
 - [project:26] auto.42898e73a0: Facts I found: in your session you asked for write access to ~/dev/wiki/content/remote-assistant{,.de,.pt-BR}.md, so you planned the wiki step; the turn ended on a sandbox error with 'Run this once in Konsole', and the wiki step, the memory use report and any reviewed update never happened. (harvester)
 - [project:26] auto.b880734fc8: Please (1) say in your own words why the wiki step was skipped; (2) fix your workflow so a handed-off install still ends with the wiki update (record it with `mem add --type pref --owner user --key wiki-before-handoff ...` if it is a lasting rule, never edit events/ or views/ by hand); (3) catch up: guard the tree first (`git -C ~/dev/wiki status --short`; do not publish over changes that are not yours), then write or update the English page for codex-remote-tmux (or the Codex section of remote-assistant), its .de and .pt-BR versions, run `wiki check --local` and `wiki publish -m ...`; also report the entries that shaped it with `mem use`. (harvester)
+- [project:yuji] auto.96d3495417: Keep titles under 16 words, but prefer titles nearing that length. (harvester)
+- [project:yuji] auto.323d2516ff: Prefer specific nouns and distinctive context over vague short labels. (harvester)
+- [project:yuji] auto.8dd5950ff4: ### Planning or auditing instead of immediate action
+Bad suggestions: "Rank today's launch-adjacent queue", "Prioritize your launch-week Codex queue", "Audit the onboarding flow", ... (harvester)
+- [project:yuji] auto.938edc0553: These suggestions ask the user to plan, rank, audit, or summarize work instead of moving a concrete artifact forward. (harvester)
+- [project:yuji] auto.921725d8e2: Prefer suggestions where Codex can do most of the work itself and ask the user only for a final decision, approval, or lightweight input. (harvester)
+- [project:yuji] auto.51ff6cdf03: Indeed, prefer longer, more descriptive titles when that helps the user immediately recognize the task, but stay concise. (harvester)
+- [project:yuji] auto.4e5a61b0dc: Prefer suggestions where Codex can take an immediate concrete action or prepare a fix the user can approve. (harvester)
+- [project:yuji] auto.a4f5a26764: Prefer connected apps or other fresh external evidence for discovering new candidate suggestions. (harvester)
+- [project:yuji] auto.8c341681b8: When using Slack, prefer DMs, mentions, threads involving the user, and channels that are clearly connected to the user's active work. (harvester)
