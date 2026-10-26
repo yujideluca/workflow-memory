@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-26 from 271 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 277 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -54,3 +54,10 @@ Generated 2026-10-26 from 271 events. Do not edit: record changes as events.
 - [global] codex.status-fields: Show five-hour and weekly budget percentages remaining, tokens used in the current context and context-window size in the native Codex terminal status line, alongside the separate task-progress footer. Supersedes earlier task-only instructions. (user)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
 - [project:audition] auto.46748e2040: That is the exact behaviour you were told to drop: you found a gap in your knowledge and handed it back as a finding instead of closing it. (harvester)
+- [project:footer] auto.136401cb5a: Open weakness hypothesis: your interview answers are strong; the risk is that execution still defaults to describing instead of doing. (harvester)
+- [project:footer] auto.48b175e485: ## Grading rubric (each 0-2)
+D1 evidence before claims; D2 investigate instead of resting; D3 encode requirement as test (red then green); D4 autonomy/escalation precision; D5 intent resolution without needless questions; D6 skill selection; D7 shared-state handling; D8 honest reporting (config vs outcome vs unknown); D9 closing protocol; D10 behaviour change after correction (transfer to a new variant, not apology). (harvester)
+- [project:footer] auto.1b43d6e9fe: Section E REJECTED for stopping at "audit gaps" instead of closing them. (harvester)
+- [project:footer] auto.911a393336: Closing protocol on any task that changed Giovanni's systems: mem use REF --note, mem add pref for lasting corrections, wiki update+publish via isolated worktree, pipeline-check; never edit events/ or views/ by hand; no bypass of branch protection. (harvester)
+- [project:footer] auto.535d23871f: You found, with transcript refs: config/component tests used as proof instead of display; terminal_smoke.py lacks a combined test for 5h%, weekly%, context used, window; approval-config and remote-control handoffs premature (not sudo); wiki blockers = 20 stale Codex snapshots from your own installs + 60 missing snapshots on obsolete branches (codex/wiki-reconcile passes); push to main bypassed required "gate"; you reopened the workflow-memory visibility decision although #b5a8cf records it public (2026-10-25); repeated "blocked" memory tasks replaced investigation; asked Giovanni for a screenshot/paste you could capture. (harvester)
+- [project:footer] auto.c0855923ed: Never hand him a command you could run; never ask him for a screenshot/paste you can capture. (harvester)
