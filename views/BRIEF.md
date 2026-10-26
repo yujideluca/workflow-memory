@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-26 from 334 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 350 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -48,11 +48,10 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] machine-bootstrap has no commit and no GitHub repository yet: commit locally, then Giovanni decides public or private (state/ holds package lists and settings, no secrets) and pushes; the monthly review needs it (work.github-standard) | check: git -C ~/dev/machine-bootstrap ls-remote origin 2>/dev/null | grep -q . (since 2026-10-25, checked 2026-10-26, #a0dde6)
+- [open item] QuizWeb standalone maintenance release prepared at ab00c96; GitHub test run 40315541108 passed. Includes sharp-s search, zero-goal bar, backup-format checks and cache v12. Promotion awaits Giovanni approval to require test on main; exact settings: /tmp/quizweb-main-protection.json. Branch release-web-maintenance, isolated checkout /tmp/quizweb-maintenance-20261026. Existing protection issue german-quiz-web#1. | check: git -C ~/dev/QuizWeb merge-base --is-ancestor ab00c96e4992f4a7a38efa7a1fdc171… (since 2026-10-26, checked 2026-10-26, #0284c6)
+- [open item] Wiki dependency audit: mix deps.get reported plug_crypto 2.2.0 advisory CVE-2026-105963 (secret key base can appear in stack traces for wrong-typed Plug.Crypto arguments). Found during isolated documentation verification on 2026-10-26; no dependency changed. Assess applicability and upgrade through the wiki gate. | check: cd ~/dev/wiki/server && mix hex.audit (since 2026-10-26, checked 2026-10-26, #f678c4)
+- [open item] Monthly architecture review next due 2026-11-22. Verified 2026-10-26: monthly rows exist for QuizApp, pipeline-check, processing-sketches, project-template, remote-terminal, wiki and workflow-memory. codex-pbar and codex-skills have end-of-task maintenance rows; QuizWeb has a first-review report but no DESIGN.md. machine-bootstrap has no monthly row and its automated-test review document is still the template copy. german-quiz-releases is a data feed without a pipeline config. | check: rg -n 'M… (since 2026-10-26, checked 2026-10-26, #d12c08)
 - [open item] rclone gdrive uses the shared client_id that stops working during 2026 (it is already 2026-10): create an own client_id (rclone.org/drive/#making-your-own-client-id) or the Drive copy of the secrets will fail | check: ! rclone lsd gdrive: 2>&1 | grep -q 'shared Google Drive client_id' (since 2026-10-25, checked 2026-10-26, #0ee03e)
-- [open item] Codex status: native terminal footer has context capacity and session counters; desktop service masked and launcher blocked. Custom animated progress bar is still not integrated below input. Current desktop-chat host does not use tui.status_line; investigate supported host extension before claiming visible integration. Five-hour/weekly schema has percentages, no token allowance. | check: test -L /home/yuji/.config/systemd/user/codex-pbar.service && ! git -C /home/yuji/dev/codex-pbar grep -q ter… (since 2026-10-25, checked 2026-10-26, #fda16d)
-- [open item] QuizWeb branch first-maintenance-review (web import validation, sharp s search, zero-goal bar) matches app changes already on QuizApp main: ship it with the next app version (rename to web-<versionName> at promote time; QuizApp CI picks that branch); do not merge it to QuizWeb main before the app is promoted (WB-1 / web follows the user version) | check: cd ~/dev/QuizWeb && git ls-remote --heads origin first-maintenance-review | grep -q . (since 2026-10-24, checked 2026-10-26, #7c55a5)
-- [open item] Monthly architecture review of all ~/dev projects (next due by 2026-11-22): run the skill revisao-manutencao (it runs tools/pipeline-check.sh in each project, reads build/pipeline-check/report.json, proposes debt issues P1-P3 and a Preventive row; checklist in ~/dev/project-template/docs/MAINTENANCE.md). First review done 2026-10-24 for QuizApp and pipeline-check; other projects adopted pipeline-check on branches awaiting merge | check: ! grep -qE "^\| $(date +%Y-%m)-[0-9]{2} \| Preventive \| \… (since 2026-10-24, checked 2026-10-26, #c091ff)
 
 ## Recording
 
