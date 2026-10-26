@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-26 from 360 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 362 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -65,3 +65,5 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] work.single-branch: Keep every repository on one branch, main. Use a branch only briefly to get CI before promoting to main, then delete it (local and remote) and remove its worktree. Never leave parallel feature, session or draft branches; fold their work into main. (user)
 - [global] style.explain-new-information: When introducing new information or a pendency, name the specific component and change; avoid vague references such as migration without saying what moves and why. (user)
 - [global] work.web-no-own-version: QuizWeb may ship a standalone maintenance release when it contains relevant changes, without waiting for another Android release. Ports of unreleased Android features still follow app promotion. Supersedes the blanket no-standalone-release rule. (user)
+- [project:26] auto.42898e73a0: Facts I found: in your session you asked for write access to ~/dev/wiki/content/remote-assistant{,.de,.pt-BR}.md, so you planned the wiki step; the turn ended on a sandbox error with 'Run this once in Konsole', and the wiki step, the memory use report and any reviewed update never happened. (harvester)
+- [project:26] auto.b880734fc8: Please (1) say in your own words why the wiki step was skipped; (2) fix your workflow so a handed-off install still ends with the wiki update (record it with `mem add --type pref --owner user --key wiki-before-handoff ...` if it is a lasting rule, never edit events/ or views/ by hand); (3) catch up: guard the tree first (`git -C ~/dev/wiki status --short`; do not publish over changes that are not yours), then write or update the English page for codex-remote-tmux (or the Codex section of remote-assistant), its .de and .pt-BR versions, run `wiki check --local` and `wiki publish -m ...`; also report the entries that shaped it with `mem use`. (harvester)
