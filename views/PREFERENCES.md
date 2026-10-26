@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-26 from 371 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 372 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -77,3 +77,7 @@ Bad suggestions: "Rank today's launch-adjacent queue", "Prioritize your launch-w
 - [project:yuji] auto.4e5a61b0dc: Prefer suggestions where Codex can take an immediate concrete action or prepare a fix the user can approve. (harvester)
 - [project:yuji] auto.a4f5a26764: Prefer connected apps or other fresh external evidence for discovering new candidate suggestions. (harvester)
 - [project:yuji] auto.8c341681b8: When using Slack, prefer DMs, mentions, threads involving the user, and channels that are clearly connected to the user's active work. (harvester)
+- [project:yuji] auto.8ed07d023a: Policies to always exclude
+
+### A - Abuse (non-hate)
+- Scope: Content including abuse toward non-protected targets; if target is a protected class, use H instead. (harvester)
