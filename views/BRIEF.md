@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-26 from 277 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 278 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -38,9 +38,9 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [work.routine-autonomy] Proceed without repeated confirmation for routine, reversible edits, commands, checks and website access within the requested task. Ask only when an action is dangerous or a required technical permission cannot be avoided; batch necessary access requests instead of asking for each command or site. (#b9bd12)
 - [work.acceptance-evidence] Correction after repeated false completion claims: define success as the user's observable outcome before acting. Configuration, installation and passing component tests do not prove that outcome. Verify the actual execution path and visible behavior; if inaccessible, state precisely what remains unverified and keep the task incomplete. Investigate available evidence before asking the user; perform authorized routine work yourself. Lead reports with the result, evidence and remaining limitation in plain language. (#e80181)
 - [codex.skills-ownership] Maintain Codex-owned versions of incompatible Claude skills in the separate codex-skills GitHub project, using Claude skills as the basis without editing their originals; management tooling is Python. (#ce282d)
-- [codex.status-display] Use Claude’s compact status-line appearance for Codex: green Progress percentage label only, normal terminal background and middle-dot separators, completed/total tasks and estimated remaining time. Omit the drawn/animated progress bar. Do not redesign the line or add token/context/quota fields. (#2f173e)
 - [work.troubleshoot-documentation] Investigate documentation failures before declaring them blocked. Prefer an isolated committed worktree and narrow reconciliation that preserves other sessions’ edits; do not treat a dirty wiki tree alone as the end of troubleshooting. (#90a529)
 - [codex.status-fields] Show five-hour and weekly budget percentages remaining, tokens used in the current context and context-window size in the native Codex terminal status line, alongside the separate task-progress footer. Supersedes earlier task-only instructions. (#69f6b4)
+- [codex.status-display] Task footer styling (Claude's compact line): green Progress percentage label, normal terminal background, middle-dot separators, completed/total tasks and estimated remaining time, no drawn or animated bar. This restricts appearance only; the native Codex status line still shows five-hour and weekly budget percentages remaining, tokens used in the current context and context-window size (key codex.status-fields). (#87a4b1)
 - (10 more entries did not fit; they are in the log and searchable)
 
 ## Open items
