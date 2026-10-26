@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-26 from 313 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 319 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -46,7 +46,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] Deployment decision for Giovanni: current live globe/skill Steps UI is uncommitted; candidate 47acca5 would regress it. Prior service drop-in is denied and withdrawn. Recommend frontend owner commits and validates first, then deploy a consistent release; alternatively Giovanni explicitly accepts the committed UI regression. See /home/yuji/dev/wiki-publication-evidence/DEPLOYMENT-DECISION.txt. Publication is complete; actual live deployment remains pending. | check: In an existing authenticated … (since 2026-10-26, #4fcb19)
+- [open item] Wiki frontend committed and deployed (main 4ffa07d, CI green): wiki.service serves ~/.local/share/wiki/releases/4ffa07d... via drop-in 50-publication-site.conf (rollback: delete the drop-in, daemon-reload, restart wiki.service). Giovanni: open the wiki logged in and confirm the globe map, a skill page (Steps only in the box) and codex-status-line. Next releases: build from a worktree of origin/main, copy site/ to releases/<sha>, edit the drop-in. | check: test -e ~/.config/systemd/user/wiki.ser… (since 2026-10-26, #d8ef7f)
 - [open item] Review the memory repository visibility against the intended policy; a user choice is pending. Evidence and recommendations are in the private codex-skills docs/WORKFLOW-AUDIT.md. | check: test "$(gh repo view yujideluca/workflow-memory --json isPrivate --jq .isPrivate)" = false (since 2026-10-25, #2d0c66)
 - [open item] machine-bootstrap: Giovanni must run 'cd ~/dev/machine-bootstrap && python3 -m mb secrets-backup' once (only they can type the passphrase; it also saves the QuizApp release key); then keep the passphrase on paper, not on this computer | check: ls /run/media/yuji/0a34cf43-b7a8-4198-bb85-690e4c0149c4/machine-bootstrap/secrets/mb-secrets-*.tar.gpg (since 2026-10-25, #df85fa)
 - [open item] machine-bootstrap has no commit and no GitHub repository yet: commit locally, then Giovanni decides public or private (state/ holds package lists and settings, no secrets) and pushes; the monthly review needs it (work.github-standard) | check: git -C ~/dev/machine-bootstrap ls-remote origin 2>/dev/null | grep -q . (since 2026-10-25, #a0dde6)
