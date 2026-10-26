@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-26 from 391 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 393 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -44,6 +44,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [style.explain-new-information] When introducing new information or a pendency, name the specific component and change; avoid vague references such as migration without saying what moves and why. (#a7bb57)
 - [work.web-no-own-version] QuizWeb may ship a standalone maintenance release when it contains relevant changes, without waiting for another Android release. Ports of unreleased Android features still follow app promotion. Supersedes the blanket no-standalone-release rule. (#a94fd9)
 - [wiki-before-handoff] Codex must finish its own work end to end, including wiki translations, reviewed timestamp, publication and mem use. Never narrow its own permissions with request_permissions for single files. A sandbox error is a fault to diagnose and fix within existing permissions, never a handoff reason. Retry correctly without self-imposed narrowing; report a genuine remaining block only with the exact error and attempted remedies. Supersedes #b51cb7. (#3f1e29)
+- [wiki.coauthor-trailer] wiki publish adds a Co-Authored-By line only from --co-author 'Name <email>' (or WIKI_CO_AUTHOR): pass the exact attribution line your own session was given, none if you have none. Never a fixed model name. (#80d0fa)
 - (10 more entries did not fit; they are in the log and searchable)
 
 ## Open items

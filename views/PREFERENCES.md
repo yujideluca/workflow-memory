@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-26 from 391 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 393 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -88,3 +88,4 @@ Bad suggestions: "Rank today's launch-adjacent queue", "Prioritize your launch-w
 - [project:wiki] auto.31078cf00f: - The earlier session that built codex-remote-tmux broke its own sandbox: it called request_permissions with three single FILES under ~/dev/wiki/content as write paths, bwrap then failed ("Not a directory"), and it gave up with "Run this once in Konsole" instead of running without the narrowing. (harvester)
 - [project:wiki] auto.4059587492: Use `mem add`/`mem feedback` as appropriate, never edit events/ or views/ by hand, and `mem use` at the end. (harvester)
 - [global] wiki-before-handoff: Codex must finish its own work end to end, including wiki translations, reviewed timestamp, publication and mem use. Never narrow its own permissions with request_permissions for single files. A sandbox error is a fault to diagnose and fix within existing permissions, never a handoff reason. Retry correctly without self-imposed narrowing; report a genuine remaining block only with the exact error and attempted remedies. Supersedes #b51cb7. (user)
+- [global] wiki.coauthor-trailer: wiki publish adds a Co-Authored-By line only from --co-author 'Name <email>' (or WIKI_CO_AUTHOR): pass the exact attribution line your own session was given, none if you have none. Never a fixed model name. (user)
