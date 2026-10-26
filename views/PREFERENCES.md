@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-26 from 269 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 270 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -52,3 +52,4 @@ Generated 2026-10-26 from 269 events. Do not edit: record changes as events.
 - [global] codex.status-display: Use Claude’s compact status-line appearance for Codex: green Progress percentage label only, normal terminal background and middle-dot separators, completed/total tasks and estimated remaining time. Omit the drawn/animated progress bar. Do not redesign the line or add token/context/quota fields. (user)
 - [global] work.troubleshoot-documentation: Investigate documentation failures before declaring them blocked. Prefer an isolated committed worktree and narrow reconciliation that preserves other sessions’ edits; do not treat a dirty wiki tree alone as the end of troubleshooting. (user)
 - [global] codex.status-fields: Show five-hour and weekly budget percentages remaining, tokens used in the current context and context-window size in the native Codex terminal status line, alongside the separate task-progress footer. Supersedes earlier task-only instructions. (user)
+- [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
