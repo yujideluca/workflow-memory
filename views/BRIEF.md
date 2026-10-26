@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-26 from 354 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 359 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -48,9 +48,9 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Rclone own-client setup in progress: Google Cloud project rclone-personal-backup-512812 created; Drive API activation requested. Consent form in Chrome tab 243262423 is filled but agreement to Google API User Data Policy is unchecked. Awaiting explicit policy acceptance and choice of drive versus existing drive.file permission. One existing backup file; private metadata baseline ~/.config/rclone/migration-20261026/before-files.json. Existing working rclone configuration unchanged; no client ID … (since 2026-10-26, checked 2026-10-26, #e64779)
 - [open item] Wiki dependency audit: mix deps.get reported plug_crypto 2.2.0 advisory CVE-2026-105963 (secret key base can appear in stack traces for wrong-typed Plug.Crypto arguments). Found during isolated documentation verification on 2026-10-26; no dependency changed. Assess applicability and upgrade through the wiki gate. | check: cd ~/dev/wiki/server && mix hex.audit (since 2026-10-26, checked 2026-10-26, #f678c4)
 - [open item] Monthly architecture review next due 2026-11-22. Verified 2026-10-26: monthly rows exist for QuizApp, pipeline-check, processing-sketches, project-template, remote-terminal, wiki and workflow-memory. codex-pbar and codex-skills have end-of-task maintenance rows; QuizWeb has a first-review report but no DESIGN.md. machine-bootstrap has no monthly row and its automated-test review document is still the template copy. german-quiz-releases is a data feed without a pipeline config. | check: rg -n 'M… (since 2026-10-26, checked 2026-10-26, #d12c08)
-- [open item] rclone gdrive uses the shared client_id that stops working during 2026 (it is already 2026-10): create an own client_id (rclone.org/drive/#making-your-own-client-id) or the Drive copy of the secrets will fail | check: ! rclone lsd gdrive: 2>&1 | grep -q 'shared Google Drive client_id' (since 2026-10-25, checked 2026-10-26, #0ee03e)
 
 ## Recording
 
