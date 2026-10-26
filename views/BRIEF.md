@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-26 from 284 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 286 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -46,7 +46,6 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] QuizApp phone smoke test and logcat crash summary blocked: connected phone reports unauthorized; Giovanni must accept the USB debugging prompt on the phone, then rerun the smoke test. | check: source ~/dev/env.sh && adb -s 0087923156 get-state (since 2026-10-26, #3b8382)
 - [open item] Review the memory repository visibility against the intended policy; a user choice is pending. Evidence and recommendations are in the private codex-skills docs/WORKFLOW-AUDIT.md. | check: test "$(gh repo view yujideluca/workflow-memory --json isPrivate --jq .isPrivate)" = false (since 2026-10-25, #2d0c66)
 - [open item] Hook follow-up: codex-skills documentation already exists in the shared uncommitted wiki tree (EN/DE/pt-BR), including WORKFLOW-AUDIT references. Main wiki check --local passes. Reconcile and publish from the owning documentation session; isolated committed baseline fails on missing skill-source copies. Status-bar session made no codex-skills changes. | check: git -C /home/yuji/dev/wiki ls-files --error-unmatch content/codex-skills.md content/codex-skillsctl.md content/skill-gui-code-protocol.m… (since 2026-10-25, #5f57cd)
 - [open item] Publish Codex fullscreen footer documentation from codex/footer-bottom (/tmp/wiki-footer-bottom). Configuration is installed and tested; isolated wiki publish fails on 60 existing missing skill-source copies. Preserve unrelated wiki edits. | check: git -C /home/yuji/dev/wiki merge-base --is-ancestor codex/footer-bottom main (since 2026-10-25, #ec66d7)
