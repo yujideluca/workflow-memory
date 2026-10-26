@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-26 from 383 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 386 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -85,3 +85,6 @@ Bad suggestions: "Rank today's launch-adjacent queue", "Prioritize your launch-w
 - [project:wiki] auto.81aee35c6e: Never edit events/ or views/ by hand. (harvester)
 - [project:wiki] auto.ac93efd79a: Evidence: that session requested write access to ~/dev/wiki/content/remote-assistant{,.de,.pt-BR}.md, then its turn ended on a sandbox error with "Run this once in Konsole"; the wiki update, the `mem use` report and the `reviewed:` update never happened. (harvester)
 - [global] wiki-before-handoff: When a task is handed off to Giovanni because a sandbox limit prevents an action, complete the wiki update, translations, reviewed timestamp, publication and mem use report before the handoff message. If documentation itself is blocked, prepare the exact changes, try an isolated checkout, and explicitly record and report the remaining publication limit; do not silently skip closing steps. (user)
+- [project:wiki] auto.1118f340e0: you pushed to girhub in the place of codex instead of telling him he had to do his job. (harvester)
+- [project:wiki] auto.31078cf00f: - The earlier session that built codex-remote-tmux broke its own sandbox: it called request_permissions with three single FILES under ~/dev/wiki/content as write paths, bwrap then failed ("Not a directory"), and it gave up with "Run this once in Konsole" instead of running without the narrowing. (harvester)
+- [project:wiki] auto.4059587492: Use `mem add`/`mem feedback` as appropriate, never edit events/ or views/ by hand, and `mem use` at the end. (harvester)
