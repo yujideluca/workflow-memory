@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-26 from 319 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 323 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -41,12 +41,13 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [work.troubleshoot-documentation] Investigate documentation failures before declaring them blocked. Prefer an isolated committed worktree and narrow reconciliation that preserves other sessions’ edits; do not treat a dirty wiki tree alone as the end of troubleshooting. (#90a529)
 - [codex.status-fields] Show five-hour and weekly budget percentages remaining, tokens used in the current context and context-window size in the native Codex terminal status line, alongside the separate task-progress footer. Supersedes earlier task-only instructions. (#69f6b4)
 - [codex.status-display] Task footer styling (Claude's compact line): green Progress percentage label, normal terminal background, middle-dot separators, completed/total tasks and estimated remaining time, no drawn or animated bar. This restricts appearance only; the native Codex status line still shows five-hour and weekly budget percentages remaining, tokens used in the current context and context-window size (key codex.status-fields). (#87a4b1)
+- [work.single-branch] Keep every repository on one branch, main. Use a branch only briefly to get CI before promoting to main, then delete it (local and remote) and remove its worktree. Never leave parallel feature, session or draft branches; fold their work into main. (#cefeb3)
 - (10 more entries did not fit; they are in the log and searchable)
 
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] Wiki frontend committed and deployed (main 4ffa07d, CI green): wiki.service serves ~/.local/share/wiki/releases/4ffa07d... via drop-in 50-publication-site.conf (rollback: delete the drop-in, daemon-reload, restart wiki.service). Giovanni: open the wiki logged in and confirm the globe map, a skill page (Steps only in the box) and codex-status-line. Next releases: build from a worktree of origin/main, copy site/ to releases/<sha>, edit the drop-in. | check: test -e ~/.config/systemd/user/wiki.ser… (since 2026-10-26, #d8ef7f)
+- [open item] Giovanni: open the wiki logged in and confirm the globe map, a skill page (Steps only in the interactive box) and the codex-status-line page. The live site is served from ~/dev/wiki/site (built from main 8eb4f66, branch main only). Backups of the old uncommitted work: ~/dev/wiki-dirty-backup-20261026. | check: false (since 2026-10-26, #9fac93)
 - [open item] Review the memory repository visibility against the intended policy; a user choice is pending. Evidence and recommendations are in the private codex-skills docs/WORKFLOW-AUDIT.md. | check: test "$(gh repo view yujideluca/workflow-memory --json isPrivate --jq .isPrivate)" = false (since 2026-10-25, #2d0c66)
 - [open item] machine-bootstrap: Giovanni must run 'cd ~/dev/machine-bootstrap && python3 -m mb secrets-backup' once (only they can type the passphrase; it also saves the QuizApp release key); then keep the passphrase on paper, not on this computer | check: ls /run/media/yuji/0a34cf43-b7a8-4198-bb85-690e4c0149c4/machine-bootstrap/secrets/mb-secrets-*.tar.gpg (since 2026-10-25, #df85fa)
 - [open item] machine-bootstrap has no commit and no GitHub repository yet: commit locally, then Giovanni decides public or private (state/ holds package lists and settings, no secrets) and pushes; the monthly review needs it (work.github-standard) | check: git -C ~/dev/machine-bootstrap ls-remote origin 2>/dev/null | grep -q . (since 2026-10-25, #a0dde6)

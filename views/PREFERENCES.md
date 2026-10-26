@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-26 from 319 events. Do not edit: record changes as events.
+Generated 2026-10-26 from 323 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -63,3 +63,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] codex.status-display: Task footer styling (Claude's compact line): green Progress percentage label, normal terminal background, middle-dot separators, completed/total tasks and estimated remaining time, no drawn or animated bar. This restricts appearance only; the native Codex status line still shows five-hour and weekly budget percentages remaining, tokens used in the current context and context-window size (key codex.status-fields). (user)
 - [project:audition2] auto.16d665bace: That is mistake 4 in your AGENTS.md (declaring blocked instead of fixing the root cause), and the open items' premises are now wrong. (harvester)
 - [project:audition2] auto.2b6ccf7b3d: Prefer the smallest change (for example only WIKI_SITE_DIR) and tell me if the running release in server/_build needs rebuilding for the new content. (harvester)
+- [global] work.single-branch: Keep every repository on one branch, main. Use a branch only briefly to get CI before promoting to main, then delete it (local and remote) and remove its worktree. Never leave parallel feature, session or draft branches; fold their work into main. (user)
