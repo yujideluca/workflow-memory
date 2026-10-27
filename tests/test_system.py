@@ -236,6 +236,20 @@ class HookTests(Tmp):
         self.assertIn("mem add --type pref --owner user", out)
         self.assertIn("memory may be stale", out)  # not a git clone: pull is skipped
 
+    def test_session_start_after_clear_or_compact_prints_a_shorter_brief(self):
+        for i in range(30):
+            ev.write(self.root, mk(id=f"20261018T1200{i:02d}Z-code-{i:06x}", key=f"k{i}", body="a rule " * 30))
+        full = self.call(hooks.session_start, {"cwd": "/tmp/projA", "source": "startup"})[1]
+        for source in ("clear", "compact"):
+            short = self.call(hooks.session_start, {"cwd": "/tmp/projA", "source": source})[1]
+            self.assertLess(len(short), len(full) - 500)
+            self.assertIn("mem use REF1,REF2", short)
+
+    def test_prompt_hook_ignores_generated_prompts_and_list_items(self):
+        for text in ("Always prefer the cheapest option. " * 60, "(2) Never report ok for a check that did not run."):
+            self.call(hooks.prompt, {"prompt": text, "cwd": "/tmp/x"})
+        self.assertEqual(ev.load(self.root)[0], [])
+
     def test_session_start_flags_pending_decisions(self):
         (self.root / "events/broken.md").write_text("junk")
         self.assertIn("1 item(s) wait for Giovanni", self.call(hooks.session_start, {})[1])

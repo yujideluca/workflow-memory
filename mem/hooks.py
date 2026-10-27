@@ -49,8 +49,10 @@ def session_start(root, payload, now, instance):
     try:
         status = sync.pull(root)
         events, invalid = validate.load_checked(root, now)
+        resumed = payload.get("source") in ("clear", "compact")
         out = core.brief(events, [], now, project=_project(payload),
-                         instance=instance, budget=project.BRIEF_BUDGET, ids=True)
+                         instance=instance, budget=project.BRIEF_BUDGET, ids=True,
+                         max_len=project.BRIEF_LINE_RESUMED if resumed else None)
         texts = project.build(root, now, instance)
         pending = project.review_count(texts)
         lines = ["Memory (workflow-memory). " + out["header"], *out["lines"]]
