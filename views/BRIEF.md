@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-27 from 426 events. Do not edit: record changes as events.
+Generated 2026-10-27 from 449 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -36,16 +36,11 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [wiki.complete-skill-content] In the wiki project, every skill page must contain the complete source SKILL.md description and instructions, not a shortened summary. The page-generation trigger and writer must locate and read the complete source before writing, and keep the full content on the page and its language versions. (#12386c)
 - [work.routine-autonomy] Proceed without repeated confirmation for routine, reversible edits, commands, checks and website access within the requested task. Ask only when an action is dangerous or a required technical permission cannot be avoided; batch necessary access requests instead of asking for each command or site. (#b9bd12)
 - [work.acceptance-evidence] Correction after repeated false completion claims: define success as the user's observable outcome before acting. Configuration, installation and passing component tests do not prove that outcome. Verify the actual execution path and visible behavior; if inaccessible, state precisely what remains unverified and keep the task incomplete. Investigate available evidence before asking the user; perform authorized routine work yourself. Lead reports with the result, evidence and remaining limitation in plain language. (#e80181)
-- [codex.skills-ownership] Maintain Codex-owned versions of incompatible Claude skills in the separate codex-skills GitHub project, using Claude skills as the basis without editing their originals; management tooling is Python. (#ce282d)
 - [work.troubleshoot-documentation] Investigate documentation failures before declaring them blocked. Prefer an isolated committed worktree and narrow reconciliation that preserves other sessions’ edits; do not treat a dirty wiki tree alone as the end of troubleshooting. (#90a529)
-- [codex.status-fields] Show five-hour and weekly budget percentages remaining, tokens used in the current context and context-window size in the native Codex terminal status line, alongside the separate task-progress footer. Supersedes earlier task-only instructions. (#69f6b4)
-- [codex.status-display] Task footer styling (Claude's compact line): green Progress percentage label, normal terminal background, middle-dot separators, completed/total tasks and estimated remaining time, no drawn or animated bar. This restricts appearance only; the native Codex status line still shows five-hour and weekly budget percentages remaining, tokens used in the current context and context-window size (key codex.status-fields). (#87a4b1)
 - [work.single-branch] Keep every repository on one branch, main. Use a branch only briefly to get CI before promoting to main, then delete it (local and remote) and remove its worktree. Never leave parallel feature, session or draft branches; fold their work into main. (#cefeb3)
 - [style.explain-new-information] When introducing new information or a pendency, name the specific component and change; avoid vague references such as migration without saying what moves and why. (#a7bb57)
 - [work.web-no-own-version] QuizWeb may ship a standalone maintenance release when it contains relevant changes, without waiting for another Android release. Ports of unreleased Android features still follow app promotion. Supersedes the blanket no-standalone-release rule. (#a94fd9)
-- [wiki-before-handoff] Codex must finish its own work end to end, including wiki translations, reviewed timestamp, publication and mem use. Never narrow its own permissions with request_permissions for single files. A sandbox error is a fault to diagnose and fix within existing permissions, never a handoff reason. Retry correctly without self-imposed narrowing; report a genuine remaining block only with the exact error and attempted remedies. Supersedes #b51cb7. (#3f1e29)
 - [wiki.coauthor-trailer] wiki publish adds a Co-Authored-By line only from --co-author 'Name <email>' (or WIKI_CO_AUTHOR): pass the exact attribution line your own session was given, none if you have none. Never a fixed model name. (#80d0fa)
-- [codex.scroll-step] In Codex terminal sessions, each mouse-wheel/touchpad scroll tick should move one quarter of the visible screen, rather than a full page. (#47b34b)
 - (12 more entries did not fit; they are in the log and searchable)
 
 ## Open items
