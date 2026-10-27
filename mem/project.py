@@ -6,6 +6,7 @@ from pathlib import Path
 from . import core, events as ev, pendency, validate
 
 BRIEF_BUDGET = 2900
+BRIEF_LINE_RESUMED = 110  # after /clear or compaction: first words of each rule; pinned prefs are never dropped
 CONFIG = "mem.json"
 
 

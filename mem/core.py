@@ -203,12 +203,15 @@ def in_scope(e, project=None, instance=None):
     return e["scope"] in ("global", f"project:{project}", f"instance:{instance}")
 
 
-def _line(e, ids=False):
-    text = f"[{e['key']}] {e['body']}" if e.get("key") else e["body"]
+def _line(e, ids=False, max_len=None):
+    body = e["body"]
+    if max_len and len(body) > max_len:
+        body = body[:max_len].rsplit(" ", 1)[0] + " … (full text: mem search)"
+    text = f"[{e['key']}] {body}" if e.get("key") else body
     return f"- {text} (#{ref(e['id'])})" if ids else f"- {text}"
 
 
-def brief(events, usage, now, project=None, instance=None, budget=4000, ids=False):
+def brief(events, usage, now, project=None, instance=None, budget=4000, ids=False, max_len=None):
     state = resolve(events)
     fbs = _feedback(events)
     usage = list(usage) + uses_from(events) + [
@@ -228,7 +231,7 @@ def brief(events, usage, now, project=None, instance=None, budget=4000, ids=Fals
     lines, used = [], 0
     cold, over_budget, warnings = [], [], []
     for e in pinned:  # pinned is never dropped
-        lines.append(_line(e, ids))
+        lines.append(_line(e, ids, max_len))
         used += len(lines[-1]) + 1
     if used > budget:
         warnings.append("pinned entries exceed the budget")
@@ -236,10 +239,10 @@ def brief(events, usage, now, project=None, instance=None, budget=4000, ids=Fals
     for e in rest:
         if score(e, usage, now, fbs.get(e["id"])) < COLD_THRESHOLD:
             cold.append(e["id"])
-        elif used + len(_line(e, ids)) + 1 > budget:
+        elif used + len(_line(e, ids, max_len)) + 1 > budget:
             over_budget.append(e["id"])
         else:
-            lines.append(_line(e, ids))
+            lines.append(_line(e, ids, max_len))
             used += len(lines[-1]) + 1
             included.append(e["id"])
     return dict(header=header, lines=lines, included=included, cold=cold,

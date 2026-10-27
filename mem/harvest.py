@@ -22,6 +22,8 @@ _GLOBAL = re.compile(
 )
 _AGENT_LIKE = re.compile(r"\*\*|\w+\.\w+:\d+")
 _CODE = re.compile(r"```.*?```", re.S)
+MAX_PROMPT = 1500  # longer text is a pasted document or a generated prompt, not a quick preference
+_LIST_ITEM = re.compile(r"^(#|\(\d+\)|\d+[.)]\s)")
 
 
 def candidates(prompts):
@@ -30,9 +32,11 @@ def candidates(prompts):
     for p in prompts:
         if p.get("source") != "user":
             continue  # tool output and agent text never become preferences
+        if len(p["text"]) > MAX_PROMPT:
+            continue
         for s in re.split(r"(?<=[.!?])\s+", _CODE.sub("", p["text"])):
             s = s.strip()
-            if (not s or s.endswith("?") or _AGENT_LIKE.search(s)
+            if (not s or s.endswith("?") or _AGENT_LIKE.search(s) or _LIST_ITEM.match(s)
                     or not _MARKER.search(s) or not _ACTION.search(s)):
                 continue
             kt = key_tokens(s)
