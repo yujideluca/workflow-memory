@@ -64,8 +64,9 @@ class SyncViews(unittest.TestCase):
 
     def test_event_conflict_is_reported_not_called_pushed(self):
         # a rebase that cannot complete must never be reported as "pushed"
-        mem(self.me, "add", "--type", "note", "--owner", "user", "--key", "t.mine", "mine")
-        f = sorted((self.me / "events").rglob("*.md"))[-1]
+        # `mem add` prints where it stored the event; never guess it from the sort order of the log
+        f = self.me / mem(self.me, "add", "--type", "note", "--owner", "user", "--key", "t.mine", "mine").strip()
+        self.assertTrue(f.is_file(), f)
         git(self.me, "add", "events"); git(self.me, "commit", "-qm", "mem: new events")
         (self.bot / f.relative_to(self.me)).parent.mkdir(parents=True, exist_ok=True)
         (self.bot / f.relative_to(self.me)).write_text("conflicting content\n")
