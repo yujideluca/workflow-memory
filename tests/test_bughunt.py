@@ -133,5 +133,37 @@ class ValidationTests(unittest.TestCase):
         self.assertTrue(self.check(type="feedback", body="", target="abc", signal="bogus"))
 
 
+class ClockSkewTests(unittest.TestCase):
+    """ADR-0006: a writer with a wrong clock can never sort after an event really written later."""
+    NOW = datetime(2026, 10, 30, 20, 3, tzinfo=timezone.utc)
+
+    def event(self, minutes):
+        ts = self.NOW + timedelta(minutes=minutes)
+        return dict(id="e", ts=ts, type="note", scope="global", key=None, body="x", instance="app",
+                    owner="agent", supersedes=[], target=None, signal=None, category=None)
+
+    def test_future_stamp_is_clamped_and_the_claim_kept(self):
+        got = v.clamp_to_now(self.event(7), self.NOW)
+        self.assertEqual(self.NOW, got["ts"])
+        self.assertEqual(self.NOW + timedelta(minutes=7), got["ts_claimed"])
+
+    def test_past_and_present_stamps_are_untouched(self):
+        for minutes in (0, -5):
+            e = self.event(minutes)
+            self.assertIs(e, v.clamp_to_now(e, self.NOW))
+
+    def test_load_checked_orders_a_skewed_event_before_a_later_real_one(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as root:
+            ev.write(root, dict(self.event(7), id="20261030T201000Z-app-aaaaaa"))
+            later = self.NOW + timedelta(minutes=8)
+            ev.write(root, dict(self.event(8), id="20261030T201100Z-code-bbbbbb"))
+            valid, _ = v.load_checked(root, later)
+            self.assertEqual(["20261030T201000Z-app-aaaaaa", "20261030T201100Z-code-bbbbbb"],
+                             [e["id"] for e in sorted(valid, key=lambda e: e["ts"])])
+            early, _ = v.load_checked(root, self.NOW)
+            self.assertTrue(all(e["ts"] <= self.NOW for e in early))
+
+
 if __name__ == "__main__":
     unittest.main()

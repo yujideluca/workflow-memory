@@ -83,8 +83,20 @@ def load_checked(root, now):
         if reasons:
             invalid.append((e["path"], reasons))
         else:
-            valid.append(e)
+            valid.append(clamp_to_now(e, now))
     return valid, invalid
+
+
+def clamp_to_now(e, now):
+    """No event can be later than the moment it is read (ADR-0006).
+
+    A writer without a trusted clock (the chat app guesses the time) can stamp an event a few minutes ahead. Order
+    follows the clamped time, so that event cannot sort after one really written later. The claimed time stays in
+    `ts_claimed`. The result depends only on the event and `now`, so a build with `--now` is still reproducible.
+    """
+    if e["ts"] <= now:
+        return e
+    return dict(e, ts=now, ts_claimed=e["ts"])
 
 
 def quarantine(root, now):
