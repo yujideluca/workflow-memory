@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-30 from 455 events. Do not edit: record changes as events.
+Generated 2026-10-30 from 507 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -41,11 +41,20 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [style.explain-new-information] When introducing new information or a pendency, name the specific component and change; avoid vague references such as migration without saying what moves and why. (#a7bb57)
 - [work.web-no-own-version] QuizWeb may ship a standalone maintenance release when it contains relevant changes, without waiting for another Android release. Ports of unreleased Android features still follow app promotion. Supersedes the blanket no-standalone-release rule. (#a94fd9)
 - [wiki.coauthor-trailer] wiki publish adds a Co-Authored-By line only from --co-author 'Name <email>' (or WIKI_CO_AUTHOR): pass the exact attribution line your own session was given, none if you have none. Never a fixed model name. (#80d0fa)
-- (12 more entries did not fit; they are in the log and searchable)
+- [work.avoid-fragile-deps] Prefer what a project already depends on (for example elm-visualization) or a small piece of our own code over a small outside package that may be abandoned or break later; a fragile dependency is a bigger long-run problem than writing the code. Ask before adding such a package. (#3d2e07)
+- [matcher.languages] Radiology report matcher stack, decided by Giovanni 2026-10-27: small tools in Python; website back end in Elixir (SQLite search); front end in Elm; the statistical math and the word-to-input matching must be high-speed numerical code (Cython, NumPy, C libraries as needed), NEVER plain-Python loops: it would be too slow. Never forget this. (#1f9dc1)
+- [radiology.translation-rate] Radiology crawler: translate (Codex) at the same rate as extraction, no daily cap; a cap would make it take too long. (#561d07)
+- [work.phone-stay-awake-ac] Giovanni asked on 2026-10-29 that the test phone's screen stop closing: stay_on_while_plugged_in was 2 (USB only), now 3 (AC+USB). Screen timeout (60 s) unchanged. Still never turn stay-awake off. (#606b70)
+- [matcher.modelling-plan] Decided 2026-10-30: when the article crawl is done and Giovanni asks to start the analysis, the statistical modelling follows skill-forge style with four competing versions: (1) Claude alone analyses all articles with no prior bias; (2) Codex alone, same task; (3) fully academic approach after thorough research, Claude and Codex debating to the best scientific solution; (4) Giovanni's own idea, mined first through a directed grill session whose directives are saved and reused. Do not start the analysis before he asks. (#43f64b)
+- [matcher.modelling-directives] The directives for modelling version 4 (Giovanni's idea) are in ~/dev/radiology-crawler/docs/modelling-directives.md (layered hard/soft filters, akinator, wording layer with filler list, 50/50 tune/test split by diagnosis). Read it fully before starting the analysis and use it for version 4; versions 1 to 3 do not use it. (#9bbbcb)
+- [matcher.hardware] Radiology matcher (2026-10-29): the engine and the statistical analysis must use multithreading and the GPU for calculation when the hardware supports it, with a CPU fallback giving the same results. Recorded in ADR-0002 amendment, CLAUDE.md principle 9 and docs/modelling-directives.md section 3b; requirement EN-2 is added with its test in the first engine commit. (#940a9e)
+- [matcher.keep-status-fresh] Giovanni 2026-10-30: every instance (Claude Code and Codex) working on the radiology matcher analysis must keep docs/analysis-status.json and the plan site home page guide current: after each step run python3 -I tools/analysis_status.py set STEP STATUS --note '...' in ~/dev/radiology-crawler (it rebuilds the site). Rule is also CLAUDE.md principle 10 and AGENTS.md of that repo. (#d2e056)
+- (16 more entries did not fit; they are in the log and searchable)
 
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item radiology-matcher] Radiology matcher analysis in progress: read ~/dev/radiology-crawler/docs/ANALYSIS-STATUS.md first, continue the open steps, keep it and the plan site home page current. Codex steps C1-C5 need Giovanni's budget approval. | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | grep -c '\[ \]\|\[~\]\|\[?\]' (since 2026-10-30, #37e345)
 - [open item] Rclone now uses the replacement client secret and full Drive access; the existing backup is verified unchanged by downloaded SHA256. Revocation of the exposed original Google client secret remains unverified; credential-change UI requires Giovanni handoff. | check: Open the Google Cloud OAuth client and inspect the secret list; confirm the original secret created 2026-10-26 09:23 is revoked. (since 2026-10-26, #4b9ee4)
 - [open item] Monthly architecture review next due 2026-11-22. Verified 2026-10-26: monthly rows exist for QuizApp, pipeline-check, processing-sketches, project-template, remote-terminal, wiki and workflow-memory. codex-pbar and codex-skills have end-of-task maintenance rows; QuizWeb has a first-review report but no DESIGN.md. machine-bootstrap has no monthly row and its automated-test review document is still the template copy. german-quiz-releases is a data feed without a pipeline config. | check: rg -n 'M… (since 2026-10-26, checked 2026-10-26, #d12c08)
 
