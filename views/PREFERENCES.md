@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-31 from 516 events. Do not edit: record changes as events.
+Generated 2026-10-31 from 517 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -84,3 +84,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [project:2026-10-31-https-claude-ai-code-cshk-01xklp5hg7fkhu8rrbamywglehz7amma4iu5ovbudzjwget] auto.fdc464c28e: For independent scoring, do you prefer waiting for Sonnet, as originally requested, or allowing a fresh Codex evaluator?","answer":"Use a fresh Codex evaluator"}]
 </send_user_message_question_reply> (harvester)
 - [global] german.model-word-counts: B2 writing templates and completed model answers must strictly match the task's requested word counts; do not make them longer to raise evaluation scores. (user)
+- [global] german.schreiben-feedback: Schreiben feedback for Giovanni: never a single estimated score; give each text its own score per Goethe criterion plus errors per 100 words, name concrete fixes, no generic plans. Estimates are not official grades; say so. Giovanni's month of B2 Schreiben practice showed no score change (2026-10-31), so measure progress by error density, not the band. (user)

@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-10-31 from 516 events. Do not edit: record changes as events.
+Generated 2026-10-31 from 517 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -50,6 +50,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [matcher.hardware] Radiology matcher (2026-10-29): the engine and the statistical analysis must use multithreading and the GPU for calculation when the hardware supports it, with a CPU fallback giving the same results. Recorded in ADR-0002 amendment, CLAUDE.md principle 9 and docs/modelling-directives.md section 3b; requirement EN-2 is added with its test in the first engine commit. (#940a9e)
 - [matcher.keep-status-fresh] Giovanni 2026-10-30: every instance (Claude Code and Codex) working on the radiology matcher analysis must keep docs/analysis-status.json and the plan site home page guide current: after each step run python3 -I tools/analysis_status.py set STEP STATUS --note '...' in ~/dev/radiology-crawler (it rebuilds the site). Rule is also CLAUDE.md principle 10 and AGENTS.md of that repo. (#d2e056)
 - [german.model-word-counts] B2 writing templates and completed model answers must strictly match the task's requested word counts; do not make them longer to raise evaluation scores. (#be4fbc)
+- [german.schreiben-feedback] Schreiben feedback for Giovanni: never a single estimated score; give each text its own score per Goethe criterion plus errors per 100 words, name concrete fixes, no generic plans. Estimates are not official grades; say so. Giovanni's month of B2 Schreiben practice showed no score change (2026-10-31), so measure progress by error density, not the band. (#c77d98)
 - (16 more entries did not fit; they are in the log and searchable)
 
 ## Open items
