@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-10-31 from 508 events. Do not edit: record changes as events.
+Generated 2026-10-31 from 510 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -81,3 +81,5 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [project:radiology-crawler] auto.094e9ef436: go as far as you can on the tagging, make it on luna instead of sol to save tokens. (harvester)
 - [project:radiology-crawler] auto.160a189833: Once its requests are accepted again, send the agent a message (SendMessage) to let it continue from where it stopped instead of starting a new agent.</note>
 </task-notification> (harvester)
+- [project:2026-10-31-https-claude-ai-code-cshk-01xklp5hg7fkhu8rrbamywglehz7amma4iu5ovbudzjwget] auto.fdc464c28e: For independent scoring, do you prefer waiting for Sonnet, as originally requested, or allowing a fresh Codex evaluator?","answer":"Use a fresh Codex evaluator"}]
+</send_user_message_question_reply> (harvester)
