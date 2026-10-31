@@ -64,15 +64,28 @@ class SyncViews(unittest.TestCase):
 
     def test_event_conflict_is_reported_not_called_pushed(self):
         # a rebase that cannot complete must never be reported as "pushed"
+        # Both writers already know a valid event that sorts after the new one.
+        # Fixed historical dates keep this regression independent of the wall clock.
+        later = mem(self.bot, "--now", "2001-01-01T00:00:00Z", "add", "--type", "note",
+                    "--owner", "user", "--key", "t.later", "pre-existing event").strip()
+        git(self.bot, "add", "events"); git(self.bot, "commit", "-qm", "later event"); git(self.bot, "push", "-q")
+        git(self.me, "pull", "--ff-only", "-q")
         # `mem add` prints where it stored the event; never guess it from the sort order of the log
-        f = self.me / mem(self.me, "add", "--type", "note", "--owner", "user", "--key", "t.mine", "mine").strip()
+        f = self.me / mem(self.me, "--now", "2000-01-01T00:00:00Z", "add", "--type", "note", "--owner", "user", "--key", "t.mine", "mine").strip()
         self.assertTrue(f.is_file(), f)
+        self.assertGreater(self.me / later, f)
         git(self.me, "add", "events"); git(self.me, "commit", "-qm", "mem: new events")
         (self.bot / f.relative_to(self.me)).parent.mkdir(parents=True, exist_ok=True)
         (self.bot / f.relative_to(self.me)).write_text("conflicting content\n")
         git(self.bot, "add", "-A"); git(self.bot, "commit", "-qm", "clash"); git(self.bot, "push", "-q")
-        out = sync.push(self.me, retries=0, sleep=lambda s: None)
-        self.assertNotEqual(out, "pushed", out)
+        remote = self.me.parent / "remote.git"
+        before = git(remote, "rev-parse", "HEAD")
+        with mock.patch.object(sync, "_git", wraps=sync._git) as calls:
+            out = sync.push(self.me, retries=0, sleep=lambda s: None)
+        self.assertTrue(out.startswith("conflict after pull, nothing pushed:"), out)
+        self.assertEqual(git(remote, "rev-parse", "HEAD"), before)
+        self.assertFalse(any("push" in call.args[1:] for call in calls.call_args_list), calls.call_args_list)
+        self.assertIn(str(f.relative_to(self.me)), git(self.me, "diff", "--name-only", "--diff-filter=U").splitlines())
 
 
 if __name__ == "__main__":
