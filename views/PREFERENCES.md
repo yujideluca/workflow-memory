@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-01 from 539 events. Do not edit: record changes as events.
+Generated 2026-11-01 from 540 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -88,3 +88,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [project:radiology-crawler] auto.9a049baeb2: do the commit and push, just document it properly for us to know what was modified (which should always be done btw) (harvester)
 - [global] work.document-commits: Every commit message must document what was modified (files and why, requirements touched, anything changed outside the repo); split piled-up work into commits by area. Giovanni asked for this on 2026-11-01 and said it should always be done. (user)
 - [global] matcher.per-language-models: Radiology matcher: every identification model is built and scored separately for EN, DE and PT-BR; a fast language check routes the report; design the routing pipeline only after all per-language models are tested. (user)
+- [project:yuji] auto.48f402a649: Do not build as you wish, respect my pipeline (as always) and ask me whatherver you deem important right now so you have as little demand of me during processing as possible. (harvester)
