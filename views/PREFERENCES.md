@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-01 from 532 events. Do not edit: record changes as events.
+Generated 2026-11-01 from 533 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -85,3 +85,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 </send_user_message_question_reply> (harvester)
 - [global] german.model-word-counts: B2 writing templates and completed model answers must strictly match the task's requested word counts; do not make them longer to raise evaluation scores. (user)
 - [global] german.schreiben-feedback: Schreiben feedback for Giovanni: never a single estimated score; give each text its own score per Goethe criterion plus errors per 100 words, name concrete fixes, no generic plans. Estimates are not official grades; say so. Giovanni's month of B2 Schreiben practice showed no score change (2026-10-31), so measure progress by error density, not the band. (user)
+- [project:radiology-crawler] auto.9a049baeb2: do the commit and push, just document it properly for us to know what was modified (which should always be done btw) (harvester)
