@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-01 from 533 events. Do not edit: record changes as events.
+Generated 2026-11-01 from 534 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -51,6 +51,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [matcher.keep-status-fresh] Giovanni 2026-10-30: every instance (Claude Code and Codex) working on the radiology matcher analysis must keep docs/analysis-status.json and the plan site home page guide current: after each step run python3 -I tools/analysis_status.py set STEP STATUS --note '...' in ~/dev/radiology-crawler (it rebuilds the site). Rule is also CLAUDE.md principle 10 and AGENTS.md of that repo. (#d2e056)
 - [german.model-word-counts] B2 writing templates and completed model answers must strictly match the task's requested word counts; do not make them longer to raise evaluation scores. (#be4fbc)
 - [german.schreiben-feedback] Schreiben feedback for Giovanni: never a single estimated score; give each text its own score per Goethe criterion plus errors per 100 words, name concrete fixes, no generic plans. Estimates are not official grades; say so. Giovanni's month of B2 Schreiben practice showed no score change (2026-10-31), so measure progress by error density, not the band. (#c77d98)
+- [work.document-commits] Every commit message must document what was modified (files and why, requirements touched, anything changed outside the repo); split piled-up work into commits by area. Giovanni asked for this on 2026-11-01 and said it should always be done. (#543a1e)
 - (16 more entries did not fit; they are in the log and searchable)
 
 ## Open items
