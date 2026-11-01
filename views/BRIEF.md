@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-01 from 536 events. Do not edit: record changes as events.
+Generated 2026-11-01 from 537 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -52,6 +52,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [german.model-word-counts] B2 writing templates and completed model answers must strictly match the task's requested word counts; do not make them longer to raise evaluation scores. (#be4fbc)
 - [german.schreiben-feedback] Schreiben feedback for Giovanni: never a single estimated score; give each text its own score per Goethe criterion plus errors per 100 words, name concrete fixes, no generic plans. Estimates are not official grades; say so. Giovanni's month of B2 Schreiben practice showed no score change (2026-10-31), so measure progress by error density, not the band. (#c77d98)
 - [work.document-commits] Every commit message must document what was modified (files and why, requirements touched, anything changed outside the repo); split piled-up work into commits by area. Giovanni asked for this on 2026-11-01 and said it should always be done. (#543a1e)
+- [matcher.per-language-models] Radiology matcher: every identification model is built and scored separately for EN, DE and PT-BR; a fast language check routes the report; design the routing pipeline only after all per-language models are tested. (#faf01d)
 - (16 more entries did not fit; they are in the log and searchable)
 
 ## Open items
