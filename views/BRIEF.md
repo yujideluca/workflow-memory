@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-02 from 579 events. Do not edit: record changes as events.
+Generated 2026-11-03 from 580 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -55,7 +55,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [matcher.per-language-models] Radiology matcher: every identification model is built and scored separately for EN, DE and PT-BR; a fast language check routes the report; design the routing pipeline only after all per-language models are tested. (#faf01d)
 - [status-quo.e2e] After every major Status Quo tray change, repeat the manual pass on the real desktop, update crates/desktop/tests/e2e/manual-baseline.json and desktop_e2e.rs, and run tools/ui_e2e.sh (it needs a free screen: STATUS_QUO_E2E_SCREEN_IS_FREE=1, never while Giovanni uses the screen). (#58f0f0)
 - [browser.hang-refresh] Quando algum site travar durante uma tarefa no navegador, dê F5 (recarregue a página) e continue, em vez de esperar ou desistir. (#eb1bbd)
-- (16 more entries did not fit; they are in the log and searchable)
+- (17 more entries did not fit; they are in the log and searchable)
 
 ## Open items
 
