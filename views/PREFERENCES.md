@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-03 from 581 events. Do not edit: record changes as events.
+Generated 2026-11-03 from 582 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -91,3 +91,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [project:yuji] auto.48f402a649: Do not build as you wish, respect my pipeline (as always) and ask me whatherver you deem important right now so you have as little demand of me during processing as possible. (harvester)
 - [global] status-quo.e2e: After every major Status Quo tray change, repeat the manual pass on the real desktop, update crates/desktop/tests/e2e/manual-baseline.json and desktop_e2e.rs, and run tools/ui_e2e.sh (it needs a free screen: STATUS_QUO_E2E_SCREEN_IS_FREE=1, never while Giovanni uses the screen). (user)
 - [global] browser.hang-refresh: Quando algum site travar durante uma tarefa no navegador, dê F5 (recarregue a página) e continue, em vez de esperar ou desistir. (user)
+- [global] radiology.haiku-workers: Radiology translator: run 5 Haiku workers (--worker I/5), not 10 (Giovanni, 2026-11-03) (user)
