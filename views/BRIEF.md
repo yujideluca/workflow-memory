@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-03 from 583 events. Do not edit: record changes as events.
+Generated 2026-11-03 from 584 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -57,7 +57,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [browser.hang-refresh] Quando algum site travar durante uma tarefa no navegador, dê F5 (recarregue a página) e continue, em vez de esperar ou desistir. (#eb1bbd)
 - [radiology.haiku-workers] Radiology translator: run 5 Haiku workers (--worker I/5), not 10 (Giovanni, 2026-11-03) (#9a74f5)
 - [work.infer-from-pattern] When Giovanni gives a rule or ordering and asks to fill in the rest, apply the same logic to the remaining cases instead of asking again; ask only where the rule truly does not decide. (#1531f2)
-- (17 more entries did not fit; they are in the log and searchable)
+- (18 more entries did not fit; they are in the log and searchable)
 
 ## Open items
 
