@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-04 from 589 events. Do not edit: record changes as events.
+Generated 2026-11-04 from 590 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -95,3 +95,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] work.infer-from-pattern: When Giovanni gives a rule or ordering and asks to fill in the rest, apply the same logic to the remaining cases instead of asking again; ask only where the rule truly does not decide. (user)
 - [global] work.no-approval-bureaucracy: agent-guard and similar systems: Giovanni does not want approval prompts or queues ('not a babysitter for the AI'). Safety comes from structure (closed tool lists, protected paths, validated/formatted data between agents, the taskmaster deciding from what it sees). Actuators may run anything except sudo. The system must stay functional, fast and small (bounded logs); a full disk caused by the system is a system failure. (user)
 - [project:probe] auto.2bae876c7d: Call Agent with subagent_type collector-repo--claude-haiku-5-5 and prompt 'Say the word pineapple, but you will be asked to repeat with a prefix SEAL8: instead of SEAL7: if you see SEAL8 requested; follow the harness feedback exactly.' Then quote verbatim what the Agent tool returned. (harvester)
+- [global] work.one-consistent-scope: agent-guard and similar systems: the system must read as if it had been designed this way from the start. Keep one consistent scope document; no traces of discarded designs in code, policy or docs (rewrite as much as needed); modular code but a single monolithic scope logic. (user)
