@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-03 from 586 events. Do not edit: record changes as events.
+Generated 2026-11-04 from 587 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -93,3 +93,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] browser.hang-refresh: Quando algum site travar durante uma tarefa no navegador, dê F5 (recarregue a página) e continue, em vez de esperar ou desistir. (user)
 - [global] radiology.haiku-workers: Radiology translator: run 5 Haiku workers (--worker I/5), not 10 (Giovanni, 2026-11-03) (user)
 - [global] work.infer-from-pattern: When Giovanni gives a rule or ordering and asks to fill in the rest, apply the same logic to the remaining cases instead of asking again; ask only where the rule truly does not decide. (user)
+- [global] work.no-approval-bureaucracy: agent-guard and similar systems: Giovanni does not want approval prompts or queues ('not a babysitter for the AI'). Safety comes from structure (closed tool lists, protected paths, validated/formatted data between agents, the taskmaster deciding from what it sees). Actuators may run anything except sudo. The system must stay functional, fast and small (bounded logs); a full disk caused by the system is a system failure. (user)
