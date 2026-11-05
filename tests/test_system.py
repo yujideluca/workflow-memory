@@ -114,7 +114,7 @@ class ValidateTests(Tmp):
 
 class ProjectTests(Tmp):
     def seed(self):
-        ev.write(self.root, mk())
+        ev.write(self.root, mk(tags=["always"]))
         ev.write(self.root, mk(id="20261018T120001Z-code-bbbbbb", type="fact", key=None,
                                body="the sync script lives at tools/sync.sh", owner="agent"))
         (self.root / "mem.json").write_text(json.dumps({"repo": "me/mem"}))
@@ -147,13 +147,6 @@ class ProjectTests(Tmp):
         self.assertIn("get_file_contents", brief)
         self.assertIn("(#aaaaaa)", brief)  # the short ref a chat uses to report use
         self.assertIn("type: use", brief)
-
-    def test_brief_says_when_entries_did_not_fit(self):
-        for i in range(6):
-            ev.write(self.root, mk(id=f"2026101812000{i}Z-code-aaaaa{i}", type="fact", key=None,
-                                   owner="agent", body=f"fact number {i} " + "x" * 600))
-        brief = project.build(self.root, NOW, budget=1500)["BRIEF.md"]
-        self.assertRegex(brief, r"\(\d+ more entries did not fit")
 
     def test_review_is_empty_then_lists_quarantine(self):
         self.seed()
@@ -228,22 +221,13 @@ class HookTests(Tmp):
         self.assertEqual(ev.load(self.root)[0], [])
 
     def test_session_start_prints_brief_and_how_to_record(self):
-        ev.write(self.root, mk())
+        ev.write(self.root, mk(tags=["always"]))
         code, out = self.call(hooks.session_start, {"cwd": "/tmp/projA"})
         self.assertEqual(code, 0)
         self.assertIn("[pm] use pnpm (#aaaaaa)", out)
         self.assertIn("mem use REF1,REF2", out)
         self.assertIn("mem add --type pref --owner user", out)
         self.assertIn("memory may be stale", out)  # not a git clone: pull is skipped
-
-    def test_session_start_after_clear_or_compact_prints_a_shorter_brief(self):
-        for i in range(30):
-            ev.write(self.root, mk(id=f"20261018T1200{i:02d}Z-code-{i:06x}", key=f"k{i}", body="a rule " * 30))
-        full = self.call(hooks.session_start, {"cwd": "/tmp/projA", "source": "startup"})[1]
-        for source in ("clear", "compact"):
-            short = self.call(hooks.session_start, {"cwd": "/tmp/projA", "source": source})[1]
-            self.assertLess(len(short), len(full) - 500)
-            self.assertIn("mem use REF1,REF2", short)
 
     def test_prompt_hook_ignores_generated_prompts_and_list_items(self):
         for text in ("Always prefer the cheapest option. " * 60, "(2) Never report ok for a check that did not run."):

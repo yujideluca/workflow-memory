@@ -121,7 +121,9 @@ def resolve(events):
             continue
         slot = (e["scope"], key) if key else None
         prev = latest.get(slot) if slot else None
-        if prev is not None and norm_tokens(prev["body"]) == norm_tokens(e["body"]):
+        # tags are part of the ruling; an event that says nothing about tags (None) only restates
+        same_tags = e.get("tags") is None or e["tags"] == (prev.get("tags") or []) if prev else True
+        if prev is not None and same_tags and norm_tokens(prev["body"]) == norm_tokens(e["body"]):
             hidden.add(e["id"])  # same ruling again: more evidence, line unchanged
             evidence.setdefault(prev["id"], []).append(e["ts"])
             # what it replaces is still replaced, except the entry it merely restates

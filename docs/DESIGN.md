@@ -18,6 +18,7 @@ ts: 2026-10-18T12:00:00Z   # any ISO time; offsets are converted to UTC
 supersedes: id1, id2  # optional, explicit replacement
 target: <event id>    # for feedback, claim, done, forget
 signal: helpful       # for feedback: helpful | not_helpful | stale | wrong
+tags: deploy, git     # optional, pref/decision/fact: kinds of task from mem/tags.toml; `tags: -` clears
 ---
 The text, one or two sentences (at most 1200 characters).
 ```
@@ -35,9 +36,16 @@ anywhere under `events/` is read.
   entry is not recreated by the harvester from the same words.
 - Two writers giving the same key different texts within 24 hours are listed as a conflict, not merged.
 - `claim`: the earliest claim wins, ties by id.
+- Tags are part of the ruling: the same words with different tags are a new ruling; an event with no `tags` line only restates.
+
+## Rule tags (`mem/tags.py`, `mem/tags.toml`, [ADR-0007](adr/0007-rule-tags.md))
+- The start-up output is the `always` rules in full, an index "tag (n): use when ..." and the how-to lines, at most 1,900 characters; open items follow.
+- `mem rules TAG ...` prints every active rule with any of the tags, each once, for the current project and instance. `mem tag KEY TAG ...` retags a rule; `mem add --tags` tags a new one (a replacement keeps the old tags unless told otherwise).
+- A tag must have a use-when line in `mem/tags.toml`; an event with an unknown tag is quarantined. `mem check` warns about user-owned prefs without a tag.
+- The chat app reads `views/BRIEF.md` and `views/rules/TAG.md`.
 
 ## Relevance
-- Preferences never decay and are never dropped from the brief (a warning appears if they alone exceed the budget).
+- Preferences never decay and are never dropped; since ADR-0007 they reach a session through their tags, not through the start-up text.
 - Other types decay with half-lives: decision and fact 180 days, digest 365, note 7. A task never decays (see Open items). Each use stretches
   the half-life by `1 + log2(1 + uses)`. A use is reported by the AI instance that read the entry: a `use` event
   (`target: ref1, ref2`, one short line saying how), written when it finishes a task; restating a rule counts too.
@@ -138,6 +146,7 @@ Newest first. **Type** is the ISO/IEC/IEEE 14764 category (corrective, adaptive,
 
 | Date | Type | Decision | Why |
 |---|---|---|---|
+| 2026-11-05 | Corrective | **Rule tags** ([ADR-0007](adr/0007-rule-tags.md)): every rule carries kinds of task; start-up prints the `always` rules and an index (about 1.7 KB instead of 17 KB); `mem rules TAG` prints the full wording; all 85 rules migrated with `mem tag`; the chat app gets `views/rules/TAG.md` | On 2026-11-04 the rules that would have stopped agent-guard existed but never reached the sessions: the harness shows only the first 2 KB of a 17 KB brief |
 | 2026-10-25 | Adaptive | **workflow-memory stays without branch protection; documented as an exception** (pipeline-check v0.5.0, PC-16). The repository is public, but a simulation showed that a required `gate` check rejects the push of the `mem` job (`GH006 Required status check "gate" is expected`), because that job pushes derived files to `main` with the built-in token and GitHub does not let that bot bypass a rule on a personal account. Giovanni chose to keep the local pre-push check (`tools/hooks/pre-push`) and to record the exception in `pipeline-check.toml` (`protection_exception`), so `protecao-de-branch` is `aviso` with the reason, not `falha`. Not chosen: a personal access token for the job (a secret to renew), a separate branch for derived files (changes how every reader gets the views). | A gap accepted on purpose must stay visible and written where the check reads it. |
 | 2026-10-25 | Preventive | **Monthly architecture review**: pipeline-check v0.4.0, local mode, report of 2026-10-25: 0 falhas, 0 avisos, 1 pulado (protecao-de-branch); 1 proposal; proposals created as pipeline-check#4 | Monthly review standard (ADR-0013): the program measures, the skill judges |
 | 2026-10-24 | Corrective | **First maintenance review: bug-finding tests and four fixes** (`docs/TESTES-AUTOMATIZADOS.md`, `tests/test_bughunt.py`): event headers are collapsed to one line (a newline could forge `owner: user`), GitHub fine-grained, GitLab and Google API tokens count as secrets, international phone numbers count as contact data, a repeated ruling keeps its `supersedes` | The privacy boundary and the file format had gaps no existing test looked at; the check was written from the rules, not from the code |

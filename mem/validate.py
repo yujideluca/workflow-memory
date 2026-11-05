@@ -4,7 +4,7 @@ import shutil
 from datetime import timedelta
 from pathlib import Path
 
-from . import events as ev
+from . import events as ev, tags as tagmod
 
 MAX_BODY = 1200
 OWNERS = ("user", "agent", "harvester", "migration", "compactor", "action")
@@ -67,6 +67,7 @@ def check_event(e, now):
             why.append(f"bad category {e['category']!r}")
     if e["type"] == "rescope" and not (e["target"] or e.get("category")):
         why.append("rescope needs a target or a category")
+    why += tagmod.problems(e.get("tags"), e["type"])
     if e["ts"] > now + timedelta(days=1):
         why.append("timestamp is in the future")
     why += [f"contains {name}" for name in privacy_reasons(" ".join([e["body"], e["key"] or ""]))]

@@ -1,0 +1,15 @@
+# Rule tags (ADR-0007): tag = "use when ..." (one short line). The start-up index is generated from this file,
+# so a tag used by a rule must have a line here (mem check refuses an event with an unknown tag).
+always = "printed in full at every start"
+deploy = "installing, releasing, changing configuration, outward-facing or destructive acts"
+troubleshooting = "debugging, testing, fixing findings, proving that it works"
+coding = "starting, designing or changing code; choosing tools"
+reporting = "how to answer, explain and report results or mistakes"
+git = "branches, commits, repos, GitHub"
+docs-memory = "wiki pages, memory entries, closing a task"
+device = "phone, adb, browser, Telegram"
+quiz = "QuizApp and QuizWeb"
+radiology = "radiology report matcher and crawler"
+german = "German exam practice and corrections"
+status-quo = "the Status Quo tray"
+codex = "work done by Codex"
