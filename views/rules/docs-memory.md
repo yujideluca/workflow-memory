@@ -1,0 +1,19 @@
+# Rules tagged docs-memory
+
+Generated 2026-11-05 from 692 events. Do not edit: record changes as events.
+
+wiki pages, memory entries, closing a task
+
+- [decision.ai-memory-inspiration] ai-memory (akitaonrails) is inspiration only; it is never installed. (#99f206)
+- [decision.memory-v3] The old claude-workflow-backup protocol is abandoned. workflow-memory is the new workflow: append-only event log, computed state, views built by a GitHub Action. (#d3a0a1)
+- [decision.no-health-filter] Memory validation has no automatic health-vocabulary filter. Not storing clinical data about other people stays a standing preference, not a check. (#9201da)
+- [memory.token-diet] Approved 2026-10-26 to cut startup token cost. For Codex: your hooks now run 'mem --instance codex ...' (backup ~/.codex/hooks.json.before-instance-20261026), so Codex-only rules live in scope instance:codex and no longer load in Claude Code (codex.skills-ownership, codex.status-fields, codex.status-display, codex.scroll-step, wiki-before-handoff moved there). The harvester no longer records prompts over 1500 characters or numbered/heading lines, which is how generated suggestion prompts became auto.* preferences (17 forgotten). After /clear or compaction the brief shows only the first 110 characters of each rule; run 'mem search' for the full text. Record Codex-only preferences with --scope instance:codex. (#9506a2)
+- [pendencies.verify-before-reminding] Pendencies (unfinished goals, known problems) are open items: record them with mem task --check HOW. They show in every chat until solved, archived or deleted; project-specific only when Giovanni says so. Before reminding Giovanni of one, run its check; if it no longer applies, close it; if unchecked, say so. Never call an item open from memory alone. (#1ef225)
+- [policy.third-party-data] Never store clinical, secret or contact data about other people in memory. If a case needs it, Giovanni will ask for a specific procedure. (#e91444)
+- [repos.workflow-memory-unprotected] workflow-memory is intentionally without branch protection: its mem job pushes derived files to main with the built-in token and a required check rejects that push (simulation 2026-10-25). Local pre-push check stands in; pipeline-check.toml has protection_exception, so protecao-de-branch is an accepted aviso there, not a failure. (#b68bd7)
+- [wiki.coauthor-trailer] wiki publish adds a Co-Authored-By line only from --co-author 'Name <email>' (or WIKI_CO_AUTHOR): pass the exact attribution line your own session was given, none if you have none. Never a fixed model name. (#3cb16b)
+- [wiki.complete-skill-content] In the wiki project, every skill page must contain the complete source SKILL.md description and instructions, not a shortened summary. The page-generation trigger and writer must locate and read the complete source before writing, and keep the full content on the page and its language versions. (#6c66aa)
+- [wiki.plain-language] Wiki pages must help someone with no previous knowledge of the system or its technical language: define a term where it first appears, link complex terms to a definition, spell out an acronym or abbreviation at its first use on each page, and let a skill page carry the skill's own definition. (#29b55a)
+- [work.encode-decisions] A decision stated once must be encoded where it takes effect, not only logged; Giovanni should never have to repeat it. (#c6e422)
+- [work.no-retired-refs] A retired protocol or tool is not named in anything that works today (skills, CLAUDE.md, memory, READMEs, scripts); only history (ADRs, decision logs, the wiki page of the retired thing) may mention it. (#7ec2df)
+- [work.troubleshoot-documentation] Investigate documentation failures before declaring them blocked. Prefer an isolated committed worktree and narrow reconciliation that preserves other sessions’ edits; do not treat a dirty wiki tree alone as the end of troubleshooting. (#0d1cfd)

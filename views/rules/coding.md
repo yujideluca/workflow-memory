@@ -1,0 +1,24 @@
+# Rules tagged coding
+
+Generated 2026-11-05 from 692 events. Do not edit: record changes as events.
+
+starting, designing or changing code; choosing tools
+
+- [agent-guard.giovanni-authority] agent-guard: Giovanni's direct level requirement is never blocked by the eligibility filter; it runs with a literal warning (ADR-0002 section 3). Codex adapter is a placeholder until the Codex tokens renew (docs/PENDING.md in ~/dev/agent-guard). (#8ec5ec)
+- [matcher.hardware] Radiology matcher (2026-10-29): the engine and the statistical analysis must use multithreading and the GPU for calculation when the hardware supports it, with a CPU fallback giving the same results. Recorded in ADR-0002 amendment, CLAUDE.md principle 9 and docs/modelling-directives.md section 3b; requirement EN-2 is added with its test in the first engine commit. (#305e74)
+- [matcher.languages] Radiology report matcher stack, decided by Giovanni 2026-10-27: small tools in Python; website back end in Elixir (SQLite search); front end in Elm; the statistical math and the word-to-input matching must be high-speed numerical code (Cython, NumPy, C libraries as needed), NEVER plain-Python loops: it would be too slow. Never forget this. (#fa927e)
+- [matcher.per-language-models] Radiology matcher: every identification model is built and scored separately for EN, DE and PT-BR; a fast language check routes the report; design the routing pipeline only after all per-language models are tested. (#dfb150)
+- [work.ask-language] Before any project that involves coding, ask Giovanni which programming language(s) to use (front end, back end, tools) before designing or writing code; never pick the language yourself. (#459138)
+- [work.ask-with-context] When asking Giovanni about a development decision that is new (not a topic already debated), give clear context first: what is being decided, why, options, and your recommendation. If it involves many steps never discussed, include a flowchart. A badly framed question cannot be answered well. (#d81d44)
+- [work.avoid-fragile-deps] Prefer what a project already depends on (for example elm-visualization) or a small piece of our own code over a small outside package that may be abandoned or break later; a fragile dependency is a bigger long-run problem than writing the code. Ask before adding such a package. (#8ed0ae)
+- [work.build-then-ask] After a project and plan are approved, build it end to end without progress pauses; ask the open questions at the end. (#50e8d1)
+- [work.encode-decisions] A decision stated once must be encoded where it takes effect, not only logged; Giovanni should never have to repeat it. (#c6e422)
+- [work.fix-findings] Findings from a maintenance review that Giovanni answers 'deve' are fixed in the same session, with the test first; hypotheses wait for his answer. (#23805a)
+- [work.infer-from-pattern] When Giovanni gives a rule or ordering and asks to fill in the rest, apply the same logic to the remaining cases instead of asking again; ask only where the rule truly does not decide. (#6ab5ef)
+- [work.maintenance] Software projects follow the golden path: ADRs for structural decisions, requirements before code, one quality gate run by CI on every push, debt as GitHub Issues labelled debt/P1-P3, about one session in five on debt or prevention, monthly architecture review. New projects start from ~/dev/project-template. (#724cdb)
+- [work.no-agent-guard] Giovanni does not want agent-guard or any taskmaster/guard system that removes Claude's own tools. It was removed on 2026-11-04 after it locked sessions (lessons: ~/guard-incident-notes/LESSONS.md). Do not propose or rebuild it. (#22f752)
+- [work.no-codex-36h] Codex has no budget (Giovanni, 2026-11-05): work without Codex for 36 hours, until 2026-11-06 12:30 (UTC-3). Do not wait for it, start Codex steps or propose them; do every step Claude can do alone (Haiku workers for tagging). After that time, ask again before assuming Codex is back. (#2b0ea5)
+- [work.no-qwen] Local Qwen is not part of the workflow: do not use or propose it for coding or delegation. Its files were deleted 2026-10-21. (#1eac59)
+- [work.one-consistent-scope] agent-guard and similar systems: the system must read as if it had been designed this way from the start. Keep one consistent scope document; no traces of discarded designs in code, policy or docs (rewrite as much as needed); modular code but a single monolithic scope logic. (#60122c)
+- [work.shared-tools] A tool used by more than one project lives once, in its own repository, and is consumed by pinned version, never copied (example: pipeline-check, github.com/yujideluca/pipeline-check). (#34b423)
+- [work.test-yourself] After coding, do a first debugging pass and test reversible features yourself (for example on the phone) instead of asking. (#434377)

@@ -1,67 +1,24 @@
 # Memory brief
 
-Generated 2026-11-05 from 605 events. Do not edit: record changes as events.
+Generated 2026-11-05 from 692 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
-
-- [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#0c1417)
-- [work.verified-by] Report work as done only with proof: end with 'Verified by:' saying what was run and what could not be checked. (#5cba3e)
-- [work.setup-end-to-end] Do installs and setup end to end. Hand over only the steps that need sudo or Giovanni's own approval. (#803489)
-- [git.no-force-push] Never force-push. (#b07b2e)
-- [safety.ask-before-outward] Ask before anything outward-facing (sending email, accepting events, purchases) or destructive, unless Giovanni has explicitly said to proceed. (#ef8e45)
-- [work.test-yourself] After coding, do a first debugging pass and test reversible features yourself (for example on the phone) instead of asking. (#6c6d10)
-- [style.plain-language] Explain in plain language: define each technical term the first time it appears and say what it means in human terms before the details. Never assume Giovanni knows something only mentioned in passing. (#817781)
-- [work.encode-decisions] A decision stated once must be encoded where it takes effect, not only logged; Giovanni should never have to repeat it. (#e5d741)
-- [person.profile] Giovanni is a pre-hospital emergency physician in Brazil, preparing the Goethe B2 exam (Nov 2026) and the FSP to work in Germany. (#9f3a0e)
-- [policy.third-party-data] Never store clinical, secret or contact data about other people in memory. If a case needs it, Giovanni will ask for a specific procedure. (#baab57)
-- [work.build-then-ask] After a project and plan are approved, build it end to end without progress pauses; ask the open questions at the end. (#c1f1f8)
-- [work.ask-with-context] When asking Giovanni about a development decision that is new (not a topic already debated), give clear context first: what is being decided, why, options, and your recommendation. If it involves many steps never discussed, include a flowchart. A badly framed question cannot be answered well. (#abdad0)
-- [telegram] To send via Telegram use the tg-send bot (tg-send -f FILE caption), never the phone app; read ~/.local/bin/tg-send, it has no --help (any argument is sent as a message). Messages arrive in the 'Claude code bridge' chat (@Claude_1123bot), NOT Saved Messages: always tell Giovanni to check that chat. (#c09dc8)
-- [pendencies.verify-before-reminding] Pendencies (unfinished goals, known problems) are open items: record them with mem task --check HOW. They show in every chat until solved, archived or deleted; project-specific only when Giovanni says so. Before reminding Giovanni of one, run its check; if it no longer applies, close it; if unchecked, say so. Never call an item open from memory alone. (#ad71c7)
-- [work.no-qwen] Local Qwen is not part of the workflow: do not use or propose it for coding or delegation. Its files were deleted 2026-10-21. (#303850)
-- [work.maintenance] Software projects follow the golden path: ADRs for structural decisions, requirements before code, one quality gate run by CI on every push, debt as GitHub Issues labelled debt/P1-P3, about one session in five on debt or prevention, monthly architecture review. New projects start from ~/dev/project-template. (#d975f2)
-- [release.promote] A version may be promoted to the user channel once it survives the automated tests updated for what it changes (gate with mutation + tests changed with the code); then promoting is Giovanni's decision. No minimum time in beta; do not argue for one. (#d71784)
-- [work.ask-language] Before any project that involves coding, ask Giovanni which programming language(s) to use (front end, back end, tools) before designing or writing code; never pick the language yourself. (#f1e117)
-- [work.fix-findings] Findings from a maintenance review that Giovanni answers 'deve' are fixed in the same session, with the test first; hypotheses wait for his answer. (#566908)
-- [work.shared-tools] A tool used by more than one project lives once, in its own repository, and is consumed by pinned version, never copied (example: pipeline-check, github.com/yujideluca/pipeline-check). (#63efec)
-- [work.github-standard] Every project has a versioned repository on GitHub (private unless it must be public); a folder in ~/dev without git and a remote is a gap to fix. (#9b6938)
-- [work.no-retired-refs] A retired protocol or tool is not named in anything that works today (skills, CLAUDE.md, memory, READMEs, scripts); only history (ADRs, decision logs, the wiki page of the retired thing) may mention it. (#164a12)
-- [wiki.plain-language] Wiki pages must help someone with no previous knowledge of the system or its technical language: define a term where it first appears, link complex terms to a definition, spell out an acronym or abbreviation at its first use on each page, and let a skill page carry the skill's own definition. (#f4e33f)
-- [work.act-on-ok] When Giovanni says 'solve it', do the work (create issues, write log rows, fix) instead of listing proposals; check memory and past messages for decisions already made (e.g. pipeline-check licence = MIT) before asking. (#c1c894)
-- [repos.public] Repos that need branch protection are public, because GitHub Free has no protection on private repos. german-quiz, remote-terminal, wiki, workflow-memory and processing-sketches were made public on 2026-10-25 after a clean secret scan. (#b5a8cf)
-- [repos.workflow-memory-unprotected] workflow-memory is intentionally without branch protection: its mem job pushes derived files to main with the built-in token and a required check rejects that push (simulation 2026-10-25). Local pre-push check stands in; pipeline-check.toml has protection_exception, so protecao-de-branch is an accepted aviso there, not a failure. (#398bdc)
-- [release.pool-promote] Question-pool updates (tools/data, i18n) that pass the automated pipeline (gate + mutation check, then beta) may be promoted to the stable app and the web version without asking again; app code releases still need Giovanni's go-ahead (2026-10-25). (#de2122)
-- [work.test-ui-on-phone] Test any phone-facing web UI on Giovanni's real phone (Motorola, adb), not only in a narrowed desktop browser: serve the build with adb reverse and read frame times with Chrome DevTools over adb forward; the public wiki address needs Giovanni's own Google sign-in, so do not sign in for them. (#f7008d)
-- [work.phone-stay-awake] Giovanni's phone must stay awake for other projects: never turn off or change its stay-awake setting (svc power stayon, stay_on_while_plugged_in, screen timeout). If a test needs the screen on, only send a wake key; read a device setting before changing it and put back exactly what was there. (#03ca1c)
-- [wiki.complete-skill-content] In the wiki project, every skill page must contain the complete source SKILL.md description and instructions, not a shortened summary. The page-generation trigger and writer must locate and read the complete source before writing, and keep the full content on the page and its language versions. (#12386c)
-- [work.routine-autonomy] Proceed without repeated confirmation for routine, reversible edits, commands, checks and website access within the requested task. Ask only when an action is dangerous or a required technical permission cannot be avoided; batch necessary access requests instead of asking for each command or site. (#b9bd12)
-- [work.acceptance-evidence] Correction after repeated false completion claims: define success as the user's observable outcome before acting. Configuration, installation and passing component tests do not prove that outcome. Verify the actual execution path and visible behavior; if inaccessible, state precisely what remains unverified and keep the task incomplete. Investigate available evidence before asking the user; perform authorized routine work yourself. Lead reports with the result, evidence and remaining limitation in plain language. (#e80181)
-- [work.troubleshoot-documentation] Investigate documentation failures before declaring them blocked. Prefer an isolated committed worktree and narrow reconciliation that preserves other sessions’ edits; do not treat a dirty wiki tree alone as the end of troubleshooting. (#90a529)
-- [work.single-branch] Keep every repository on one branch, main. Use a branch only briefly to get CI before promoting to main, then delete it (local and remote) and remove its worktree. Never leave parallel feature, session or draft branches; fold their work into main. (#cefeb3)
-- [style.explain-new-information] When introducing new information or a pendency, name the specific component and change; avoid vague references such as migration without saying what moves and why. (#a7bb57)
-- [work.web-no-own-version] QuizWeb may ship a standalone maintenance release when it contains relevant changes, without waiting for another Android release. Ports of unreleased Android features still follow app promotion. Supersedes the blanket no-standalone-release rule. (#a94fd9)
-- [wiki.coauthor-trailer] wiki publish adds a Co-Authored-By line only from --co-author 'Name <email>' (or WIKI_CO_AUTHOR): pass the exact attribution line your own session was given, none if you have none. Never a fixed model name. (#80d0fa)
-- [work.avoid-fragile-deps] Prefer what a project already depends on (for example elm-visualization) or a small piece of our own code over a small outside package that may be abandoned or break later; a fragile dependency is a bigger long-run problem than writing the code. Ask before adding such a package. (#3d2e07)
-- [matcher.languages] Radiology report matcher stack, decided by Giovanni 2026-10-27: small tools in Python; website back end in Elixir (SQLite search); front end in Elm; the statistical math and the word-to-input matching must be high-speed numerical code (Cython, NumPy, C libraries as needed), NEVER plain-Python loops: it would be too slow. Never forget this. (#1f9dc1)
-- [radiology.translation-rate] Radiology crawler: translate (Codex) at the same rate as extraction, no daily cap; a cap would make it take too long. (#561d07)
-- [work.phone-stay-awake-ac] Giovanni asked on 2026-10-29 that the test phone's screen stop closing: stay_on_while_plugged_in was 2 (USB only), now 3 (AC+USB). Screen timeout (60 s) unchanged. Still never turn stay-awake off. (#606b70)
-- [matcher.modelling-plan] Decided 2026-10-30: when the article crawl is done and Giovanni asks to start the analysis, the statistical modelling follows skill-forge style with four competing versions: (1) Claude alone analyses all articles with no prior bias; (2) Codex alone, same task; (3) fully academic approach after thorough research, Claude and Codex debating to the best scientific solution; (4) Giovanni's own idea, mined first through a directed grill session whose directives are saved and reused. Do not start the analysis before he asks. (#43f64b)
-- [matcher.modelling-directives] The directives for modelling version 4 (Giovanni's idea) are in ~/dev/radiology-crawler/docs/modelling-directives.md (layered hard/soft filters, akinator, wording layer with filler list, 50/50 tune/test split by diagnosis). Read it fully before starting the analysis and use it for version 4; versions 1 to 3 do not use it. (#9bbbcb)
-- [matcher.hardware] Radiology matcher (2026-10-29): the engine and the statistical analysis must use multithreading and the GPU for calculation when the hardware supports it, with a CPU fallback giving the same results. Recorded in ADR-0002 amendment, CLAUDE.md principle 9 and docs/modelling-directives.md section 3b; requirement EN-2 is added with its test in the first engine commit. (#940a9e)
-- [matcher.keep-status-fresh] Giovanni 2026-10-30: every instance (Claude Code and Codex) working on the radiology matcher analysis must keep docs/analysis-status.json and the plan site home page guide current: after each step run python3 -I tools/analysis_status.py set STEP STATUS --note '...' in ~/dev/radiology-crawler (it rebuilds the site). Rule is also CLAUDE.md principle 10 and AGENTS.md of that repo. (#d2e056)
-- [german.model-word-counts] B2 writing templates and completed model answers must strictly match the task's requested word counts; do not make them longer to raise evaluation scores. (#be4fbc)
-- [german.schreiben-feedback] Schreiben feedback for Giovanni: never a single estimated score; give each text its own score per Goethe criterion plus errors per 100 words, name concrete fixes, no generic plans. Estimates are not official grades; say so. Giovanni's month of B2 Schreiben practice showed no score change (2026-10-31), so measure progress by error density, not the band. (#c77d98)
-- [work.document-commits] Every commit message must document what was modified (files and why, requirements touched, anything changed outside the repo); split piled-up work into commits by area. Giovanni asked for this on 2026-11-01 and said it should always be done. (#543a1e)
-- [matcher.per-language-models] Radiology matcher: every identification model is built and scored separately for EN, DE and PT-BR; a fast language check routes the report; design the routing pipeline only after all per-language models are tested. (#faf01d)
-- [status-quo.e2e] After every major Status Quo tray change, repeat the manual pass on the real desktop, update crates/desktop/tests/e2e/manual-baseline.json and desktop_e2e.rs, and run tools/ui_e2e.sh (it needs a free screen: STATUS_QUO_E2E_SCREEN_IS_FREE=1, never while Giovanni uses the screen). (#58f0f0)
-- [browser.hang-refresh] Quando algum site travar durante uma tarefa no navegador, dê F5 (recarregue a página) e continue, em vez de esperar ou desistir. (#eb1bbd)
-- [radiology.haiku-workers] Radiology translator: run 5 Haiku workers (--worker I/5), not 10 (Giovanni, 2026-11-03) (#9a74f5)
-- [work.infer-from-pattern] When Giovanni gives a rule or ordering and asks to fill in the rest, apply the same logic to the remaining cases instead of asking again; ask only where the rule truly does not decide. (#1531f2)
-- [work.no-approval-bureaucracy] agent-guard and similar systems: Giovanni does not want approval prompts or queues ('not a babysitter for the AI'). Safety comes from structure (closed tool lists, protected paths, validated/formatted data between agents, the taskmaster deciding from what it sees). Actuators may run anything except sudo. The system must stay functional, fast and small (bounded logs); a full disk caused by the system is a system failure. (#f6b440)
-- [work.one-consistent-scope] agent-guard and similar systems: the system must read as if it had been designed this way from the start. Keep one consistent scope document; no traces of discarded designs in code, policy or docs (rewrite as much as needed); modular code but a single monolithic scope logic. (#011d25)
-- [work.no-agent-guard] Giovanni does not want agent-guard or any taskmaster/guard system that removes Claude's own tools. It was removed on 2026-11-04 after it locked sessions (lessons: ~/guard-incident-notes/LESSONS.md). Do not propose or rebuild it. (#a37360)
-- [work.no-codex-36h] Codex has no budget (Giovanni, 2026-11-05): work without Codex for 36 hours, until 2026-11-06 12:30 (UTC-3). Do not wait for it, start Codex steps or propose them; do every step Claude can do alone (Haiku workers for tagging). After that time, ask again before assuming Codex is back. (#246368)
-- (18 more entries did not fit; they are in the log and searchable)
+- [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
+- [person.profile] Giovanni is a pre-hospital emergency physician in Brazil, preparing the Goethe B2 exam (Nov 2026) and the FSP to work in Germany. (#94659d)
+- [policy.third-party-data] Never store clinical, secret or contact data about other people in memory. If a case needs it, Giovanni will ask for a specific procedure. (#e91444)
+Rules are tagged by kind of task. Before a task of one of these kinds, fetch `views/rules/TAG.md` from the repository (same tools as Recording) and follow its full wording:
+- deploy (16): installing, releasing, changing configuration, outward-facing or destructive acts
+- troubleshooting (8): debugging, testing, fixing findings, proving that it works
+- coding (18): starting, designing or changing code; choosing tools
+- reporting (7): how to answer, explain and report results or mistakes
+- git (10): branches, commits, repos, GitHub
+- docs-memory (13): wiki pages, memory entries, closing a task
+- device (10): phone, adb, browser, Telegram
+- quiz (4): QuizApp and QuizWeb
+- radiology (12): radiology report matcher and crawler
+- german (2): German exam practice and corrections
+- status-quo (1): the Status Quo tray
+- codex (3): work done by Codex
 
 ## Open items
 
@@ -83,6 +40,7 @@ path: `events/YYYY/MM/YYYYMMDDTHHMMSSZ-app-xxxxxx.md` (UTC time, xxxxxx = 6 rand
 type: pref          # pref, fact, decision, task
 scope: global
 key: short.topic    # the same key replaces the old rule
+tags: deploy, git   # optional, kinds of task from mem/tags.toml (listed in the brief)
 owner: user         # only for what the user said
 instance: app
 ts: 2026-01-31T12:00:00Z
