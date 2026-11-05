@@ -1,9 +1,12 @@
 # Rules tagged git
 
-Generated 2026-11-05 from 692 events. Do not edit: record changes as events.
+Generated 2026-11-05 from 695 events. Do not edit: record changes as events.
 
 branches, commits, repos, GitHub
 
+- ... (#5450a5)
+- ... (#8debe2)
+- ... (#ba132b)
 - [git.no-force-push] Never force-push. (#d6931b)
 - [pipeline-check.merge-block] Merges to main are blocked by the local pre-push check (pipeline-check --pre-push, hook in tools/hooks, enabled with git config core.hooksPath tools/hooks) because private repositories on the free GitHub plan cannot use branch protection; pipeline-check is public so CI needs no token (decided 2026-10-24). (#eba53a)
 - [repos.public] Repos that need branch protection are public, because GitHub Free has no protection on private repos. german-quiz, remote-terminal, wiki, workflow-memory and processing-sketches were made public on 2026-10-25 after a clean secret scan. (#d52b3e)

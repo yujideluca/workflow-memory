@@ -1,17 +1,17 @@
 # Memory brief
 
-Generated 2026-11-05 from 692 events. Do not edit: record changes as events.
+Generated 2026-11-05 from 695 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
 - [person.profile] Giovanni is a pre-hospital emergency physician in Brazil, preparing the Goethe B2 exam (Nov 2026) and the FSP to work in Germany. (#94659d)
 - [policy.third-party-data] Never store clinical, secret or contact data about other people in memory. If a case needs it, Giovanni will ask for a specific procedure. (#e91444)
 Rules are tagged by kind of task. Before a task of one of these kinds, fetch `views/rules/TAG.md` from the repository (same tools as Recording) and follow its full wording:
-- deploy (16): installing, releasing, changing configuration, outward-facing or destructive acts
+- deploy (19): installing, releasing, changing configuration, outward-facing or destructive acts
 - troubleshooting (8): debugging, testing, fixing findings, proving that it works
 - coding (18): starting, designing or changing code; choosing tools
 - reporting (7): how to answer, explain and report results or mistakes
-- git (10): branches, commits, repos, GitHub
+- git (13): branches, commits, repos, GitHub
 - docs-memory (13): wiki pages, memory entries, closing a task
 - device (10): phone, adb, browser, Telegram
 - quiz (4): QuizApp and QuizWeb

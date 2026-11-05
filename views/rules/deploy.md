@@ -1,9 +1,12 @@
 # Rules tagged deploy
 
-Generated 2026-11-05 from 692 events. Do not edit: record changes as events.
+Generated 2026-11-05 from 695 events. Do not edit: record changes as events.
 
 installing, releasing, changing configuration, outward-facing or destructive acts
 
+- ... (#5450a5)
+- ... (#8debe2)
+- ... (#ba132b)
 - [agent-guard.giovanni-authority] agent-guard: Giovanni's direct level requirement is never blocked by the eligibility filter; it runs with a literal warning (ADR-0002 section 3). Codex adapter is a placeholder until the Codex tokens renew (docs/PENDING.md in ~/dev/agent-guard). (#8ec5ec)
 - [git.no-force-push] Never force-push. (#d6931b)
 - [host.nitro] Giovanni's laptop is an Acer Nitro (host yuji-nitro, Kubuntu 24.04, X11, Nvidia): RTX 3050 with 6 GB VRAM, 23 GB RAM. A spare 512 GB NVMe is mounted only temporarily (no fstab entry). (#08274f)

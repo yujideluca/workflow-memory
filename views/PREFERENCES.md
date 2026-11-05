@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-05 from 692 events. Do not edit: record changes as events.
+Generated 2026-11-05 from 695 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -100,3 +100,6 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [instance:codex] wiki-before-handoff: Codex must finish its own work end to end, including wiki translations, reviewed timestamp, publication and mem use. Never narrow its own permissions with request_permissions for single files. A sandbox error is a fault to diagnose and fix within existing permissions, never a handoff reason. Retry correctly without self-imposed narrowing; report a genuine remaining block only with the exact error and attempted remedies. Supersedes #b51cb7. (user)
 - [global] work.no-codex-36h: Codex has no budget (Giovanni, 2026-11-05): work without Codex for 36 hours, until 2026-11-06 12:30 (UTC-3). Do not wait for it, start Codex steps or propose them; do every step Claude can do alone (Haiku workers for tagging). After that time, ask again before assuming Codex is back. (user)
 - [project:yuji] auto.48f402a649: Do not build as you wish, respect my pipeline (as always) and ask me whatherver you deem important right now so you have as little demand of me during processing as possible. (harvester)
+- [global] -: ... (agent)
+- [global] -: ... (agent)
+- [global] -: ... (agent)
