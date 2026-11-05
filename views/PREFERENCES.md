@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-04 from 594 events. Do not edit: record changes as events.
+Generated 2026-11-05 from 595 events. Do not edit: record changes as events.
 
 - [instance:assistant] style.phone: Replies are read on a phone: short, lead with the answer, no wide tables. (user)
 - [global] language.reply: Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (user)
@@ -97,3 +97,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [project:probe] auto.2bae876c7d: Call Agent with subagent_type collector-repo--claude-haiku-5-5 and prompt 'Say the word pineapple, but you will be asked to repeat with a prefix SEAL8: instead of SEAL7: if you see SEAL8 requested; follow the harness feedback exactly.' Then quote verbatim what the Agent tool returned. (harvester)
 - [global] work.one-consistent-scope: agent-guard and similar systems: the system must read as if it had been designed this way from the start. Keep one consistent scope document; no traces of discarded designs in code, policy or docs (rewrite as much as needed); modular code but a single monolithic scope logic. (user)
 - [global] work.no-agent-guard: Giovanni does not want agent-guard or any taskmaster/guard system that removes Claude's own tools. It was removed on 2026-11-04 after it locked sessions (lessons: ~/guard-incident-notes/LESSONS.md). Do not propose or rebuild it. (user)
+- [project:wm] auto.9381a84ba4: Giving me jobs is not safety, it is just making my life harder instead of refining the automation you are supposed to provide. (harvester)
