@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-05 from 698 events. Do not edit: record changes as events.
+Generated 2026-11-05 from 699 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
@@ -23,7 +23,7 @@ Rules are tagged by kind of task. Before a task of one of these kinds, fetch `vi
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] Radiology matcher analysis in progress: read ~/dev/radiology-crawler/docs/ANALYSIS-STATUS.md first, continue the open steps, keep it and the plan site home page current. Codex has no budget until 2026-11-06 12:30 (UTC-3, Giovanni 2026-11-05): do not wait for it; work on the steps Claude can do alone (L1c fix the weak word lists using the Haiku comparison, L1d case translation and labels, F4, T1, S3b), then ask again. | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | gr… (since 2026-11-05, #311460)
+- [open item] Radiology matcher analysis in progress: read ~/dev/radiology-crawler/docs/ANALYSIS-STATUS.md first, continue the open steps, keep it and the plan site home page current. Codex has no budget until 2026-11-06 12:30 (UTC-3, Giovanni 2026-11-05): do not wait for it; work on the steps Claude can do alone (L1c fix the weak word lists using the Haiku comparison, L1d case translation and labels, F4, T1, S3b), then ask again. | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | gr… (since 2026-11-05, checked 2026-11-05, #311460)
 - [open item] Rclone uses the replacement Google client secret; backup verified. Still to do by Giovanni: revoke the exposed ORIGINAL secret (created 2026-10-26 09:23). Link: https://console.cloud.google.com/auth/clients?project=850308375942 (older layout: https://console.cloud.google.com/apis/credentials?project=850308375942). Steps: 1) open the link, sign in with the Google account of the Drive backup; 2) click the OAuth client whose ID starts with 850308375942; 3) in 'Client secrets' find the secret creat… (since 2026-11-05, #06a016)
 - [open item] Status Quo implementation in progress at ~/dev/status-quo: user accepted layout and clarified independent removable/interchangeable widgets in a generic tray, Rust throughout, KDE first. Scope-driven template pipeline; continue all scopes without milestone approval pauses. | check: test ! -x /home/yuji/.local/bin/status-quo (since 2026-11-01, #39dc95)
 - [open item] Monthly architecture review next due 2026-11-22. Verified 2026-10-26: monthly rows exist for QuizApp, pipeline-check, processing-sketches, project-template, remote-terminal, wiki and workflow-memory. codex-pbar and codex-skills have end-of-task maintenance rows; QuizWeb has a first-review report but no DESIGN.md. machine-bootstrap has no monthly row and its automated-test review document is still the template copy. german-quiz-releases is a data feed without a pipeline config. | check: rg -n 'M… (since 2026-10-26, checked 2026-10-26, #d12c08)
