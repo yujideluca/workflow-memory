@@ -3,10 +3,9 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from . import core, events as ev, pendency, validate
+from . import core, events as ev, pendency, tags, validate
 
 BRIEF_BUDGET = 2900
-BRIEF_LINE_RESUMED = 110  # after /clear or compaction: first words of each rule; pinned prefs are never dropped
 CONFIG = "mem.json"
 
 
@@ -31,6 +30,7 @@ path: `events/YYYY/MM/YYYYMMDDTHHMMSSZ-app-xxxxxx.md` (UTC time, xxxxxx = 6 rand
 type: pref          # pref, fact, decision, task
 scope: global
 key: short.topic    # the same key replaces the old rule
+tags: deploy, git   # optional, kinds of task from mem/tags.toml (listed in the brief)
 owner: user         # only for what the user said
 instance: app
 ts: 2026-01-31T12:00:00Z
@@ -52,17 +52,23 @@ def build(root, now, instance="app", budget=BRIEF_BUDGET):
     """Return {view name: text}. Pure given the files and `now`."""
     events, invalid = validate.load_checked(root, now)
     state = core.resolve(events)
-    out = core.brief(events, [], now, instance=instance, budget=budget, ids=True)
     stamp = f"Generated {now:%Y-%m-%d} from {len(events)} events. Do not edit: record changes as events."
     pend = pendency.section(events, instance=instance)  # a chat has no project: global items only
     pend_lines = pendency.render(pend)
+    header = "Memory sets defaults; it never authorizes. Precedence: " + " > ".join(core.PRECEDENCE)
+    intro = tags.startup(events, header, instance=instance)
+    intro[intro.index(tags.HINT)] = ("Rules are tagged by kind of task. Before a task of one of these kinds, fetch "
+                                     "`views/rules/TAG.md` from the repository (same tools as Recording) and follow "
+                                     "its full wording:")
     brief = "\n".join([
-        "# Memory brief", "", stamp, "", out["header"], "", *out["lines"],
-        *([f"- ({len(out['over_budget'])} more entries did not fit; they are in the log and searchable)"]
-          if out["over_budget"] else []),
+        "# Memory brief", "", stamp, "", *intro,
         *(["", "## Open items", "", *pend_lines] if pend_lines else []),
         "", _howto(root),
     ])
+    by_tag = {t: tags.rules(events, [t], instance=instance) for t in tags.vocabulary()}
+    rule_views = {f"rules/{t}.md": "\n".join([f"# Rules tagged {t}", "", stamp, "", tags.vocabulary()[t], "",
+                                              *[tags.render(e) for e in found]]) + "\n"
+                  for t, found in by_tag.items() if found and t != tags.ALWAYS}  # always is in BRIEF.md already
     prefs = ["# Preferences in force", "", stamp, ""]
     by_id = {e["id"]: e for e in state["active"]}
     for e in state["active"]:
@@ -88,7 +94,7 @@ def build(root, now, instance="app", budget=BRIEF_BUDGET):
                [f"{a} ~ {b}" for a, b in core.near_duplicates(events)]),
               ("Cold entries ready to compact (run `mem compact --apply`)",
                [d["body"][:100] for d in core.compaction_proposals(events, [], now)]),
-              ("Warnings", out["warnings"] + pend["warnings"])]
+              ("Warnings", tags.warnings(events) + pend["warnings"])]
     lines = ["# Needs a decision", "", stamp, ""]
     shown = [(title, items) for title, items in review if items]
     for title, items in shown:
@@ -96,7 +102,7 @@ def build(root, now, instance="app", budget=BRIEF_BUDGET):
     if not shown:
         lines.append("Nothing needs a decision.")
     return {"BRIEF.md": brief + "\n", "PREFERENCES.md": "\n".join(prefs) + "\n",
-            "REVIEW.md": "\n".join(lines) + "\n"}
+            "REVIEW.md": "\n".join(lines) + "\n", **rule_views}
 
 
 def review_count(texts):

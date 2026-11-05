@@ -24,6 +24,11 @@ def parse_ts(text):
     return dt.replace(tzinfo=timezone.utc) if dt.tzinfo is None else dt.astimezone(timezone.utc)
 
 
+def _tags(value):
+    """None = the event says nothing about tags; [] = it clears them on purpose (`tags: -`)."""
+    return [t.strip().lower() for t in value.split(",") if t.strip() and t.strip() != "-"]
+
+
 def parse(text, stem):
     """Return the event dict for a file; raise ValueError when it is unreadable."""
     m = re.match(r"\A---\r?\n(.*?)\r?\n---\r?\n?(.*)\Z", text, re.S)
@@ -53,6 +58,7 @@ def parse(text, stem):
         supersedes=[s.strip() for s in head.get("supersedes", "").split(",") if s.strip()],
         target=head.get("target") or None, signal=head.get("signal") or None,
         category=head.get("category") or None,
+        tags=_tags(head["tags"]) if "tags" in head else None,
     )
 
 
@@ -67,6 +73,8 @@ def render(e):
             head.append(f"{name}: {one_line(e[name])}")
     if e.get("supersedes"):
         head.append("supersedes: " + ", ".join(one_line(s) for s in e["supersedes"]))
+    if e.get("tags") is not None:
+        head.append("tags: " + (", ".join(one_line(t) for t in e["tags"]) or "-"))
     head.append("ts: " + e["ts"].strftime("%Y-%m-%dT%H:%M:%SZ"))
     return "---\n" + "\n".join(head) + "\n---\n" + e.get("body", "").strip() + "\n"
 

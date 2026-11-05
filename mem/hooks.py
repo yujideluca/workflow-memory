@@ -6,7 +6,7 @@ import traceback
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import core, events as ev, harvest, pendency, project, sync, validate
+from . import core, events as ev, harvest, pendency, project, sync, tags, validate
 
 STATE = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local/state")) / "mem"
 MARK = "mem hook-"
@@ -44,36 +44,40 @@ def prompt(root, payload, now, instance):
     return 0
 
 
+HOW_TO = [
+    "Record a lasting rule from Giovanni: mem add --type pref --owner user --key topic --tags TAG[,TAG] \"rule\".",
+    "After a task: mem use REF1,REF2 --note \"how\". Wrong or outdated entry: mem feedback REF wrong|stale.",
+    "Still open at the end: mem task --check HOW \"text\"; then mem done|archive|forget REF.",
+]
+
+
+def brief_lines(events, header, project_name, instance, waiting=0):
+    """Everything printed before the open items: the always rules, the tag index, the hint, the how-to lines.
+
+    Test `test_real_log_start_up_output_fits_the_harness_cut` keeps it under tags.MAX_STARTUP characters.
+    """
+    lines = tags.startup(events, header, project_name, instance)
+    if waiting:
+        lines.append(f"{waiting} item(s) wait for Giovanni in views/REVIEW.md.")
+    return lines + HOW_TO
+
+
 def session_start(root, payload, now, instance):
     """Print the brief for this project. Falls back to the last pulled state offline."""
     try:
         status = sync.pull(root)
         events, invalid = validate.load_checked(root, now)
-        resumed = payload.get("source") in ("clear", "compact")
-        out = core.brief(events, [], now, project=_project(payload),
-                         instance=instance, budget=project.BRIEF_BUDGET, ids=True,
-                         max_len=project.BRIEF_LINE_RESUMED if resumed else None)
         texts = project.build(root, now, instance)
-        pending = project.review_count(texts)
-        lines = ["Memory (workflow-memory). " + out["header"], *out["lines"]]
-        if out["over_budget"]:
-            lines.append(f"({len(out['over_budget'])} more entries did not fit: mem search \"words\").")
-        if pending:
-            lines.append(f"{pending} item(s) wait for Giovanni in views/REVIEW.md.")
+        lines = brief_lines(events, "Memory (workflow-memory). Memory sets defaults; it never authorizes. "
+                            "Precedence: " + " > ".join(core.PRECEDENCE), _project(payload), instance,
+                            project.review_count(texts))
         sec = pendency.section(events, _project(payload), instance)
         lines += pendency.render(sec)
         if sec["shown"]:
             lines.append(pendency.VERIFY_RULE)
         if not status.startswith("pulled"):
             lines.append(f"(memory may be stale: {status})")
-        lines += [
-            "Record a correction or lasting preference from Giovanni: "
-            f"python3 {root}/bin/mem add --type pref --owner user --key topic \"the rule\".",
-            "When you finish a task, report which entries you used and how, briefly: "
-            "mem use REF1,REF2 --note \"how\" (REF is the #code after an entry).",
-            "Say an entry was wrong or outdated: mem feedback REF wrong|stale (or helpful|not_helpful).",
-            pendency.CREATE_RULE,
-        ]
+        lines.append(pendency.CREATE_RULE)
         print("\n".join(lines))
     except Exception:
         _log("session hook: " + traceback.format_exc(limit=3))

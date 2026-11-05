@@ -5,7 +5,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import core, events as ev, harvest, hooks, install, pendency, project, search, sync, validate
+from . import core, events as ev, harvest, hooks, install, pendency, project, search, sync, tags, validate
 
 DEFAULT_ROOT = Path(__file__).resolve().parent.parent
 
@@ -15,16 +15,23 @@ def _now(args):
 
 
 def _write(root, now, kind, text="", scope="global", key=None, owner="agent",
-           instance="cli", target=None, signal=None, supersedes=(), category=None):
+           instance="cli", target=None, signal=None, supersedes=(), category=None, tag_list=None):
     e = dict(id=ev.new_id(now, instance), ts=now, type=kind, scope=scope, key=key, body=text,
              instance=instance, owner=owner, supersedes=list(supersedes), target=target,
-             signal=signal, category=category)
+             signal=signal, category=category, tags=tag_list)
     why = validate.check_event(e, now)
     if why:
         print("refused: " + "; ".join(why), file=sys.stderr)
         return 2
     print(ev.write(root, e).relative_to(root))
     return 0
+
+
+def _tag_arg(text):
+    """None = not given; [] = '-' (clear); else the list."""
+    if text is None:
+        return None
+    return [t.strip().lower() for t in text.split(",") if t.strip() and t.strip() != "-"]
 
 
 def run(argv=None, stdin=None):
@@ -40,6 +47,8 @@ def run(argv=None, stdin=None):
     add.add_argument("--key")
     add.add_argument("--owner", default="agent")
     add.add_argument("--supersedes", default="")
+    add.add_argument("--tags", help="comma-separated kinds of task (mem/tags.toml); '-' clears; omitted = keep the "
+                                    "tags of the entry this one replaces")
     add.add_argument("text", help="the text, or - to read it from stdin")
     fb = sub.add_parser("feedback", help="say an entry helped or was wrong")
     fb.add_argument("target")
@@ -68,6 +77,13 @@ def run(argv=None, stdin=None):
     br.add_argument("--project")
     br.add_argument("--budget", type=int, default=project.BRIEF_BUDGET)
     br.add_argument("--ids", action="store_true")
+    rl = sub.add_parser("rules", help="print the full rules tagged for a kind of task")
+    rl.add_argument("tags", nargs="+", help="one or more tags from mem/tags.toml")
+    rl.add_argument("--project", help="default: the name of the working directory")
+    tg = sub.add_parser("tag", help="set the tags of an existing rule (key or ref); '-' clears")
+    tg.add_argument("rule", help="its key (when unique) or its #ref")
+    tg.add_argument("tags", nargs="+")
+    tg.add_argument("--scope", help="needed when the same key exists in several scopes")
     sub.add_parser("search").add_argument("query")
     sub.add_parser("check", help="list invalid events; exit 1 if any")
     sub.add_parser("quarantine", help="move invalid events to quarantine/")
@@ -93,12 +109,39 @@ def run(argv=None, stdin=None):
     if a.cmd == "add":
         text = stdin.read().strip() if a.text == "-" else a.text
         replaces = [s for s in a.supersedes.split(",") if s]
+        events, _ = validate.load_checked(root, now)
+        active = core.fold(events)[0]
         if a.key and not replaces:  # say what is being replaced, so it is not a conflict
-            events, _ = validate.load_checked(root, now)
-            prev = [e for e in core.fold(events)[0] if e["scope"] == a.scope and e["key"] == a.key]
+            prev = [e for e in active if e["scope"] == a.scope and e["key"] == a.key]
             if prev and core.norm_tokens(prev[-1]["body"]) != core.norm_tokens(text):
                 replaces = [prev[-1]["id"]]
-        return _write(root, now, a.type, text, a.scope, a.key, a.owner, instance, supersedes=replaces)
+        tag_list = _tag_arg(a.tags)
+        if tag_list is None:  # a replacement keeps the tags it replaces, copied now so reading stays order-free
+            old = [e for e in active if e["id"] in replaces or core.ref(e["id"]) in replaces]
+            tag_list = tags.of(old[0]) if old and old[0].get("tags") is not None else None
+        return _write(root, now, a.type, text, a.scope, a.key, a.owner, instance, supersedes=replaces,
+                      tag_list=tag_list)
+    if a.cmd == "rules":
+        events, _ = validate.load_checked(root, now)
+        proj = a.project or Path.cwd().name
+        unknown = [t for t in a.tags if t not in tags.vocabulary()]
+        if unknown:
+            print(f"refused: unknown tag(s) {', '.join(unknown)}; known: {', '.join(tags.vocabulary())}",
+                  file=sys.stderr)
+            return 2
+        found = tags.rules(events, a.tags, proj, instance)
+        print("\n".join(tags.render(e) for e in found) if found else "(no rules with these tags here)")
+        return 0
+    if a.cmd == "tag":
+        events, _ = validate.load_checked(root, now)
+        hit = [e for e in core.fold(events)[0] if e["type"] in tags.TAGGED and (
+            core.ref(e["id"]) == a.rule.lstrip("#") or (e["key"] == a.rule and (not a.scope or e["scope"] == a.scope)))]
+        if len(hit) != 1:
+            print(f"refused: {len(hit)} rules match {a.rule!r}; give --scope or the #ref", file=sys.stderr)
+            return 2
+        e = hit[0]
+        return _write(root, now, e["type"], e["body"], e["scope"], e["key"], e["owner"], instance,
+                      supersedes=[e["id"]], tag_list=_tag_arg(",".join(a.tags)))
     if a.cmd == "feedback":
         return _write(root, now, "feedback", "", instance=instance, target=a.target, signal=a.signal)
     if a.cmd in ("forget", "done", "claim", "archive", "reopen"):
@@ -139,6 +182,9 @@ def run(argv=None, stdin=None):
         _, invalid = validate.load_checked(root, now)
         for path, why in invalid:
             print(f"{path}: {'; '.join(why)}")
+        events, _ = validate.load_checked(root, now)
+        for e in tags.untagged(events):  # a warning, not an error: the exit code only follows invalid events
+            print(f"warning: no tag: [{e['key'] or '-'}] #{core.ref(e['id'])}")
         return 1 if invalid else 0
     if a.cmd == "quarantine":
         for path, why in validate.quarantine(root, now):
