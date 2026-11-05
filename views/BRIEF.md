@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-05 from 714 events. Do not edit: record changes as events.
+Generated 2026-11-05 from 716 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
@@ -23,6 +23,7 @@ Rules are tagged by kind of task. Before a task of one of these kinds, fetch `vi
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Status Quo: sq-collector tests owned_events_directory_is_private_and_avoids_polling_fallback (always) and real_local_worker_observes_new_hook_within_two_seconds (often) fail on the untouched baseline too, so tools/quality_gate.sh is red; investigate (inotify/environment). | check: cd ~/dev/status-quo && cargo test -p sq-collector --lib 2>&1 | grep -c FAILED (since 2026-11-05, #c9e425)
 - [open item] Radiology matcher (2026-11-05): age filter fixed (AN-24/25/26, age removes only if exclusive; tuning top-10 EN .610 DE .495 PT .580). Next: Giovanni decides on using age as a ranking hint (not tested) and on S3 sample; re-tune v4 with the new filter; score corrected v4 once on new cases after L1d; v2/v3 after Codex budget 2026-11-06 12:30; DE/PT LLM age tags not made. Nothing committed in radiology-crawler (docs/TRACEABILITY.md regenerated). | check: python3 -I ~/dev/radiology-crawler/tools/ana… (since 2026-11-05, #b7442c)
 - [open item radiology] Radiology matcher (2026-11-05): T1, S3b done; v1 and v4 scored on test half (v4 below v1 in EN/DE/PT). Next: S3 Giovanni reviews filler result (empty final list) and dangerous misses; S1 v2/v3 after Codex budget (2026-11-06 12:30, C3-C5); rerun labels/sets after the 21k pending cases are translated; memory: heavy jobs one at a time. Nothing committed in radiology-crawler. | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | grep 'S1' (since 2026-11-05, checked 2026-11-05, #3acbe3)
 - [open item radiology] Radiology matcher, next steps (2026-11-05): (1) DONE tuned v4 defaults (T1). (2) S3b filler list stage B; (3) S1 score v2-4 on the test half once; (4) memory pressure: run heavy jobs one at a time; (5) wiki: radiology-analysis pages edited and checked but NOT published (another session has uncommitted changes in ~/dev/wiki content/: acer-nitro, laptop-setup); publish when the tree is clean; nothing committed in radiology-crawler. | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status… (since 2026-11-05, #26d273)
