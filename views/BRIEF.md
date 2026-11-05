@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-05 from 708 events. Do not edit: record changes as events.
+Generated 2026-11-05 from 709 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
