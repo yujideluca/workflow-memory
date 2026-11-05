@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-05 from 602 events. Do not edit: record changes as events.
+Generated 2026-11-05 from 603 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 
@@ -60,6 +60,7 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [work.no-approval-bureaucracy] agent-guard and similar systems: Giovanni does not want approval prompts or queues ('not a babysitter for the AI'). Safety comes from structure (closed tool lists, protected paths, validated/formatted data between agents, the taskmaster deciding from what it sees). Actuators may run anything except sudo. The system must stay functional, fast and small (bounded logs); a full disk caused by the system is a system failure. (#f6b440)
 - [work.one-consistent-scope] agent-guard and similar systems: the system must read as if it had been designed this way from the start. Keep one consistent scope document; no traces of discarded designs in code, policy or docs (rewrite as much as needed); modular code but a single monolithic scope logic. (#011d25)
 - [work.no-agent-guard] Giovanni does not want agent-guard or any taskmaster/guard system that removes Claude's own tools. It was removed on 2026-11-04 after it locked sessions (lessons: ~/guard-incident-notes/LESSONS.md). Do not propose or rebuild it. (#a37360)
+- [work.no-codex-36h] Codex has no budget (Giovanni, 2026-11-05): work without Codex for 36 hours, until 2026-11-06 12:30 (UTC-3). Do not wait for it, start Codex steps or propose them; do every step Claude can do alone (Haiku workers for tagging). After that time, ask again before assuming Codex is back. (#246368)
 - (18 more entries did not fit; they are in the log and searchable)
 
 ## Open items
