@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-06 from 828 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 830 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
@@ -30,7 +30,6 @@ Open items (shown in every chat until solved, archived or deleted):
 - [open item] Wiki pages still stale after the 2026-11-06 push, none from the globe work: adr-explained, skills, claude-plugins, user-space-tools, codex-pbar, codex-skills, codex-skillsctl, codex-status-line. Review each against its sources, then wiki publish. The three old interactive Claude sessions were killed 2026-11-06 15:30 (resume: claude --resume 67d08edb-9b87-409b-bfd5-134400b40ee3 / 11bdd6ef-aa4d-467a-9a57-2eef48d0fef4 / 62d1d35d-d3bc-47b0-aa2c-880890f6e14d); the status-quo session 62d1d35d was wai… (since 2026-11-06, #e69279)
 - [open item] Radiology matcher (2026-11-06): corrected v4 scored once on new half (EN top-10 .629, DE .503, PT .589; v1 .640/.502/.608). Later-downloaded cases (16,909 pending): rebuild labels with case-labels-20261105b as earlier, score only the extra new cases. v2/v3 after Codex budget 2026-11-06 12:30. Nothing committed in radiology-crawler. | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | grep L1d (since 2026-11-06, #dd3019)
 - [open item] Radiology matcher (2026-11-06): L1d labels rebuilt with frozen halves (AN-28, case-labels-20261105b, 3,527 new cases). Next: wait for downloads (16,909 pending, ~330/h), rebuild labels with 20261105b as earlier, score corrected v4 once on the new half; v2/v3 after Codex budget 2026-11-06 12:30. Nothing committed in radiology-crawler. | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | grep L1d (since 2026-11-06, #382138)
-- [open item] Rclone uses the replacement Google client secret; backup verified. Still to do by Giovanni: revoke the exposed ORIGINAL secret (created 2026-10-26 09:23). Link: https://console.cloud.google.com/auth/clients?project=850308375942 (older layout: https://console.cloud.google.com/apis/credentials?project=850308375942). Steps: 1) open the link, sign in with the Google account of the Drive backup; 2) click the OAuth client whose ID starts with 850308375942; 3) in 'Client secrets' find the secret creat… (since 2026-11-05, #06a016)
 - [open item] Monthly architecture review next due 2026-11-22. Verified 2026-10-26: monthly rows exist for QuizApp, pipeline-check, processing-sketches, project-template, remote-terminal, wiki and workflow-memory. codex-pbar and codex-skills have end-of-task maintenance rows; QuizWeb has a first-review report but no DESIGN.md. machine-bootstrap has no monthly row and its automated-test review document is still the template copy. german-quiz-releases is a data feed without a pipeline config. | check: rg -n 'M… (since 2026-10-26, checked 2026-10-26, #d12c08)
 
 ## Recording
