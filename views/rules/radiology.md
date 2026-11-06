@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-06 from 755 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 756 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
