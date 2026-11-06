@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-06 from 722 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 723 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
@@ -23,6 +23,7 @@ Rules are tagged by kind of task. Before a task of one of these kinds, fetch `vi
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Radiology matcher (2026-11-06): corrected v4 scored once on new half (EN top-10 .629, DE .503, PT .589; v1 .640/.502/.608). Later-downloaded cases (16,909 pending): rebuild labels with case-labels-20261105b as earlier, score only the extra new cases. v2/v3 after Codex budget 2026-11-06 12:30. Nothing committed in radiology-crawler. | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | grep L1d (since 2026-11-06, #dd3019)
 - [open item] Wiki: status-quo pages (en/de/pt-BR) are edited and checked for the universal GPU widget (SQ-32) but NOT published: another session has unfinished radiology-analysis edits in ~/dev/wiki/content, so wiki check fails and wiki publish would commit their half-done pages. Publish (wiki publish -m ...) when radiology-analysis translations are done; the status-quo pages need no further change. | check: cd ~/dev/wiki && git status --short content/status-quo.md | wc -l | grep -qx 0 (since 2026-11-06, #58e49c)
 - [open item] Radiology matcher (2026-11-06): L1d labels rebuilt with frozen halves (AN-28, case-labels-20261105b, 3,527 new cases). Next: wait for downloads (16,909 pending, ~330/h), rebuild labels with 20261105b as earlier, score corrected v4 once on the new half; v2/v3 after Codex budget 2026-11-06 12:30. Nothing committed in radiology-crawler. | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | grep L1d (since 2026-11-06, #382138)
 - [open item] Radiology matcher (2026-11-05): age fix (AN-24/25/26), v4 re-tuned (defaults kept), age hint tested and left off (AN-27). Next: Giovanni reviews dangerous-miss sample (draft levels); score corrected v4 once on new cases after L1d (21k pending cases); v2/v3 after Codex budget 2026-11-06 12:30; DE/PT LLM age tags not made. Nothing committed in radiology-crawler (docs/TRACEABILITY.md regenerated). | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | grep 'S1' (since 2026-11-05, #da69a2)
