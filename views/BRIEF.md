@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-06 from 733 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 735 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
@@ -23,6 +23,7 @@ Rules are tagged by kind of task. Before a task of one of these kinds, fetch `vi
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Wiki pages status-quo (en/de/pt-BR) and new vm-lab (en/de/pt-BR) are written and pass wiki check but NOT published: wiki publish was refused because another session's page map-benchmark has a source newer than its review. Publish when that page is reviewed (wiki publish -m 'status-quo accounts, Windows, vm-lab'). Nothing committed in status-quo or vm-lab. | check: cd ~/dev/wiki && git status --short | grep -E 'vm-lab|status-quo' (since 2026-11-06, #f29ef4)
 - [open item] Wiki pages map-benchmark (en/de/pt-BR) and the map-benchmark link in wiki-map-view are written and pass wiki check, but NOT published: another session has uncommitted status-quo edits in ~/dev/wiki/content (outdated translations), so wiki publish would commit and fail on them. Publish when status-quo is committed: wiki publish -m 'map benchmark tools page'. Also open: Giovanni decides how v2 (+ will-change layer rule) is applied to ~/dev/wiki given the uncommitted DY-8 work. | check: test -f ~/… (since 2026-11-06, #f0f1ce)
 - [open item] Translation check (2026-11-06): scan done, burn 1 running (ends Fri 16:30 UTC), trickle daily 04:00, burn weekly Thu 13:38 (-03). Next: read status, judge translator error rates, then 'fix --yes' with Giovanni's go. Wiki pages for it NOT written/published (wiki tree has other sessions' changes). Nothing committed in radiology-crawler. | check: python3 -I ~/dev/radiology-crawler/analysis/translation_check.py status | grep -c pending (since 2026-11-06, #b0ef51)
 - [open item radiology] Radiology matcher (2026-11-05): T1, S3b done; v1 and v4 scored on test half (v4 below v1 in EN/DE/PT). Next: S3 Giovanni reviews filler result (empty final list) and dangerous misses; S1 v2/v3 after Codex budget (2026-11-06 12:30, C3-C5); rerun labels/sets after the 21k pending cases are translated; memory: heavy jobs one at a time. Nothing committed in radiology-crawler. | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | grep 'S1' (since 2026-11-05, checked 2026-11-06, #3acbe3)
