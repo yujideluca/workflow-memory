@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-06 from 833 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 838 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
@@ -8,10 +8,10 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [policy.third-party-data] Never store clinical, secret or contact data about other people in memory. If a case needs it, Giovanni will ask for a specific procedure. (#e91444)
 Rules are tagged by kind of task. Before a task of one of these kinds, fetch `views/rules/TAG.md` from the repository (same tools as Recording) and follow its full wording:
 - deploy (20): installing, releasing, changing configuration, outward-facing or destructive acts
-- troubleshooting (9): debugging, testing, fixing findings, proving that it works
+- troubleshooting (10): debugging, testing, fixing findings, proving that it works
 - coding (19): starting, designing or changing code; choosing tools
 - reporting (8): how to answer, explain and report results or mistakes
-- git (13): branches, commits, repos, GitHub
+- git (14): branches, commits, repos, GitHub
 - docs-memory (15): wiki pages, memory entries, closing a task
 - device (11): phone, adb, browser, Telegram
 - quiz (4): QuizApp and QuizWeb
@@ -23,8 +23,7 @@ Rules are tagged by kind of task. Before a task of one of these kinds, fetch `vi
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] codex-pbar footer launcher gone: Codex updater replaced ~/.local/bin/codex with a plain link on 2026-10-30; rerun the codex-pbar installer and verify footer in a live Codex terminal. | check: readlink -f ~/.local/bin/codex (since 2026-11-06, #b251c8)
-- [open item status-quo] status-quo Windows CI job fails since b701cda: test repeated_discovery_matches_a_fresh_walk panics 'Access is denied' at crates/sources/tests/adapters.rs:279 (opens folders as files on Windows). Only gate is required, so main is green-gated but ci-verde reports FALHA. | check: gh run list -R yujideluca/status-quo -b main -L 1 --json conclusion (since 2026-11-06, #ae85d6)
+- [open item] codex-pbar PB-12 code is on main (wrapper in ~/.local/share/codex-pbar/bin, PATH block in ~/.bashrc), but the live install is not run: the auto-mode classifier blocked editing ~/.bashrc. After Giovanni's OK: codex-task-progress install, then doctor, then check the footer in a new Konsole running codex. | check: codex-task-progress doctor (since 2026-11-06, #469fe1)
 - [open item] Status Quo CPU (2026-11-06): isolated idle instance measured collector 0.29% / 8.6 MB, panel 0.22% / 168 MB = under SQ-23. Live ~2.7% comes from reading other sessions' transcripts (58k dirs under ~/.claude/projects); cause inside the reader not found, not idle cost. Left: ui_e2e + visual check (free screen), Windows installer on real Windows, dnf/pacman/zypper beyond dry-run. | check: systemctl --user is-active status-quo-collector (since 2026-11-06, checked 2026-11-06, #ef80a0)
 - [open item] Radiology: 10 analysis/tools modules still call read_text/write_text without encoding='utf-8'; CuPy init makes the default ASCII (found 2026-11-06 via literature_cases test). Fix with a test each. | check: grep -nE '\.(read_text|write_text)\(' analysis/*.py tools/*.py | grep -vc encoding (since 2026-11-06, checked 2026-11-06, #dc0027)
 - [open item] Translation check (2026-11-06): burn timer re-enabled by Giovanni; next fire 2026-11-12 13:38 -03 (24 h before weekly budget renews). Daily trickle still on. ~2,863 p1 reviews pending; fix --yes not run; wiki pages not written. | check: systemctl --user is-enabled translation-check-burn.timer (since 2026-11-06, #8132b8)

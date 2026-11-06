@@ -1,9 +1,10 @@
 # Rules tagged troubleshooting
 
-Generated 2026-11-06 from 833 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 838 events. Do not edit: record changes as events.
 
 debugging, testing, fixing findings, proving that it works
 
+- [ci.required-jobs] Every CI job that checks a requirement must be a required check on main, and a push is done only when all its jobs are green, not just the required one. Lesson 2026-11-06: status-quo's windows job (SQ-36) stayed red from b701cda unnoticed because only gate was required. (#ea94f4)
 - [status-quo.e2e] After every major Status Quo tray change, repeat the manual pass on the real desktop, update crates/desktop/tests/e2e/manual-baseline.json and desktop_e2e.rs, and run tools/ui_e2e.sh (it needs a free screen: STATUS_QUO_E2E_SCREEN_IS_FREE=1, never while Giovanni uses the screen). (#87315b)
 - [work.acceptance-evidence] Correction after repeated false completion claims: define success as the user's observable outcome before acting. Configuration, installation and passing component tests do not prove that outcome. Verify the actual execution path and visible behavior; if inaccessible, state precisely what remains unverified and keep the task incomplete. Investigate available evidence before asking the user; perform authorized routine work yourself. Lead reports with the result, evidence and remaining limitation in plain language. (#b80e0e)
 - [work.dedication] DEDICATION (core principle, every task): save Giovanni work, never give them work. Half-done work is never acceptable (it caused the 2026-11-04 workflow failure).

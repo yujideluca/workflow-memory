@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-06 from 833 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 838 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -110,3 +110,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 3 FOLLOW the existing rules for the task kind unprompted (mem rules TAG: phone test, debug pass, wiki). A broken rule is a defect I report and fix.
 4 IF A CHECK is too costly, slow, token-heavy or unsafe: tell Giovanni openly what I skipped, why, cost/risk, my recommendation. Never skip silently or report a skipped check as passed.
 5 BEFORE REPORTING compare the result with each requirement; state plainly what is done, not done, unchecked. (user)
+- [global] ci.required-jobs: Every CI job that checks a requirement must be a required check on main, and a push is done only when all its jobs are green, not just the required one. Lesson 2026-11-06: status-quo's windows job (SQ-36) stayed red from b701cda unnoticed because only gate was required. (user)

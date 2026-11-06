@@ -1,12 +1,13 @@
 # Rules tagged git
 
-Generated 2026-11-06 from 833 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 838 events. Do not edit: record changes as events.
 
 branches, commits, repos, GitHub
 
 - ... (#5450a5)
 - ... (#8debe2)
 - ... (#ba132b)
+- [ci.required-jobs] Every CI job that checks a requirement must be a required check on main, and a push is done only when all its jobs are green, not just the required one. Lesson 2026-11-06: status-quo's windows job (SQ-36) stayed red from b701cda unnoticed because only gate was required. (#ea94f4)
 - [git.no-force-push] Never force-push. (#d6931b)
 - [pipeline-check.merge-block] Merges to main are blocked by the local pre-push check (pipeline-check --pre-push, hook in tools/hooks, enabled with git config core.hooksPath tools/hooks) because private repositories on the free GitHub plan cannot use branch protection; pipeline-check is public so CI needs no token (decided 2026-10-24). (#eba53a)
 - [repos.public] Repos that need branch protection are public, because GitHub Free has no protection on private repos. german-quiz, remote-terminal, wiki, workflow-memory and processing-sketches were made public on 2026-10-25 after a clean secret scan. (#d52b3e)
