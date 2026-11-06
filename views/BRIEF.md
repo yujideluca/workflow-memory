@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-06 from 747 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 750 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
@@ -23,8 +23,8 @@ Rules are tagged by kind of task. Before a task of one of these kinds, fetch `vi
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Status Quo wallpaper colours (SQ-37, 2026-11-06) done and wiki published; status-quo tree still uncommitted (incl. docs/TRACEABILITY.md, which the gate wants committed); ui_e2e.sh not run; Windows/GNOME not run on real systems | check: cd ~/dev/status-quo && git status --short | grep -c . (since 2026-11-06, #6dff46)
 - [open item] Translation check (2026-11-06): burn timer disabled and the running burn stopped by Giovanni; only the daily trickle (04:00, 40 calls) stays on. ~2,863 p1 reviews pending. Re-enable weekly burn only on Giovanni's word: systemctl --user enable --now translation-check-burn.timer. fix --yes not run. Wiki pages for it not written. | check: systemctl --user is-enabled translation-check-trickle.timer (since 2026-11-06, #308326)
-- [open item] Wiki status-quo pages (en/de/pt-BR) updated with the GPU counter test and stale-adapter fix (2026-11-06); wiki publish refused because another session's pages wiki-frontend and wiki-map-view are stale (Touch.elm). Publish when they are reviewed: wiki publish -m 'status-quo: GPU test with real Windows counters, stale adapter fix'. status-quo and vm-lab changes uncommitted. | check: cd ~/dev/wiki && git status --short content/status-quo*.md | grep -c . (since 2026-11-06, #b7338d)
 - [open item] Wiki map merge (2026-11-06): v6 is merged into ~/dev/wiki main as commits be23e36 and 1a2f508 (gate passes locally; NOT pushed, NOT installed). Next with Giovanni's go: push via a CI branch (work.single-branch), wait for the green gate, then tools/install.sh and a first-line check in Chrome. Two foreign uncommitted files stay in the tree: server/lib/wiki/content/stale.ex, server/mix.lock. Open question: zoom raster time +60..75 % (cause not found). Backup: git tag backup/dy8-snapshot-before-v6,… (since 2026-11-06, #62d1eb)
 - [open item radiology] Radiology matcher (2026-11-05): T1, S3b done; v1 and v4 scored on test half (v4 below v1 in EN/DE/PT). Next: S3 Giovanni reviews filler result (empty final list) and dangerous misses; S1 v2/v3 after Codex budget (2026-11-06 12:30, C3-C5); rerun labels/sets after the 21k pending cases are translated; memory: heavy jobs one at a time. Nothing committed in radiology-crawler. | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | grep 'S1' (since 2026-11-05, checked 2026-11-06, #3acbe3)
 - [open item] Radiology matcher (2026-11-05): age fix (AN-24/25/26), v4 re-tuned (defaults kept), age hint tested and left off (AN-27). Next: Giovanni reviews dangerous-miss sample (draft levels); score corrected v4 once on new cases after L1d (21k pending cases); v2/v3 after Codex budget 2026-11-06 12:30; DE/PT LLM age tags not made. Nothing committed in radiology-crawler (docs/TRACEABILITY.md regenerated). | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | grep 'S1' (since 2026-11-05, checked 2026-11-06, #da69a2)
