@@ -1,6 +1,6 @@
 # Rules tagged docs-memory
 
-Generated 2026-11-06 from 760 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 820 events. Do not edit: record changes as events.
 
 wiki pages, memory entries, closing a task
 
@@ -12,8 +12,15 @@ wiki pages, memory entries, closing a task
 - [policy.third-party-data] Never store clinical, secret or contact data about other people in memory. If a case needs it, Giovanni will ask for a specific procedure. (#e91444)
 - [repos.workflow-memory-unprotected] workflow-memory is intentionally without branch protection: its mem job pushes derived files to main with the built-in token and a required check rejects that push (simulation 2026-10-25). Local pre-push check stands in; pipeline-check.toml has protection_exception, so protecao-de-branch is an accepted aviso there, not a failure. (#b68bd7)
 - [wiki.coauthor-trailer] wiki publish adds a Co-Authored-By line only from --co-author 'Name <email>' (or WIKI_CO_AUTHOR): pass the exact attribution line your own session was given, none if you have none. Never a fixed model name. (#3cb16b)
-- [wiki.complete-skill-content] In the wiki project, every skill page must contain the complete source SKILL.md description and instructions, not a shortened summary. The page-generation trigger and writer must locate and read the complete source before writing, and keep the full content on the page and its language versions. (#6c66aa)
+- [wiki.complete-skill-content] In the wiki project, every skill page must contain the complete source SKILL.md description and instructions, not a shortened summary. The page-generation trigger and writer must locate and read the complete source before writing, and keep the full content on the page (the wiki is English only). (#ceb14e)
+- [wiki.english-only] Decided by Giovanni 2026-11-06: the wiki is exclusively English. One file per page, content/<id>.md; never write .de, .pt-BR or any other language version (wiki check refuses it and says to delete the file); the interface has no language switch. Supersedes the three-language rule of ADR-0004. Record: ~/dev/wiki/docs/adr/0011-english-only.md. Old state: git tag backup/before-english-only in ~/dev/wiki. (#d2fbfc)
 - [wiki.plain-language] Wiki pages must help someone with no previous knowledge of the system or its technical language: define a term where it first appears, link complex terms to a definition, spell out an acronym or abbreviation at its first use on each page, and let a skill page carry the skill's own definition. (#29b55a)
+- [work.dedication] DEDICATION (core principle, every task): save Giovanni work, never give them work. Half-done work is never acceptable (it caused the 2026-11-04 workflow failure).
+1 FINISH: done = the user's observable outcome was seen working (real path/device), not just tests or installed. No loose ends or next steps I could do myself.
+2 CHECK BEFORE CLAIMING: never say a file/tool/device does not exist, is unavailable or impossible unless I ran the check this session (ls, which, adb devices, --help, a real attempt). Never say works/done/verified without running it and reading the output. Else say 'not checked'.
+3 FOLLOW the existing rules for the task kind unprompted (mem rules TAG: phone test, debug pass, wiki). A broken rule is a defect I report and fix.
+4 IF A CHECK is too costly, slow, token-heavy or unsafe: tell Giovanni openly what I skipped, why, cost/risk, my recommendation. Never skip silently or report a skipped check as passed.
+5 BEFORE REPORTING compare the result with each requirement; state plainly what is done, not done, unchecked. (#7568c0)
 - [work.encode-decisions] A decision stated once must be encoded where it takes effect, not only logged; Giovanni should never have to repeat it. (#c6e422)
 - [work.no-retired-refs] A retired protocol or tool is not named in anything that works today (skills, CLAUDE.md, memory, READMEs, scripts); only history (ADRs, decision logs, the wiki page of the retired thing) may mention it. (#7ec2df)
 - [work.troubleshoot-documentation] Investigate documentation failures before declaring them blocked. Prefer an isolated committed worktree and narrow reconciliation that preserves other sessions’ edits; do not treat a dirty wiki tree alone as the end of troubleshooting. (#0d1cfd)
