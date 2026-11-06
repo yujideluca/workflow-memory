@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-06 from 758 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 760 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
@@ -10,10 +10,10 @@ Rules are tagged by kind of task. Before a task of one of these kinds, fetch `vi
 - deploy (19): installing, releasing, changing configuration, outward-facing or destructive acts
 - troubleshooting (8): debugging, testing, fixing findings, proving that it works
 - coding (18): starting, designing or changing code; choosing tools
-- reporting (8): how to answer, explain and report results or mistakes
+- reporting (7): how to answer, explain and report results or mistakes
 - git (13): branches, commits, repos, GitHub
 - docs-memory (13): wiki pages, memory entries, closing a task
-- device (11): phone, adb, browser, Telegram
+- device (10): phone, adb, browser, Telegram
 - quiz (4): QuizApp and QuizWeb
 - radiology (13): radiology report matcher and crawler
 - german (2): German exam practice and corrections
@@ -23,6 +23,7 @@ Rules are tagged by kind of task. Before a task of one of these kinds, fetch `vi
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Wiki map: frame times on the real phone (Chrome DevTools over adb forward, rule work.test-ui-on-phone #c6d902) not measured; the work was reported as done without it (2026-11-06) | check: cd ~/dev/wiki-bench && ls globe/results | grep -i phone (since 2026-11-06, #4f1c09)
 - [open item] Status Quo wallpaper colours (SQ-37, 2026-11-06) done and wiki published; status-quo tree still uncommitted (incl. docs/TRACEABILITY.md, which the gate wants committed); ui_e2e.sh not run; Windows/GNOME not run on real systems | check: cd ~/dev/status-quo && git status --short | grep -c . (since 2026-11-06, #6dff46)
 - [open item] Translation check (2026-11-06): burn timer disabled and the running burn stopped by Giovanni; only the daily trickle (04:00, 40 calls) stays on. ~2,863 p1 reviews pending. Re-enable weekly burn only on Giovanni's word: systemctl --user enable --now translation-check-burn.timer. fix --yes not run. Wiki pages for it not written. | check: systemctl --user is-enabled translation-check-trickle.timer (since 2026-11-06, #308326)
 - [open item] Wiki map merge (2026-11-06): v6 is merged into ~/dev/wiki main as commits be23e36 and 1a2f508 (gate passes locally; NOT pushed, NOT installed). Next with Giovanni's go: push via a CI branch (work.single-branch), wait for the green gate, then tools/install.sh and a first-line check in Chrome. Two foreign uncommitted files stay in the tree: server/lib/wiki/content/stale.ex, server/mix.lock. Open question: zoom raster time +60..75 % (cause not found). Backup: git tag backup/dy8-snapshot-before-v6,… (since 2026-11-06, #62d1eb)
