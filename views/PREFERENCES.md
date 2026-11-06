@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-06 from 756 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 757 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -104,3 +104,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] -: ... (agent)
 - [global] -: ... (agent)
 - [global] work.codex-back: Codex is live again (Giovanni 2026-11-06): run radiology steps C2-C5 with many parallel codex exec sessions, model gpt-6.1-sol wherever a Sonnet-class worker would be used; each session fresh --ephemeral under 250k tokens; heavy local jobs one at a time under flock /tmp/radiology-heavy.lock. (user)
+- [global] verify-before-saying-cannot: Never say a device, tool or access is unavailable before running the check (adb devices, which, --help). 'Cannot' is a claim that needs evidence like any other. (user)

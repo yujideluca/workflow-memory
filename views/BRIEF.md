@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-06 from 756 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 757 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
@@ -10,10 +10,10 @@ Rules are tagged by kind of task. Before a task of one of these kinds, fetch `vi
 - deploy (19): installing, releasing, changing configuration, outward-facing or destructive acts
 - troubleshooting (8): debugging, testing, fixing findings, proving that it works
 - coding (18): starting, designing or changing code; choosing tools
-- reporting (7): how to answer, explain and report results or mistakes
+- reporting (8): how to answer, explain and report results or mistakes
 - git (13): branches, commits, repos, GitHub
 - docs-memory (13): wiki pages, memory entries, closing a task
-- device (10): phone, adb, browser, Telegram
+- device (11): phone, adb, browser, Telegram
 - quiz (4): QuizApp and QuizWeb
 - radiology (13): radiology report matcher and crawler
 - german (2): German exam practice and corrections

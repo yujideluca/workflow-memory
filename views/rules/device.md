@@ -1,6 +1,6 @@
 # Rules tagged device
 
-Generated 2026-11-06 from 756 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 757 events. Do not edit: record changes as events.
 
 phone, adb, browser, Telegram
 
@@ -10,6 +10,7 @@ phone, adb, browser, Telegram
 - [device.phone] Giovanni's phone is a Motorola edge 50 fusion, driven over adb for app tests. (#109c32)
 - [telegram] To send via Telegram use the tg-send bot (tg-send -f FILE caption), never the phone app; read ~/.local/bin/tg-send, it has no --help (any argument is sent as a message). Messages arrive in the 'Claude code bridge' chat (@Claude_1123bot), NOT Saved Messages: always tell Giovanni to check that chat. (#f53934)
 - [tool.telegram-send] To send Giovanni a message or file, run tg-send "text" or tg-send -f FILE [caption] on the Acer (bot @Claude_1123bot, one-way, only to Giovanni's saved chat; token in ~/.config/telegram-bot, never in memory). Files up to 50 MB. Telegram bots are not end-to-end encrypted: send no patient data. Unprompted messages need Giovanni's go-ahead per kind. (#5a89a4)
+- [verify-before-saying-cannot] Never say a device, tool or access is unavailable before running the check (adb devices, which, --help). 'Cannot' is a claim that needs evidence like any other. (#ac724d)
 - [work.phone-stay-awake] Giovanni's phone must stay awake for other projects: never turn off or change its stay-awake setting (svc power stayon, stay_on_while_plugged_in, screen timeout). If a test needs the screen on, only send a wake key; read a device setting before changing it and put back exactly what was there. (#c64de9)
 - [work.phone-stay-awake-ac] Giovanni asked on 2026-10-29 that the test phone's screen stop closing: stay_on_while_plugged_in was 2 (USB only), now 3 (AC+USB). Screen timeout (60 s) unchanged. Still never turn stay-awake off. (#81b65f)
 - [work.test-ui-on-phone] Test any phone-facing web UI on Giovanni's real phone (Motorola, adb), not only in a narrowed desktop browser: serve the build with adb reverse and read frame times with Chrome DevTools over adb forward; the public wiki address needs Giovanni's own Google sign-in, so do not sign in for them. (#c6d902)
