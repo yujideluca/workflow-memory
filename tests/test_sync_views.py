@@ -87,6 +87,34 @@ class SyncViews(unittest.TestCase):
         self.assertFalse(any("push" in call.args[1:] for call in calls.call_args_list), calls.call_args_list)
         self.assertIn(str(f.relative_to(self.me)), git(self.me, "diff", "--name-only", "--diff-filter=U").splitlines())
 
+    def _bot_pushes_event(self, key):
+        mem(self.bot, "add", "--type", "note", "--owner", "user", "--key", key, "other writer")
+        git(self.bot, "add", "events"); git(self.bot, "commit", "-qm", key); git(self.bot, "push", "-q")
+
+    def test_pull_and_push_do_not_depend_on_fetch_head(self):
+        # Several sessions start at once and each hook pulls the same clone. `git pull` merges whatever is in
+        # .git/FETCH_HEAD, which concurrent fetches append to, so it failed with "Cannot fast-forward to multiple
+        # branches". sync must work from the remote-tracking branch instead; an unwritable FETCH_HEAD proves it.
+        self._bot_pushes_event("t.one")
+        fetch_head = self.me / ".git" / "FETCH_HEAD"
+        if fetch_head.exists():
+            fetch_head.unlink()
+        fetch_head.mkdir()
+        self.assertEqual(sync.pull(self.me), "pulled")
+        self.assertEqual(git(self.me, "rev-parse", "HEAD"), git(self.bot, "rev-parse", "HEAD"))
+        self._bot_pushes_event("t.two")
+        mem(self.me, "add", "--type", "note", "--owner", "user", "--key", "t.mine", "mine")
+        self.assertEqual(sync.push(self.me, retries=0, sleep=lambda s: None), "pushed")
+        self.assertEqual(git(self.me, "rev-list", "--count", "HEAD..@{u}").strip(), "0")
+
+    def test_concurrent_pulls_of_one_clone_all_succeed(self):
+        from concurrent.futures import ThreadPoolExecutor
+        self._bot_pushes_event("t.one")
+        with ThreadPoolExecutor(4) as pool:
+            results = list(pool.map(lambda _: sync.pull(self.me), range(4)))
+        self.assertEqual(results, ["pulled"] * 4)
+        self.assertEqual(git(self.me, "rev-parse", "HEAD"), git(self.bot, "rev-parse", "HEAD"))
+
 
 if __name__ == "__main__":
     unittest.main()

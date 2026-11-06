@@ -82,6 +82,9 @@ key is heuristic ("use pnpm" and "use o pnpm" do not match); that errs toward tw
   promote habits, rebuild views, commit.
 - Claude Code: hooks (`bin/mem install-hooks`). SessionStart pulls and prints the brief, UserPromptSubmit
   harvests preferences (prints nothing), Stop pushes new events. Offline it commits locally and pushes later.
+  Sessions often start together on one clone, so `mem/sync.py` lets one sync at a time work on it (a lock file in
+  the git folder, waited on for at most 15 s) and never uses `git pull` (it fetches without FETCH_HEAD and merges
+  or rebases onto the upstream branch).
 - Claude app: a pointer in Settings (see `docs/CLAUDE-AI.md`) makes each chat read `views/BRIEF.md` through the
   GitHub connector, and the end of that file explains how to record a correction.
 
@@ -146,6 +149,7 @@ Newest first. **Type** is the ISO/IEC/IEEE 14764 category (corrective, adaptive,
 
 | Date | Type | Decision | Why |
 |---|---|---|---|
+| 2026-11-06 | Corrective | **Sync without `git pull`, one at a time per clone** (`mem/sync.py`; tests `test_pull_and_push_do_not_depend_on_fetch_head`, `test_concurrent_pulls_of_one_clone_all_succeed`). `pull` is `fetch --no-write-fetch-head` + `merge --ff-only @{u}`, `push` rebases with `fetch` + `rebase --autostash` (pull --rebase without FETCH_HEAD); both run under a `flock` on `.git/mem-sync.lock`, and a failed fetch is tried once more. | Session start showed "memory may be stale: pull skipped: fatal: Cannot fast-forward to multiple branches.": concurrent hook fetches append to FETCH_HEAD, which `git pull` then merges (4 concurrent pulls on a test clone failed 80 of 80 times; also two fetches moving origin/main at once, and two merges in one working tree). |
 | 2026-11-05 | Corrective | **Rule tags** ([ADR-0007](adr/0007-rule-tags.md)): every rule carries kinds of task; start-up prints the `always` rules and an index (about 1.7 KB instead of 17 KB); `mem rules TAG` prints the full wording; all 85 rules migrated with `mem tag`; the chat app gets `views/rules/TAG.md` | On 2026-11-04 the rules that would have stopped agent-guard existed but never reached the sessions: the harness shows only the first 2 KB of a 17 KB brief |
 | 2026-10-25 | Adaptive | **workflow-memory stays without branch protection; documented as an exception** (pipeline-check v0.5.0, PC-16). The repository is public, but a simulation showed that a required `gate` check rejects the push of the `mem` job (`GH006 Required status check "gate" is expected`), because that job pushes derived files to `main` with the built-in token and GitHub does not let that bot bypass a rule on a personal account. Giovanni chose to keep the local pre-push check (`tools/hooks/pre-push`) and to record the exception in `pipeline-check.toml` (`protection_exception`), so `protecao-de-branch` is `aviso` with the reason, not `falha`. Not chosen: a personal access token for the job (a secret to renew), a separate branch for derived files (changes how every reader gets the views). | A gap accepted on purpose must stay visible and written where the check reads it. |
 | 2026-10-25 | Preventive | **Monthly architecture review**: pipeline-check v0.4.0, local mode, report of 2026-10-25: 0 falhas, 0 avisos, 1 pulado (protecao-de-branch); 1 proposal; proposals created as pipeline-check#4 | Monthly review standard (ADR-0013): the program measures, the skill judges |
