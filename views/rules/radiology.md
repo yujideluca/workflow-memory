@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-06 from 753 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 755 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -16,3 +16,4 @@ radiology report matcher and crawler
 - [radiology.haiku-translation] 2026-11-03: 10 Haiku workers (translate.py loop --backend haiku --worker I/10) translate the case backlog beside the 4 Codex workers; rows tagged model='claude-haiku' in the same translations table; stop with data/STOP_TRANSLATION. (#d44ea4)
 - [radiology.haiku-workers] Radiology translator: run 5 Haiku workers (--worker I/5), not 10 (Giovanni, 2026-11-03) (#3a5938)
 - [radiology.translation-rate] Radiology crawler: translate (Codex) at the same rate as extraction, no daily cap; a cap would make it take too long. (#0c7d90)
+- [work.codex-back] Codex is live again (Giovanni 2026-11-06): run radiology steps C2-C5 with many parallel codex exec sessions, model gpt-6.1-sol wherever a Sonnet-class worker would be used; each session fresh --ephemeral under 250k tokens; heavy local jobs one at a time under flock /tmp/radiology-heavy.lock. (#4820c7)

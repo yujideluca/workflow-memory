@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-06 from 753 events. Do not edit: record changes as events.
+Generated 2026-11-06 from 755 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
@@ -15,10 +15,10 @@ Rules are tagged by kind of task. Before a task of one of these kinds, fetch `vi
 - docs-memory (13): wiki pages, memory entries, closing a task
 - device (10): phone, adb, browser, Telegram
 - quiz (4): QuizApp and QuizWeb
-- radiology (12): radiology report matcher and crawler
+- radiology (13): radiology report matcher and crawler
 - german (2): German exam practice and corrections
 - status-quo (1): the Status Quo tray
-- codex (3): work done by Codex
+- codex (4): work done by Codex
 
 ## Open items
 
