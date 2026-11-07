@@ -1,6 +1,6 @@
 # Rules tagged coding
 
-Generated 2026-11-07 from 900 events. Do not edit: record changes as events.
+Generated 2026-11-07 from 905 events. Do not edit: record changes as events.
 
 starting, designing or changing code; choosing tools
 
@@ -26,4 +26,5 @@ starting, designing or changing code; choosing tools
 - [work.no-agent-guard] Giovanni does not want agent-guard or any taskmaster/guard system that removes Claude's own tools. It was removed on 2026-11-04 after it locked sessions (lessons: ~/guard-incident-notes/LESSONS.md). Do not propose or rebuild it. (#22f752)
 - [work.no-qwen] Local Qwen is not part of the workflow: do not use or propose it for coding or delegation. Its files were deleted 2026-10-21. (#1eac59)
 - [work.no-retired-refs] A retired protocol or tool is not named in anything that works today (skills, CLAUDE.md, memory, READMEs, scripts); only history (ADRs, decision logs, the wiki page of the retired thing) may mention it. A system must read as if it had been designed this way from the start: one consistent scope document, no traces of discarded designs in code, policy or docs (rewrite as much as needed). (#74029a)
+- [work.requirement-ids] Requirement IDs are two capital letters, a dash and the next free number (AN-29). When a task for Codex or a subagent will add requirement rows, give it its IDs in the prompt: the next free numbers, a separate block per task when several run in parallel (V2 gets AN-29..31, C5 AN-32..35). Never invent sub-schemes like AN-V2-1 or C4-CLIN-1. A research report adds no requirement row. Lesson 2026-11-07: three parallel radiology tasks got AN-V2-*, AN-C5-*, C4-CLIN-* from my prompt; the pinned checker skipped them silently and V2 could not be pushed. pipeline-check v0.7.0 now refuses such IDs. (#f13b46)
 - [work.shared-tools] A tool used by more than one project lives once, in its own repository, and is consumed by pinned version, never copied (example: pipeline-check, github.com/yujideluca/pipeline-check). (#34b423)

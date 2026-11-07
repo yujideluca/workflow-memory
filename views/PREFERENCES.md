@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-07 from 900 events. Do not edit: record changes as events.
+Generated 2026-11-07 from 905 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -99,3 +99,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] release.promote: A version may be promoted to the user channel once it survives the automated tests updated for what it changes (gate with mutation + tests changed with the code); then promoting is Giovanni's decision. No minimum time in beta; do not argue for one. (user)
 - [global] release.pool-promote: Question-pool updates (tools/data, i18n) that pass the automated pipeline (gate + mutation check, then beta) may be promoted to the stable app and the web version without asking again; app code releases still need Giovanni's go-ahead (2026-10-25). (user)
 - [global] git.no-force-push: Never force-push. (user)
+- [global] work.requirement-ids: Requirement IDs are two capital letters, a dash and the next free number (AN-29). When a task for Codex or a subagent will add requirement rows, give it its IDs in the prompt: the next free numbers, a separate block per task when several run in parallel (V2 gets AN-29..31, C5 AN-32..35). Never invent sub-schemes like AN-V2-1 or C4-CLIN-1. A research report adds no requirement row. Lesson 2026-11-07: three parallel radiology tasks got AN-V2-*, AN-C5-*, C4-CLIN-* from my prompt; the pinned checker skipped them silently and V2 could not be pushed. pipeline-check v0.7.0 now refuses such IDs. (user)

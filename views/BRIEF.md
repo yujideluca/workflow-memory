@@ -1,13 +1,13 @@
 # Memory brief
 
-Generated 2026-11-07 from 900 events. Do not edit: record changes as events.
+Generated 2026-11-07 from 905 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
 - deploy (11): installing, releasing, changing system, service or tool configuration
 - outward (5): acts others see or cannot undo: sending email or messages, purchases, publishing, deleting
 - troubleshooting (8): debugging, testing, fixing findings, proving that it works
-- coding (18): starting, designing or changing code; choosing tools
+- coding (19): starting, designing or changing code; choosing tools
 - reporting (6): how to answer, explain and report results or mistakes
 - git (11): branches, commits, repos, GitHub
 - docs-memory (13): wiki pages, memory entries, closing a task
@@ -16,13 +16,12 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 - radiology (12): radiology report matcher and crawler
 - german (4): German exam practice and corrections
 - status-quo (1): the Status Quo tray
-- codex (1): work done by Codex
+- codex (2): work done by Codex
 
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item radiology] Radiology C4/C5 work is still uncommitted (another task: TC-1..4, translation_check, literature_cases). Its wrong IDs were renamed in the working tree 2026-11-07 (AN-C5-1..4 -> AN-32..35, C4-CLIN-1 -> AN-36; backup ~/rad-wip-backup-20261107). With pipeline-check v0.6.0 AN-36 (research report, D row) has no test: add one or drop the row, then commit by area and push. | check: cd ~/dev/radiology-crawler && git status --short docs/REQUIREMENTS.md tests/test_literature_cases.py | wc -l (since 2026-11-07, #ae8101)
-- [open item] pipeline-check v0.6.0 (PC-17: malformed requirement IDs fail) is used only by radiology-crawler; 11 projects still pin v0.5.0, which skips bad IDs silently. All 8 of them with traceability pass v0.6.0 at HEAD (checked 2026-11-07). Bump each pin after its gate passes, on Giovanni's OK. | check: grep -L v0.6.0 ~/dev/{QuizApp,QuizWeb,wiki,workflow-memory,project-template,status-quo,codex-pbar,codex-skills,processing-sketches,remote-terminal,machine-bootstrap}/pipeline-check.version | wc -l (since 2026-11-07, #ab719a)
+- [open item radiology] Radiology C4/C5/TC work is still uncommitted (another task; not committed on purpose). Its IDs are fixed (AN-C5-1..4 -> AN-32..35; the C4 research row AN-36 removed: a report makes no software promise) and v0.8.0 traceability passes (63 requirements, 170 tests). Before committing: docs/c5-sample-check.md holds case text (keep it out of git, under data/) and waits for Giovanni's manual review. Backup ~/rad-wip-backup-20261107. | check: cd ~/dev/radiology-crawler && git status --short docs/REQUIR… (since 2026-11-07, #639772)
 - [open item] Old /tmp leftovers (bench-profile, content*, pc-*, sq-*, agent-guard-*; ~2.6 GB of RAM) await Giovanni running /tmp/claude-1000/-home-yuji/12701050-fa4c-4c9f-957f-babe40c23afc/scratchpad/cleanup-and-install.sh (classifier blocked the delete even after his OK); causes fixed 2026-11-07 | check: ls -d /tmp/bench-profile-* /tmp/content[0-9]* /tmp/pc-* /tmp/sq-* /tmp/agent-guard-* 2>/dev/null | wc -l (since 2026-11-07, #5059dc)
 - [open item] publish_content.sh promote pushes the web pool straight to QuizWeb main, which GitHub protects (test check): the push is rejected. Change it to push a branch, wait for CI, then fast-forward main. | check: grep -n 'HEAD:main' ~/dev/QuizApp/tools/publish_content.sh (since 2026-11-07, #0425a0)
 - [open item] codex-pbar PB-12 code is on main (wrapper in ~/.local/share/codex-pbar/bin, PATH block in ~/.bashrc), but the live install is not run: the auto-mode classifier blocked editing ~/.bashrc. After Giovanni's OK: codex-task-progress install, then doctor, then check the footer in a new Konsole running codex. | check: codex-task-progress doctor (since 2026-11-06, #469fe1)
