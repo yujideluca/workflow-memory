@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-07 from 848 events. Do not edit: record changes as events.
+Generated 2026-11-07 from 851 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
@@ -23,7 +23,7 @@ Rules are tagged by kind of task. Before a task of one of these kinds, fetch `vi
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] QuizApp 2.9.0 + pool 9 (FSP script format, per-step streak) built, gated, beta published and tested on phone; promote (publish_content.sh beta/promote, publish_apk.sh promote) and QuizWeb push of branch web-2.9.0 await Giovanni's OK (classifier blocked) | check: cd ~/dev/QuizWeb && git log origin/main..web-2.9.0 --oneline | wc -l (since 2026-11-07, #e776f3)
+- [open item] publish_content.sh promote pushes the web pool straight to QuizWeb main, which GitHub protects (test check): the push is rejected. Change it to push a branch, wait for CI, then fast-forward main. | check: grep -n 'HEAD:main' ~/dev/QuizApp/tools/publish_content.sh (since 2026-11-07, #0425a0)
 - [open item] codex-pbar PB-12 code is on main (wrapper in ~/.local/share/codex-pbar/bin, PATH block in ~/.bashrc), but the live install is not run: the auto-mode classifier blocked editing ~/.bashrc. After Giovanni's OK: codex-task-progress install, then doctor, then check the footer in a new Konsole running codex. | check: codex-task-progress doctor (since 2026-11-06, #469fe1)
 - [open item] Status Quo CPU (2026-11-06): isolated idle instance measured collector 0.29% / 8.6 MB, panel 0.22% / 168 MB = under SQ-23. Live ~2.7% comes from reading other sessions' transcripts (58k dirs under ~/.claude/projects); cause inside the reader not found, not idle cost. Left: ui_e2e + visual check (free screen), Windows installer on real Windows, dnf/pacman/zypper beyond dry-run. | check: systemctl --user is-active status-quo-collector (since 2026-11-06, checked 2026-11-06, #ef80a0)
 - [open item] Radiology: 10 analysis/tools modules still call read_text/write_text without encoding='utf-8'; CuPy init makes the default ASCII (found 2026-11-06 via literature_cases test). Fix with a test each. | check: grep -nE '\.(read_text|write_text)\(' analysis/*.py tools/*.py | grep -vc encoding (since 2026-11-06, checked 2026-11-06, #dc0027)
