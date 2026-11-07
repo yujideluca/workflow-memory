@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-07 from 862 events. Do not edit: record changes as events.
+Generated 2026-11-07 from 864 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
@@ -23,6 +23,7 @@ Rules are tagged by kind of task. Before a task of one of these kinds, fetch `vi
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item radiology] Radiology V2 (C3) committed locally as b2dcc68, not pushed: gate fails at traceability (other uncommitted TC/C5 rows; pinned pipeline-check v0.5.0 ignores AN-V2-* compound IDs). Next: fix traceability, push, then score V2 once on the new half (S1). | check: cd ~/dev/radiology-crawler && git log origin/main..main --oneline | grep -c C3 (since 2026-11-07, #9ef4e7)
 - [open item] Radiology V2 completion: pinned pipeline-check v0.5.0 traceability accepts only XX-digits, silently omits AN-V2-1..3. Explicit V2 rows committed as requested; regeneration removes them. Shared parser fix outside V2 scope. Full tests 170 passed, 3 expected encoding failures; gate fails traceability diff. | check: rg -n 'fn is_id_at|b\[2\]' ~/.cache/pipeline-check/v0.5.0/src/traceability.rs (since 2026-11-07, #f12461)
 - [open item] Radiology V2 English wiki update prepared and wiki check --local passed (211 pages). Left uncommitted/unpublished because this task explicitly says do not push; other wiki server edits untouched. | check: git -C ~/dev/wiki status --short -- content/radiology-v2.md content/radiology-analysis.md content/radiology-report-matcher.md (since 2026-11-07, #80a9b5)
 - [open item] Old /tmp leftovers (bench-profile, content*, pc-*, sq-*, agent-guard-*; ~2.6 GB of RAM) await Giovanni running /tmp/claude-1000/-home-yuji/12701050-fa4c-4c9f-957f-babe40c23afc/scratchpad/cleanup-and-install.sh (classifier blocked the delete even after his OK); causes fixed 2026-11-07 | check: ls -d /tmp/bench-profile-* /tmp/content[0-9]* /tmp/pc-* /tmp/sq-* /tmp/agent-guard-* 2>/dev/null | wc -l (since 2026-11-07, #5059dc)
