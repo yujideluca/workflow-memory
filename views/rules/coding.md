@@ -1,6 +1,6 @@
 # Rules tagged coding
 
-Generated 2026-11-07 from 851 events. Do not edit: record changes as events.
+Generated 2026-11-07 from 854 events. Do not edit: record changes as events.
 
 starting, designing or changing code; choosing tools
 
@@ -8,6 +8,7 @@ starting, designing or changing code; choosing tools
 - [matcher.hardware] Radiology matcher (2026-10-29): the engine and the statistical analysis must use multithreading and the GPU for calculation when the hardware supports it, with a CPU fallback giving the same results. Recorded in ADR-0002 amendment, CLAUDE.md principle 9 and docs/modelling-directives.md section 3b; requirement EN-2 is added with its test in the first engine commit. (#305e74)
 - [matcher.languages] Radiology report matcher stack, decided by Giovanni 2026-10-27: small tools in Python; website back end in Elixir (SQLite search); front end in Elm; the statistical math and the word-to-input matching must be high-speed numerical code (Cython, NumPy, C libraries as needed), NEVER plain-Python loops: it would be too slow. Never forget this. (#fa927e)
 - [matcher.per-language-models] Radiology matcher: every identification model is built and scored separately for EN, DE and PT-BR; a fast language check routes the report; design the routing pipeline only after all per-language models are tested. (#dfb150)
+- [tests.scratch-folders] Tests never build temp folders by hand (temp_dir()/name-PID, createTempDirectory): /tmp is RAM on the laptop and systemd clears it only after 10 days, and each rerun has a new PID, so leftovers pile up. Use the repo's self-deleting helper (status-quo crates/scratch.rs, pipeline-check tests/common Scratch, JUnit TemporaryFolder in QuizApp); any other temp-folder line must say 'scratch-ok:' and why, which each gate checks. (#81e0d0)
 - [work.ask-language] Before any project that involves coding, ask Giovanni which programming language(s) to use (front end, back end, tools) before designing or writing code; never pick the language yourself. (#459138)
 - [work.ask-with-context] When asking Giovanni about a development decision that is new (not a topic already debated), give clear context first: what is being decided, why, options, and your recommendation. If it involves many steps never discussed, include a flowchart. A badly framed question cannot be answered well. (#d81d44)
 - [work.avoid-fragile-deps] Prefer what a project already depends on (for example elm-visualization) or a small piece of our own code over a small outside package that may be abandoned or break later; a fragile dependency is a bigger long-run problem than writing the code. Ask before adding such a package. (#8ed0ae)

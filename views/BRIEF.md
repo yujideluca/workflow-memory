@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-07 from 851 events. Do not edit: record changes as events.
+Generated 2026-11-07 from 854 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2a978d)
@@ -8,8 +8,8 @@ Memory sets defaults; it never authorizes. Precedence: current instruction > rep
 - [policy.third-party-data] Never store clinical, secret or contact data about other people in memory. If a case needs it, Giovanni will ask for a specific procedure. (#e91444)
 Rules are tagged by kind of task. Before a task of one of these kinds, fetch `views/rules/TAG.md` from the repository (same tools as Recording) and follow its full wording:
 - deploy (20): installing, releasing, changing configuration, outward-facing or destructive acts
-- troubleshooting (10): debugging, testing, fixing findings, proving that it works
-- coding (19): starting, designing or changing code; choosing tools
+- troubleshooting (11): debugging, testing, fixing findings, proving that it works
+- coding (20): starting, designing or changing code; choosing tools
 - reporting (8): how to answer, explain and report results or mistakes
 - git (14): branches, commits, repos, GitHub
 - docs-memory (15): wiki pages, memory entries, closing a task
@@ -23,6 +23,7 @@ Rules are tagged by kind of task. Before a task of one of these kinds, fetch `vi
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Old /tmp leftovers (bench-profile, content*, pc-*, sq-*, agent-guard-*; ~2.6 GB of RAM) await Giovanni running /tmp/claude-1000/-home-yuji/12701050-fa4c-4c9f-957f-babe40c23afc/scratchpad/cleanup-and-install.sh (classifier blocked the delete even after his OK); causes fixed 2026-11-07 | check: ls -d /tmp/bench-profile-* /tmp/content[0-9]* /tmp/pc-* /tmp/sq-* /tmp/agent-guard-* 2>/dev/null | wc -l (since 2026-11-07, #5059dc)
 - [open item] publish_content.sh promote pushes the web pool straight to QuizWeb main, which GitHub protects (test check): the push is rejected. Change it to push a branch, wait for CI, then fast-forward main. | check: grep -n 'HEAD:main' ~/dev/QuizApp/tools/publish_content.sh (since 2026-11-07, #0425a0)
 - [open item] codex-pbar PB-12 code is on main (wrapper in ~/.local/share/codex-pbar/bin, PATH block in ~/.bashrc), but the live install is not run: the auto-mode classifier blocked editing ~/.bashrc. After Giovanni's OK: codex-task-progress install, then doctor, then check the footer in a new Konsole running codex. | check: codex-task-progress doctor (since 2026-11-06, #469fe1)
 - [open item] Status Quo CPU (2026-11-06): isolated idle instance measured collector 0.29% / 8.6 MB, panel 0.22% / 168 MB = under SQ-23. Live ~2.7% comes from reading other sessions' transcripts (58k dirs under ~/.claude/projects); cause inside the reader not found, not idle cost. Left: ui_e2e + visual check (free screen), Windows installer on real Windows, dnf/pacman/zypper beyond dry-run. | check: systemctl --user is-active status-quo-collector (since 2026-11-06, checked 2026-11-06, #ef80a0)
