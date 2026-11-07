@@ -1,6 +1,6 @@
 # Rules tagged deploy
 
-Generated 2026-11-07 from 861 events. Do not edit: record changes as events.
+Generated 2026-11-07 from 862 events. Do not edit: record changes as events.
 
 installing, releasing, changing configuration, outward-facing or destructive acts
 
