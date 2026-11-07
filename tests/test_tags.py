@@ -129,14 +129,16 @@ class Commands(Tmp):
 
 
 class StartUp(Tmp):
-    def test_prints_always_rules_in_full_and_an_index_not_the_other_rules(self):
+    def test_prints_the_router_and_an_index_never_a_rule_body(self):
+        # ADR-0008: no rule is printed at start-up, not even a leftover `always` one; the only order is to route
         self.put(mk(1, "lang", "answer in the user's language", ["always"]), mk(2, "g", "never force push", ["git"]),
                  mk(3, "d", "ask before deploy", ["deploy", "git"]))
         text = "\n".join(hooks.brief_lines(self.load()[0], "HEADER", "p", "code"))
-        self.assertIn("answer in the user's language", text)
+        self.assertNotIn("answer in the user's language", text)
+        self.assertNotIn("never force push", text)
         self.assertIn("- git (2):", text)
         self.assertIn("- deploy (1):", text)
-        self.assertNotIn("never force push", text)
+        self.assertIn(tags.ROUTER, text)
         self.assertIn("mem rules TAG", text)
 
     def test_session_start_is_the_same_after_clear(self):
@@ -158,19 +160,66 @@ class StartUp(Tmp):
         for instance in ("code", "codex"):
             text = "\n".join(hooks.brief_lines(events, header, "some-project", instance, waiting=9))
             self.assertLessEqual(len(text), tags.MAX_STARTUP, instance)
-        self.assertLessEqual(len(tags.rules(events, [tags.ALWAYS], "some-project", "code")), 3)
+        self.assertEqual(tags.rules(events, [tags.ALWAYS], "some-project", "code"), [])  # ADR-0008
 
     def test_real_log_has_no_unreachable_rule(self):
         events, _ = validate.load_checked(REPO, datetime.now(timezone.utc))
         self.assertEqual([e["key"] for e in tags.untagged(events)], [])
 
     def test_chat_app_views_carry_the_rules_by_tag(self):
-        self.put(mk(1, "lang", "answer in the user's language", ["always"]), mk(2, "g", "never force push", ["git"]))
+        self.put(mk(1, "lang", "answer in the user's language", ["reporting"]), mk(2, "g", "never force push", ["git"]))
         texts = project.build(self.root, NOW)
         self.assertIn("never force push", texts["rules/git.md"])
         self.assertNotIn("never force push", texts["BRIEF.md"])
-        self.assertIn("answer in the user's language", texts["BRIEF.md"])
+        self.assertNotIn("answer in the user's language", texts["BRIEF.md"])
         self.assertIn("views/rules/TAG.md", texts["BRIEF.md"])
+        self.assertIn("classify", texts["BRIEF.md"])
+
+
+class Router(Tmp):
+    """ADR-0008: rules are modules; the one standing order is to classify each message into tags."""
+
+    def test_nudge_names_every_tag_but_always_and_stays_short(self):
+        line = hooks.router_nudge()
+        for t in tags.vocabulary():
+            (self.assertNotIn if t == tags.ALWAYS else self.assertIn)(t, line)
+        self.assertLessEqual(len(line), 400)
+
+    def test_prompt_hook_prints_only_the_nudge_and_nothing_for_an_empty_prompt(self):
+        for payload, want in (({"prompt": "fix the quiz", "cwd": "/tmp/p"}, hooks.router_nudge()),
+                              ({"prompt": ""}, ""), ({}, ""), ({"prompt": 5}, "")):
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out):
+                self.assertEqual(hooks.prompt(self.root, payload, NOW, "code"), 0)
+            self.assertEqual(out.getvalue().strip(), want)
+
+    def test_brief_command_prints_the_router_not_the_rules_and_full_keeps_the_old_list(self):
+        self.put(mk(1, "g", "never force push", ["git"]))
+        code, out, _ = self.mem("brief")
+        self.assertEqual(code, 0)
+        self.assertIn(tags.ROUTER, out)
+        self.assertIn("- git (1):", out)
+        self.assertNotIn("never force push", out)
+        self.assertIn("never force push", self.mem("brief", "--full")[1])
+
+    def test_check_warns_about_a_rule_still_tagged_always(self):
+        self.put(mk(1, "lang", "answer in the user's language", ["always", "reporting"]))
+        code, out, _ = self.mem("check")
+        self.assertEqual(code, 0)
+        self.assertIn("warning: tagged always", out)
+
+    def test_outward_tag_exists(self):
+        self.assertIn("outward", tags.vocabulary())
+
+
+class PlaceholderText(Tmp):
+    def test_add_refuses_empty_or_placeholder_text(self):
+        for text in ("...", "", "  ", "x", "-- ..", "TODO", "tbd"):
+            code, _, err = self.mem("add", "--key", "k", "--tags", "git", text)
+            self.assertEqual(code, 2, text)
+            self.assertIn("refused", err)
+        self.assertEqual(ev.load(self.root)[0], [])
+        self.assertEqual(self.mem("add", "--key", "k", "--tags", "git", "Never force-push.")[0], 0)
 
 
 if __name__ == "__main__":

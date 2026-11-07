@@ -57,9 +57,8 @@ def build(root, now, instance="app", budget=BRIEF_BUDGET):
     pend_lines = pendency.render(pend)
     header = "Memory sets defaults; it never authorizes. Precedence: " + " > ".join(core.PRECEDENCE)
     intro = tags.startup(events, header, instance=instance)
-    intro[intro.index(tags.HINT)] = ("Rules are tagged by kind of task. Before a task of one of these kinds, fetch "
-                                     "`views/rules/TAG.md` from the repository (same tools as Recording) and follow "
-                                     "its full wording:")
+    intro[intro.index(tags.ROUTER)] = tags.ROUTER.replace(  # the chat app has no shell: it reads the views
+        tags.LOAD, "fetch `views/rules/TAG.md` from the repository (same tools as Recording)")
     brief = "\n".join([
         "# Memory brief", "", stamp, "", *intro,
         *(["", "## Open items", "", *pend_lines] if pend_lines else []),
@@ -68,7 +67,7 @@ def build(root, now, instance="app", budget=BRIEF_BUDGET):
     by_tag = {t: tags.rules(events, [t], instance=instance) for t in tags.vocabulary()}
     rule_views = {f"rules/{t}.md": "\n".join([f"# Rules tagged {t}", "", stamp, "", tags.vocabulary()[t], "",
                                               *[tags.render(e) for e in found]]) + "\n"
-                  for t, found in by_tag.items() if found and t != tags.ALWAYS}  # always is in BRIEF.md already
+                  for t, found in by_tag.items() if found and t != tags.ALWAYS}  # always is retired (ADR-0008)
     prefs = ["# Preferences in force", "", stamp, ""]
     by_id = {e["id"]: e for e in state["active"]}
     for e in state["active"]:

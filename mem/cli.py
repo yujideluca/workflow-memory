@@ -1,5 +1,6 @@
 """Command line. Every command works on a plain local clone; none needs a server."""
 import argparse
+import re
 import os
 import sys
 from datetime import datetime, timezone
@@ -12,6 +13,15 @@ DEFAULT_ROOT = Path(__file__).resolve().parent.parent
 
 def _now(args):
     return ev.parse_ts(args.now) if getattr(args, "now", None) else datetime.now(timezone.utc)
+
+
+PLACEHOLDERS = {"todo", "tbd", "tba", "fixme", "xxx", "n/a", "na", "none", "null", "placeholder", "rule", "text"}
+
+
+def _placeholder(text):
+    """An entry with no real words (empty, '...', 'TODO'): the 2026-11-05 '...' rules showed the need."""
+    words = re.findall(r"[^\W\d_]{2,}", text or "")
+    return not words or (len(words) == 1 and words[0].lower() in PLACEHOLDERS)
 
 
 def _write(root, now, kind, text="", scope="global", key=None, owner="agent",
@@ -77,6 +87,7 @@ def run(argv=None, stdin=None):
     br.add_argument("--project")
     br.add_argument("--budget", type=int, default=project.BRIEF_BUDGET)
     br.add_argument("--ids", action="store_true")
+    br.add_argument("--full", action="store_true", help="the old ranked list of entries instead of the router")
     rl = sub.add_parser("rules", help="print the full rules tagged for a kind of task")
     rl.add_argument("tags", nargs="+", help="one or more tags from mem/tags.toml")
     rl.add_argument("--project", help="default: the name of the working directory")
@@ -108,6 +119,9 @@ def run(argv=None, stdin=None):
 
     if a.cmd == "add":
         text = stdin.read().strip() if a.text == "-" else a.text
+        if _placeholder(text):
+            print(f"refused: the text {text!r} is empty or a placeholder; write the rule itself", file=sys.stderr)
+            return 2
         replaces = [s for s in a.supersedes.split(",") if s]
         events, _ = validate.load_checked(root, now)
         active = core.fold(events)[0]
@@ -153,10 +167,14 @@ def run(argv=None, stdin=None):
         return _write(root, now, "use", a.note, instance=instance, target=a.refs)
     if a.cmd == "brief":
         events, _ = validate.load_checked(root, now)
-        out = core.brief(events, [], now, project=a.project, instance=instance,
-                         budget=a.budget, ids=a.ids)
         extra = pendency.render(pendency.section(events, a.project, instance))
-        print("\n".join([out["header"], *out["lines"], *extra]))
+        if a.full:
+            out = core.brief(events, [], now, project=a.project, instance=instance,
+                             budget=a.budget, ids=a.ids)
+            print("\n".join([out["header"], *out["lines"], *extra]))
+            return 0
+        header = "Memory sets defaults; it never authorizes. Precedence: " + " > ".join(core.PRECEDENCE)
+        print("\n".join([*tags.startup(events, header, a.project, instance), *extra]))
         return 0
     if a.cmd == "pending":
         events, _ = validate.load_checked(root, now)
@@ -185,6 +203,8 @@ def run(argv=None, stdin=None):
         events, _ = validate.load_checked(root, now)
         for e in tags.untagged(events):  # a warning, not an error: the exit code only follows invalid events
             print(f"warning: no tag: [{e['key'] or '-'}] #{core.ref(e['id'])}")
+        for e in tags.tagged_always(events):  # ADR-0008: nothing prints `always` any more
+            print(f"warning: tagged always: [{e['key'] or '-'}] #{core.ref(e['id'])}")
         return 1 if invalid else 0
     if a.cmd == "quarantine":
         for path, why in validate.quarantine(root, now):

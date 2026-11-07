@@ -7,7 +7,7 @@ import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from mem import cli, events as ev, harvest, hooks, install, project, sync, validate
+from mem import cli, events as ev, harvest, hooks, install, project, sync, validate, tags
 
 NOW = datetime(2026, 10, 18, 12, tzinfo=timezone.utc)
 ISO = "2026-10-18T12:00:00Z"
@@ -142,10 +142,10 @@ class ProjectTests(Tmp):
         self.seed()
         brief = project.build(self.root, NOW)["BRIEF.md"]
         self.assertIn("never authorizes", brief)
-        self.assertIn("[pm] use pnpm", brief)
+        self.assertNotIn("use pnpm", brief)  # ADR-0008: the chat app reads views/rules/TAG.md instead
+        self.assertIn("views/rules/TAG.md", brief)
         self.assertIn("`me/mem`", brief)
         self.assertIn("get_file_contents", brief)
-        self.assertIn("(#aaaaaa)", brief)  # the short ref a chat uses to report use
         self.assertIn("type: use", brief)
 
     def test_review_is_empty_then_lists_quarantine(self):
@@ -204,7 +204,7 @@ class HookTests(Tmp):
         payload = {"prompt": "From now on always use the full path for sync.sh.",
                    "cwd": str(self.root / "projA")}
         code, out = self.call(hooks.prompt, payload)
-        self.assertEqual((code, out), (0, ""))
+        self.assertEqual((code, out.strip()), (0, hooks.router_nudge()))  # ADR-0008: the only line it prints
         events, _ = validate.load_checked(self.root, NOW)
         self.assertEqual([(e["scope"], e["instance"]) for e in events], [("project:projA", "harvester")])
         self.call(hooks.prompt, payload)  # firing twice writes the same file
@@ -224,7 +224,8 @@ class HookTests(Tmp):
         ev.write(self.root, mk(tags=["always"]))
         code, out = self.call(hooks.session_start, {"cwd": "/tmp/projA"})
         self.assertEqual(code, 0)
-        self.assertIn("[pm] use pnpm (#aaaaaa)", out)
+        self.assertNotIn("use pnpm", out)  # ADR-0008: rules are loaded by tag, never printed at start
+        self.assertIn(tags.ROUTER, out)
         self.assertIn("mem use REF1,REF2", out)
         self.assertIn("mem add --type pref --owner user", out)
         self.assertIn("memory may be stale", out)  # not a git clone: pull is skipped

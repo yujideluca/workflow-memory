@@ -25,12 +25,19 @@ def _project(payload):
     return Path(payload.get("cwd") or ".").resolve().name or "unknown"
 
 
+def router_nudge():
+    """The one line the prompt hook prints (ADR-0008): route this message before acting."""
+    return (f"mem router: first classify this message into tags ({', '.join(tags.names())}) and "
+            f"{tags.LOAD} for tags not loaded yet in this conversation, before skills, files or other commands.")
+
+
 def prompt(root, payload, now, instance):
-    """Capture preferences from the user's own words. Prints nothing."""
+    """Print the router nudge, then capture preferences from the user's own words (silently)."""
     try:
         text = payload.get("prompt", "")
-        if not text:
+        if not text or not isinstance(text, str):
             return 0
+        print(router_nudge())
         cands = harvest.candidates([dict(text=text, ts=now, project=_project(payload), source="user")])
         for c in cands:
             scope = "global" if c["explicit"] else f"project:{c['project']}"

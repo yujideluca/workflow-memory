@@ -13,3 +13,4 @@ what must stay true. An accepted ADR is never rewritten: a new decision supersed
 | [0005](0005-trim-startup-brief.md) | Trim the startup brief and split memory by tool | accepted |
 | [0006](0006-clock-skew.md) | An event can never be later than the moment it is read | accepted |
 | [0007](0007-rule-tags.md) | Rules are fetched by the kind of task (rule tags) | accepted |
+| [0008](0008-router-rules-as-modules.md) | Rules are modules; the one standing order is to route each message to its tags | accepted |
