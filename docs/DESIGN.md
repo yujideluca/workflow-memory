@@ -38,8 +38,10 @@ anywhere under `events/` is read.
 - `claim`: the earliest claim wins, ties by id.
 - Tags are part of the ruling: the same words with different tags are a new ruling; an event with no `tags` line only restates.
 
-## Rule tags (`mem/tags.py`, `mem/tags.toml`, [ADR-0007](adr/0007-rule-tags.md))
-- The start-up output is the `always` rules in full, an index "tag (n): use when ..." and the how-to lines, at most 1,900 characters; open items follow.
+## Rule tags (`mem/tags.py`, `mem/tags.toml`, [ADR-0007](adr/0007-rule-tags.md), [ADR-0008](adr/0008-router-rules-as-modules.md))
+- Rules are modules. The start-up output prints no rule: the router (the one standing order: classify each message into tags, load `mem rules` for tags not loaded yet, classify again when the task changes), an index "tag (n): use when ..." and the how-to lines, at most 1,900 characters; open items follow. `mem brief` prints the same (`--full` gives the old ranked list).
+- The prompt hook prints one line on every prompt, the router nudge with the tag names (at most 400 characters).
+- `always` is retired: nothing prints it and `mem check` warns about a rule that still carries it. `mem add` refuses empty or placeholder text.
 - `mem rules TAG ...` prints every active rule with any of the tags, each once, for the current project and instance. `mem tag KEY TAG ...` retags a rule; `mem add --tags` tags a new one (a replacement keeps the old tags unless told otherwise).
 - A tag must have a use-when line in `mem/tags.toml`; an event with an unknown tag is quarantined. `mem check` warns about user-owned prefs without a tag.
 - The chat app reads `views/BRIEF.md` and `views/rules/TAG.md`.
@@ -81,7 +83,7 @@ key is heuristic ("use pnpm" and "use o pnpm" do not match); that errs toward tw
 - `.github/workflows/mem.yml` on every push to events or code and once a day: tests, quarantine invalid events,
   promote habits, rebuild views, commit.
 - Claude Code: hooks (`bin/mem install-hooks`). SessionStart pulls and prints the brief, UserPromptSubmit
-  harvests preferences (prints nothing), Stop pushes new events. Offline it commits locally and pushes later.
+  prints the router nudge and harvests preferences silently, Stop pushes new events. Offline it commits locally and pushes later.
   Sessions often start together on one clone, so `mem/sync.py` lets one sync at a time work on it (a lock file in
   the git folder, waited on for at most 15 s) and never uses `git pull` (it fetches without FETCH_HEAD and merges
   or rebases onto the upstream branch).
@@ -149,6 +151,7 @@ Newest first. **Type** is the ISO/IEC/IEEE 14764 category (corrective, adaptive,
 
 | Date | Type | Decision | Why |
 |---|---|---|---|
+| 2026-11-07 | Perfective | **Rules are modules; routing is the one standing order** ([ADR-0008](adr/0008-router-rules-as-modules.md)): start-up and `mem brief` print the router and the tag index but no rule body (`always` retired, `mem check` warns); the prompt hook prints a one-line router nudge; new tag `outward`; `mem add` refuses placeholder text; 95 entries cleaned to 75 (empty, expired, contradicting and retired entries forgotten, 8 overlapping rules merged into `work.dedication` and `work.autonomy`, two wrong facts corrected) | Giovanni asked for rules as task modules. A simulation with 7 Claude and Codex models on 15 scenarios: right rules loaded before acting in 50% of runs with the old memory, 96% with the new one |
 | 2026-11-06 | Corrective | **Sync without `git pull`, one at a time per clone** (`mem/sync.py`; tests `test_pull_and_push_do_not_depend_on_fetch_head`, `test_concurrent_pulls_of_one_clone_all_succeed`). `pull` is `fetch --no-write-fetch-head` + `merge --ff-only @{u}`, `push` rebases with `fetch` + `rebase --autostash` (pull --rebase without FETCH_HEAD); both run under a `flock` on `.git/mem-sync.lock`, and a failed fetch is tried once more. | Session start showed "memory may be stale: pull skipped: fatal: Cannot fast-forward to multiple branches.": concurrent hook fetches append to FETCH_HEAD, which `git pull` then merges (4 concurrent pulls on a test clone failed 80 of 80 times; also two fetches moving origin/main at once, and two merges in one working tree). |
 | 2026-11-05 | Corrective | **Rule tags** ([ADR-0007](adr/0007-rule-tags.md)): every rule carries kinds of task; start-up prints the `always` rules and an index (about 1.7 KB instead of 17 KB); `mem rules TAG` prints the full wording; all 85 rules migrated with `mem tag`; the chat app gets `views/rules/TAG.md` | On 2026-11-04 the rules that would have stopped agent-guard existed but never reached the sessions: the harness shows only the first 2 KB of a 17 KB brief |
 | 2026-10-25 | Adaptive | **workflow-memory stays without branch protection; documented as an exception** (pipeline-check v0.5.0, PC-16). The repository is public, but a simulation showed that a required `gate` check rejects the push of the `mem` job (`GH006 Required status check "gate" is expected`), because that job pushes derived files to `main` with the built-in token and GitHub does not let that bot bypass a rule on a personal account. Giovanni chose to keep the local pre-push check (`tools/hooks/pre-push`) and to record the exception in `pipeline-check.toml` (`protection_exception`), so `protecao-de-branch` is `aviso` with the reason, not `falha`. Not chosen: a personal access token for the job (a secret to renew), a separate branch for derived files (changes how every reader gets the views). | A gap accepted on purpose must stay visible and written where the check reads it. |

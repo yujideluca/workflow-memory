@@ -1,7 +1,8 @@
-"""Rule tags (ADR-0007): rules are fetched by the kind of task, not all printed at start-up.
+"""Rule tags (ADR-0007, ADR-0008): rules are modules fetched by the kind of task, never printed at start-up.
 
-A pref, decision or fact can carry tags (`tags: a, b`). The start-up output prints the `always` rules in full and
-an index "tag (n rules): use when ...". `mem rules TAG ...` prints the full, current wording of every active
+A pref, decision or fact can carry tags (`tags: a, b`). The start-up output prints the router (the one standing
+order: classify each message into tags, then load their rules) and an index "tag (n rules): use when ...".
+The `always` tag is retired: nothing prints it, and `mem check` warns about a rule that still carries it. `mem rules TAG ...` prints the full, current wording of every active
 rule that has any of the tags. Pure functions of the event log, like the rest of the fold.
 """
 import re
@@ -16,8 +17,13 @@ MAX_TAGS = 6
 ALWAYS = "always"
 TAG_RE = re.compile(r"^[a-z0-9][a-z0-9\-]*$")
 MAX_STARTUP = 1900   # characters printed before the open items (the harness shows only the first 2 KB)
-HINT = ("Rules are tagged by kind of task. Before a task of one of these kinds run mem rules TAG [TAG ...] "
-        "and follow the full wording:")
+LOAD = "run mem rules TAG [TAG ...]"
+ROUTER = ("Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message "
+          "from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and "
+          f"{LOAD} for every tag not loaded yet in this conversation. Do it as the very first step, before reading "
+          "skills or files and before any other command; then follow their full wording. Classify again whenever "
+          "the task changes. Tags:")
+HINT = ROUTER  # older name, kept for callers
 
 
 def vocabulary():
@@ -83,8 +89,18 @@ def render(e):
     return core._line(e, ids=True)
 
 
+def names():
+    """Every tag a rule may be routed to (the vocabulary without the retired `always`)."""
+    return [t for t in vocabulary() if t != ALWAYS]
+
+
+def tagged_always(events):
+    """Active rules that still carry the retired `always` tag (ADR-0008): a `mem check` warning."""
+    return [e for e in core.resolve(events)["active"] if e["type"] in TAGGED and ALWAYS in of(e)]
+
+
 def startup(events, header, project=None, instance=None):
-    """Lines of the start-up brief: the always rules in full, then the index and the hint."""
-    lines = [header, *[render(e) for e in rules(events, [ALWAYS], project, instance)], HINT]
+    """Lines of the start-up brief: the router, then the index. No rule body (ADR-0008)."""
+    lines = [header, ROUTER]
     lines += [f"- {t} ({n}): {line}" for t, n, line in index(events, project, instance)]
     return lines + warnings(events)

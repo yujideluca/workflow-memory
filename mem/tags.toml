@@ -1,7 +1,8 @@
-# Rule tags (ADR-0007): tag = "use when ..." (one short line). The start-up index is generated from this file,
+# Rule tags (ADR-0007, ADR-0008): tag = "use when ..." (one short line). The start-up index is generated from this file,
 # so a tag used by a rule must have a line here (mem check refuses an event with an unknown tag).
-always = "printed in full at every start"
-deploy = "installing, releasing, changing configuration, outward-facing or destructive acts"
+always = "retired (ADR-0008): never printed at start; mem check warns if a rule has it"
+deploy = "installing, releasing, changing system, service or tool configuration"
+outward = "acts others see or cannot undo: sending email or messages, purchases, publishing, deleting"
 troubleshooting = "debugging, testing, fixing findings, proving that it works"
 coding = "starting, designing or changing code; choosing tools"
 reporting = "how to answer, explain and report results or mistakes"
