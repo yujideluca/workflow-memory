@@ -1,10 +1,11 @@
 # Rules tagged radiology
 
-Generated 2026-11-08 from 927 events. Do not edit: record changes as events.
+Generated 2026-11-08 from 931 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
 - [matcher.analysis-status] Radiology matcher statistical analysis: the single status record is ~/dev/radiology-crawler/docs/analysis-status.json (readable: docs/ANALYSIS-STATUS.md and the step-by-step guide on the plan site home page ~/Documents/Radiology Report Matcher/index.html). Read it first when you continue the work; never trust a status copied anywhere else. (#b16fa4)
+- [matcher.articles-only] Radiology matcher (Giovanni 2026-11-08): the models are built from the articles only; the articles say everything the math needs. Cases never enter a model (no case text in vocabulary, word weights, word profiles or nearest-case terms, no case counts in a prior); they only choose a few free numbers on the tuning half and score on the test halves. V1 (case-count prior), V2 and V3 broke this and are rebuilt articles-only (analysis/articles_only.py). (#30d2cf)
 - [matcher.filler-list-method] Giovanni 2026-10-30: the radiology matcher filler-word list is NOT reviewed by hand; it is tested scientifically (protocol ~/dev/radiology-crawler/docs/filler-list-protocol.md: held-out sentences, lift, controls, Holm). Stage A done, a word is final only if Stage B on the tuning half of the cases agrees. Also approved: Codex pilot (300 articles); the full Codex tagging (about 134M tokens) still needs his go. (#a909ce)
 - [matcher.hardware] Radiology matcher (2026-10-29): the engine and the statistical analysis must use multithreading and the GPU for calculation when the hardware supports it, with a CPU fallback giving the same results. Recorded in ADR-0002 amendment, CLAUDE.md principle 9 and docs/modelling-directives.md section 3b; requirement EN-2 is added with its test in the first engine commit. (#305e74)
 - [matcher.keep-status-fresh] Giovanni 2026-10-30: every instance (Claude Code and Codex) working on the radiology matcher analysis must keep docs/analysis-status.json and the plan site home page guide current: after each step run python3 -I tools/analysis_status.py set STEP STATUS --note '...' in ~/dev/radiology-crawler (it rebuilds the site). Rule is also CLAUDE.md principle 10 and AGENTS.md of that repo. (#0b0793)

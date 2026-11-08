@@ -1,6 +1,6 @@
 # Rules tagged outward
 
-Generated 2026-11-08 from 927 events. Do not edit: record changes as events.
+Generated 2026-11-08 from 931 events. Do not edit: record changes as events.
 
 acts others see or cannot undo: sending email or messages, purchases, publishing, deleting
 
