@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-08 from 938 events. Do not edit: record changes as events.
+Generated 2026-11-08 from 940 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -103,3 +103,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [project:radiology-crawler] auto.9088698e61: Also state whether you agree V3 should be built as proposed (with changes) or prefer another candidate from your research note, and why. (harvester)
 - [global] matcher.articles-only: Radiology matcher (Giovanni 2026-11-08): the models are built from the articles only; the articles say everything the math needs. Cases never enter a model (no case text in vocabulary, word weights, word profiles or nearest-case terms, no case counts in a prior); they only choose a few free numbers on the tuning half and score on the test halves. V1 (case-count prior), V2 and V3 broke this and are rebuilt articles-only (analysis/articles_only.py). (user)
 - [global] matcher.finding-tags: Radiology matcher (Giovanni 2026-11-08): for each diagnosis article in each language, Codex lists the imaging morphology findings with up to 5 wordings of exactly the same morphology in that language's standard radiology vocabulary; a fresh web-search session fact-checks them against the article and current literature. The tags are a separate, separately characterized dataset (analysis/morph_tags.py, AN-43/44) so models can run without them if they hurt. Then all four versions are redone in fresh instances with updated prompts using the tags (status steps T2, S1c), articles-only rule still applies. (user)
+- [global] matcher.live-job-progress: Radiology matcher (Giovanni 2026-11-08): every analysis job longer than a few minutes shows live progress on the plan site home page via analysis/jobs.py (bar, rate, time left, paused on usage limit). CLAUDE.md principle 14, AN-45, WS-4. (user)

@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-08 from 938 events. Do not edit: record changes as events.
+Generated 2026-11-08 from 940 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -13,6 +13,7 @@ radiology report matcher and crawler
 - [matcher.hardware] Radiology matcher (2026-10-29): the engine and the statistical analysis must use multithreading and the GPU for calculation when the hardware supports it, with a CPU fallback giving the same results. Recorded in ADR-0002 amendment, CLAUDE.md principle 9 and docs/modelling-directives.md section 3b; requirement EN-2 is added with its test in the first engine commit. (#305e74)
 - [matcher.keep-status-fresh] Giovanni 2026-10-30: every instance (Claude Code and Codex) working on the radiology matcher analysis must keep docs/analysis-status.json and the plan site home page guide current: after each step run python3 -I tools/analysis_status.py set STEP STATUS --note '...' in ~/dev/radiology-crawler (it rebuilds the site). Rule is also CLAUDE.md principle 10 and AGENTS.md of that repo. (#0b0793)
 - [matcher.languages] Radiology report matcher stack, decided by Giovanni 2026-10-27: small tools in Python; website back end in Elixir (SQLite search); front end in Elm; the statistical math and the word-to-input matching must be high-speed numerical code (Cython, NumPy, C libraries as needed), NEVER plain-Python loops: it would be too slow. Never forget this. (#fa927e)
+- [matcher.live-job-progress] Radiology matcher (Giovanni 2026-11-08): every analysis job longer than a few minutes shows live progress on the plan site home page via analysis/jobs.py (bar, rate, time left, paused on usage limit). CLAUDE.md principle 14, AN-45, WS-4. (#dff491)
 - [matcher.modelling-directives] The directives for modelling version 4 (Giovanni's idea) are in ~/dev/radiology-crawler/docs/modelling-directives.md (layered hard/soft filters, akinator, wording layer with filler list, 50/50 tune/test split by diagnosis). Read it fully before starting the analysis and use it for version 4; versions 1 to 3 do not use it. (#5fe974)
 - [matcher.modelling-plan] Decided 2026-10-30: when the article crawl is done and Giovanni asks to start the analysis, the statistical modelling follows skill-forge style with four competing versions: (1) Claude alone analyses all articles with no prior bias; (2) Codex alone, same task; (3) fully academic approach after thorough research, Claude and Codex debating to the best scientific solution; (4) Giovanni's own idea, mined first through a directed grill session whose directives are saved and reused. Do not start the analysis before he asks. (#fc8acc)
 - [matcher.per-language-models] Radiology matcher: every identification model is built and scored separately for EN, DE and PT-BR; a fast language check routes the report; design the routing pipeline only after all per-language models are tested. (#dfb150)
