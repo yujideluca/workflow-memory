@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-08 from 924 events. Do not edit: record changes as events.
+Generated 2026-11-08 from 927 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
@@ -21,7 +21,7 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] Radiology matcher (2026-11-07): V2 scored once on test and new halves (d5c2d83, AN-36): top-10 test EN/DE/PT .802/.750/.791 vs V1 .647/.528/.623; new .765/.697/.753. V2 learns from tuning cases, V1/V4 only from articles. Next: V3 (C4), then S2 compare/merge. Later downloads (16.9k pending at 11-06): rebuild labels with 20261105b as earlier, score only the extra cases. | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | grep -A1 'S1\*\*' (since 2026-11-08, #660629)
+- [open item radiology] Radiology matcher (2026-11-08): all four versions scored once on test and new halves (S1 done). V3 (C4, docs/v3-report.md) does not beat V2: test top-10 EN/DE/PT .793/.746/.782 vs V2 .802/.750/.791, but zero-case diagnoses on the new half .243/.197/.162 vs .083/.077/.070. Next: S2 compare/merge (V3 word model as an extra V2 channel or for few-case diagnoses), tuned on the tuning half only; confirmation only on later downloads (20261105b labels). | check: python3 -I ~/dev/radiology-crawler/tools… (since 2026-11-08, #de906d)
 - [open item] Old /tmp leftovers (bench-profile, content*, pc-*, sq-*, agent-guard-*; ~2.6 GB of RAM) await Giovanni running /tmp/claude-1000/-home-yuji/12701050-fa4c-4c9f-957f-babe40c23afc/scratchpad/cleanup-and-install.sh (classifier blocked the delete even after his OK); causes fixed 2026-11-07 | check: ls -d /tmp/bench-profile-* /tmp/content[0-9]* /tmp/pc-* /tmp/sq-* /tmp/agent-guard-* 2>/dev/null | wc -l (since 2026-11-07, #5059dc)
 - [open item] Status Quo CPU (2026-11-06): isolated idle instance measured collector 0.29% / 8.6 MB, panel 0.22% / 168 MB = under SQ-23. Live ~2.7% comes from reading other sessions' transcripts (58k dirs under ~/.claude/projects); cause inside the reader not found, not idle cost. Left: ui_e2e + visual check (free screen), Windows installer on real Windows, dnf/pacman/zypper beyond dry-run. | check: systemctl --user is-active status-quo-collector (since 2026-11-06, checked 2026-11-06, #ef80a0)
 - [open item] Radiology: 10 analysis/tools modules still call read_text/write_text without encoding='utf-8'; CuPy init makes the default ASCII (found 2026-11-06 via literature_cases test). Fix with a test each. | check: grep -nE '\.(read_text|write_text)\(' analysis/*.py tools/*.py | grep -vc encoding (since 2026-11-06, checked 2026-11-06, #dc0027)
