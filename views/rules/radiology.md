@@ -1,9 +1,10 @@
 # Rules tagged radiology
 
-Generated 2026-11-08 from 932 events. Do not edit: record changes as events.
+Generated 2026-11-08 from 934 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
+- [codex.usage-limit] 2026-11-08: the Codex account hit its usage limit after about 2.5M tokens in one night (finding-tag pilot, 10 parallel sessions); reset came hours later. Plan Codex jobs above a few million tokens with Giovanni first. (#7cd83f)
 - [matcher.analysis-status] Radiology matcher statistical analysis: the single status record is ~/dev/radiology-crawler/docs/analysis-status.json (readable: docs/ANALYSIS-STATUS.md and the step-by-step guide on the plan site home page ~/Documents/Radiology Report Matcher/index.html). Read it first when you continue the work; never trust a status copied anywhere else. (#b16fa4)
 - [matcher.articles-only] Radiology matcher (Giovanni 2026-11-08): the models are built from the articles only; the articles say everything the math needs. Cases never enter a model (no case text in vocabulary, word weights, word profiles or nearest-case terms, no case counts in a prior); they only choose a few free numbers on the tuning half and score on the test halves. V1 (case-count prior), V2 and V3 broke this and are rebuilt articles-only (analysis/articles_only.py). (#30d2cf)
 - [matcher.filler-list-method] Giovanni 2026-10-30: the radiology matcher filler-word list is NOT reviewed by hand; it is tested scientifically (protocol ~/dev/radiology-crawler/docs/filler-list-protocol.md: held-out sentences, lift, controls, Holm). Stage A done, a word is final only if Stage B on the tuning half of the cases agrees. Also approved: Codex pilot (300 articles); the full Codex tagging (about 134M tokens) still needs his go. (#a909ce)
