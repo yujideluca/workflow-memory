@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-08 from 962 events. Do not edit: record changes as events.
+Generated 2026-11-08 from 964 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
@@ -21,6 +21,7 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Wiki mobile globe lines (2026-11-08): user reports missing lines. Local site on Motorola rendered 126 dots and 5 grouped edge paths; pinch zoom to 2.43 rendered 13 paths. Existing live wiki tab also visibly had connections and grid. Need clarification which lines and trigger/URL before changing code. No repository changes made. | check: On Motorola open the affected wiki URL and reproduce missing connection/grid lines after the reported gesture; compare with local site build (since 2026-11-08, #27bdb5)
 - [open item radiology] S1c merge pending (2026-11-08 ~17:40): V4t resume done (uncommitted in ~/dev/radiology-crawler-wt/v4t; gate 251 passed; low ~17% top-10 explained by frozen unit-L1 article normalization = design limitation; -fix1 runs match originals; withholding slips documented in report incl. reading DESIGN.md section 4). Todo: rename docs/adr/0004-v4t-* to 0005, decide on docs/*.patch files, rebase on main, gate, commit with build/v4t-commit-message.txt + attribution, merge, copy params, remove worktree. V3… (since 2026-11-08, #d957ca)
 - [open item radiology] Radiology S1c-early with Codex (2026-11-08): V2t merged (5de8bae; tag weight 0 on provisional tags). Running: V4t resume (fix failing test, check implausibly low audit top-10 ~17%) and V3t implementation in worktrees ~/dev/radiology-crawler-wt/v4t, v3t; Codex sandbox cannot commit, Claude reviews/commits/merges, renumber V4t ADR 0004 -> 0005. V4t withholding slips (saw mem brief scores; hinted baseline) to state in its report. V1t after T2. Weekly Codex 45% used at 17:02. | check: ls ~/dev/radi… (since 2026-11-08, #544256)
 - [open item radiology] Radiology finding tags (T2, 2026-11-08): full Sonnet run tools/morph_tags_full.sh as user unit morph-tags-full (EN, DE, PT; ~830M tokens, waits 30 min on usage limits). When done: check data/analysis/morph/characterize-sonnet-*.json, write the full report, status T2 done, then S1c (docs/s1c-briefs.md). | check: systemctl --user is-active morph-tags-full; wc -l ~/dev/radiology-crawler/data/analysis/morph/raw-sonnet-*.jsonl (since 2026-11-08, checked 2026-11-08, #29e2df)
