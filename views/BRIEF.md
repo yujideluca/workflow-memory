@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-08 from 942 events. Do not edit: record changes as events.
+Generated 2026-11-08 from 944 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
@@ -21,7 +21,6 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] Radiology: 10 analysis/tools modules still call read_text/write_text without encoding='utf-8'; CuPy init makes the default ASCII (found 2026-11-06 via literature_cases test). Fix with a test each. | check: grep -nE '\.(read_text|write_text)\(' analysis/*.py tools/*.py | grep -vc encoding (since 2026-11-06, checked 2026-11-08, #dc0027)
 - [open item radiology] Radiology finding tags (T2, 2026-11-08): full Sonnet run tools/morph_tags_full.sh as user unit morph-tags-full (EN, DE, PT; ~830M tokens, waits 30 min on usage limits). When done: check data/analysis/morph/characterize-sonnet-*.json, write the full report, status T2 done, then S1c (docs/s1c-briefs.md). | check: systemctl --user is-active morph-tags-full; wc -l ~/dev/radiology-crawler/data/analysis/morph/raw-sonnet-*.jsonl (since 2026-11-08, #29e2df)
 - [open item radiology] Radiology matcher (2026-11-08): articles-only rule (CLAUDE.md principle 13). V1, V2, V3 rebuilt as V1a/V2a/V3a (analysis/articles_only.py, docs/articles-only-report.md, step S1b). Test top-10 V1a/V4/V3a/V2a: EN .617/.566/.560/.533, DE .490/.460/.442/.396, PT .586/.543/.530/.503. Next: S2 merge of rule-abiding parts, V1a as base; open question: restrict V2a/V3a to diagnosis-typed candidates; V1a mu at grid edge. | check: python3 -I tools/analysis_status.py show | grep -E 'S1b|S2' (since 2026-11-08, #84f949)
 - [open item] Status Quo CPU (2026-11-06): isolated idle instance measured collector 0.29% / 8.6 MB, panel 0.22% / 168 MB = under SQ-23. Live ~2.7% comes from reading other sessions' transcripts (58k dirs under ~/.claude/projects); cause inside the reader not found, not idle cost. Left: ui_e2e + visual check (free screen), Windows installer on real Windows, dnf/pacman/zypper beyond dry-run. | check: systemctl --user is-active status-quo-collector (since 2026-11-06, checked 2026-11-06, #ef80a0)
