@@ -1,9 +1,10 @@
 # Rules tagged coding
 
-Generated 2026-11-08 from 953 events. Do not edit: record changes as events.
+Generated 2026-11-08 from 955 events. Do not edit: record changes as events.
 
 starting, designing or changing code; choosing tools
 
+- [codex.batch-hooks-off] Batch codex exec calls must pass -c features.codex_hooks=false: otherwise Giovanni's interactive Codex hooks (memory brief, mem rules, stop checks) run inside every call and cost tokens (found 2026-11-08). Also close stdin (</dev/null) when the prompt is an argument, or codex exec waits forever. analysis/morph_audit.codex_cmd has it; analysis/morph_tags.run_codex still lacks it (fix after T2 finishes). (#9e3b23)
 - [matcher.hardware] Radiology matcher (2026-10-29): the engine and the statistical analysis must use multithreading and the GPU for calculation when the hardware supports it, with a CPU fallback giving the same results. Recorded in ADR-0002 amendment, CLAUDE.md principle 9 and docs/modelling-directives.md section 3b; requirement EN-2 is added with its test in the first engine commit. (#305e74)
 - [matcher.languages] Radiology report matcher stack, decided by Giovanni 2026-10-27: small tools in Python; website back end in Elixir (SQLite search); front end in Elm; the statistical math and the word-to-input matching must be high-speed numerical code (Cython, NumPy, C libraries as needed), NEVER plain-Python loops: it would be too slow. Never forget this. (#fa927e)
 - [matcher.per-language-models] Radiology matcher: every identification model is built and scored separately for EN, DE and PT-BR; a fast language check routes the report; design the routing pipeline only after all per-language models are tested. (#dfb150)

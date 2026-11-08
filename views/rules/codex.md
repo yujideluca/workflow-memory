@@ -1,9 +1,11 @@
 # Rules tagged codex
 
-Generated 2026-11-08 from 953 events. Do not edit: record changes as events.
+Generated 2026-11-08 from 955 events. Do not edit: record changes as events.
 
 work done by Codex
 
+- [codex.batch-hooks-off] Batch codex exec calls must pass -c features.codex_hooks=false: otherwise Giovanni's interactive Codex hooks (memory brief, mem rules, stop checks) run inside every call and cost tokens (found 2026-11-08). Also close stdin (</dev/null) when the prompt is an argument, or codex exec waits forever. analysis/morph_audit.codex_cmd has it; analysis/morph_tags.run_codex still lacks it (fix after T2 finishes). (#9e3b23)
+- [codex.budget-calibration] Codex plan is Plus (2026-11-08 calibration): a 5-hour window holds about 3M tokens, a week about 19M (1.52M tokens moved them +50 and +8 points). Read used percent from rate_limits in a saved (not --ephemeral) session file under ~/.codex/sessions; helper idea: tiny non-ephemeral 'Reply ok.' call with hooks off, then parse the last rate_limits line. (#c03058)
 - [codex.usage-limit] 2026-11-08: the Codex account hit its usage limit after about 2.5M tokens in one night (finding-tag pilot, 10 parallel sessions); reset came hours later. Plan Codex jobs above a few million tokens with Giovanni first. (#7cd83f)
 - [matcher.s1c-early-codex] Radiology matcher (Giovanni 2026-11-08): start S1c early with Codex while T2 runs: Codex designs/implements tagged V2, V4 and its V3 side on provisional EN tags (data/analysis/morph raw-sonnet-en partial build); final tuning and scoring wait for full T2. Codex builds V4 only if a Codex token-budget check first shows enough allowance. Codex re-checks 50 random finished Sonnet EN tag articles (agreement rate, ~1.4M tokens). Next free requirement ID AN-46. (#96a116)
 - [work.codex-back] Codex is live again (Giovanni 2026-11-06): run radiology steps C2-C5 with many parallel codex exec sessions, model gpt-6.1-sol wherever a Sonnet-class worker would be used; each session fresh --ephemeral under 250k tokens; heavy local jobs one at a time under flock /tmp/radiology-heavy.lock. (#4820c7)
