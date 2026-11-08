@@ -1,11 +1,12 @@
 # Rules tagged radiology
 
-Generated 2026-11-08 from 960 events. Do not edit: record changes as events.
+Generated 2026-11-08 from 961 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
 - [codex.batch-hooks-off] Batch codex exec calls must pass -c features.codex_hooks=false: otherwise Giovanni's interactive Codex hooks (memory brief, mem rules, stop checks) run inside every call and cost tokens (found 2026-11-08). Also close stdin (</dev/null) when the prompt is an argument, or codex exec waits forever. analysis/morph_audit.codex_cmd has it; analysis/morph_tags.run_codex still lacks it (fix after T2 finishes). (#9e3b23)
 - [codex.budget-calibration] Codex plan is Plus (2026-11-08 calibration): a 5-hour window holds about 3M tokens, a week about 19M (1.52M tokens moved them +50 and +8 points). Read used percent from rate_limits in a saved (not --ephemeral) session file under ~/.codex/sessions; helper idea: tiny non-ephemeral 'Reply ok.' call with hooks off, then parse the last rate_limits line. (#c03058)
+- [codex.run-discipline] Prompts for Codex sessions that run long tuning jobs must require: finish code and gate first, then freeze every file the run hashes until the run ends; one real run at a time, checked with lslocks/pgrep before launching or killing; tests never touch the real lock, data or jobs paths; never claim a run state without reading ledger, job file and process list. Lesson 2026-11-08: V3t edited its code mid-run, both English audits were consumed and discarded, a duplicate launch waited on the lock. (#1cf4f8)
 - [codex.usage-limit] 2026-11-08: the Codex account hit its usage limit after about 2.5M tokens in one night (finding-tag pilot, 10 parallel sessions); reset came hours later. Plan Codex jobs above a few million tokens with Giovanni first. (#7cd83f)
 - [matcher.analysis-status] Radiology matcher statistical analysis: the single status record is ~/dev/radiology-crawler/docs/analysis-status.json (readable: docs/ANALYSIS-STATUS.md and the step-by-step guide on the plan site home page ~/Documents/Radiology Report Matcher/index.html). Read it first when you continue the work; never trust a status copied anywhere else. (#b16fa4)
 - [matcher.articles-only] Radiology matcher (Giovanni 2026-11-08): the models are built from the articles only; the articles say everything the math needs. Cases never enter a model (no case text in vocabulary, word weights, word profiles or nearest-case terms, no case counts in a prior); they only choose a few free numbers on the tuning half and score on the test halves. V1 (case-count prior), V2 and V3 broke this and are rebuilt articles-only (analysis/articles_only.py). (#30d2cf)
