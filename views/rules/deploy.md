@@ -1,10 +1,10 @@
 # Rules tagged deploy
 
-Generated 2026-11-08 from 945 events. Do not edit: record changes as events.
+Generated 2026-11-08 from 949 events. Do not edit: record changes as events.
 
 installing, releasing, changing system, service or tool configuration
 
-- [host.nitro] Giovanni's laptop is an Acer Nitro (host yuji-nitro): Kubuntu 26.04 with Plasma 6 on Wayland, Nvidia RTX 3050 with 6 GB VRAM, 23 GB RAM, /tmp is RAM. A second NVMe (nvme0n1) is mounted only under /run/media (no fstab entry). (#0cb7ba)
+- [host.nitro] Giovanni's laptop is an Acer Nitro (host yuji-nitro): Kubuntu 26.04, Plasma 6 Wayland, Nvidia RTX 3050 6 GB, 23 GB RAM, /tmp is RAM. Second NVMe (nvme0n1p1, 512 GB) is mounted at boot via /etc/fstab (nofail, since 2026-11-08) at /run/media/yuji/c202ac7d-57a0-4474-9091-b25ed7af6220; it holds Media/Videos, Media/Anime (~/Anime and ~/Videos shortcuts are symlinks there) and Steam's second library SteamLibrary (snap Steam, removable-media connected). (#7b05e7)
 - [pipeline-check.merge-block] Merges to main are blocked by the local pre-push check (pipeline-check --pre-push, hook in tools/hooks, enabled with git config core.hooksPath tools/hooks) because private repositories on the free GitHub plan cannot use branch protection; pipeline-check is public so CI needs no token (decided 2026-10-24). (#eba53a)
 - [quiz.signing-key-backup] QuizApp signing key backup: german-quiz-release.jks is in Giovanni's Google Drive (My Drive root), uploaded 2026-10-22; original in ~/.android. Passwords are kept by Giovanni, not on Drive. (#8c714a)
 - [quiz.web-standalone-release] QuizWeb may ship a standalone maintenance release when it contains relevant changes, without waiting for another Android release. Ports of unreleased Android features still follow app promotion. (#3a001b)

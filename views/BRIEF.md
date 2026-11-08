@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-08 from 945 events. Do not edit: record changes as events.
+Generated 2026-11-08 from 949 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
@@ -11,7 +11,7 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 - reporting (6): how to answer, explain and report results or mistakes
 - git (11): branches, commits, repos, GitHub
 - docs-memory (13): wiki pages, memory entries, closing a task
-- device (7): phone, adb, browser, Telegram
+- device (6): phone, adb, browser, Telegram
 - quiz (4): QuizApp and QuizWeb
 - radiology (17): radiology report matcher and crawler
 - german (4): German exam practice and corrections

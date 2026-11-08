@@ -1,12 +1,11 @@
 # Rules tagged device
 
-Generated 2026-11-08 from 945 events. Do not edit: record changes as events.
+Generated 2026-11-08 from 949 events. Do not edit: record changes as events.
 
 phone, adb, browser, Telegram
 
 - [browser.hang-refresh] Quando algum site travar durante uma tarefa no navegador, dê F5 (recarregue a página) e continue, em vez de esperar ou desistir. (#17621c)
 - [device.phone] Giovanni's phone is a Motorola edge 50 fusion, driven over adb for app tests. (#109c32)
-- [host.nitro] Giovanni's laptop is an Acer Nitro (host yuji-nitro): Kubuntu 26.04 with Plasma 6 on Wayland, Nvidia RTX 3050 with 6 GB VRAM, 23 GB RAM, /tmp is RAM. A second NVMe (nvme0n1) is mounted only under /run/media (no fstab entry). (#0cb7ba)
 - [telegram] To send Giovanni a message or file use the tg-send bot on the Acer (tg-send "text" or tg-send -f FILE [caption]), never the phone's Telegram app. Read ~/.local/bin/tg-send first: it has no --help (any argument is sent as a message). It is one-way, only to Giovanni; messages arrive in the 'Claude code bridge' chat (@Claude_1123bot), NOT Saved Messages, so always tell Giovanni to check that chat. Files up to 50 MB. The token is in ~/.config/telegram-bot, never in memory. Telegram bots are not end-to-end encrypted: send no patient data. Unprompted messages need Giovanni's go-ahead per kind. (#6f4975)
 - [work.dedication] DEDICATION: save Giovanni work, never give them work; half-done work is not acceptable (it caused the 2026-11-04 failure).
 1 DEFINE DONE first as Giovanni's observable outcome. Configuration, installation or passing component tests do not prove it; verify the real path and visible behaviour.
