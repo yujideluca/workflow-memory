@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-09 from 1000 events. Do not edit: record changes as events.
+Generated 2026-11-09 from 1002 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
@@ -21,6 +21,7 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Heidelberg Hospitation plan (2026-11-09): 6 translator quote emails sent 2026-11-09, no replies yet; Giovanni must save the 'A' vaccine PDF from Katja's 2026-08-03 email (I cannot download Gmail attachments); carta-convite request only when all docs ready except Quantiferon; CV needs fixes (ACLS expired, PHTLS date, Saarland); passport, birth/naturalization certificate, anti-HBs not found. | check: Gmail: search replies from the 6 translators (subject 'Orçamento de tradução juramentada'); page … (since 2026-11-09, #54c2e8)
 - [open item radiology] Radiology T2 stopped by Giovanni 2026-11-09 08:2x: EN tags complete (morph-tags-sonnet-en-20261109.jsonl.gz, 55,226 findings kept, 874 articles with none). DE 129/7135 raw rows, PT not started. Resume only if Giovanni asks: systemd-run --user --unit morph-tags-full env LANGS='de pt' tools/morph_tags_full.sh, watchdog tools/t2_check.py. Or proceed to S1c with EN tags only (his call). | check: systemctl --user is-active morph-tags-full; wc -l ~/dev/radiology-crawler/data/analysis/morph/raw-sonnet… (since 2026-11-09, #3fc512)
 - [open item radiology] Radiology finding assistant (2026-11-09): when T2 finding tags are done, Giovanni wants R1 (X-ray literature review, then R2..R10) started; estimate its token cost first. Docs: docs/assistant-problem-statement.md, ADR-0007, requirements draft. | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | grep -E 'T2|R1' (since 2026-11-09, #5f73cf)
 - [open item radiology] Radiology S1c (2026-11-09): V2t, V4t (cd7558f, ADR 0005) and V3t r2 (76c17ec, ADR 0006) merged on provisional EN tags; params in data/analysis/v{2,3,4}t-*. Audit top-10 EN tagged/no-tags: V2t chose tag weight 0 (61.3 %), V3t 59.5/58.8 %, V4t 18.4/17.2 % (unit-L1 normalization, design limit). Left after T2: V1t (AN-57..59), full-tag final reruns of all four, outer scoring; port codex_hooks=false into morph_tags.run_codex; 30-min retry fix needs Giovanni's OK. | check: python3 -I ~/dev/radiology-… (since 2026-11-09, #9ce5c9)
