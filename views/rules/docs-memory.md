@@ -1,6 +1,6 @@
 # Rules tagged docs-memory
 
-Generated 2026-11-09 from 996 events. Do not edit: record changes as events.
+Generated 2026-11-09 from 997 events. Do not edit: record changes as events.
 
 wiki pages, memory entries, closing a task
 
