@@ -1,5 +1,5 @@
 # Needs a decision
 
-Generated 2026-11-09 from 980 events. Do not edit: record changes as events.
+Generated 2026-11-09 from 981 events. Do not edit: record changes as events.
 
 Nothing needs a decision.
