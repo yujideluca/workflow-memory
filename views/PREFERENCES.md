@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-09 from 995 events. Do not edit: record changes as events.
+Generated 2026-11-09 from 996 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -113,3 +113,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] matcher.assistant-decisions-2: Radiology finding assistant (Giovanni 2026-11-09): threshold 'close to 100 %' = 97 % top-3; no radiologist is available, so the FINAL TEST is real radiological reports from the internet, fact-checked, held out and scored once; the algorithm is modular (shared core plus a module per modality) and is built in the order X-ray, ultrasound, CT and variants, MRI, each finished before the next. (user)
 - [global] matcher.hit-rule: Radiology finding assistant hit rule (Giovanni 2026-11-09): propose exactly THREE strict findings and highlight the most likely; a hit only if one of the three is exactly the right finding. Parent, child or sibling findings do not count. Also report how often the highlighted one is right. (user)
 - [global] matcher.foundational-knowledge: Radiology finding assistant (Giovanni 2026-11-09): some findings and details are basic radiology taught without citation; no reference will exist for them. They may be kept without a source if marked 'foundational' (never counted as sourced), reported apart, and judged by the test sets; entries that are neither sourced nor foundational stay out of the schemas. (user)
+- [global] matcher.foundational-accepted: Radiology finding assistant (Giovanni 2026-11-09, 'go on'): tier 1 of docs/r1/foundational-candidates.md (widely stated descriptions and signs, 3+ sources) is accepted as foundational; numbers (tier 2) accepted only if sources do not trace to one origin or disagree; tiers 3 and 4 stay out of the schemas. Next step R2: structured X-ray finding inventory. (user)
