@@ -1,9 +1,10 @@
 # Rules tagged reporting
 
-Generated 2026-11-09 from 1005 events. Do not edit: record changes as events.
+Generated 2026-11-09 from 1007 events. Do not edit: record changes as events.
 
 how to answer, explain and report results or mistakes
 
+- [documents.scan-format] When asked to scan identity documents from photos, isolate only the document, correct perspective and lighting, and deliver clean document-only PDFs without added titles, headers, footers or surrounding background. Preserve original content. (#be9d73)
 - [language.reply] Giovanni writes in English or Portuguese: answer in the language of the message. Use they/them for Giovanni. (#2c5ec0)
 - [person.profile] Giovanni is a pre-hospital emergency physician in Brazil, preparing the Goethe B2 exam (Nov 2026) and the FSP to work in Germany. (#1e6f53)
 - [style.plain-language] Explain in plain language: define each technical term the first time it appears and say what it means in human terms before the details. Never assume Giovanni knows something only mentioned in passing. When introducing new information or a pendency, name the specific component and change; avoid vague references such as 'migration' without saying what moves and why. (#061d50)
