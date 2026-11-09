@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-09 from 984 events. Do not edit: record changes as events.
+Generated 2026-11-09 from 985 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -17,6 +17,7 @@ radiology report matcher and crawler
 - [matcher.finding-tags-engine] 2026-11-08: Giovanni chose Sonnet (headless claude -p, analysis/morph_tags.py --engine sonnet) for the full finding-tag run after the Codex usage limit. Sonnet needs the check prompt to require 1-4 web searches and a source per finding, else it answers from memory. (#ba7057)
 - [matcher.goal-assistant] Radiology matcher goal (Giovanni 2026-11-08): NOT a clinical diagnosis tool and not a diagnosis ranker. It is a diagnosis ASSISTANT for the radiologist: from a loose description of a finding (e.g. a mass) it identifies the possible RADIOLOGICAL finding/category being described, proposes correct radiological terms, recommends compatible radiological findings, detects when the description is insufficient and asks the right questions so the structure gets properly described. Target 'right answer in top 3 at least 90%' applies to this finding-level task. (#d2e63d)
 - [matcher.hardware] Radiology matcher (2026-10-29): the engine and the statistical analysis must use multithreading and the GPU for calculation when the hardware supports it, with a CPU fallback giving the same results. Recorded in ADR-0002 amendment, CLAUDE.md principle 9 and docs/modelling-directives.md section 3b; requirement EN-2 is added with its test in the first engine commit. (#305e74)
+- [matcher.hit-rule] Radiology finding assistant hit rule (Giovanni 2026-11-09): propose exactly THREE strict findings and highlight the most likely; a hit only if one of the three is exactly the right finding. Parent, child or sibling findings do not count. Also report how often the highlighted one is right. (#1c5766)
 - [matcher.keep-status-fresh] Giovanni 2026-10-30: every instance (Claude Code and Codex) working on the radiology matcher analysis must keep docs/analysis-status.json and the plan site home page guide current: after each step run python3 -I tools/analysis_status.py set STEP STATUS --note '...' in ~/dev/radiology-crawler (it rebuilds the site). Rule is also CLAUDE.md principle 10 and AGENTS.md of that repo. (#0b0793)
 - [matcher.languages] Radiology report matcher stack, decided by Giovanni 2026-10-27: small tools in Python; website back end in Elixir (SQLite search); front end in Elm; the statistical math and the word-to-input matching must be high-speed numerical code (Cython, NumPy, C libraries as needed), NEVER plain-Python loops: it would be too slow. Never forget this. (#fa927e)
 - [matcher.live-job-progress] Radiology matcher (Giovanni 2026-11-08): every analysis job longer than a few minutes shows live progress on the plan site home page via analysis/jobs.py (bar, rate, time left, paused on usage limit). CLAUDE.md principle 14, AN-45, WS-4. (#dff491)
