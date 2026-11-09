@@ -1,6 +1,6 @@
 # Rules tagged codex
 
-Generated 2026-11-09 from 989 events. Do not edit: record changes as events.
+Generated 2026-11-09 from 990 events. Do not edit: record changes as events.
 
 work done by Codex
 
