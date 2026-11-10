@@ -1,19 +1,19 @@
 # Memory brief
 
-Generated 2026-11-10 from 1054 events. Do not edit: record changes as events.
+Generated 2026-11-10 from 1059 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
 - deploy (11): installing, releasing, changing system, service or tool configuration
-- outward (5): acts others see or cannot undo: sending email or messages, purchases, publishing, deleting
+- outward (6): acts others see or cannot undo: sending email or messages, purchases, publishing, deleting
 - troubleshooting (8): debugging, testing, fixing findings, proving that it works
-- coding (20): starting, designing or changing code; choosing tools
-- reporting (7): how to answer, explain and report results or mistakes
+- coding (21): starting, designing or changing code; choosing tools
+- reporting (9): how to answer, explain and report results or mistakes
 - git (11): branches, commits, repos, GitHub
-- docs-memory (13): wiki pages, memory entries, closing a task
+- docs-memory (15): wiki pages, memory entries, closing a task
 - device (6): phone, adb, browser, Telegram
 - quiz (4): QuizApp and QuizWeb
-- radiology (33): radiology report matcher and crawler
+- radiology (34): radiology report matcher and crawler
 - german (4): German exam practice and corrections
 - status-quo (1): the Status Quo tray
 - codex (10): work done by Codex

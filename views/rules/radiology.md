@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-10 from 1054 events. Do not edit: record changes as events.
+Generated 2026-11-10 from 1059 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -34,6 +34,7 @@ radiology report matcher and crawler
 - [matcher.r4-decisions] Radiology R4 (Giovanni 2026-11-09): test unit = whole text with one target finding; simulated answers 15 % vague/wrong; a finding reports its own rate only with >=10 agreed cases; go given for full R3 scale-up (staged, ~9-10k tokens per item per annotator; see docs/r4-test-sets-design.md section 7). (#3e590c)
 - [matcher.s1c-early-codex] Radiology matcher (Giovanni 2026-11-08): start S1c early with Codex while T2 runs: Codex designs/implements tagged V2, V4 and its V3 side on provisional EN tags (data/analysis/morph raw-sonnet-en partial build); final tuning and scoring wait for full T2. Codex builds V4 only if a Codex token-budget check first shows enough allowance. Codex re-checks 50 random finished Sonnet EN tag articles (agreement rate, ~1.4M tokens). Next free requirement ID AN-46. (#96a116)
 - [matcher.tagging-cost] Radiology matcher tagging 2026-10-30: 15-agent Haiku waves (1,500 articles each) hit Giovanni's claude.ai 5-hour usage limit during wave 6 (limit reset 05:20 America/Sao_Paulo). Prefer Codex (gpt-6-luna, analysis/codex_tags.py all, about 22 articles/min, resumable) for bulk tagging; use Haiku waves only in small numbers. Status: ~/dev/radiology-crawler/docs/ANALYSIS-STATUS.md. (#d0dd81)
+- [radiology.act-dont-pause] Giovanni 2026-11-10: in the radiology project they were irritated by too many pauses and too little action: keep moving once a plan is approved. Also, last week's negligence on a project nearly destroyed the workflow: never touch shared workflow or memory systems carelessly; verify before and after any change to them. (#248388)
 - [radiology.haiku-workers] Radiology translator: run 5 Haiku workers (--worker I/5), not 10 (Giovanni, 2026-11-03) (#3a5938)
 - [radiology.translation-rate] Radiology crawler: translate (Codex) at the same rate as extraction, no daily cap; a cap would make it take too long. (#0c7d90)
 - [work.codex-back] Codex is live again (Giovanni 2026-11-06): run radiology steps C2-C5 with many parallel codex exec sessions, model gpt-6.1-sol wherever a Sonnet-class worker would be used; each session fresh --ephemeral under 250k tokens; heavy local jobs one at a time under flock /tmp/radiology-heavy.lock. (#4820c7)
