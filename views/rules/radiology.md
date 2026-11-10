@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-10 from 1060 events. Do not edit: record changes as events.
+Generated 2026-11-10 from 1064 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -36,5 +36,6 @@ radiology report matcher and crawler
 - [matcher.tagging-cost] Radiology matcher tagging 2026-10-30: 15-agent Haiku waves (1,500 articles each) hit Giovanni's claude.ai 5-hour usage limit during wave 6 (limit reset 05:20 America/Sao_Paulo). Prefer Codex (gpt-6-luna, analysis/codex_tags.py all, about 22 articles/min, resumable) for bulk tagging; use Haiku waves only in small numbers. Status: ~/dev/radiology-crawler/docs/ANALYSIS-STATUS.md. (#d0dd81)
 - [radiology.act-dont-pause] Giovanni 2026-11-10: in the radiology project they were irritated by too many pauses and too little action: keep moving once a plan is approved. Also, last week's negligence on a project nearly destroyed the workflow: never touch shared workflow or memory systems carelessly; verify before and after any change to them. (#248388)
 - [radiology.haiku-workers] Radiology translator: run 5 Haiku workers (--worker I/5), not 10 (Giovanni, 2026-11-03) (#3a5938)
+- [radiology.timeline-3-months] Giovanni 2026-11-10: the radiology matcher (portfolio and possible product) must be fully built in about 3 months, all modalities (X-ray, ultrasound, CT, MRI), not a reduced X-ray-only version. Plan to that deadline; fewer pauses. (#e87bf7)
 - [radiology.translation-rate] Radiology crawler: translate (Codex) at the same rate as extraction, no daily cap; a cap would make it take too long. (#0c7d90)
 - [work.codex-back] Codex is live again (Giovanni 2026-11-06): run radiology steps C2-C5 with many parallel codex exec sessions, model gpt-6.1-sol wherever a Sonnet-class worker would be used; each session fresh --ephemeral under 250k tokens; heavy local jobs one at a time under flock /tmp/radiology-heavy.lock. (#4820c7)

@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-10 from 1060 events. Do not edit: record changes as events.
+Generated 2026-11-10 from 1064 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -126,3 +126,6 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] person.schedule: Giovanni's week (2026-11-10): Sat 07-07h airport shift (24h), Sun 19-07h and Tue 19-07h ambulance shifts, German class Mon 16:30-18:30 and Thu 14:30-16:30, groceries Wed morning, friends Fri night. Studies on non-work days; works well from 2 h after waking. Uses Google Calendar and phone alarms. Writing (Schreiben) is the weakest German skill; biggest fear is failing the FSP and Kenntnisprüfung (KP). Radiology matcher is for the CV/portfolio and a possible product; leisure projects are not to be cut. (user)
 - [global] style.no-unexplained-codes: Giovanni 2026-11-10: never use technical terms or project codes/acronyms (step IDs like S1c, T2, AN-57, ADR numbers) without explaining them in detail; too much to hold in mind at once. Say in plain words what the thing is and what it does. (user)
 - [global] work.delegate-admin: Giovanni 2026-11-10: bureaucracy makes them anxious; do everything possible in their place (emails, documents, checklists, quote comparison, tracking Gmail replies). Be proactive: tell them when an email updates the process and when a time milestone passed without its goal met. Outward acts still follow safety.ask-before-outward. (user)
+- [project:yuji] auto.19943e159b: 5 prefiro ver isso depois da hospitation, não quero ganhar outra oportunidade e ter que negar depois. (harvester)
+- [global] hospitation.after-only: Giovanni 2026-11-10: Heidelberg has already accepted the Hospitation (5-30 April 2027); only documents remain to be sent. Do not seek other Hospitation or pathology places before the Hospitation ends, to avoid accepting and later declining an offer. (user)
+- [global] radiology.timeline-3-months: Giovanni 2026-11-10: the radiology matcher (portfolio and possible product) must be fully built in about 3 months, all modalities (X-ray, ultrasound, CT, MRI), not a reduced X-ray-only version. Plan to that deadline; fewer pauses. (user)
