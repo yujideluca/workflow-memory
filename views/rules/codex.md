@@ -1,6 +1,6 @@
 # Rules tagged codex
 
-Generated 2026-11-10 from 1045 events. Do not edit: record changes as events.
+Generated 2026-11-10 from 1049 events. Do not edit: record changes as events.
 
 work done by Codex
 
@@ -8,6 +8,7 @@ work done by Codex
 - [codex.budget-calibration] Codex plan is Plus (2026-11-08 calibration): a 5-hour window holds about 3M tokens, a week about 19M (1.52M tokens moved them +50 and +8 points). Read used percent from rate_limits in a saved (not --ephemeral) session file under ~/.codex/sessions; helper idea: tiny non-ephemeral 'Reply ok.' call with hooks off, then parse the last rate_limits line. (#c03058)
 - [codex.extension-of-claude] Giovanni 2026-11-09: Codex is an extension of Claude on the radiology work. When Codex hits its usage limit, Claude carries on with other work (Sonnet/own steps) and leaves Codex a written handoff (docs/ handoff note + job files) saying exactly where to resume; do not stop and wait. (#6b4922)
 - [codex.run-discipline] Prompts for Codex sessions that run long tuning jobs must require: finish code and gate first, then freeze every file the run hashes until the run ends; one real run at a time, checked with lslocks/pgrep before launching or killing; tests never touch the real lock, data or jobs paths; never claim a run state without reading ledger, job file and process list. Lesson 2026-11-08: V3t edited its code mid-run, both English audits were consumed and discarded, a duplicate launch waited on the lock. (#1cf4f8)
+- [codex.token-bank] Giovanni 2026-11-10: Codex is only a token bank, not a special part of the project. Never reserve or park work for Codex, and never wait for its usage limit to reset. If Codex is available, use it as extra tokens for any step; if not, Claude (Sonnet or own steps) does the step now. This replaces codex.extension-of-claude (handoff-and-wait). (#43635a)
 - [codex.usage-limit] 2026-11-08: the Codex account hit its usage limit after about 2.5M tokens in one night (finding-tag pilot, 10 parallel sessions); reset came hours later. Plan Codex jobs above a few million tokens with Giovanni first. (#7cd83f)
 - [documents.scan-format] When asked to scan identity documents from photos, isolate only the document, correct perspective and lighting, and deliver clean document-only PDFs without added titles, headers, footers or surrounding background. Preserve original content. (#be9d73)
 - [matcher.s1c-early-codex] Radiology matcher (Giovanni 2026-11-08): start S1c early with Codex while T2 runs: Codex designs/implements tagged V2, V4 and its V3 side on provisional EN tags (data/analysis/morph raw-sonnet-en partial build); final tuning and scoring wait for full T2. Codex builds V4 only if a Codex token-budget check first shows enough allowance. Codex re-checks 50 random finished Sonnet EN tag articles (agreement rate, ~1.4M tokens). Next free requirement ID AN-46. (#96a116)

@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-10 from 1045 events. Do not edit: record changes as events.
+Generated 2026-11-10 from 1049 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
@@ -13,15 +13,15 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 - docs-memory (13): wiki pages, memory entries, closing a task
 - device (6): phone, adb, browser, Telegram
 - quiz (4): QuizApp and QuizWeb
-- radiology (32): radiology report matcher and crawler
+- radiology (33): radiology report matcher and crawler
 - german (4): German exam practice and corrections
 - status-quo (1): the Status Quo tray
-- codex (9): work done by Codex
+- codex (10): work done by Codex
 
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] Radiology R3 (2026-11-10): Codex limit again until 2026-11-13 13:56. Left for Codex: ~39 case rows (cases-rest) and 40 own-modality articles; resume per docs/r3-handoff.md. Cases-rest agreement already measured (Jaccard .807, PABAK .486). | check: tail -n 3 /tmp/claude-1000/-home-yuji/8d63a28b-2756-4260-9bcc-0eb109058e70/scratchpad/codex_resume.log; wc -l ~/dev/radiology-crawler/data/analysis/finding-links/annotations-codex-cases-rest.jsonl (since 2026-11-10, #26df9a)
+- [open item] Radiology R4 (2026-11-10): fabricated X-ray descriptions for the 1,206 test-half pairs running on Sonnet (analysis/fabricate.py run, resumable). Then: insufficiency set, simulated answers, wiki update. Codex is only a token bank: no work reserved for it. | check: wc -l ~/dev/radiology-crawler/data/analysis/test-sets/fabricated-xray-cases-test-20261110.jsonl (target 1206+); python3 -I analysis/fabricate.py run resumes it (since 2026-11-10, #3274f2)
 - [open item] Heidelberg Hospitation + Approbation (2026-11-10): asked RP Stuttgart about apostille, sworn translator, docentes list, stapled copies, post vs digital. Pending: RP reply, sending Böhler quote draft, Giovanni submitting the two prefilled web forms. Package in ~/Documents/09 Pacote Hospitation e Approbation (checklist inside). Contract the translation once, only after the RP answers. | check: Gmail: reply from the RP Stuttgart Referat 98 in thread 1a1b6092055424d9 (sent 2026-11-07 and follow-up … (since 2026-11-10, #2bcfdb)
 - [open item] Heidelberg Hospitation: visa question sent to Generalkonsulat São Paulo 2026-11-09 (does a 26-day Hospitation need a visa; best visa for Approbation/work). Waiting for reply. Also open: call labs for Quantiferon in English, dTpa confirmation, translator totals (Martineschen, Böhler, 6 pages). | check: Gmail: reply from Generalkonsulat São Paulo (sent via web form 2026-11-09, preferred language English); page https://claude.ai/artifact/NUjiWLN6FxzMukGhkXS21f (since 2026-11-10, checked 2026-11-10, #78b830)
 - [open item] Heidelberg Hospitation (2026-11-09 night): docs complete except dTpa (pertussis) vaccine, Quantiferon (~1 week before 2027-04-03), choosing translator (2 of 6 quoted, scans of 5 vaccine pages sent to Martineschen and Böhler). Carta-convite request only after all docs ready. Giovanni to review corrected CV in 06_Curriculo. | check: Gmail: replies from translators (Orçamento de tradução juramentada); page https://claude.ai/artifact/NUjiWLN6FxzMukGhkXS21f (since 2026-11-10, checked 2026-11-10, #fbb4a7)
