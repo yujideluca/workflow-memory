@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-10 from 1049 events. Do not edit: record changes as events.
+Generated 2026-11-10 from 1051 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
@@ -21,6 +21,7 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Hospitation/Approbation (2026-11-10): scope changed by Giovanni: quote ALL docs apostilled (A1,A2,B1-B6), excluding Good Standing CRM-PR and PF certificate (reissue+apostille+translate in March 2027). Böhler draft r3078633901294136714 NOT sent; Giovanni to send. Still wait for RP reply before contracting. | check: Gmail: reply from Böhler (new draft r3078633901294136714 sent by Giovanni?) and RP Stuttgart reply in thread 1a1b6092055424d9 (since 2026-11-10, #214fba)
 - [open item] Radiology R4 (2026-11-10): fabricated X-ray descriptions for the 1,206 test-half pairs running on Sonnet (analysis/fabricate.py run, resumable). Then: insufficiency set, simulated answers, wiki update. Codex is only a token bank: no work reserved for it. | check: wc -l ~/dev/radiology-crawler/data/analysis/test-sets/fabricated-xray-cases-test-20261110.jsonl (target 1206+); python3 -I analysis/fabricate.py run resumes it (since 2026-11-10, #3274f2)
 - [open item] Heidelberg Hospitation + Approbation (2026-11-10): asked RP Stuttgart about apostille, sworn translator, docentes list, stapled copies, post vs digital. Pending: RP reply, sending Böhler quote draft, Giovanni submitting the two prefilled web forms. Package in ~/Documents/09 Pacote Hospitation e Approbation (checklist inside). Contract the translation once, only after the RP answers. | check: Gmail: reply from the RP Stuttgart Referat 98 in thread 1a1b6092055424d9 (sent 2026-11-07 and follow-up … (since 2026-11-10, #2bcfdb)
 - [open item] Heidelberg Hospitation: visa question sent to Generalkonsulat São Paulo 2026-11-09 (does a 26-day Hospitation need a visa; best visa for Approbation/work). Waiting for reply. Also open: call labs for Quantiferon in English, dTpa confirmation, translator totals (Martineschen, Böhler, 6 pages). | check: Gmail: reply from Generalkonsulat São Paulo (sent via web form 2026-11-09, preferred language English); page https://claude.ai/artifact/NUjiWLN6FxzMukGhkXS21f (since 2026-11-10, checked 2026-11-10, #78b830)
@@ -34,8 +35,7 @@ Open items (shown in every chat until solved, archived or deleted):
 - [open item] Status Quo CPU (2026-11-06): isolated idle instance measured collector 0.29% / 8.6 MB, panel 0.22% / 168 MB = under SQ-23. Live ~2.7% comes from reading other sessions' transcripts (58k dirs under ~/.claude/projects); cause inside the reader not found, not idle cost. Left: ui_e2e + visual check (free screen), Windows installer on real Windows, dnf/pacman/zypper beyond dry-run. | check: systemctl --user is-active status-quo-collector (since 2026-11-06, checked 2026-11-06, #ef80a0)
 - [open item] Translation check (2026-11-06): burn timer re-enabled by Giovanni; next fire 2026-11-12 13:38 -03 (24 h before weekly budget renews). Daily trickle still on. ~2,863 p1 reviews pending; fix --yes not run; wiki pages not written. | check: systemctl --user is-enabled translation-check-burn.timer (since 2026-11-06, #8132b8)
 - [open item] English-only wiki (2026-11-06): the Claude originals of wiki-page-writer and skill-forge changed and the Codex adaptations were edited to match (commit in codex-skills), but the source baselines in sources/ are not refreshed: skillsctl status says changed for both until Codex reviews and refreshes them. (Re-created 2026-11-06 19:50 after I closed it by mistake; still true: the check passes.) | check: cd ~/dev/codex-skills && python3 tools/skillsctl.py status | grep -A1 -E 'wiki-page-writer|skil… (since 2026-11-06, #70c457)
-- [open item] Wiki pages still stale after the 2026-11-06 push, none from the globe work: adr-explained, skills, claude-plugins, user-space-tools, codex-pbar, codex-skills, codex-skillsctl, codex-status-line. Review each against its sources, then wiki publish. The three old interactive Claude sessions were killed 2026-11-06 15:30 (resume: claude --resume 67d08edb-9b87-409b-bfd5-134400b40ee3 / 11bdd6ef-aa4d-467a-9a57-2eef48d0fef4 / 62d1d35d-d3bc-47b0-aa2c-880890f6e14d); the status-quo session 62d1d35d was wai… (since 2026-11-06, #e69279)
-(1 more open item(s) did not fit: mem pending)
+(2 more open item(s) did not fit: mem pending)
 
 ## Recording
 
