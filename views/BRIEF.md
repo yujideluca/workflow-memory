@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-10 from 1011 events. Do not edit: record changes as events.
+Generated 2026-11-10 from 1013 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
@@ -21,6 +21,7 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] Heidelberg Hospitation: visa question sent to Generalkonsulat São Paulo 2026-11-09 (does a 26-day Hospitation need a visa; best visa for Approbation/work). Waiting for reply. Also open: call labs for Quantiferon in English, dTpa confirmation, translator totals (Martineschen, Böhler, 6 pages). | check: Gmail: reply from Generalkonsulat São Paulo (sent via web form 2026-11-09, preferred language English); page https://claude.ai/artifact/NUjiWLN6FxzMukGhkXS21f (since 2026-11-10, #78b830)
 - [open item] Heidelberg Hospitation (2026-11-09 night): docs complete except dTpa (pertussis) vaccine, Quantiferon (~1 week before 2027-04-03), choosing translator (2 of 6 quoted, scans of 5 vaccine pages sent to Martineschen and Böhler). Carta-convite request only after all docs ready. Giovanni to review corrected CV in 06_Curriculo. | check: Gmail: replies from translators (Orçamento de tradução juramentada); page https://claude.ai/artifact/NUjiWLN6FxzMukGhkXS21f (since 2026-11-10, #fbb4a7)
 - [open item] Heidelberg Hospitation plan (2026-11-09): 6 translator quote emails sent 2026-11-09, no replies yet; Giovanni must save the 'A' vaccine PDF from Katja's 2026-08-03 email (I cannot download Gmail attachments); carta-convite request only when all docs ready except Quantiferon; CV needs fixes (ACLS expired, PHTLS date, Saarland); passport, birth/naturalization certificate, anti-HBs not found. | check: Gmail: search replies from the 6 translators (subject 'Orçamento de tradução juramentada'); page … (since 2026-11-09, #54c2e8)
 - [open item radiology] Radiology T2 stopped by Giovanni 2026-11-09 08:2x: EN tags complete (morph-tags-sonnet-en-20261109.jsonl.gz, 55,226 findings kept, 874 articles with none). DE 129/7135 raw rows, PT not started. Resume only if Giovanni asks: systemd-run --user --unit morph-tags-full env LANGS='de pt' tools/morph_tags_full.sh, watchdog tools/t2_check.py. Or proceed to S1c with EN tags only (his call). | check: systemctl --user is-active morph-tags-full; wc -l ~/dev/radiology-crawler/data/analysis/morph/raw-sonnet… (since 2026-11-09, #3fc512)
