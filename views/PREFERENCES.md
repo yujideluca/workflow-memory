@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-10 from 1065 events. Do not edit: record changes as events.
+Generated 2026-11-10 from 1066 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -129,3 +129,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [project:yuji] auto.19943e159b: 5 prefiro ver isso depois da hospitation, não quero ganhar outra oportunidade e ter que negar depois. (harvester)
 - [global] hospitation.after-only: Giovanni 2026-11-10: Heidelberg has already accepted the Hospitation (5-30 April 2027); only documents remain to be sent. Do not seek other Hospitation or pathology places before the Hospitation ends, to avoid accepting and later declining an offer. (user)
 - [global] radiology.timeline-3-months: Giovanni 2026-11-10: the radiology matcher (portfolio and possible product) must be fully built in about 3 months, all modalities (X-ray, ultrasound, CT, MRI), not a reduced X-ray-only version. Plan to that deadline; fewer pauses. (user)
+- [global] notify.telegram-process: Giovanni 2026-11-10: send process updates (Gmail replies that change the Hospitation/Approbation process, missed milestones) by Telegram via tg-send. This is the go-ahead for that kind of message; keep them short and without patient or third-party data. (user)
