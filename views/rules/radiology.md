@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-10 from 1013 events. Do not edit: record changes as events.
+Generated 2026-11-10 from 1014 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -25,6 +25,7 @@ radiology report matcher and crawler
 - [matcher.live-job-progress] Radiology matcher (Giovanni 2026-11-08): every analysis job longer than a few minutes shows live progress on the plan site home page via analysis/jobs.py (bar, rate, time left, paused on usage limit). CLAUDE.md principle 14, AN-45, WS-4. (#dff491)
 - [matcher.modelling-directives] The directives for modelling version 4 (Giovanni's idea) are in ~/dev/radiology-crawler/docs/modelling-directives.md (layered hard/soft filters, akinator, wording layer with filler list, 50/50 tune/test split by diagnosis). Read it fully before starting the analysis and use it for version 4; versions 1 to 3 do not use it. (#5fe974)
 - [matcher.modelling-plan] Decided 2026-10-30: when the article crawl is done and Giovanni asks to start the analysis, the statistical modelling follows skill-forge style with four competing versions: (1) Claude alone analyses all articles with no prior bias; (2) Codex alone, same task; (3) fully academic approach after thorough research, Claude and Codex debating to the best scientific solution; (4) Giovanni's own idea, mined first through a directed grill session whose directives are saved and reused. Do not start the analysis before he asks. (#fc8acc)
+- [matcher.own-modality-articles] Radiology finding assistant (Giovanni 2026-11-09): each modality module (X-ray, ultrasound, CT, MRI) uses only the articles' sub-sections that describe its own modality (analysis/finding_links.modality_text, AN-62); text of other modalities and text before the first modality heading is left out, and an article without its own sub-section is not sampled for that module. (#6f403a)
 - [matcher.per-language-models] Radiology matcher: every identification model is built and scored separately for EN, DE and PT-BR; a fast language check routes the report; design the routing pipeline only after all per-language models are tested. (#dfb150)
 - [matcher.s1c-early-codex] Radiology matcher (Giovanni 2026-11-08): start S1c early with Codex while T2 runs: Codex designs/implements tagged V2, V4 and its V3 side on provisional EN tags (data/analysis/morph raw-sonnet-en partial build); final tuning and scoring wait for full T2. Codex builds V4 only if a Codex token-budget check first shows enough allowance. Codex re-checks 50 random finished Sonnet EN tag articles (agreement rate, ~1.4M tokens). Next free requirement ID AN-46. (#96a116)
 - [matcher.tagging-cost] Radiology matcher tagging 2026-10-30: 15-agent Haiku waves (1,500 articles each) hit Giovanni's claude.ai 5-hour usage limit during wave 6 (limit reset 05:20 America/Sao_Paulo). Prefer Codex (gpt-6-luna, analysis/codex_tags.py all, about 22 articles/min, resumable) for bulk tagging; use Haiku waves only in small numbers. Status: ~/dev/radiology-crawler/docs/ANALYSIS-STATUS.md. (#d0dd81)
