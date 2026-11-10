@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-10 from 1031 events. Do not edit: record changes as events.
+Generated 2026-11-10 from 1035 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
@@ -13,7 +13,7 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 - docs-memory (13): wiki pages, memory entries, closing a task
 - device (6): phone, adb, browser, Telegram
 - quiz (4): QuizApp and QuizWeb
-- radiology (31): radiology report matcher and crawler
+- radiology (32): radiology report matcher and crawler
 - german (4): German exam practice and corrections
 - status-quo (1): the Status Quo tray
 - codex (9): work done by Codex
@@ -21,7 +21,7 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] Radiology R3 (2026-11-10): Giovanni to decide the scope of the X-ray finding list (keep generic findings with specifics as descriptors, recommended, or add specific entries): 58 % of 2,109 annotated cases state an unlisted finding, see docs/r3-gap-analysis.md. Codex stage 1+2 (docs/r3-handoff.md) ran or pending: check annotations-codex-*.jsonl. | check: cat ~/dev/radiology-crawler/docs/r3-gap-analysis.md | tail -12 (since 2026-11-10, #e1a48f)
+- [open item] Radiology R3 (2026-11-10): list scope decided (option 1). Codex resume running since 07:47 (cases-rest 805/1949 done before the limit, then articles-modality2). When done: report agreement via finding_links.py report, update r3-handoff, wiki radiology-analysis. | check: tail -n 5 /tmp/claude-1000/-home-yuji/8d63a28b-2756-4260-9bcc-0eb109058e70/scratchpad/codex_resume.log; wc -l data/analysis/finding-links/annotations-codex-cases-rest.jsonl (since 2026-11-10, #3b98a7)
 - [open item] Radiology R3 (2026-11-09 22:00): Codex usage limit until 2026-11-10 00:05. Pending Codex runs, est. 4M+ tokens so they need Giovanni's go: 95 items of the 400 run, re-run of 80 pilot items on 228 list, 40 own-modality articles. Cases still use whole Findings text. Note: codex warns features.codex_hooks is deprecated (use features.hooks); verify the old flag still disables hooks. | check: python3 -I tools/analysis_status.py show | grep R3; wc -l data/analysis/finding-links/annotations-codex.jsonl (since 2026-11-10, #c6de75)
 - [open item] Heidelberg Hospitation: visa question sent to Generalkonsulat São Paulo 2026-11-09 (does a 26-day Hospitation need a visa; best visa for Approbation/work). Waiting for reply. Also open: call labs for Quantiferon in English, dTpa confirmation, translator totals (Martineschen, Böhler, 6 pages). | check: Gmail: reply from Generalkonsulat São Paulo (sent via web form 2026-11-09, preferred language English); page https://claude.ai/artifact/NUjiWLN6FxzMukGhkXS21f (since 2026-11-10, #78b830)
 - [open item] Heidelberg Hospitation (2026-11-09 night): docs complete except dTpa (pertussis) vaccine, Quantiferon (~1 week before 2027-04-03), choosing translator (2 of 6 quoted, scans of 5 vaccine pages sent to Martineschen and Böhler). Carta-convite request only after all docs ready. Giovanni to review corrected CV in 06_Curriculo. | check: Gmail: replies from translators (Orçamento de tradução juramentada); page https://claude.ai/artifact/NUjiWLN6FxzMukGhkXS21f (since 2026-11-10, #fbb4a7)

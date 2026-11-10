@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-10 from 1031 events. Do not edit: record changes as events.
+Generated 2026-11-10 from 1035 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -119,3 +119,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] matcher.cases-whole-text: Radiology finding assistant (Giovanni 2026-11-09): cases are annotated on their whole text; do not cut a case at a CT/MRI/ultrasound paragraph, relevant findings can be anywhere in the document. Option 'cut at first other-modality paragraph' was rejected. (user)
 - [global] codex.extension-of-claude: Giovanni 2026-11-09: Codex is an extension of Claude on the radiology work. When Codex hits its usage limit, Claude carries on with other work (Sonnet/own steps) and leaves Codex a written handoff (docs/ handoff note + job files) saying exactly where to resume; do not stop and wait. (user)
 - [global] matcher.r4-decisions: Radiology R4 (Giovanni 2026-11-09): test unit = whole text with one target finding; simulated answers 15 % vague/wrong; a finding reports its own rate only with >=10 agreed cases; go given for full R3 scale-up (staged, ~9-10k tokens per item per annotator; see docs/r4-test-sets-design.md section 7). (user)
+- [global] matcher.list-scope: R3 list scope (2026-11-10): option 1. Keep generic X-ray findings in the list (e.g. fracture, mass, effusion); a case is a hit when the right generic finding is proposed; bone, site, type, displacement and named specifics are descriptors. Then recommend Giovanni consider which specifics within each umbrella deserve their own descriptor values or entries. (user)

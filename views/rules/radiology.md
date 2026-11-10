@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-10 from 1031 events. Do not edit: record changes as events.
+Generated 2026-11-10 from 1035 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -24,6 +24,7 @@ radiology report matcher and crawler
 - [matcher.hit-rule] Radiology finding assistant hit rule (Giovanni 2026-11-09): propose exactly THREE strict findings and highlight the most likely; a hit only if one of the three is exactly the right finding. Parent, child or sibling findings do not count. Also report how often the highlighted one is right. (#1c5766)
 - [matcher.keep-status-fresh] Giovanni 2026-10-30: every instance (Claude Code and Codex) working on the radiology matcher analysis must keep docs/analysis-status.json and the plan site home page guide current: after each step run python3 -I tools/analysis_status.py set STEP STATUS --note '...' in ~/dev/radiology-crawler (it rebuilds the site). Rule is also CLAUDE.md principle 10 and AGENTS.md of that repo. (#0b0793)
 - [matcher.languages] Radiology report matcher stack, decided by Giovanni 2026-10-27: small tools in Python; website back end in Elixir (SQLite search); front end in Elm; the statistical math and the word-to-input matching must be high-speed numerical code (Cython, NumPy, C libraries as needed), NEVER plain-Python loops: it would be too slow. Never forget this. (#fa927e)
+- [matcher.list-scope] R3 list scope (2026-11-10): option 1. Keep generic X-ray findings in the list (e.g. fracture, mass, effusion); a case is a hit when the right generic finding is proposed; bone, site, type, displacement and named specifics are descriptors. Then recommend Giovanni consider which specifics within each umbrella deserve their own descriptor values or entries. (#ba460e)
 - [matcher.live-job-progress] Radiology matcher (Giovanni 2026-11-08): every analysis job longer than a few minutes shows live progress on the plan site home page via analysis/jobs.py (bar, rate, time left, paused on usage limit). CLAUDE.md principle 14, AN-45, WS-4. (#dff491)
 - [matcher.modelling-directives] The directives for modelling version 4 (Giovanni's idea) are in ~/dev/radiology-crawler/docs/modelling-directives.md (layered hard/soft filters, akinator, wording layer with filler list, 50/50 tune/test split by diagnosis). Read it fully before starting the analysis and use it for version 4; versions 1 to 3 do not use it. (#5fe974)
 - [matcher.modelling-plan] Decided 2026-10-30: when the article crawl is done and Giovanni asks to start the analysis, the statistical modelling follows skill-forge style with four competing versions: (1) Claude alone analyses all articles with no prior bias; (2) Codex alone, same task; (3) fully academic approach after thorough research, Claude and Codex debating to the best scientific solution; (4) Giovanni's own idea, mined first through a directed grill session whose directives are saved and reused. Do not start the analysis before he asks. (#fc8acc)
