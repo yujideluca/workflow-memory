@@ -1,6 +1,6 @@
 # Rules tagged docs-memory
 
-Generated 2026-11-14 from 1103 events. Do not edit: record changes as events.
+Generated 2026-11-14 from 1118 events. Do not edit: record changes as events.
 
 wiki pages, memory entries, closing a task
 
@@ -10,6 +10,7 @@ wiki pages, memory entries, closing a task
 - [goal.germany-2027] Giovanni's goal (stated 2026-11-10): live and work in Germany as a radiologist in 2027. Route: Hospitation in April 2027 to obtain a hospital letter of intent to hire, then Approbation and Berufserlaubnis requested together. Plan B: start in pathology. Moves with spouse and 2 cats only after a job and a 6+ month rental that accepts cats and has window screens. Budget about R$150k total including 6 months of living costs without income. (#ee8b73)
 - [pendencies.verify-before-reminding] Pendencies (unfinished goals, known problems) are open items: record them with mem task --check HOW. They show in every chat until solved, archived or deleted; project-specific only when Giovanni says so. Before reminding Giovanni of one, run its check; if it no longer applies, close it; if unchecked, say so. Never call an item open from memory alone. (#1ef225)
 - [policy.third-party-data] Never store clinical, secret or contact data about other people in memory. If a case needs it, Giovanni will ask for a specific procedure. (#2ed756)
+- [radiology.records] Giovanni 2026-11-14 (chose 'one plan file'): in the radiology project a change gets only these records: one-line requirement row (max 300 characters, promise only), its test, a plan note; a scored test adds one results-registry entry; a real decision adds one DESIGN.md log row. Wiki pages and mem use once per closed milestone, not after every task. No handoff files or report documents unless Giovanni asks. Reason: about nine records per step made every version verbose. (#07fe96)
 - [repos.workflow-memory-unprotected] workflow-memory is intentionally without branch protection: its mem job pushes derived files to main with the built-in token and a required check rejects that push (simulation 2026-10-25). Local pre-push check stands in; pipeline-check.toml has protection_exception, so protecao-de-branch is an accepted aviso there, not a failure. (#b68bd7)
 - [wiki.coauthor-trailer] wiki publish adds a Co-Authored-By line only from --co-author 'Name <email>' (or WIKI_CO_AUTHOR): pass the exact attribution line your own session was given, none if you have none. Never a fixed model name. (#3cb16b)
 - [wiki.complete-skill-content] In the wiki project, every skill page must contain the complete source SKILL.md description and instructions, not a shortened summary. The page-generation trigger and writer must locate and read the complete source before writing, and keep the full content on the page (the wiki is English only). (#ceb14e)
