@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-14 from 1070 events. Do not edit: record changes as events.
+Generated 2026-11-14 from 1072 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -35,6 +35,7 @@ radiology report matcher and crawler
 - [matcher.r4-decisions] Radiology R4 (Giovanni 2026-11-09): test unit = whole text with one target finding; simulated answers 15 % vague/wrong; a finding reports its own rate only with >=10 agreed cases; go given for full R3 scale-up (staged, ~9-10k tokens per item per annotator; see docs/r4-test-sets-design.md section 7). (#3e590c)
 - [matcher.s1c-early-codex] Radiology matcher (Giovanni 2026-11-08): start S1c early with Codex while T2 runs: Codex designs/implements tagged V2, V4 and its V3 side on provisional EN tags (data/analysis/morph raw-sonnet-en partial build); final tuning and scoring wait for full T2. Codex builds V4 only if a Codex token-budget check first shows enough allowance. Codex re-checks 50 random finished Sonnet EN tag articles (agreement rate, ~1.4M tokens). Next free requirement ID AN-46. (#96a116)
 - [matcher.tagging-cost] Radiology matcher tagging 2026-10-30: 15-agent Haiku waves (1,500 articles each) hit Giovanni's claude.ai 5-hour usage limit during wave 6 (limit reset 05:20 America/Sao_Paulo). Prefer Codex (gpt-6-luna, analysis/codex_tags.py all, about 22 articles/min, resumable) for bulk tagging; use Haiku waves only in small numbers. Status: ~/dev/radiology-crawler/docs/ANALYSIS-STATUS.md. (#d0dd81)
+- [matcher.unit-structure] Giovanni 2026-11-14: the unit of analysis is a STRUCTURE, not the whole text. If a text describes several structures, each is analysed on its own and gets its own three suggestions; several mentions of the same thing in a text are still one structure. Supersedes the R4 decision 'whole text with one target finding' (#3e590c point 1); the three-slot ceiling of 86 % came from that wrong unit. (#cc1d2c)
 - [radiology.act-dont-pause] Giovanni 2026-11-10: in the radiology project they were irritated by too many pauses and too little action: keep moving once a plan is approved. Also, last week's negligence on a project nearly destroyed the workflow: never touch shared workflow or memory systems carelessly; verify before and after any change to them. (#248388)
 - [radiology.haiku-workers] Radiology translator: run 5 Haiku workers (--worker I/5), not 10 (Giovanni, 2026-11-03) (#3a5938)
 - [radiology.timeline-3-months] Giovanni 2026-11-10: the radiology matcher (portfolio and possible product) must be fully built in about 3 months, all modalities (X-ray, ultrasound, CT, MRI), not a reduced X-ray-only version. Plan to that deadline; fewer pauses. (#e87bf7)
