@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-14 from 1101 events. Do not edit: record changes as events.
+Generated 2026-11-14 from 1103 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -132,3 +132,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] notify.telegram-process: Giovanni 2026-11-10: send process updates (Gmail replies that change the Hospitation/Approbation process, missed milestones) by Telegram via tg-send. This is the go-ahead for that kind of message; keep them short and without patient or third-party data. (user)
 - [global] matcher.english-first: Giovanni 2026-11-14: radiology matcher is perfected in English first. T2 finding tags for German/Portuguese resume only if needed, i.e. if DE/PT terms cannot be interpolated directly from the EN ones. Translators (radiology-translator@0-3) are disabled until there is demand; re-enable with systemctl --user enable --now radiology-translator@{0..3}. (user)
 - [global] matcher.training-corpus: Giovanni 2026-11-14: the matcher is calibrated on a formal cross-checked training corpus (analysis/training_corpus.py, manifest docs/training-corpus-manifest.json), not on Radiopaedia as such: inventory from literature, quotes agreed by two annotators, rewrites checked, synonym lists. Rows are tuning half only; text stays in data/. Train only from it. (user)
+- [global] matcher.corpus-multi-source: Giovanni 2026-11-14: the radiology training corpus must cross several public sources and never be a copy of a single source (legal reasons). Search other public repositories and cross-check the data; analysis/modality_corpus.py refuses a corpus where one source holds more than 60 % of the rows. (user)
