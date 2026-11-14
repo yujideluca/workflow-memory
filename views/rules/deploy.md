@@ -1,6 +1,6 @@
 # Rules tagged deploy
 
-Generated 2026-11-14 from 1123 events. Do not edit: record changes as events.
+Generated 2026-11-14 from 1125 events. Do not edit: record changes as events.
 
 installing, releasing, changing system, service or tool configuration
 
@@ -12,6 +12,7 @@ installing, releasing, changing system, service or tool configuration
 - [release.promote] A version may be promoted to the user channel once it survives the automated tests updated for what it changes (gate with mutation + tests changed with the code); then promoting is Giovanni's decision. No minimum time in beta; do not argue for one. (#510e5a)
 - [safety.ask-before-outward] Ask before anything outward-facing (sending email, accepting events, purchases) or destructive, unless Giovanni has explicitly said to proceed. (#095231)
 - [service.claude-assistant] claude-assistant (systemd user service, linger on) runs 'claude remote-control' in tmux socket 'claude', home ~/assistant, app name yuji-nitro-assistant. bypassPermissions was Giovanni's own choice (2026-10-11): never change it without asking. Watch with claude-assistant attach (Ctrl+b d leaves); restart with systemctl --user restart claude-assistant. (#24f108)
+- [status-quo.one-paste-install] Status Quo must install on any supported system with one copy-paste command in the terminal (Linux: curl | bash; Windows: PowerShell one-liner), no clone, no Rust, from GitHub releases; fallback to source build when no prebuilt exists. Giovanni 2026-11-14. (#0c0933)
 - [work.autonomy] AUTONOMY: once a project and plan are approved, or Giovanni says 'solve it', build end to end without progress pauses and do the work (issues, log rows, fixes) instead of listing proposals; collect the open questions and ask them at the end. Proceed without repeated confirmation for routine, reversible edits, commands, checks and website access inside the task; batch unavoidable access requests instead of asking for each one. Before asking anything, check memory and past messages for decisions already made (example: pipeline-check licence = MIT). Systems built for the agents get no approval prompts or queues ('not a babysitter for the AI'): safety comes from structure (closed tool lists, protected paths, validated data between agents), actuators may run anything except sudo, and the system stays fast and small (bounded logs; a full disk it causes is its own failure). Outward-facing or destructive acts still need asking first (safety.ask-before-outward). (#5a7e73)
 - [work.dedication] DEDICATION: save Giovanni work, never give them work; half-done work is not acceptable (it caused the 2026-11-04 failure).
 1 DEFINE DONE first as Giovanni's observable outcome. Configuration, installation or passing component tests do not prove it; verify the real path and visible behaviour.

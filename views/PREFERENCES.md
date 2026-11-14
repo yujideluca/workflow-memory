@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-14 from 1123 events. Do not edit: record changes as events.
+Generated 2026-11-14 from 1125 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -132,3 +132,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] matcher.corpus-multi-source: Giovanni 2026-11-14: the radiology training corpus must cross several public sources and never be a copy of a single source (legal reasons). Search other public repositories and cross-check the data; analysis/modality_corpus.py refuses a corpus where one source holds more than 60 % of the rows. (user)
 - [global] matcher.keep-status-fresh: Radiology: when a milestone's state or headline number changes, run python3 -I tools/plan.py set M# STATE --note '...' in ~/dev/radiology-crawler (note at most 220 characters; it rewrites PLAN.md and the plan site). A handoff to a new instance is one line: 'Radiology, lane X, milestone M#'; no handoff prompts with copied state. (user)
 - [global] radiology.records: Giovanni 2026-11-14 (chose 'one plan file'): in the radiology project a change gets only these records: one-line requirement row (max 300 characters, promise only), its test, a plan note; a scored test adds one results-registry entry; a real decision adds one DESIGN.md log row. Wiki pages and mem use once per closed milestone, not after every task. No handoff files or report documents unless Giovanni asks. Reason: about nine records per step made every version verbose. (user)
+- [global] status-quo.one-paste-install: Status Quo must install on any supported system with one copy-paste command in the terminal (Linux: curl | bash; Windows: PowerShell one-liner), no clone, no Rust, from GitHub releases; fallback to source build when no prebuilt exists. Giovanni 2026-11-14. (user)
