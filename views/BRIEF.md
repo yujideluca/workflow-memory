@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-13 from 1066 events. Do not edit: record changes as events.
+Generated 2026-11-14 from 1069 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
@@ -13,7 +13,7 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 - docs-memory (15): wiki pages, memory entries, closing a task
 - device (6): phone, adb, browser, Telegram
 - quiz (4): QuizApp and QuizWeb
-- radiology (35): radiology report matcher and crawler
+- radiology (36): radiology report matcher and crawler
 - german (4): German exam practice and corrections
 - status-quo (1): the Status Quo tray
 - codex (10): work done by Codex
@@ -21,6 +21,7 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item radiology] Radiology R5 (2026-11-14, English only): stage 1 engine built and pushed (tune-half top-3 48%, target 97%). Next: descriptor reader + rerank (stage 2), then R6 sufficiency, R7 questions. Needs Giovanni's decision: three-slot pair unit caps at 86%; score per case, per sentence, or user-marked target? Translators disabled and T2 DE/PT paused (see matcher.english-first). | check: python3 -I ~/dev/radiology-crawler/tools/analysis_status.py show | grep -E 'R5' (since 2026-11-14, #598a2f)
 - [open item] Proactive Gmail watch for Giovanni's process (asked 2026-11-10): needs a durable daily check (not a session-only timer) that summarizes only emails changing the Hospitation/Approbation process; read-only. Study map (FSP + Kenntnisprüfung) exam map written at ~/Documents/09 Pacote Hospitation e Approbation/01_Mapa_das_provas_FSP_e_KP.md; next: Arztbrief lesson, then study plan, after Giovanni reads the map. Calendar events created for Hospitation, 8 March deadline, Quantiferon 22 March, Good Sta… (since 2026-11-10, #a58496)
 - [open item] Hospitation/Approbation (2026-11-10 17:36 UTC): Giovanni SENT the Böhler quote request (10 PDFs): Group 1 (A1,A2,B1-B6) translated WITH apostille; Group 2 (Good Standing CRM-PR, PF certificate) translated WITHOUT apostille now, reissued + apostilled + translated again in FEBRUARY 2027 (their edit; I had written March). Waiting for Böhler quote and RP reply before contracting. | check: Gmail: reply from Böhler in thread 1a1c684df09d0528; RP Stuttgart reply in thread 1a1b6092055424d9 (since 2026-11-10, #905ea0)
 - [open item] Hospitation/Approbation (2026-11-10): scope changed by Giovanni: quote ALL docs apostilled (A1,A2,B1-B6), excluding Good Standing CRM-PR and PF certificate (reissue+apostille+translate in March 2027). Böhler draft r3078633901294136714 NOT sent; Giovanni to send. Still wait for RP reply before contracting. | check: Gmail: reply from Böhler (new draft r3078633901294136714 sent by Giovanni?) and RP Stuttgart reply in thread 1a1b6092055424d9 (since 2026-11-10, #214fba)
@@ -33,9 +34,8 @@ Open items (shown in every chat until solved, archived or deleted):
 - [open item radiology] Radiology S1c (2026-11-09): V2t, V4t (cd7558f, ADR 0005) and V3t r2 (76c17ec, ADR 0006) merged on provisional EN tags; params in data/analysis/v{2,3,4}t-*. Audit top-10 EN tagged/no-tags: V2t chose tag weight 0 (61.3 %), V3t 59.5/58.8 %, V4t 18.4/17.2 % (unit-L1 normalization, design limit). Left after T2: V1t (AN-57..59), full-tag final reruns of all four, outer scoring; port codex_hooks=false into morph_tags.run_codex; 30-min retry fix needs Giovanni's OK. | check: python3 -I ~/dev/radiology-… (since 2026-11-09, #9ce5c9)
 - [open item] Wiki globe selection: MP-10 implemented and deployed on main 96396cc; red/green CSS test, 99 Elixir and 193 Elm tests, local pipeline and branch CI passed; served assets match. Live desktop/phone gesture verification remains: CUA tab attachment, DOM snapshot, screenshot and evaluate all fail with Cannot read properties of undefined (reading timeoutMs), including explicit timeout and fresh tab. No authentication bypass attempted. | check: Use CUA browser to reload the live wiki and drag across g… (since 2026-11-08, #95f4d6)
 - [open item radiology] Radiology matcher (2026-11-08): articles-only rule (CLAUDE.md principle 13). V1, V2, V3 rebuilt as V1a/V2a/V3a (analysis/articles_only.py, docs/articles-only-report.md, step S1b). Test top-10 V1a/V4/V3a/V2a: EN .617/.566/.560/.533, DE .490/.460/.442/.396, PT .586/.543/.530/.503. Next: S2 merge of rule-abiding parts, V1a as base; open question: restrict V2a/V3a to diagnosis-typed candidates; V1a mu at grid edge. | check: python3 -I tools/analysis_status.py show | grep -E 'S1b|S2' (since 2026-11-08, #84f949)
-- [open item] Status Quo CPU (2026-11-06): isolated idle instance measured collector 0.29% / 8.6 MB, panel 0.22% / 168 MB = under SQ-23. Live ~2.7% comes from reading other sessions' transcripts (58k dirs under ~/.claude/projects); cause inside the reader not found, not idle cost. Left: ui_e2e + visual check (free screen), Windows installer on real Windows, dnf/pacman/zypper beyond dry-run. | check: systemctl --user is-active status-quo-collector (since 2026-11-06, checked 2026-11-06, #ef80a0)
 - [open item] Translation check (2026-11-06): burn timer re-enabled by Giovanni; next fire 2026-11-12 13:38 -03 (24 h before weekly budget renews). Daily trickle still on. ~2,863 p1 reviews pending; fix --yes not run; wiki pages not written. | check: systemctl --user is-enabled translation-check-burn.timer (since 2026-11-06, #8132b8)
-(3 more open item(s) did not fit: mem pending)
+(4 more open item(s) did not fit: mem pending)
 
 ## Recording
 
