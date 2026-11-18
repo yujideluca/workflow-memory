@@ -1,6 +1,6 @@
 # Rules tagged git
 
-Generated 2026-11-18 from 1284 events. Do not edit: record changes as events.
+Generated 2026-11-18 from 1286 events. Do not edit: record changes as events.
 
 branches, commits, repos, GitHub
 
@@ -9,6 +9,7 @@ branches, commits, repos, GitHub
 - [git.gate-off-report] Since 2026-11-18 repo_sync.py report (and its Stop hook) names a repository that has tools/hooks/pre-push but where the gate is off in this clone. Fix: git config core.hooksPath tools/hooks in that clone. pipeline-check has its own pre-push gate since 2026-11-18. The release feed clone (~/dev/german-quiz-releases) has its gate in .git/hooks/pre-push (QuizApp tools/check_feed.py), which a fresh clone does not get: reinstall it after cloning. (#98f61a)
 - [git.no-force-push] Never force-push. (#932143)
 - [git.sync-check] At the end of a task run python3 -I ~/dev/workflow-memory/scripts/repo_sync.py report (also a Stop hook, once per session): commit, push to main, delete CI branches and worktrees in repos you touched. Files under 20 min old may belong to a live session: leave them. A deliberate extra branch: git config --add repo-sync.branch NAME. (#646e8e)
+- [memory.history-rewritten] The history of workflow-memory was rewritten once on 2026-11-18 about 16:40 UTC (Giovanni's one-time exception to the no-force-push rule; first new tip de571e3): entries from before that day are now encrypted in every commit and old versions of views/ are gone. This replaces point (7) of memory.private-entries. A clone or bundle made before that time holds the old plain text: never pull, merge or push it; clone again. The old state is kept only in ~/Documents/backups/workflow-memory-before-rewrite.bundle on the laptop; it holds private text, so never upload it. The no-force-push rule stands for everything else. (#c36372)
 - [pipeline-check.merge-block] Merges to main are blocked by the local pre-push check (pipeline-check --pre-push, hook in tools/hooks, enabled with git config core.hooksPath tools/hooks) because private repositories on the free GitHub plan cannot use branch protection; pipeline-check is public so CI needs no token (decided 2026-10-24). (#eba53a)
 - [quiz.push-main] Giovanni 2026-11-18: german-quiz main is protected for the owner too (enforce_admins). Push with tools/push_main.sh (branch ci-<commit>, CI, then main); a plain git push to main is refused. The other repositories keep the admin exception and rely on the local pre-push hook (ADR-0015 in QuizApp). (#5e6dc6)
 - [repos.local-only] Giovanni 2026-11-18: b2-themen, b2-vorlagen, merlin-b2-scorecard, merlin-data and tor-setup in ~/dev were temporary endeavours and get no GitHub repository (exception to work.github-standard); each carries git config repo-sync.local so repo-sync stops asking for a remote. vm-lab got the private repository yujideluca/vm-lab. A new local-only repository needs Giovanni's word before it is declared. (#897983)
