@@ -31,8 +31,11 @@ def git(repo, *args):
     return p.stdout.strip() if p.returncode == 0 else ''
 
 
-def repos(root=ROOT):
-    return sorted(p for p in Path(root).iterdir() if (p / '.git').is_dir())
+def repos(root=None):
+    root = Path(root or ROOT)          # read when called, so a changed ROOT is the one used
+    if not root.is_dir():
+        return []                      # no projects folder (another machine, CI): nothing to report, never a crash
+    return sorted(p for p in root.iterdir() if (p / '.git').is_dir())
 
 
 def newest_mtime(repo, lines):
@@ -82,7 +85,7 @@ def check(repo, now=None):
     return out
 
 
-def report(root=ROOT):
+def report(root=None):
     return {p.name: probs for p in repos(root) if (probs := check(p))}
 
 

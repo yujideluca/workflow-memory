@@ -85,6 +85,9 @@ class RepoSync(unittest.TestCase):
         self.assertIn('no remote', json.loads(outs[0])['systemMessage'])
         self.assertEqual(outs[1], '')
 
+    def test_a_missing_projects_folder_reports_nothing_and_does_not_crash(self):
+        self.assertEqual(rs.report(Path(self.tmp.name) / 'absent'), {})
+
     def test_a_repository_declared_local_only_is_not_asked_for_a_remote(self):
         sh(self.repo, 'git', 'config', 'repo-sync.local', 'temporary experiment')
         self.assertEqual(rs.check(self.repo), [])
