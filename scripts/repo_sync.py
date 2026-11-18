@@ -3,7 +3,9 @@
 
 Why: the one-branch rule (work.single-branch) and the GitHub rule (work.github-standard) were only text; sessions that stopped
 (usage limit, closed terminal) left uncommitted files, CI branches, worktrees and repos without a remote. This is the check.
-Modes: `report` (list, exit 0), `hook-stop` (Claude Code / Codex Stop hook: once per session, a notice, never blocks).
+Modes: `report` (list, exit 0), `hook-stop` (Claude Code Stop hook: once per session, never blocks). The hook answers with
+JSON `{"systemMessage": ...}`: plain text printed by a Stop hook reaches neither the assistant nor the screen, a systemMessage is
+shown to the user.
 A deliberate extra branch is declared with `git config --add repo-sync.branch NAME`. Standard library only. Read-only: it never commits, pushes or deletes anything.
 """
 import json
@@ -20,7 +22,11 @@ MAIN = ('main', 'master')
 
 
 def git(repo, *args):
-    p = subprocess.run(['git', '-C', str(repo), *args], capture_output=True, text=True, timeout=30)
+    """Output of a read-only git call; '' when git fails or does not answer in time (never raises)."""
+    try:
+        p = subprocess.run(['git', '-C', str(repo), *args], capture_output=True, text=True, timeout=30)
+    except (OSError, subprocess.SubprocessError):
+        return ''
     return p.stdout.strip() if p.returncode == 0 else ''
 
 
@@ -43,7 +49,10 @@ def check(repo, now=None):
     """Problems of one repository, as short sentences."""
     now = now or time.time()
     out = []
+    if not git(repo, 'rev-parse', '--git-dir'):
+        return ['git did not answer here (broken repository or a timeout): not checked']
     remotes = git(repo, 'remote').split()
+    declared = git(repo, 'config', '--get-all', 'repo-sync.branch').split()
     if not remotes:
         out.append('no remote: the work exists on this disk only')
     st = [ln for ln in git(repo, 'status', '--short').splitlines() if ln]
@@ -55,8 +64,15 @@ def check(repo, now=None):
         if name in MAIN:
             if remotes and 'ahead' in track:
                 out.append(f'{name} has commits not pushed {track}')
-        elif name and name not in git(repo, 'config', '--get-all', 'repo-sync.branch').split():
+            elif remotes and not up:
+                out.append(f'{name} follows no remote branch, so unpushed commits cannot be seen (git push -u origin {name})')
+        elif name and name not in declared:
             out.append(f'extra branch {name}' + (f' {track}' if track else '') + ' (rule: one branch, main)')
+    # Branches that exist on the remote only (as of the last fetch; no network call here): a CI branch whose local copy was deleted.
+    for ref in git(repo, 'branch', '-r', '--format=%(refname:short)').splitlines():
+        remote, _, name = ref.partition('/')
+        if name and name not in MAIN and name != 'HEAD' and name not in declared:
+            out.append(f'extra remote branch {ref} (rule: one branch, main)')
     wts = [ln for ln in git(repo, 'worktree', 'list', '--porcelain').split('\n\n')][1:]
     for w in wts:
         path = w.splitlines()[0][9:] if w else ''
@@ -88,7 +104,8 @@ def hook_stop():
     for old in STATE.glob('seen-*'):
         if time.time() - old.stat().st_mtime > 7 * 86400:
             old.unlink()
-    print('Repos not in sync with their remote (commit, push to main, delete CI branches and worktrees; or say why not):\n' + format_report(r))
+    text = 'Repos not in sync with their remote (commit, push to main, delete CI branches and worktrees; or say why not):\n' + format_report(r)
+    print(json.dumps({'systemMessage': text}))
     return 0
 
 

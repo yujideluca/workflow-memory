@@ -94,7 +94,7 @@ def session_start(root, payload, now, instance):
 def stop(root, payload, now, instance):
     try:
         result = sync.push(root)
-        if result.startswith("push failed") or result.startswith("commit failed"):
+        if result not in ("pushed", "nothing to push"):     # a conflict is a failure too: log whatever is not a success
             _log("stop hook: " + result)
     except Exception:
         _log("stop hook: " + traceback.format_exc(limit=3))
