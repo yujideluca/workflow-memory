@@ -1,6 +1,6 @@
 # Rules tagged status-quo
 
-Generated 2026-11-18 from 1297 events. Do not edit: record changes as events.
+Generated 2026-11-18 from 1299 events. Do not edit: record changes as events.
 
 the Status Quo tray
 

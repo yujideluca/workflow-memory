@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-18 from 1297 events. Do not edit: record changes as events.
+Generated 2026-11-18 from 1299 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -140,9 +140,6 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [project:assistant] auto.160a189833: Once its requests are accepted again, send the agent a message (SendMessage) to let it continue from where it stopped instead of starting a new agent.</note>
 </task-notification> (restated 4x) (harvester)
 - [global] auto.160a189833: Once its requests are accepted again, send the agent a message (SendMessage) to let it continue from where it stopped instead of starting a new agent.</note>
-</task-notification> (harvester)
-- [project:assistant] auto.622bcf8431: Once its requests are accepted again, send the agent a message (SendMessage) to let it continue from where it stopped instead of starting a new agent.</note>
-<result>Now write the literature-check steps.</result>
 </task-notification> (harvester)
 - [global] research.full-text-not-abstracts: Giovanni 2026-11-15: when checking facts against the literature, never settle for abstracts: they say almost nothing. Read the full article. Thousands of articles are open on the internet, and authors often post the full text themselves (e.g. on ResearchGate, institutional repositories, preprint servers); look for those copies. A claim supported only by an abstract counts as not verified. (user)
 - [project:assistant] auto.03aed0c2e0: "Five questions" now stands in docs/SCOPE.md, the goal in docs/plan.json (the plan tool has no goal command, so I changed the value through its own load and refresh functions, which regenerated PLAN.md and the plan site), the DESIGN.md summary line, the plan site's lead sentence (site_src/build.py) and the results text in analysis/one_time_test.py (a judge-lane file; it now names the constant instead of a fixed 3). (harvester)
