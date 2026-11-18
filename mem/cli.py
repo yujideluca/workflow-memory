@@ -24,6 +24,24 @@ def _placeholder(text):
     return not words or (len(words) == 1 and words[0].lower() in PLACEHOLDERS)
 
 
+def _one_entry(root, name):
+    """The full id of the one entry that NAME (a full id, a ref or #ref) names; None, with the reason printed.
+
+    Without this a control event for an unknown or shared ref was written and silently changed nothing.
+    """
+    name = name.strip().lstrip("#")
+    ids = sorted({e["id"] for e in ev.load(root)[0]})
+    hit = [i for i in ids if i == name] or [i for i in ids if core.ref(i) == name]
+    if len(hit) == 1:
+        return hit[0]
+    if not hit:
+        print(f"refused: no entry is named {name!r}; nothing was written", file=sys.stderr)
+    else:
+        print(f"refused: {len(hit)} entries end with {name!r}; give the full name of one:\n  "
+              + "\n  ".join(hit), file=sys.stderr)
+    return None
+
+
 def _write(root, now, kind, text="", scope="global", key=None, owner="agent",
            instance="cli", target=None, signal=None, supersedes=(), category=None, tag_list=None):
     e = dict(id=ev.new_id(now, instance), ts=now, type=kind, scope=scope, key=key, body=text,
@@ -162,10 +180,11 @@ def run(argv=None, stdin=None):
         e = hit[0]
         return _write(root, now, e["type"], e["body"], e["scope"], e["key"], e["owner"], instance,
                       supersedes=[e["id"]], tag_list=_tag_arg(",".join(a.tags)))
-    if a.cmd == "feedback":
-        return _write(root, now, "feedback", "", instance=instance, target=a.target, signal=a.signal)
-    if a.cmd in ("forget", "done", "claim", "archive", "reopen"):
-        return _write(root, now, a.cmd, "", instance=instance, target=a.target)
+    if a.cmd in ("feedback", "forget", "done", "claim", "archive", "reopen"):
+        target = _one_entry(root, a.target)
+        if target is None:
+            return 2
+        return _write(root, now, a.cmd, "", instance=instance, target=target, signal=getattr(a, "signal", None))
     if a.cmd == "task":
         return _write(root, now, "task", f"{a.text} {pendency.CHECK_MARK} {a.check}", a.scope,
                       instance=instance, category=a.category)
