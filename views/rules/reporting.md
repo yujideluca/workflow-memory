@@ -1,6 +1,6 @@
 # Rules tagged reporting
 
-Generated 2026-11-18 from 1289 events. Do not edit: record changes as events.
+Generated 2026-11-18 from 1292 events. Do not edit: record changes as events.
 
 how to answer, explain and report results or mistakes
 
@@ -19,3 +19,4 @@ how to answer, explain and report results or mistakes
 4 If a check is too costly, slow or unsafe, say what was skipped, why, the risk and your advice; never skip silently.
 5 REPORT: compare the result with each requirement; lead with result, evidence and remaining limitation in plain language; say what is done, not done, unchecked; end with 'Verified by:' (what was run, what could not be checked). (#1af374)
 - [work.flag-already-answered] When a requested step is already answered or unnecessary (example: asked to request a Pix key that the translator had already sent in his quote), tell Giovanni first, before acting; do not silently change the step or bury it in the final report. (2026-11-16) (#b587c7)
+- [work.no-fake-proof] Forbidden: claiming something works on the strength of a simulated check. A dry run, a mocked or stubbed command, a faked environment variable or a test double proves only the script's logic, never that the real thing works. 'Works', 'fixed', 'installs' or 'done' may be said only after the real command or program a person would use was run for real in the real target environment (for installers: the published command on a clean machine with nothing preinstalled) and the outcome was observed. If the real run was not possible, say 'NOT proven' in the first line of the report, say exactly what was not run and leave an open item; never word a simulation as proof. Every project with an install or release path must have an automated real run on bare machines that blocks the release when it fails. Giovanni called the opposite lying (2026-11-18, Status Quo installer failed for real users after several 'verified' fixes that were only dry runs). (#842262)
