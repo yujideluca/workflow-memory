@@ -12,11 +12,21 @@ STATE = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local/state")) / "
 MARK = "mem hook-"
 
 
+LOG_MAX = 1_000_000     # bytes; past it the log keeps its newest half (a bounded log: it had grown to 8.5 MB)
+
+
 def _log(message):
     try:
         STATE.mkdir(parents=True, exist_ok=True)
-        with open(STATE / "hook.log", "a", encoding="utf-8") as f:
+        path = STATE / "hook.log"
+        with open(path, "a", encoding="utf-8") as f:
             f.write(f"{datetime.now(timezone.utc):%Y-%m-%dT%H:%M:%SZ} {message}\n")
+        if path.stat().st_size > LOG_MAX:
+            tail = path.read_bytes()[-LOG_MAX // 2:]
+            tail = tail[tail.find(b"\n") + 1:]                 # start at a whole line
+            tmp = path.with_name(f"hook.log.tmp{os.getpid()}")
+            tmp.write_bytes(tail)
+            os.replace(tmp, path)
     except OSError:
         pass
 

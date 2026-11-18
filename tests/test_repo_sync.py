@@ -85,6 +85,13 @@ class RepoSync(unittest.TestCase):
         self.assertIn('no remote', json.loads(outs[0])['systemMessage'])
         self.assertEqual(outs[1], '')
 
+    def test_a_repository_declared_local_only_is_not_asked_for_a_remote(self):
+        sh(self.repo, 'git', 'config', 'repo-sync.local', 'temporary experiment')
+        self.assertEqual(rs.check(self.repo), [])
+        (self.repo / 'f').write_text('2')
+        self.assertTrue(any('uncommitted' in p for p in rs.check(self.repo)), 'the other checks still apply')
+
+
 
 class StopHookLog(unittest.TestCase):
     """The memory Stop hook cannot speak (exit 0, no output), so every result that is not a success must reach its log."""
@@ -102,3 +109,16 @@ class StopHookLog(unittest.TestCase):
                     with mock.patch.object(hooks.sync, 'push', return_value=result):
                         self.assertEqual(hooks.stop(Path(d), {}, None, None), 0)
                     self.assertIn(result, (Path(d) / 'hook.log').read_text())
+
+    def test_the_hook_log_is_cut_to_its_newest_part_when_it_grows_past_the_limit(self):
+        from unittest import mock
+        from mem import hooks
+        with tempfile.TemporaryDirectory() as d:
+            with mock.patch.object(hooks, 'STATE', Path(d)), mock.patch.object(hooks, 'LOG_MAX', 2000):
+                for i in range(200):
+                    hooks._log(f'line {i:04d} ' + 'x' * 40)
+                text = (Path(d) / 'hook.log').read_text()
+        self.assertLessEqual(len(text), 2000 + 200)
+        self.assertIn('line 0199', text)
+        self.assertNotIn('line 0000', text)
+        self.assertTrue(text.splitlines()[0].startswith('20') or text.startswith('...'), 'it starts at a whole line')

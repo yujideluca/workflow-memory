@@ -6,7 +6,8 @@ Why: the one-branch rule (work.single-branch) and the GitHub rule (work.github-s
 Modes: `report` (list, exit 0), `hook-stop` (Claude Code Stop hook: once per session, never blocks). The hook answers with
 JSON `{"systemMessage": ...}`: plain text printed by a Stop hook reaches neither the assistant nor the screen, a systemMessage is
 shown to the user.
-A deliberate extra branch is declared with `git config --add repo-sync.branch NAME`. Standard library only. Read-only: it never commits, pushes or deletes anything.
+A deliberate extra branch is declared with `git config --add repo-sync.branch NAME`; a repository that is meant to stay on this disk
+only (a temporary experiment) with `git config repo-sync.local "why"`. Standard library only. Read-only: it never commits, pushes or deletes anything.
 """
 import json
 import os
@@ -53,7 +54,7 @@ def check(repo, now=None):
         return ['git did not answer here (broken repository or a timeout): not checked']
     remotes = git(repo, 'remote').split()
     declared = git(repo, 'config', '--get-all', 'repo-sync.branch').split()
-    if not remotes:
+    if not remotes and not git(repo, 'config', '--get', 'repo-sync.local'):
         out.append('no remote: the work exists on this disk only')
     st = [ln for ln in git(repo, 'status', '--short').splitlines() if ln]
     if st:
