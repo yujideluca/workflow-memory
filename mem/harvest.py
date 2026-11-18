@@ -32,6 +32,8 @@ def candidates(prompts):
     for p in prompts:
         if p.get("source") != "user":
             continue  # tool output and agent text never become preferences
+        if not isinstance(p.get("text"), str):
+            continue  # a prompt that is not text (a number, a list, nothing): 45 crashes of the prompt hook until 2026-11-18
         if len(p["text"]) > MAX_PROMPT:
             continue
         for s in re.split(r"(?<=[.!?])\s+", _CODE.sub("", p["text"])):

@@ -56,6 +56,8 @@ def check(repo, now=None):
     if not git(repo, 'rev-parse', '--git-dir'):
         return ['git did not answer here (broken repository or a timeout): not checked']
     remotes = git(repo, 'remote').split()
+    if (Path(repo) / 'tools' / 'hooks' / 'pre-push').is_file() and git(repo, 'config', '--get', 'core.hooksPath') != 'tools/hooks':
+        out.append('the pre-push gate is not switched on in this clone (git config core.hooksPath tools/hooks)')
     declared = git(repo, 'config', '--get-all', 'repo-sync.branch').split()
     if not remotes and not git(repo, 'config', '--get', 'repo-sync.local'):
         out.append('no remote: the work exists on this disk only')

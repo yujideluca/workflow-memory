@@ -85,6 +85,16 @@ class RepoSync(unittest.TestCase):
         self.assertIn('no remote', json.loads(outs[0])['systemMessage'])
         self.assertEqual(outs[1], '')
 
+    def test_a_pre_push_gate_that_is_not_switched_on_in_this_clone_is_reported(self):
+        hook = self.repo / 'tools' / 'hooks' / 'pre-push'
+        hook.parent.mkdir(parents=True)
+        hook.write_text('#!/bin/sh\n')
+        sh(self.repo, 'git', 'add', 'tools')
+        sh(self.repo, 'git', 'commit', '-qm', 'gate')
+        self.assertTrue(any('core.hooksPath' in p for p in rs.check(self.repo)), rs.check(self.repo))
+        sh(self.repo, 'git', 'config', 'core.hooksPath', 'tools/hooks')
+        self.assertFalse(any('core.hooksPath' in p for p in rs.check(self.repo)))
+
     def test_a_missing_projects_folder_reports_nothing_and_does_not_crash(self):
         self.assertEqual(rs.report(Path(self.tmp.name) / 'absent'), {})
 
@@ -125,3 +135,12 @@ class StopHookLog(unittest.TestCase):
         self.assertIn('line 0199', text)
         self.assertNotIn('line 0000', text)
         self.assertTrue(text.splitlines()[0].startswith('20') or text.startswith('...'), 'it starts at a whole line')
+
+
+class Harvest(unittest.TestCase):
+    def test_a_prompt_that_is_not_text_is_skipped_and_does_not_stop_the_others(self):
+        from mem import harvest
+        good = dict(text='Always answer in plain language.', ts='2026-11-18T00:00:00Z', project='p', source='user')
+        odd = [dict(good, text=7), dict(good, text=None), dict(good, text=['a']), {'source': 'user'}]
+        self.assertEqual(harvest.candidates(odd), [])
+        self.assertEqual(harvest.candidates(odd + [good]), harvest.candidates([good]))
