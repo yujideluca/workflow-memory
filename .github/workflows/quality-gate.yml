@@ -17,6 +17,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - run: pip install --quiet cryptography   # only for tests/test_seal.py (ADR-0009); the mem job runs without it
       - uses: dtolnay/rust-toolchain@stable
       - uses: actions/cache@v4
         with:

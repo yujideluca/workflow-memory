@@ -29,7 +29,12 @@ def _write(root, now, kind, text="", scope="global", key=None, owner="agent",
     e = dict(id=ev.new_id(now, instance), ts=now, type=kind, scope=scope, key=key, body=text,
              instance=instance, owner=owner, supersedes=list(supersedes), target=target,
              signal=signal, category=category, tags=tag_list)
+    if kind in project.config(root).get("seal", ()) and not key:
+        e["sealed"] = True
     why = validate.check_event(e, now)
+    if e.get("sealed") and not ev.can_seal():
+        why.append(f"a {kind} is private here and is written encrypted, but the key {ev.key_file()} "
+                   "(or the Python package cryptography) is missing: restore the key, or run mem key init on a new memory")
     if why:
         print("refused: " + "; ".join(why), file=sys.stderr)
         return 2
@@ -97,6 +102,7 @@ def run(argv=None, stdin=None):
     tg.add_argument("--scope", help="needed when the same key exists in several scopes")
     sub.add_parser("search").add_argument("query")
     sub.add_parser("check", help="list invalid events; exit 1 if any")
+    sub.add_parser("key", help="the key of the private entries").add_argument("action", choices=["init", "status"])
     sub.add_parser("quarantine", help="move invalid events to quarantine/")
     sub.add_parser("dismiss", help="delete a reviewed file from quarantine/").add_argument("name")
     sub.add_parser("promote", help="write global entries for habits seen in 2 projects")
@@ -218,6 +224,19 @@ def run(argv=None, stdin=None):
             p.unlink()
         print(f"dismissed {stem}" if gone else f"nothing named {stem} in quarantine/")
         return 0 if gone else 1
+    if a.cmd == "key":
+        if a.action == "init":
+            path, created = ev.new_key()
+            print(f"{'created' if created else 'kept the existing'} key {path}"
+                  + ("\nKeep a copy outside this laptop: without it the private entries cannot be read again." if created else ""))
+            return 0
+        events, _ = ev.load(root)
+        sealed = [e for e in events if e.get("sealed")]
+        locked = sum(1 for e in sealed if e["body"] == ev.MASK)
+        print(f"key {ev.key_file()}: {'usable' if ev.can_seal() else 'missing or unusable'}; "
+              f"{len(sealed)} private entries, {locked} unreadable here; private kinds: "
+              + (", ".join(project.config(root).get("seal", ())) or "none"))
+        return 0 if ev.can_seal() and not locked else 1
     if a.cmd == "promote":
         events, _ = validate.load_checked(root, now)
         for e in harvest.promote(events, now):

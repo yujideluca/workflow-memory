@@ -50,6 +50,8 @@ def check_event(e, now):
         why.append(f"bad instance {e['instance']!r}")
     if e["owner"] not in OWNERS:
         why.append(f"unknown owner {e['owner']!r}")
+    if e.get("sealed") and e["key"]:
+        why.append("a private entry cannot have a key (rules are compared by their text, which CI cannot read)")
     if e["type"] not in ev.TYPES[6:] and not e["body"]:
         why.append("empty text")
     if len(e["body"]) > MAX_BODY:
@@ -74,9 +76,14 @@ def check_event(e, now):
     return why
 
 
-def load_checked(root, now):
-    """(valid events, invalid) where invalid is [(relative path, [reasons])]."""
+def load_checked(root, now, public=False):
+    """(valid events, invalid) where invalid is [(relative path, [reasons])].
+
+    `public=True` reads private entries as everyone without the key does: for whatever is written to the repository.
+    """
     events, bad = ev.load(root)
+    if public:
+        events = [ev.mask(e) for e in events]
     invalid = [(path, [reason]) for path, reason in bad]
     valid = []
     for e in events:
@@ -103,7 +110,7 @@ def clamp_to_now(e, now):
 def quarantine(root, now):
     """Move invalid event files to quarantine/ with a .reason note. Returns the moves."""
     root, moved = Path(root), []
-    _, invalid = load_checked(root, now)
+    _, invalid = load_checked(root, now, public=True)
     for rel, reasons in invalid:
         src = root / rel
         if not src.exists():

@@ -45,12 +45,14 @@ Open items: `type: task`, text `what is open | check: how to verify it still app
 Verify: `type: use`, `target: ref`, a line on how. Solved: `type: done`; park: `type: archive` (`reopen`
 undoes it); delete: `type: forget`; each with `target: ref`.
 No secrets or contact data: such files are quarantined.
+Open items written on the laptop are encrypted and show here only as a placeholder. A file you write is not
+encrypted and this repository is public: put nothing private in it.
 """
 
 
 def build(root, now, instance="app", budget=BRIEF_BUDGET):
     """Return {view name: text}. Pure given the files and `now`."""
-    events, invalid = validate.load_checked(root, now)
+    events, invalid = validate.load_checked(root, now, public=True)  # views are public: never a private text
     state = core.resolve(events)
     stamp = f"Generated {now:%Y-%m-%d} from {len(events)} events. Do not edit: record changes as events."
     pend = pendency.section(events, instance=instance)  # a chat has no project: global items only

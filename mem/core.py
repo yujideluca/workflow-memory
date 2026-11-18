@@ -265,8 +265,8 @@ def compaction_proposals(events, usage, now, min_age_days=30):
     usage = list(usage) + uses_from(events)
     groups = {}
     for e in active:
-        if TIERS[e["type"]][0] is None or e["type"] == "digest":
-            continue
+        if TIERS[e["type"]][0] is None or e["type"] == "digest" or e.get("sealed"):
+            continue  # a digest is a plain file: a private text must never be copied into one
         _, last = _use_stats(e, usage)
         if (now - last).days >= min_age_days and score(e, usage, now, fbs.get(e["id"])) < COLD_THRESHOLD:
             groups.setdefault(e["scope"], []).append(e)
@@ -287,7 +287,7 @@ def compaction_proposals(events, usage, now, min_age_days=30):
 
 def near_duplicates(events, threshold=DUP_THRESHOLD):
     """Flag only; merging stays a human or explicit-event decision."""
-    active, _ = fold(events)
+    active = [e for e in fold(events)[0] if not e.get("sealed")]  # private texts all read the same without the key
     tokens = {e["id"]: set(re.findall(r"\w+", e["body"].lower())) for e in active}
     pairs = []
     for i, a in enumerate(active):
