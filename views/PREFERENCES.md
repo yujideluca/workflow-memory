@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-19 from 1366 events. Do not edit: record changes as events.
+Generated 2026-11-19 from 1368 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -167,3 +167,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [project:assistant] auto.92e70086fd: The status quo tray is opening in a floating window instead of running oyt of the box in the desktop background. (harvester)
 - [project:wiki] auto.83781736d8: the tray is still working as a floating window instead of a seamless desktop tray in windows. (harvester)
 - [global] ralexandria.scope: Ralexandria (~/dev/ralexandria, started 2026-11-19): English-only radiology encyclopedia plus reference bank; one entry per concept incl. the biophysics behind the image; own words with citations; only whole articles count as sources, never abstracts; any source allowed, politely; inputs from the radiology crawler data are read-only. (user)
+- [global] status-quo.no-code-signing: Giovanni 2026-11-19: Status Quo will not pay for code signing; the Windows installer stays unsigned (SmartScreen notice and Defender command-line detection are accepted limits; document them, do not propose buying a certificate). (user)
