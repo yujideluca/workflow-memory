@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-19 from 1331 events. Do not edit: record changes as events.
+Generated 2026-11-19 from 1332 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -165,3 +165,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [project:assistant] auto.c302586327: Every installer test so far used faked inputs and never ran the real command on a clean machine, which is why each fix passed while the real problem remained. (harvester)
 - [global] work.no-fake-proof: Forbidden: claiming something works on the strength of a simulated check. A dry run, a mocked or stubbed command, a faked environment variable or a test double proves only the script's logic, never that the real thing works. 'Works', 'fixed', 'installs' or 'done' may be said only after the real command or program a person would use was run for real in the real target environment (for installers: the published command on a clean machine with nothing preinstalled) and the outcome was observed. If the real run was not possible, say 'NOT proven' in the first line of the report, say exactly what was not run and leave an open item; never word a simulation as proof. Every project with an install or release path must have an automated real run on bare machines that blocks the release when it fails. Giovanni called the opposite lying (2026-11-18, Status Quo installer failed for real users after several 'verified' fixes that were only dry runs). (user)
 - [project:assistant] auto.92e70086fd: The status quo tray is opening in a floating window instead of running oyt of the box in the desktop background. (harvester)
+- [project:wiki] auto.83781736d8: the tray is still working as a floating window instead of a seamless desktop tray in windows. (harvester)
