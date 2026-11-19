@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-18 from 1329 events. Do not edit: record changes as events.
+Generated 2026-11-19 from 1331 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
@@ -25,7 +25,6 @@ Open items (shown in every chat until solved, archived or deleted):
 - [open item radiology] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-18, #1b9289)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-18, #4e0b21)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-18, #97d61c)
-- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-18, #fb64a9)
 - [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-18, #406785)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-18, #65fb5e)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-16, checked 2026-11-17, #1c6327)
