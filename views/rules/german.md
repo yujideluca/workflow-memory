@@ -1,6 +1,6 @@
 # Rules tagged german
 
-Generated 2026-11-19 from 1332 events. Do not edit: record changes as events.
+Generated 2026-11-19 from 1334 events. Do not edit: record changes as events.
 
 German exam practice and corrections
 
