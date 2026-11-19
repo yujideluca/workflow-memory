@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-19 from 1351 events. Do not edit: record changes as events.
+Generated 2026-11-19 from 1352 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -69,6 +69,7 @@ radiology report matcher and crawler
 - [radiology.records] Giovanni 2026-11-14 (chose 'one plan file'): in the radiology project a change gets only these records: one-line requirement row (max 300 characters, promise only), its test, a plan note; a scored test adds one results-registry entry; a real decision adds one DESIGN.md log row. Wiki pages and mem use once per closed milestone, not after every task. No handoff files or report documents unless Giovanni asks. Reason: about nine records per step made every version verbose. (#07fe96)
 - [radiology.timeline-3-months] Giovanni 2026-11-10: the radiology matcher (portfolio and possible product) must be fully built in about 3 months, all modalities (X-ray, ultrasound, CT, MRI), not a reduced X-ray-only version. Plan to that deadline; fewer pauses. (#e87bf7)
 - [radiology.translation-rate] Radiology crawler: translate (Codex) at the same rate as extraction, no daily cap; a cap would make it take too long. (#0c7d90)
+- [ralexandria.scope] Ralexandria (~/dev/ralexandria, started 2026-11-19): English-only radiology encyclopedia plus reference bank; one entry per concept incl. the biophysics behind the image; own words with citations; only whole articles count as sources, never abstracts; any source allowed, politely; inputs from the radiology crawler data are read-only. (#3a89e6)
 - [research.full-text-not-abstracts] Giovanni 2026-11-15: when checking facts against the literature, never settle for abstracts: they say almost nothing. Read the full article. Thousands of articles are open on the internet, and authors often post the full text themselves (e.g. on ResearchGate, institutional repositories, preprint servers); look for those copies. A claim supported only by an abstract counts as not verified. (#c4fea9)
 - [work.codex-back] Codex is live again (Giovanni 2026-11-06): run radiology steps C2-C5 with many parallel codex exec sessions, model gpt-6.1-sol wherever a Sonnet-class worker would be used; each session fresh --ephemeral under 250k tokens; heavy local jobs one at a time under flock /tmp/radiology-heavy.lock. (#4820c7)
 - [work.wiki-hold] Giovanni 2026-11-18: a project inside an open milestone is held with wiki hold PROJECT (hook silent, pages stay pending, expiry 12 h default, max 72). In radiology-crawler plan.py does it: set M# doing holds, task done renews, set M# done releases only when no other milestone is still doing (otherwise it renews and says the closed milestone's pages are due); then write the wiki pages and mem use. Never answer the hook's demand for held projects. (#956d35)
