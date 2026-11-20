@@ -1,6 +1,6 @@
 # Rules tagged troubleshooting
 
-Generated 2026-11-20 from 1398 events. Do not edit: record changes as events.
+Generated 2026-11-20 from 1399 events. Do not edit: record changes as events.
 
 debugging, testing, fixing findings, proving that it works
 
@@ -23,5 +23,6 @@ debugging, testing, fixing findings, proving that it works
 5 REPORT: compare the result with each requirement; lead with result, evidence and remaining limitation in plain language; say what is done, not done, unchecked; end with 'Verified by:' (what was run, what could not be checked). (#1af374)
 - [work.fix-findings] Findings from a maintenance review that Giovanni answers 'deve' are fixed in the same session, with the test first; hypotheses wait for his answer. (#23805a)
 - [work.no-fake-proof] Forbidden: claiming something works on the strength of a simulated check. A dry run, a mocked or stubbed command, a faked environment variable or a test double proves only the script's logic, never that the real thing works. 'Works', 'fixed', 'installs' or 'done' may be said only after the real command or program a person would use was run for real in the real target environment (for installers: the published command on a clean machine with nothing preinstalled) and the outcome was observed. If the real run was not possible, say 'NOT proven' in the first line of the report, say exactly what was not run and leave an open item; never word a simulation as proof. Every project with an install or release path must have an automated real run on bare machines that blocks the release when it fails. Giovanni called the opposite lying (2026-11-18, Status Quo installer failed for real users after several 'verified' fixes that were only dry runs). (#842262)
+- [work.no-open-ends] Never leave open ends: fix every review finding, minor ones included, before moving on (Giovanni 2026-11-20, Ralexandria). (#d6fd0c)
 - [work.test-ui-on-phone] Test any phone-facing web UI on Giovanni's real phone (Motorola, adb), not only in a narrowed desktop browser: serve the build with adb reverse and read frame times with Chrome DevTools over adb forward; the public wiki address needs Giovanni's own Google sign-in, so do not sign in for them. (#c6d902)
 - [work.troubleshoot-documentation] Investigate documentation failures before declaring them blocked. Prefer an isolated committed worktree and narrow reconciliation that preserves other sessions’ edits; do not treat a dirty wiki tree alone as the end of troubleshooting. (#0d1cfd)

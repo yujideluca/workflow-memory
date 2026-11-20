@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-20 from 1398 events. Do not edit: record changes as events.
+Generated 2026-11-20 from 1399 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -72,4 +72,5 @@ radiology report matcher and crawler
 - [ralexandria.scope] Ralexandria (~/dev/ralexandria, started 2026-11-19): English-only radiology encyclopedia plus reference bank; one entry per concept incl. the biophysics behind the image; own words with citations; only whole articles count as sources, never abstracts; any source allowed, politely; inputs from the radiology crawler data are read-only. (#3a89e6)
 - [research.full-text-not-abstracts] Giovanni 2026-11-15: when checking facts against the literature, never settle for abstracts: they say almost nothing. Read the full article. Thousands of articles are open on the internet, and authors often post the full text themselves (e.g. on ResearchGate, institutional repositories, preprint servers); look for those copies. A claim supported only by an abstract counts as not verified. (#c4fea9)
 - [work.codex-back] Codex is live again (Giovanni 2026-11-06): run radiology steps C2-C5 with many parallel codex exec sessions, model gpt-6.1-sol wherever a Sonnet-class worker would be used; each session fresh --ephemeral under 250k tokens; heavy local jobs one at a time under flock /tmp/radiology-heavy.lock. (#4820c7)
+- [work.no-open-ends] Never leave open ends: fix every review finding, minor ones included, before moving on (Giovanni 2026-11-20, Ralexandria). (#d6fd0c)
 - [work.wiki-hold] Giovanni 2026-11-18: a project inside an open milestone is held with wiki hold PROJECT (hook silent, pages stay pending, expiry 12 h default, max 72). In radiology-crawler plan.py does it: set M# doing holds, task done renews, set M# done releases only when no other milestone is still doing (otherwise it renews and says the closed milestone's pages are due); then write the wiki pages and mem use. Never answer the hook's demand for held projects. (#956d35)
