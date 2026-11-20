@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-20 from 1387 events. Do not edit: record changes as events.
+Generated 2026-11-20 from 1391 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
@@ -21,10 +21,13 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-20, #f03d68)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-20, #a103d6)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-20, #5558d0)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, checked 2026-11-20, #f392f2)
 - [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, #522b76)
 - [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, #2d99af)
 - [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, #1a2928)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, #f392f2)
 - [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, #91d0a0)
 - [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, #66930c)
 - [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, #5727bc)
