@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-21 from 1426 events. Do not edit: record changes as events.
+Generated 2026-11-21 from 1427 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -179,3 +179,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 </task-notification> (harvester)
 - [global] radiology.no-shortcuts: Giovanni 2026-11-21: never reach the target by making the test easier or by a narrow trick. Find, understand and solve the real cause: fill the system with all the information it needs (finding knowledge, training texts) and build the algorithm right. A single fix (e.g. lay synonyms) is not enough on its own. (user)
 - [global] ralexandria.anatomy-figures: Ralexandria (Giovanni 2026-11-21): every anatomy entry needs a labelled schematic drawn from an openly licensed original (Gray's 1918 public domain, Servier CC BY 4.0, Wikimedia CC BY/BY-SA; pixelized, numbered, legend as page text, credit in caption) and a structure map (tree of parts/segments/branches plus the course where there is one). Anatomy cannot be learnt without them. (user)
+- [global] ralexandria.figure-clarity: Ralexandria anatomy figures (Giovanni 2026-11-21): structures must be very clearly visible; an anatomy entry gets two or more figures (different views, sections or originals) to compare, each numbering only a few structures; keep the tones look of the original (flat posterized or outlined variants were worse); no blank boxes where labels were erased. (user)
