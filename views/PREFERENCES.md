@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-21 from 1422 events. Do not edit: record changes as events.
+Generated 2026-11-21 from 1423 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -174,3 +174,6 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] radiology.merge-true-synonyms: Giovanni 2026-11-21: in ultrasound, CT and MRI, two entries that are only two names for the same finding (no qualifier, same descriptors, e.g. low T1 signal / T1 hypointensity, low ADC signal / restricted diffusion) are merged as in X-ray: the old id stays readable through replaces and aliases, each pair is checked by a second model. Variants with a qualifier (focal / diffuse) stay separate (#92269e). (user)
 - [global] ralexandria.review-minors: Ralexandria review loop (Giovanni 2026-11-21): fix each minor finding once; a minor may stay open only when it is pure style, an already marked single-source statement, or the opposite of an earlier round's request; an entry is finished after two VERDICT: PASS in a row. This narrows work.no-open-ends for review minors (encoded in ralexandria CLAUDE.md decision 7). (user)
 - [global] ralexandria.fix-by-narrowing: Ralexandria review fixes (lesson 2026-11-21, not a rule from Giovanni; 3 blockers came from Claude's own additions while fixing): fix a finding by narrowing, re-citing or removing text; never add a new explanation, mechanism or 'because' while fixing unless a full text read for it states exactly that. (user)
+- [project:yuji] auto.491855688e: Once its requests are accepted again, send the agent a message (SendMessage) to let it continue from where it stopped instead of starting a new agent.</note>
+<result>Now the two CT posterior-fossa PMC articles.</result>
+</task-notification> (harvester)
