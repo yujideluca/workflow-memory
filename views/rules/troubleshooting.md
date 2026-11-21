@@ -1,6 +1,6 @@
 # Rules tagged troubleshooting
 
-Generated 2026-11-21 from 1427 events. Do not edit: record changes as events.
+Generated 2026-11-21 from 1429 events. Do not edit: record changes as events.
 
 debugging, testing, fixing findings, proving that it works
 
