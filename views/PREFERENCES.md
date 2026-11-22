@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-22 from 1437 events. Do not edit: record changes as events.
+Generated 2026-11-22 from 1440 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -182,4 +182,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] ralexandria.figure-clarity: Ralexandria anatomy figures (Giovanni 2026-11-21): structures must be very clearly visible; an anatomy entry gets two or more figures (different views, sections or originals) to compare, each numbering only a few structures; keep the tones look of the original (flat posterized or outlined variants were worse); no blank boxes where labels were erased. (user)
 - [global] ralexandria.figures-scope: Ralexandria (Giovanni 2026-11-21): every anatomy entry needs pictures, of every kind: vessels, nerves, nerve plexuses, divisions of organs (lobes, segments), joints with their muscles, and regions of the body. Two or more figures each (see ralexandria.figure-clarity). (user)
 - [project:ralexandria] auto.160a189833: Once its requests are accepted again, send the agent a message (SendMessage) to let it continue from where it stopped instead of starting a new agent.</note>
-</task-notification> (harvester)
+</task-notification> (restated 1x) (harvester)
