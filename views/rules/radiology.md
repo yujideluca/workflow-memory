@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-21 from 1430 events. Do not edit: record changes as events.
+Generated 2026-11-22 from 1431 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -73,6 +73,7 @@ radiology report matcher and crawler
 - [radiology.translation-rate] Radiology crawler: translate (Codex) at the same rate as extraction, no daily cap; a cap would make it take too long. (#0c7d90)
 - [ralexandria.anatomy-figures] Ralexandria (Giovanni 2026-11-21): every anatomy entry needs a labelled schematic drawn from an openly licensed original (Gray's 1918 public domain, Servier CC BY 4.0, Wikimedia CC BY/BY-SA; pixelized, numbered, legend as page text, credit in caption) and a structure map (tree of parts/segments/branches plus the course where there is one). Anatomy cannot be learnt without them. (#3e2bc3)
 - [ralexandria.figure-clarity] Ralexandria anatomy figures (Giovanni 2026-11-21): structures must be very clearly visible; an anatomy entry gets two or more figures (different views, sections or originals) to compare, each numbering only a few structures; keep the tones look of the original (flat posterized or outlined variants were worse); no blank boxes where labels were erased. (#68ea33)
+- [ralexandria.figures-scope] Ralexandria (Giovanni 2026-11-21): every anatomy entry needs pictures, of every kind: vessels, nerves, nerve plexuses, divisions of organs (lobes, segments), joints with their muscles, and regions of the body. Two or more figures each (see ralexandria.figure-clarity). (#c911fb)
 - [ralexandria.fix-by-narrowing] Ralexandria review fixes (lesson 2026-11-21, not a rule from Giovanni; 3 blockers came from Claude's own additions while fixing): fix a finding by narrowing, re-citing or removing text; never add a new explanation, mechanism or 'because' while fixing unless a full text read for it states exactly that. (#c5ea5b)
 - [ralexandria.review-minors] Ralexandria review loop (Giovanni 2026-11-21): fix each minor finding once; a minor may stay open only when it is pure style, an already marked single-source statement, or the opposite of an earlier round's request; an entry is finished after two VERDICT: PASS in a row. This narrows work.no-open-ends for review minors (encoded in ralexandria CLAUDE.md decision 7). (#7c03e9)
 - [ralexandria.scope] Ralexandria (~/dev/ralexandria, started 2026-11-19): English-only radiology encyclopedia plus reference bank; one entry per concept incl. the biophysics behind the image; own words with citations; only whole articles count as sources, never abstracts; any source allowed, politely; inputs from the radiology crawler data are read-only. (#3a89e6)

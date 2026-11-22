@@ -1,6 +1,6 @@
 # Rules tagged device
 
-Generated 2026-11-21 from 1430 events. Do not edit: record changes as events.
+Generated 2026-11-22 from 1431 events. Do not edit: record changes as events.
 
 phone, adb, browser, Telegram
 
