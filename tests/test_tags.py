@@ -99,7 +99,7 @@ class Commands(Tmp):
         self.assertIn("delta", self.mem("--instance", "codex", "rules", "codex")[1])
         code, _, err = self.mem("rules", "nonsense")
         self.assertEqual(code, 2)
-        self.assertIn("unknown tag", err)
+        self.assertIn("no tag, rule key or #ref named nonsense", err)
 
     def test_add_with_tags_and_a_replacement_keeps_them(self):
         self.assertEqual(self.mem("add", "--type", "pref", "--owner", "user", "--key", "k", "--tags", "git,deploy", "v one")[0], 0)
@@ -224,3 +224,33 @@ class PlaceholderText(Tmp):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Briefing(unittest.TestCase):
+    """ADR-0010: `mem rules TAG` prints one line per rule; `--full` with a tag, key or #ref prints the wording."""
+    LONG = "Never push without the gate. " + "More detail that only matters when the rule applies. " * 6
+
+    def events(self):
+        return [mk(1, "git.gate", self.LONG, ["git"]), mk(2, "git.short", "never force push", ["git"]),
+                mk(3, "d.ask", "ask before deploy", ["deploy"])]
+
+    def test_a_long_rule_is_cut_at_a_sentence_end_and_keeps_key_and_ref(self):
+        line = tags.brief(self.events()[0])
+        self.assertLessEqual(len(line), tags.BRIEF_LEN + 40)
+        self.assertTrue(line.startswith("- [git.gate] Never push without the gate."))
+        self.assertIn("…", line)
+        self.assertIn("(#", line)
+
+    def test_a_short_rule_is_shown_whole(self):
+        self.assertIn("never force push", tags.brief(self.events()[1]))
+        self.assertNotIn("…", tags.brief(self.events()[1]))
+
+    def test_select_takes_tags_keys_and_refs_each_rule_once(self):
+        ev = self.events()
+        found, unknown = tags.select(ev, ["git", "git.gate", "#" + core.ref(ev[2]["id"]), "nope"])
+        self.assertEqual([e["key"] for e in found], ["d.ask", "git.gate", "git.short"])
+        self.assertEqual(unknown, ["nope"])
+
+    def test_router_and_note_say_how_to_get_the_full_wording(self):
+        self.assertIn(tags.FULL, tags.ROUTER)
+        self.assertIn(tags.FULL, tags.BRIEFING_NOTE)

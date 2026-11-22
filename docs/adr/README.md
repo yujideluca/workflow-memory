@@ -15,3 +15,4 @@ what must stay true. An accepted ADR is never rewritten: a new decision supersed
 | [0007](0007-rule-tags.md) | Rules are fetched by the kind of task (rule tags) | accepted |
 | [0008](0008-router-rules-as-modules.md) | Rules are modules; the one standing order is to route each message to its tags | accepted |
 | [0009](0009-private-entries-encrypted.md) | Private entries are encrypted in a public repository | accepted |
+| [0010](0010-briefings-before-full-text.md) | Every memory output is a briefing first; the full text is fetched on demand | accepted |

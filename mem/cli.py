@@ -111,8 +111,9 @@ def run(argv=None, stdin=None):
     br.add_argument("--budget", type=int, default=project.BRIEF_BUDGET)
     br.add_argument("--ids", action="store_true")
     br.add_argument("--full", action="store_true", help="the old ranked list of entries instead of the router")
-    rl = sub.add_parser("rules", help="print the full rules tagged for a kind of task")
-    rl.add_argument("tags", nargs="+", help="one or more tags from mem/tags.toml")
+    rl = sub.add_parser("rules", help="print the briefing (one line per rule) for a kind of task; --full for the wording")
+    rl.add_argument("tags", nargs="+", help="tags from mem/tags.toml; with --full also rule keys or #refs")
+    rl.add_argument("--full", action="store_true", help="the full wording instead of the briefing")
     rl.add_argument("--project", help="default: the name of the working directory")
     tg = sub.add_parser("tag", help="set the tags of an existing rule (key or ref); '-' clears")
     tg.add_argument("rule", help="its key (when unique) or its #ref")
@@ -162,13 +163,17 @@ def run(argv=None, stdin=None):
     if a.cmd == "rules":
         events, _ = validate.load_checked(root, now)
         proj = a.project or Path.cwd().name
-        unknown = [t for t in a.tags if t not in tags.vocabulary()]
+        found, unknown = tags.select(events, a.tags, proj, instance)
         if unknown:
-            print(f"refused: unknown tag(s) {', '.join(unknown)}; known: {', '.join(tags.vocabulary())}",
+            print(f"refused: no tag, rule key or #ref named {', '.join(unknown)}; tags: {', '.join(tags.vocabulary())}",
                   file=sys.stderr)
             return 2
-        found = tags.rules(events, a.tags, proj, instance)
-        print("\n".join(tags.render(e) for e in found) if found else "(no rules with these tags here)")
+        if not found:
+            print("(no rules with these tags here)")
+        elif a.full:
+            print("\n".join(tags.render(e) for e in found))
+        else:
+            print("\n".join([*(tags.brief(e) for e in found), tags.BRIEFING_NOTE]))
         return 0
     if a.cmd == "tag":
         events, _ = validate.load_checked(root, now)

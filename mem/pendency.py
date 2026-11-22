@@ -15,17 +15,21 @@ Scope: an item is shown everywhere (any project, any chat) unless Giovanni says 
 scope; the latest applicable rescope wins (by timestamp; a tie is settled by event id, so two marks in the same
 second are arbitrary), and rescoping to `global` undoes it. `archive` and `reopen` follow the same rule.
 
-Budget: 2,000 tokens, separate from the entry budget (core.brief ignores tasks).
+Budget: 1,000 tokens, separate from the entry budget (core.brief ignores tasks). The start-up section is a
+briefing (ADR-0010): each item is its text up to BRIEF_LINE characters, without its check; `mem pending` prints
+every item whole.
 """
 from . import core
 
-BUDGET_TOKENS = 2000
+BUDGET_TOKENS = 1000
 CHARS_PER_TOKEN = 3.6               # the same assumption as the brief budget (scripts/calibrate.py)
 BUDGET_CHARS = int(BUDGET_TOKENS * CHARS_PER_TOKEN)
 MAX_LINE = 500                      # one item never takes more than this many characters
+BRIEF_LINE = 200                    # ... and this many in the start-up briefing, where its check is left out
 CHECK_MARK = "| check:"
 HEADING = "Open items (shown in every chat until solved, archived or deleted)"
-VERIFY_RULE = ("Open items are reminders, not facts. Before reminding Giovanni of one, run its check and verify "
+VERIFY_RULE = ("Open items are reminders, not facts, shown here cut short (whole text and check: mem pending). "
+               "Before reminding Giovanni of one, run its check and verify "
                "it still applies in this context: if not, close it (mem done REF) and do not present it as "
                "pending; if you could not check it, say 'unchecked'. Record a check with mem use REF --note HOW.")
 CREATE_RULE = ("Before a session ends, record what is still open: mem task --check HOW [--category C] \"text\". "
@@ -75,11 +79,13 @@ def _tag(item):
     return "[" + " ".join(parts) + "]"
 
 
-def _line(item):
+def _line(item, room=MAX_LINE):
     e = item["event"]
     body = " ".join(e["body"].split())
     flags = " (no check recorded)" if CHECK_MARK not in body else ""
-    room = MAX_LINE - len(flags)
+    if room < MAX_LINE:                                    # briefing: the check stays one `mem pending` away
+        body = body.split(CHECK_MARK)[0].rstrip()
+    room -= len(flags)
     if len(body) > room:
         body = body[:room - 1] + "…"
     when = f"since {item['since']:%Y-%m-%d}"
@@ -88,12 +94,12 @@ def _line(item):
     return f"- {_tag(item)} {body}{flags} ({when}, #{core.ref(e['id'])})"
 
 
-def section(events, project=None, instance=None, budget=BUDGET_CHARS):
+def section(events, project=None, instance=None, budget=BUDGET_CHARS, room=BRIEF_LINE):
     """The open items to show here, within `budget` characters, plus what did not fit."""
     shown_here = [i for i in items(events) if not i["archived"] and visible(i, project, instance)]
     lines, used, hidden = [], 0, 0
     for i in shown_here:                                   # most recently active first
-        line = _line(i)
+        line = _line(i, room)
         if used + len(line) + 1 > budget:
             hidden += 1
             continue

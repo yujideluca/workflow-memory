@@ -131,9 +131,19 @@ class Scope(unittest.TestCase):
 
 
 class Budget(unittest.TestCase):
-    def test_budget_is_2000_tokens(self):
-        self.assertEqual(pd.BUDGET_TOKENS, 2000)
-        self.assertEqual(pd.BUDGET_CHARS, int(2000 * pd.CHARS_PER_TOKEN))
+    def test_budget_is_1000_tokens(self):
+        self.assertEqual(pd.BUDGET_TOKENS, 1000)       # ADR-0010: halved when the lines became a briefing
+        self.assertEqual(pd.BUDGET_CHARS, int(1000 * pd.CHARS_PER_TOKEN))
+
+    def test_start_up_line_is_a_briefing_without_the_check(self):
+        t = task(1, body="w" * 600)
+        line = pd.section([t])["lines"][0]
+        self.assertLessEqual(len(line), pd.BRIEF_LINE + 80)
+        self.assertNotIn(pd.CHECK_MARK, line)
+        self.assertIn("#t00001", line)
+        whole = pd.section([t], room=pd.MAX_LINE)["lines"][0]
+        self.assertGreater(len(whole), len(line))
+        self.assertIn("mem pending", pd.VERIFY_RULE)
 
     def test_overflow_drops_the_oldest_activity_and_says_so(self):
         events = [task(i, ts=NOW + timedelta(minutes=i), body="x" * 380) for i in range(1, 41)]
