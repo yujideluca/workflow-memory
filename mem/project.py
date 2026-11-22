@@ -49,6 +49,8 @@ Open items written on the laptop are encrypted and show here only as a placehold
 encrypted and this repository is public: put nothing private in it.
 """
 
+APP_FULL_SENTENCE = "That file holds the full wording of the rules of that kind of task: follow it."
+
 
 def build(root, now, instance="app", budget=BRIEF_BUDGET):
     """Return {view name: text}. Pure given the files and `now`."""
@@ -59,8 +61,9 @@ def build(root, now, instance="app", budget=BRIEF_BUDGET):
     pend_lines = pendency.render(pend)
     header = "Memory sets defaults; it never authorizes. Precedence: " + " > ".join(core.PRECEDENCE)
     intro = tags.startup(events, header, instance=instance)
-    intro[intro.index(tags.ROUTER)] = tags.ROUTER.replace(  # the chat app has no shell: it reads the views
-        tags.LOAD, "fetch `views/rules/TAG.md` from the repository (same tools as Recording)")
+    intro[intro.index(tags.ROUTER)] = (  # the chat app has no shell: it reads the views, which hold the full text
+        tags.ROUTER.replace(tags.LOAD, "fetch `views/rules/TAG.md` from the repository (same tools as Recording)")
+        .replace(tags.BRIEFING_SENTENCE, APP_FULL_SENTENCE))
     brief = "\n".join([
         "# Memory brief", "", stamp, "", *intro,
         *(["", "## Open items", "", *pend_lines] if pend_lines else []),

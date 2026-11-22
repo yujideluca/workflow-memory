@@ -163,10 +163,14 @@ def run(argv=None, stdin=None):
     if a.cmd == "rules":
         events, _ = validate.load_checked(root, now)
         proj = a.project or Path.cwd().name
-        found, unknown = tags.select(events, a.tags, proj, instance)
-        if unknown:
-            print(f"refused: no tag, rule key or #ref named {', '.join(unknown)}; tags: {', '.join(tags.vocabulary())}",
-                  file=sys.stderr)
+        found, unknown, outside = tags.select(events, a.tags, proj, instance)
+        if unknown or outside:
+            if unknown:
+                print(f"refused: no tag, rule key or #ref named {', '.join(unknown)}; "
+                      f"tags: {', '.join(tags.vocabulary())}", file=sys.stderr)
+            if outside:
+                print(f"refused: out of scope here (the rule exists for another project or instance): "
+                      f"{', '.join(outside)}", file=sys.stderr)
             return 2
         if not found:
             print("(no rules with these tags here)")

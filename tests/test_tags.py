@@ -1,6 +1,7 @@
 """Rule tags (ADR-0007): events, resolution, `mem rules`, `mem tag`, the start-up output."""
 import contextlib
 import io
+import re
 import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
@@ -226,7 +227,7 @@ if __name__ == "__main__":
     unittest.main()
 
 
-class Briefing(unittest.TestCase):
+class Briefing(Tmp):
     """ADR-0010: `mem rules TAG` prints one line per rule; `--full` with a tag, key or #ref prints the wording."""
     LONG = "Never push without the gate. " + "More detail that only matters when the rule applies. " * 6
 
@@ -247,10 +248,71 @@ class Briefing(unittest.TestCase):
 
     def test_select_takes_tags_keys_and_refs_each_rule_once(self):
         ev = self.events()
-        found, unknown = tags.select(ev, ["git", "git.gate", "#" + core.ref(ev[2]["id"]), "nope"])
+        found, unknown, _ = tags.select(ev, ["git", "git.gate", "#" + core.ref(ev[2]["id"]), "nope"])
         self.assertEqual([e["key"] for e in found], ["d.ask", "git.gate", "git.short"])
         self.assertEqual(unknown, ["nope"])
+
+    def test_the_app_brief_says_the_file_holds_the_full_wording(self):
+        self.put(mk(1, "g", "never force push", ["git"], instance="app"))
+        text = project.build(self.root, NOW + timedelta(hours=1), "app")["BRIEF.md"]
+        self.assertIn(project.APP_FULL_SENTENCE, text)
+        self.assertNotIn("briefing", text.lower())
+        self.assertNotIn("mem rules", text)
 
     def test_router_and_note_say_how_to_get_the_full_wording(self):
         self.assertIn(tags.FULL, tags.ROUTER)
         self.assertIn(tags.FULL, tags.BRIEFING_NOTE)
+
+    def test_a_name_outside_the_scope_is_reported_apart_from_unknown_names(self):
+        ev = [mk(1, "q.only", "quiz rule", ["git"], scope="project:QuizApp")]
+        found, unknown, outside = tags.select(ev, ["q.only", "#" + core.ref(ev[0]["id"]), "nope", "", "#"], "Other")
+        self.assertEqual((found, outside), ([], ["q.only", "#" + core.ref(ev[0]["id"])]))
+        self.assertEqual(unknown, ["nope", "", "#"])
+        self.assertEqual(tags.select(ev, ["q.only"], "QuizApp")[0], ev)
+
+    def test_cli_refuses_an_out_of_scope_rule_with_its_own_text(self):
+        self.put(mk(1, "q.only", "quiz rule", ["git"], scope="project:QuizApp"))
+        code, _, err = self.mem("rules", "--project", "Other", "q.only")
+        self.assertEqual(code, 2)
+        self.assertIn("out of scope here", err)
+        self.assertNotIn("no tag, rule key", err)
+        self.assertIn("no tag, rule key", self.mem("rules", "--project", "Other", "nope")[2])
+
+    def test_word_boundary_fallback_when_the_only_cut_is_early(self):
+        body = "Short start. " + "word " * 60
+        line = tags.brief(mk(1, "k", body, ["git"]))
+        text = line.split("] ", 1)[1].rsplit(" (#", 1)[0]
+        self.assertGreater(len(text), tags.BRIEF_LEN // 2)
+        self.assertTrue(text.endswith("word …"))
+
+    def test_an_early_only_space_is_a_hard_cut_not_one_word(self):
+        line = tags.brief({"id": "20261122T000000Z-code-abcdef", "key": "k.x", "type": "pref",
+                           "body": "See " + "x" * 300})
+        self.assertIn("See " + "x" * (tags.BRIEF_LEN - 4) + " …", line)
+
+    def test_no_space_at_all_is_a_hard_cut(self):
+        text = tags.brief(mk(1, "k", "x" * 400, ["git"])).split("] ", 1)[1].rsplit(" (#", 1)[0]
+        self.assertEqual(text, "x" * tags.BRIEF_LEN + " …")
+
+    def test_multibyte_text_is_cut_on_characters(self):
+        text = tags.brief(mk(1, "k", "äöü " * 100, ["git"])).split("] ", 1)[1].rsplit(" (#", 1)[0]
+        self.assertTrue(text.endswith("äöü …"))
+        self.assertLessEqual(len(text), tags.BRIEF_LEN + 2)
+        hard = tags.brief(mk(1, "k", "日" * 400, ["git"])).split("] ", 1)[1].rsplit(" (#", 1)[0]
+        self.assertEqual(hard, "日" * tags.BRIEF_LEN + " …")
+
+    def test_the_note_is_true_of_the_lines(self):
+        line = tags.brief(mk(1, "k", "x" * 400, ["git"]))
+        self.assertIn("…", line.split("(#")[0])
+        self.assertIn("before its #code", tags.BRIEFING_NOTE)
+
+    def test_cli_briefing_is_shorter_than_full_and_keeps_every_ref(self):
+        self.put(mk(1, "git.gate", Briefing.LONG, ["git"]), mk(2, "git.short", "never force push", ["git"]))
+        brief_out = self.mem("rules", "git")[1]
+        full_out = self.mem("rules", "--full", "git")[1]
+        self.assertNotEqual(brief_out, full_out)
+        self.assertLess(len(brief_out), len(full_out))
+        refs = re.findall(r"#([0-9a-z]+)\)?", full_out)
+        self.assertTrue(refs)
+        for r in refs:
+            self.assertIn("#" + r, brief_out)

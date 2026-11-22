@@ -61,3 +61,19 @@ Inside the memory itself two outputs were still printed whole:
   reported by `token-thrift report`, so the effect of any saving is checked against the whole.
 - Tests: `Briefing` in `tests/test_tags.py`; `test_start_up_line_is_a_briefing_without_the_check` and
   `test_budget_is_1000_tokens` in `tests/test_pendency.py`.
+
+## Corrections after review (2026-11-22)
+
+- The chat app has no shell and reads `views/rules/TAG.md`, which holds the full wording. `views/BRIEF.md` therefore
+  replaces both parts of the router text (`tags.LOAD` and `tags.BRIEFING_SENTENCE`): the app is told the file holds
+  the full wording and to follow it, never that it prints a briefing or to run `mem rules`.
+- A briefing body never collapses: when the only sentence end lies before 80 characters, the cut is at the last
+  word end before 160; a body with no space is cut hard at 160. The closing note says "a line with … before its
+  #code is cut", which is what the lines show.
+- A rule key or `#ref` that exists outside the current project or instance is refused as "out of scope here", apart
+  from names that match nothing.
+- The 1,000-token budget of open items covers the whole printed section (heading, items, the "did not fit" line and
+  the two standing rules), not only the item lines. An item that is only a check shows the check in the briefing;
+  a room under 20 characters is raised to 20.
+- Tests: `test_the_app_brief_says_the_file_holds_the_full_wording`, `test_the_whole_printed_section_is_within_the_budget`
+  and the other new `Briefing` and `Budget` tests.

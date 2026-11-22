@@ -42,7 +42,7 @@ anywhere under `events/` is read.
 - Rules are modules. The start-up output prints no rule: the router (the one standing order: classify each message into tags, load `mem rules` for tags not loaded yet, classify again when the task changes), an index "tag (n): use when ..." and the how-to lines, at most 1,900 characters; open items follow. `mem brief` prints the same (`--full` gives the old ranked list).
 - The prompt hook prints one line on every prompt, the router nudge with the tag names (at most 400 characters).
 - `always` is retired: nothing prints it and `mem check` warns about a rule that still carries it. `mem add` refuses empty or placeholder text.
-- `mem rules TAG ...` prints a briefing: one line (up to 160 characters, `…` when cut) for every active rule with any of the tags, each once, for the current project and instance. `mem rules --full NAME ...` prints the full wording; NAME is a tag, a rule key or a `#ref` ([ADR-0010](adr/0010-briefings-before-full-text.md)). Open items at start-up are cut to 200 characters without their check; `mem pending` prints them whole. `mem tag KEY TAG ...` retags a rule; `mem add --tags` tags a new one (a replacement keeps the old tags unless told otherwise).
+- `mem rules TAG ...` prints a briefing: one line (up to 160 characters, `…` when cut) for every active rule with any of the tags, each once, for the current project and instance. `mem rules --full NAME ...` prints the full wording; NAME is a tag, a rule key or a `#ref` ([ADR-0010](adr/0010-briefings-before-full-text.md)). Open items at start-up are cut to 200 characters without their check (an item that is only a check shows it); `mem pending` prints them whole. A key or `#ref` of a rule outside the current scope is refused as "out of scope here". `mem tag KEY TAG ...` retags a rule; `mem add --tags` tags a new one (a replacement keeps the old tags unless told otherwise).
 - A tag must have a use-when line in `mem/tags.toml`; an event with an unknown tag is quarantined. `mem check` warns about user-owned prefs without a tag.
 - The chat app reads `views/BRIEF.md` and `views/rules/TAG.md`.
 
@@ -124,7 +124,7 @@ budget; nothing else competes with it.
   `rescope` event; a category rule covers present and future items of that category; the latest applicable
   rescope wins (by timestamp; a tie is settled by event id, so two marks in the same second are arbitrary);
   `mem scope global ...` undoes it. The Claude app has no project, so its file shows global items only.
-- **Budget.** 2,000 tokens (7,200 characters at the same 3.6 characters per token as the brief), separate from
+- **Budget.** 1,000 tokens for the whole printed section, fixed text included (3,600 characters at the same 3.6 characters per token as the brief; ADR-0010), separate from
   the 2,900-character entry budget. `core.brief` ignores tasks, so neither budget can take room from the other.
   Within the ceiling the most recently active items come first; the rest are counted ("N more did not fit") and
   raise a warning that points at solve, archive or delete. One item never takes more than 500 characters. Worst

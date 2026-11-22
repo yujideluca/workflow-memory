@@ -20,14 +20,15 @@ MAX_STARTUP = 1900   # characters printed before the open items (the harness sho
 LOAD = "run mem rules TAG [TAG ...]"
 BRIEF_LEN = 160      # characters of a rule shown in a briefing line (ADR-0010); a shorter rule is shown whole
 FULL = "mem rules --full KEY|#REF [...]"
+BRIEFING_SENTENCE = ("It prints a briefing, one line per rule: for every rule "
+                     f"that touches the task, {FULL} and follow the full wording.")
 ROUTER = ("Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message "
           "from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and "
           f"{LOAD} for every tag not loaded yet in this conversation. Do it as the very first step, before reading "
-          "skills or files and before any other command. It prints a briefing, one line per rule: for every rule "
-          f"that touches the task, {FULL} and follow the full wording. Classify again whenever the task changes. "
-          "Tags:")
-BRIEFING_NOTE = (f"Briefing only: a line ending in … is cut. Before acting, load every rule that touches this task "
-                 f"in full: {FULL} (a tag name instead prints its whole module).")
+          f"skills or files and before any other command. {BRIEFING_SENTENCE} Classify again whenever the task "
+          "changes. Tags:")
+BRIEFING_NOTE = (f"Briefing only: a line with … before its #code is cut. Before acting, load every rule that touches "
+                 f"this task in full: {FULL} (a tag name instead prints its whole module).")
 HINT = ROUTER  # older name, kept for callers
 
 
@@ -74,14 +75,17 @@ def rules(events, wanted, project=None, instance=None):
 
 
 def select(events, names, project=None, instance=None):
-    """Rules named by tag, key or #ref, each once, ordered by key; plus the names that matched nothing."""
-    pool, hit, unknown = visible(events, project, instance), {}, []
+    """Rules named by tag, key or #ref, each once, ordered by key; plus the names that matched nothing: (rules, unknown names, names of rules that exist outside this scope)."""
+    pool, hit, unknown, outside = visible(events, project, instance), {}, [], []
+    everywhere = {e["id"]: e for e in core.resolve(events)["active"] if e["type"] in TAGGED}
     for name in names:
         found = [e for e in pool if name in of(e) or e.get("key") == name or core.ref(e["id"]) == name.lstrip("#")]
         if not found and name not in vocabulary():
-            unknown.append(name)
+            there = [e for e in everywhere.values()
+                     if e.get("key") == name or (name.lstrip("#") and core.ref(e["id"]) == name.lstrip("#"))]
+            (outside if there and name.strip("#") else unknown).append(name)
         hit.update((e["id"], e) for e in found)
-    return sorted(hit.values(), key=lambda e: (e.get("key") or "", e["id"])), unknown
+    return sorted(hit.values(), key=lambda e: (e.get("key") or "", e["id"])), unknown, outside
 
 
 def brief(e):
@@ -90,7 +94,12 @@ def brief(e):
     if len(body) > BRIEF_LEN:
         cut = body[:BRIEF_LEN]
         stop = max(cut.rfind(". "), cut.rfind(": "), cut.rfind("; "))
-        body = (cut[:stop + 1] if stop >= BRIEF_LEN // 2 else cut.rsplit(" ", 1)[0]) + " …"
+        if stop >= BRIEF_LEN // 2:
+            body = cut[:stop + 1]
+        else:                                # a body must never collapse to a word or two: cut at a word end
+            word = cut.rsplit(" ", 1)[0]
+            body = word if len(word) >= BRIEF_LEN // 2 else cut   # no usable word end: a hard cut
+        body += " …"
     text = f"[{e['key']}] {body}" if e.get("key") else body
     return f"- {text} (#{core.ref(e['id'])})"
 

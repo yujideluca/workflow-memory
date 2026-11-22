@@ -131,9 +131,24 @@ class Scope(unittest.TestCase):
 
 
 class Budget(unittest.TestCase):
-    def test_budget_is_1000_tokens(self):
-        self.assertEqual(pd.BUDGET_TOKENS, 1000)       # ADR-0010: halved when the lines became a briefing
-        self.assertEqual(pd.BUDGET_CHARS, int(1000 * pd.CHARS_PER_TOKEN))
+    def test_the_whole_printed_section_is_within_the_budget(self):
+        events = [task(i, ts=NOW + timedelta(minutes=i), body="x" * 380) for i in range(1, 41)]
+        sec = pd.section(events)
+        printed = "\n".join([*pd.render(sec), pd.VERIFY_RULE, pd.CREATE_RULE])
+        self.assertLessEqual(len(printed) / pd.CHARS_PER_TOKEN, pd.BUDGET_TOKENS)
+        self.assertGreater(sec["hidden"], 0)
+        self.assertTrue(pd.render(sec)[-1].endswith("did not fit: mem pending)"))
+
+    def test_an_item_that_is_only_a_check_shows_the_check(self):
+        line = pd.section([task(1, body="| check: run the gate", check=False)])["lines"][0]
+        self.assertIn("run the gate", line)
+        self.assertNotIn(pd.CHECK_MARK, line)
+
+    def test_a_tiny_room_is_clamped_and_never_slices_negatively(self):
+        for room in (0, 5, -3):
+            line = pd.section([task(1, body="abcdefghij" * 10)], room=room)["lines"][0]
+            self.assertIn("abcdefghij", line)
+            self.assertLessEqual(line.count("abcdefghij"), 2)
 
     def test_start_up_line_is_a_briefing_without_the_check(self):
         t = task(1, body="w" * 600)
