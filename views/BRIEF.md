@@ -1,13 +1,13 @@
 # Memory brief
 
-Generated 2026-11-22 from 1447 events. Do not edit: record changes as events.
+Generated 2026-11-22 from 1451 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command. That file holds the full wording of the rules of that kind of task: follow it. Classify again whenever the task changes. Tags:
 - deploy (19): installing, releasing, changing system, service or tool configuration
 - outward (10): acts others see or cannot undo: sending email or messages, purchases, publishing, deleting
-- troubleshooting (18): debugging, testing, fixing findings, proving that it works
-- coding (28): starting, designing or changing code; choosing tools
+- troubleshooting (19): debugging, testing, fixing findings, proving that it works
+- coding (29): starting, designing or changing code; choosing tools
 - reporting (11): how to answer, explain and report results or mistakes
 - git (18): branches, commits, repos, GitHub
 - docs-memory (23): wiki pages, memory entries, closing a task
@@ -21,8 +21,8 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-22, #592625)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-22, checked 2026-11-22, #cc5bcc)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-22, #42c499)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-22, #51cc4c)
 - [open item radiology] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-22, #179315)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-22, #ff62ea)

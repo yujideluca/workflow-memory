@@ -1,6 +1,6 @@
 # Rules tagged coding
 
-Generated 2026-11-22 from 1447 events. Do not edit: record changes as events.
+Generated 2026-11-22 from 1451 events. Do not edit: record changes as events.
 
 starting, designing or changing code; choosing tools
 
@@ -19,6 +19,7 @@ starting, designing or changing code; choosing tools
 - [work.ask-with-context] When asking Giovanni about a development decision that is new (not a topic already debated), give clear context first: what is being decided, why, options, and your recommendation. If it involves many steps never discussed, include a flowchart. A badly framed question cannot be answered well. (#d81d44)
 - [work.autonomy] AUTONOMY: once a project and plan are approved, or Giovanni says 'solve it', build end to end without progress pauses and do the work (issues, log rows, fixes) instead of listing proposals; collect the open questions and ask them at the end. Proceed without repeated confirmation for routine, reversible edits, commands, checks and website access inside the task; batch unavoidable access requests instead of asking for each one. Before asking anything, check memory and past messages for decisions already made (example: pipeline-check licence = MIT). Systems built for the agents get no approval prompts or queues ('not a babysitter for the AI'): safety comes from structure (closed tool lists, protected paths, validated data between agents), actuators may run anything except sudo, and the system stays fast and small (bounded logs; a full disk it causes is its own failure). Outward-facing or destructive acts still need asking first (safety.ask-before-outward). (#5a7e73)
 - [work.avoid-fragile-deps] Prefer what a project already depends on (for example elm-visualization) or a small piece of our own code over a small outside package that may be abandoned or break later; a fragile dependency is a bigger long-run problem than writing the code. Ask before adding such a package. (#8ed0ae)
+- [work.check-stalled-subagent] A background subagent that has not reported after about 15 minutes is checked by looking, not by waiting: are its files still changing, is any process of it running. If neither, take over its state (run the gate, verify, continue). Briefs for subagents forbid background commands and require stdin and a timeout on every program run. Learned 2026-11-22: a subagent finished its code in 15 minutes, then hung, and nobody looked for almost 3 hours. (#3aa96a)
 - [work.dedication] DEDICATION: save Giovanni work, never give them work; half-done work is not acceptable (it caused the 2026-11-04 failure).
 1 DEFINE DONE first as Giovanni's observable outcome. Configuration, installation or passing component tests do not prove it; verify the real path and visible behaviour.
 2 FINISH end to end, installs and setup included; hand over only steps that need sudo or Giovanni's own approval. After coding, do a debugging pass and test reversible features yourself (on the phone for a phone feature). Investigate evidence before asking.

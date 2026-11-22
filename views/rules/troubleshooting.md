@@ -1,6 +1,6 @@
 # Rules tagged troubleshooting
 
-Generated 2026-11-22 from 1447 events. Do not edit: record changes as events.
+Generated 2026-11-22 from 1451 events. Do not edit: record changes as events.
 
 debugging, testing, fixing findings, proving that it works
 
@@ -15,6 +15,7 @@ debugging, testing, fixing findings, proving that it works
 - [status-quo.e2e] After every major Status Quo tray change, repeat the manual pass on the real desktop, update crates/desktop/tests/e2e/manual-baseline.json and desktop_e2e.rs, and run tools/ui_e2e.sh (it needs a free screen: STATUS_QUO_E2E_SCREEN_IS_FREE=1, never while Giovanni uses the screen). (#87315b)
 - [tests.scratch-folders] Tests never build temp folders by hand (temp_dir()/name-PID, createTempDirectory): /tmp is RAM on the laptop and systemd clears it only after 10 days, and each rerun has a new PID, so leftovers pile up. Use the repo's self-deleting helper (status-quo crates/scratch.rs, pipeline-check tests/common Scratch, JUnit TemporaryFolder in QuizApp); any other temp-folder line must say 'scratch-ok:' and why, which each gate checks. (#81e0d0)
 - [work.autonomy] AUTONOMY: once a project and plan are approved, or Giovanni says 'solve it', build end to end without progress pauses and do the work (issues, log rows, fixes) instead of listing proposals; collect the open questions and ask them at the end. Proceed without repeated confirmation for routine, reversible edits, commands, checks and website access inside the task; batch unavoidable access requests instead of asking for each one. Before asking anything, check memory and past messages for decisions already made (example: pipeline-check licence = MIT). Systems built for the agents get no approval prompts or queues ('not a babysitter for the AI'): safety comes from structure (closed tool lists, protected paths, validated data between agents), actuators may run anything except sudo, and the system stays fast and small (bounded logs; a full disk it causes is its own failure). Outward-facing or destructive acts still need asking first (safety.ask-before-outward). (#5a7e73)
+- [work.check-stalled-subagent] A background subagent that has not reported after about 15 minutes is checked by looking, not by waiting: are its files still changing, is any process of it running. If neither, take over its state (run the gate, verify, continue). Briefs for subagents forbid background commands and require stdin and a timeout on every program run. Learned 2026-11-22: a subagent finished its code in 15 minutes, then hung, and nobody looked for almost 3 hours. (#3aa96a)
 - [work.dedication] DEDICATION: save Giovanni work, never give them work; half-done work is not acceptable (it caused the 2026-11-04 failure).
 1 DEFINE DONE first as Giovanni's observable outcome. Configuration, installation or passing component tests do not prove it; verify the real path and visible behaviour.
 2 FINISH end to end, installs and setup included; hand over only steps that need sudo or Giovanni's own approval. After coding, do a debugging pass and test reversible features yourself (on the phone for a phone feature). Investigate evidence before asking.
