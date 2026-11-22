@@ -259,6 +259,15 @@ class Briefing(Tmp):
         self.assertNotIn("briefing", text.lower())
         self.assertNotIn("mem rules", text)
 
+    def test_the_app_brief_never_ends_the_open_items_with_a_bare_command(self):
+        from mem import pendency
+        more = pendency._MORE.format(n=15)
+        out = project.app_lines(["- item", more])
+        self.assertEqual(out[0], "- item")
+        self.assertIn("did not fit", out[1])
+        self.assertIn("on the laptop", out[1])
+        self.assertFalse(out[1].endswith(": mem pending)"))
+
     def test_router_and_note_say_how_to_get_the_full_wording(self):
         self.assertIn(tags.FULL, tags.ROUTER)
         self.assertIn(tags.FULL, tags.BRIEFING_NOTE)

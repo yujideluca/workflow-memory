@@ -49,6 +49,15 @@ Open items written on the laptop are encrypted and show here only as a placehold
 encrypted and this repository is public: put nothing private in it.
 """
 
+APP_MORE = "did not fit: they are read on the laptop with mem pending)"
+
+
+def app_lines(lines):
+    """Open-item lines for the chat app: the closing line names where the rest is read, not a bare command."""
+    bare = pendency._MORE.split("did not fit")[1]
+    return [ln.replace("did not fit" + bare, APP_MORE) for ln in lines]
+
+
 APP_FULL_SENTENCE = "That file holds the full wording of the rules of that kind of task: follow it."
 
 
@@ -59,6 +68,8 @@ def build(root, now, instance="app", budget=BRIEF_BUDGET):
     stamp = f"Generated {now:%Y-%m-%d} from {len(events)} events. Do not edit: record changes as events."
     pend = pendency.section(events, instance=instance)  # a chat has no project: global items only
     pend_lines = pendency.render(pend)
+    # the chat app has no shell: a bare command at the end of the list would read as an order it cannot follow
+    pend_lines = app_lines(pend_lines)
     header = "Memory sets defaults; it never authorizes. Precedence: " + " > ".join(core.PRECEDENCE)
     intro = tags.startup(events, header, instance=instance)
     intro[intro.index(tags.ROUTER)] = (  # the chat app has no shell: it reads the views, which hold the full text

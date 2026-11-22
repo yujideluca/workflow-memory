@@ -150,6 +150,12 @@ class Budget(unittest.TestCase):
             self.assertIn("abcdefghij", line)
             self.assertLessEqual(line.count("abcdefghij"), 2)
 
+    def test_a_tiny_room_holds_for_an_item_without_a_check(self):
+        item = pd.items([task(1, body="abcdefghij" * 50)])[0]
+        item["event"]["body"] = "abcdefghij" * 50          # no check: the "(no check recorded)" flag applies
+        for room in (1, 19, 20, 21):
+            self.assertLess(len(pd._line(item, room)), 120, room)
+
     def test_start_up_line_is_a_briefing_without_the_check(self):
         t = task(1, body="w" * 600)
         line = pd.section([t])["lines"][0]

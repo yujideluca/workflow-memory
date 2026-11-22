@@ -44,7 +44,7 @@ Open items (shown in every chat until solved, archived or deleted):
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-16, checked 2026-11-17, #1c6327)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-16, checked 2026-11-17, #1e608e)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-15, checked 2026-11-17, #df1c9f)
-(15 more open item(s) did not fit: mem pending)
+(15 more open item(s) did not fit: they are read on the laptop with mem pending)
 
 ## Recording
 

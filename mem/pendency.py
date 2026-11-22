@@ -91,8 +91,7 @@ def _line(item, room=MAX_LINE):
     if room < MAX_LINE:                                    # briefing: the check stays one `mem pending` away
         head, _, check = body.partition(CHECK_MARK)
         body = head.rstrip() or check.strip()              # an item that is only a check shows the check
-    room = max(room, MIN_ROOM)
-    room -= len(flags)
+    room = max(room - len(flags), MIN_ROOM)                # the flag never eats the whole room
     if len(body) > room:
         body = body[:room - 1] + "…"
     when = f"since {item['since']:%Y-%m-%d}"
