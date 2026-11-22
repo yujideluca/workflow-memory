@@ -3,7 +3,7 @@
 Generated 2026-11-22 from 1442 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
-Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command; then follow their full wording. Classify again whenever the task changes. Tags:
+Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command. It prints a briefing, one line per rule: for every rule that touches the task, mem rules --full KEY|#REF [...] and follow the full wording. Classify again whenever the task changes. Tags:
 - deploy (18): installing, releasing, changing system, service or tool configuration
 - outward (10): acts others see or cannot undo: sending email or messages, purchases, publishing, deleting
 - troubleshooting (17): debugging, testing, fixing findings, proving that it works
@@ -21,42 +21,37 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-22, #51cc4c)
-- [open item radiology] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-22, #179315)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-22, #ff62ea)
-- [open item radiology] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-21, #21a2f1)
-- [open item radiology] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-21, #6e76e1)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-20, checked 2026-11-20, #faca8b)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-20, checked 2026-11-20, #a103d6)
-- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, #522b76)
-- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, #2d99af)
-- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, #1a2928)
-- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, #91d0a0)
-- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, #66930c)
-- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, #5727bc)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, #389f75)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-19, checked 2026-11-19, #e6cb90)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-18, #97d61c)
-- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-18, #406785)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-18, #65fb5e)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-16, checked 2026-11-17, #1c6327)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-16, checked 2026-11-17, #1e608e)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-15, checked 2026-11-17, #df1c9f)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-17, #90c998)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-14, #8437aa)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-14, #cda6e2)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-14, #f33ba7)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-10, #a58496)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-10, #2bcfdb)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-10, checked 2026-11-10, #78b830)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-10, checked 2026-11-10, #fbb4a7)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-09, checked 2026-11-10, #54c2e8)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-08, #95f4d6)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-06, checked 2026-11-06, #ef80a0)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-06, #8132b8)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-06, #70c457)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-11-06, #e69279)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) | check: on the laptop (since 2026-10-26, checked 2026-10-26, #d12c08)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-22, #51cc4c)
+- [open item radiology] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-22, #179315)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-22, #ff62ea)
+- [open item radiology] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-21, #21a2f1)
+- [open item radiology] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-21, #6e76e1)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-20, checked 2026-11-20, #faca8b)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-20, checked 2026-11-20, #a103d6)
+- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-19, #522b76)
+- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-19, #2d99af)
+- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-19, #1a2928)
+- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-19, #91d0a0)
+- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-19, #66930c)
+- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-19, #5727bc)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-19, #389f75)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-19, checked 2026-11-19, #e6cb90)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-18, #97d61c)
+- [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-18, #406785)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-18, #65fb5e)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-16, checked 2026-11-17, #1c6327)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-16, checked 2026-11-17, #1e608e)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-15, checked 2026-11-17, #df1c9f)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-17, #90c998)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-14, #8437aa)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-14, #cda6e2)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-14, #f33ba7)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-10, #a58496)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-10, #2bcfdb)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-10, checked 2026-11-10, #78b830)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-10, checked 2026-11-10, #fbb4a7)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-09, checked 2026-11-10, #54c2e8)
+(6 more open item(s) did not fit: mem pending)
 
 ## Recording
 
