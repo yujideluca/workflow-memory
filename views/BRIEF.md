@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-23 from 1501 events. Do not edit: record changes as events.
+Generated 2026-11-23 from 1502 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command. That file holds the full wording of the rules of that kind of task: follow it. Classify again whenever the task changes. Tags:
@@ -21,6 +21,7 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-23, #9b82cf)
 - [open item radiology] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-23, #cbd622)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-23, #61ebcc)
 - [open item radiology] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-23, #035487)
@@ -44,8 +45,7 @@ Open items (shown in every chat until solved, archived or deleted):
 - [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-19, #5727bc)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-19, #389f75)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-19, checked 2026-11-19, #e6cb90)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-18, #97d61c)
-(17 more open item(s) did not fit: they are read on the laptop with mem pending)
+(18 more open item(s) did not fit: they are read on the laptop with mem pending)
 
 ## Recording
 
