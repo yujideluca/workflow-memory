@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-23 from 1523 events. Do not edit: record changes as events.
+Generated 2026-11-23 from 1526 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -187,3 +187,10 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] work.check-stalled-subagent: A background subagent that has not reported after about 15 minutes is checked by looking, not by waiting: are its files still changing, is any process of it running. If neither, take over its state (run the gate, verify, continue). Briefs for subagents forbid background commands and require stdin and a timeout on every program run. Learned 2026-11-22: a subagent finished its code in 15 minutes, then hung, and nobody looked for almost 3 hours. (agent)
 - [global] codex.retired: Giovanni 2026-11-22: Codex is never used again (no ChatGPT subscription any more). Wherever a step would have gone to Codex (second-model checks, batch writing, tagging), use another Claude instance instead: headless claude -p or a subagent, on the cheapest model that can do the step, and a different model from the writer when the step is a second-model check. (user)
 - [global] radiology.bought-books-training: Bought (non-open) textbooks may feed the training texts of the radiology finding assistant, but only as the finding's terms and a formal description in our own words; never a copied sentence, book text stays local and uncommitted (Giovanni 2026-11-23; widens the 2026-11-16 rule that they only feed the finding lists). (user)
+- [project:radiology-crawler] auto.095ad88ff3: <task-notification>
+<task-id>boslxjiri</task-id>
+<tool-use-id>toolu_01JeN73Bqcf2cmbqezokBqe7</tool-use-id>
+<output-file>/tmp/claude-1000/-home-yuji/1c716fb3-b7f9-43d2-b7a7-789297a79271/tasks/boslxjiri.output</output-file>
+<status>completed</status>
+<summary>Background command "Ask both models for descriptors of the list entries never asked (queued behind the running job)" completed (exit code 0)</summary>
+</task-notification> (harvester)
