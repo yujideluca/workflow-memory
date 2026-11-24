@@ -1,6 +1,6 @@
 # Rules tagged coding
 
-Generated 2026-11-24 from 1533 events. Do not edit: record changes as events.
+Generated 2026-11-24 from 1534 events. Do not edit: record changes as events.
 
 starting, designing or changing code; choosing tools
 
