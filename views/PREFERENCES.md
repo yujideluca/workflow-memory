@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-24 from 1540 events. Do not edit: record changes as events.
+Generated 2026-11-24 from 1545 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -194,4 +194,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 <status>completed</status>
 <summary>Background command "Ask both models for descriptors of the list entries never asked (queued behind the running job)" completed (exit code 0)</summary>
 </task-notification> (harvester)
-- [global] ralexandria.figure-sources: Ralexandria anatomy figures (Giovanni 2026-11-23): prefer Gray's Anatomy 1918 (public domain) and the Bassett Collection of Stereoscopic Images of Human Anatomy (Stanford Lane Library, CC BY-SA 4.0 as stated on lane.stanford.edu/biomed-resources/bassett on 2026-11-23) as originals; another open original (Servier, Wikimedia) only when neither shows the structure clearly. Encoded in ~/dev/ralexandria CLAUDE.md rule 8, docs/REVIEW-PROMPT.md point 5, DESIGN.md. (user)
+- [global] ralexandria.figure-sources: Ralexandria anatomy figures (Giovanni 2026-11-24, replaces Gray + Bassett of 2026-11-23): preferred originals are Gray's Anatomy 1918, Braune's atlas of frozen sections 1877 (Wellcome, Public Domain Mark) and the radiological images of the Visible Human Project (NLM, credit line in the caption). They are converted to the site style by code that uses no language model (tools/atlas_fetch.py, tools/atlas_build.py) and shown in the Atlas view and on entry pages where the figure title names the entry. Bassett (CC BY-SA 4.0) is no longer a preferred source. (user)
