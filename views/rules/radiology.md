@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-24 from 1601 events. Do not edit: record changes as events.
+Generated 2026-11-24 from 1602 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -68,6 +68,7 @@ radiology report matcher and crawler
 - [radiology.haiku-workers] Radiology translator: run 5 Haiku workers (--worker I/5), not 10 (Giovanni, 2026-11-03) (#3a5938)
 - [radiology.lanes] Giovanni 2026-11-14: radiology work runs in four parallel lanes, one instance per lane, each changing only its lane's files (PLAN.md lists them): corpus (training data per imaging method), engine (assistant core, tuning half only), judge (test half and real reports, each scored once, never changes the engine in the same session), product (website, plan site). Ultrasound/CT/MRI data is built while the core is finished on X-ray; the one-time test of a method runs after the shared core fixes, not before. Stage by path, commit as soon as tests pass. (#5f8fdc)
 - [radiology.merge-true-synonyms] Giovanni 2026-11-21: in ultrasound, CT and MRI, two entries that are only two names for the same finding (no qualifier, same descriptors, e.g. low T1 signal / T1 hypointensity, low ADC signal / restricted diffusion) are merged as in X-ray: the old id stays readable through replaces and aliases, each pair is checked by a second model. Variants with a qualifier (focal / diffuse) stay separate (#92269e). (#94f089)
+- [radiology.no-question-twice] The finding assistant never asks the same question twice (Giovanni 2026-11-24): it has only 5 questions, so a repeat to confirm an answer or to offer more options makes no sense. (#f95140)
 - [radiology.no-shortcuts] Giovanni 2026-11-21: never reach the target by making the test easier or by a narrow trick. Find, understand and solve the real cause: fill the system with all the information it needs (finding knowledge, training texts) and build the algorithm right. A single fix (e.g. lay synonyms) is not enough on its own. (#ad40b1)
 - [radiology.plain-names-and-broad-words] Giovanni 2026-11-17: (a) a present/absent descriptor whose name is ordinary plain words (gas in rectum, chest drain) may be asked as its name; a named sign or eponym never. (b) Broad words (thickened, cystic, distended, lytic, ill-defined) may count as plain values, but only judged in the context of each finding: where the word is filler that does not adequately say what is seen, it does not count. (c) The 4 X-ray findings without a corpus row stay for now. (#fe7181)
 - [radiology.records] Giovanni 2026-11-14 (chose 'one plan file'): in the radiology project a change gets only these records: one-line requirement row (max 300 characters, promise only), its test, a plan note; a scored test adds one results-registry entry; a real decision adds one DESIGN.md log row. Wiki pages and mem use once per closed milestone, not after every task. No handoff files or report documents unless Giovanni asks. Reason: about nine records per step made every version verbose. (#07fe96)
