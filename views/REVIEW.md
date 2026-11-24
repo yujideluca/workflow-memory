@@ -1,7 +1,7 @@
 # Needs a decision
 
-Generated 2026-11-24 from 1556 events. Do not edit: record changes as events.
+Generated 2026-11-24 from 1558 events. Do not edit: record changes as events.
 
 ## Warnings
-- open items exceed the 3600-character budget: 16 not shown (solve them with mem done, park them with mem archive, or delete them with mem forget)
+- open items exceed the 3600-character budget: 17 not shown (solve them with mem done, park them with mem archive, or delete them with mem forget)
 
