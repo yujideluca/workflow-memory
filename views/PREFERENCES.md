@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-24 from 1602 events. Do not edit: record changes as events.
+Generated 2026-11-24 from 1604 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -196,3 +196,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 </task-notification> (harvester)
 - [global] ralexandria.figure-sources: Ralexandria anatomy figures (Giovanni 2026-11-24, replaces Gray + Bassett of 2026-11-23): preferred originals are Gray's Anatomy 1918, Braune's atlas of frozen sections 1877 (Wellcome, Public Domain Mark) and the radiological images of the Visible Human Project (NLM, credit line in the caption). They are converted to the site style by code that uses no language model (tools/atlas_fetch.py, tools/atlas_build.py) and shown in the Atlas view and on entry pages where the figure title names the entry. Bassett (CC BY-SA 4.0) is no longer a preferred source. (user)
 - [global] radiology.no-question-twice: The finding assistant never asks the same question twice (Giovanni 2026-11-24): it has only 5 questions, so a repeat to confirm an answer or to offer more options makes no sense. (user)
+- [global] ralexandria.no-smear: Ralexandria pictures must never look smeared (Giovanni 2026-11-24, on an atlas drawing): erasing a printed label never blends neighbouring pixels; a label on plain ground takes that tone, a label on hatching stays as printed (atlas) or loses only its letter strokes (hand-made figures). Requirement RX-42. (user)
