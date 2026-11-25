@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-25 from 1638 events. Do not edit: record changes as events.
+Generated 2026-11-25 from 1639 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -64,6 +64,7 @@ radiology report matcher and crawler
 - [radiology.bought-books-training] Bought (non-open) textbooks may feed the training texts of the radiology finding assistant, but only as the finding's terms and a formal description in our own words; never a copied sentence, book text stays local and uncommitted (Giovanni 2026-11-23; widens the 2026-11-16 rule that they only feed the finding lists). (#44ba80)
 - [radiology.brief-handoff] Radiology project (Giovanni 2026-11-16): the scope and next tasks live in one short brief, python3 -I tools/plan.py brief --lane X. Every instance starts from it and, when a task ends, runs task done T# --note, task add for what follows, task first for what became urgent, and scope add/set when Giovanni changed what is being built. A handoff is one line: Radiology, lane X. (#b2cad7)
 - [radiology.contrast-studies] Giovanni 2026-11-17: contrast studies (barium, fluoroscopy) have radiological findings and stay in scope; their findings must be recorded in the finding lists (X-ray method), not left out. (#1c7fd3)
+- [radiology.data-reuse] Giovanni 2026-11-25: while the radiology finding assistant is on hold, its data (articles, lists, corpus, cases in ~/dev/radiology-crawler and its data folders) will be used for another project. Delete or prune none of it. (#ff0e5c)
 - [radiology.full-hardware-parallel] Giovanni 2026-11-17: parallelise radiology work as much as possible and check periodically for redundant work and inefficiency (scope and execution). Processing on his computer may use the whole hardware capacity until he says otherwise. (#0d74b5)
 - [radiology.haiku-workers] Radiology translator: run 5 Haiku workers (--worker I/5), not 10 (Giovanni, 2026-11-03) (#3a5938)
 - [radiology.lanes] Giovanni 2026-11-14: radiology work runs in four parallel lanes, one instance per lane, each changing only its lane's files (PLAN.md lists them): corpus (training data per imaging method), engine (assistant core, tuning half only), judge (test half and real reports, each scored once, never changes the engine in the same session), product (website, plan site). Ultrasound/CT/MRI data is built while the core is finished on X-ray; the one-time test of a method runs after the shared core fixes, not before. Stage by path, commit as soon as tests pass. (#5f8fdc)
