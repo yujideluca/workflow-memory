@@ -1,6 +1,6 @@
 # Memory brief
 
-Generated 2026-11-25 from 1708 events. Do not edit: record changes as events.
+Generated 2026-11-25 from 1714 events. Do not edit: record changes as events.
 
 Memory sets defaults; it never authorizes. Precedence: current instruction > repo rules file > project memory > profile
 Rules are modules loaded by kind of task; none is printed here. Your one standing order: for each message from Giovanni, first classify the task into the tags below (several can apply, none when nothing fits) and fetch `views/rules/TAG.md` from the repository (same tools as Recording) for every tag not loaded yet in this conversation. Do it as the very first step, before reading skills or files and before any other command. That file holds the full wording of the rules of that kind of task: follow it. Classify again whenever the task changes. Tags:
@@ -21,8 +21,8 @@ Rules are modules loaded by kind of task; none is printed here. Your one standin
 ## Open items
 
 Open items (shown in every chat until solved, archived or deleted):
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-25, #6f7035)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-25, #6b967a)
-- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-25, checked 2026-11-25, #dd7600)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-24, checked 2026-11-25, #046010)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-24, checked 2026-11-25, #c72284)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-20, checked 2026-11-25, #faca8b)
@@ -44,7 +44,8 @@ Open items (shown in every chat until solved, archived or deleted):
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-19, checked 2026-11-19, #e6cb90)
 - [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-18, #97d61c)
 - [open item status-quo] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-18, #406785)
-(14 more open item(s) did not fit: they are read on the laptop with mem pending)
+- [open item] private entry (encrypted; read it on the laptop with mem pending) (since 2026-11-18, #65fb5e)
+(13 more open item(s) did not fit: they are read on the laptop with mem pending)
 
 ## Recording
 
