@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-25 from 1645 events. Do not edit: record changes as events.
+Generated 2026-11-25 from 1649 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -83,6 +83,7 @@ radiology report matcher and crawler
 - [ralexandria.fix-by-narrowing] Ralexandria review fixes (lesson 2026-11-21, not a rule from Giovanni; 3 blockers came from Claude's own additions while fixing): fix a finding by narrowing, re-citing or removing text; never add a new explanation, mechanism or 'because' while fixing unless a full text read for it states exactly that. (#c5ea5b)
 - [ralexandria.review-minors] Ralexandria review loop (Giovanni 2026-11-21): fix each minor finding once; a minor may stay open only when it is pure style, an already marked single-source statement, or the opposite of an earlier round's request; an entry is finished after two VERDICT: PASS in a row. This narrows work.no-open-ends for review minors (encoded in ralexandria CLAUDE.md decision 7). (#7c03e9)
 - [ralexandria.scope] Ralexandria (~/dev/ralexandria, started 2026-11-19): English-only radiology encyclopedia plus reference bank; one entry per concept incl. the biophysics behind the image; own words with citations; only whole articles count as sources, never abstracts; any source allowed, politely; inputs from the radiology crawler data are read-only. (#3a89e6)
+- [ralexandria.version1] Ralexandria (Giovanni 2026-11-25): Version 1 is a fixed list, based on the contents of the general radiology textbooks: docs/version1.tsv (485 concepts: 251 foundations, 234 diseases and findings), measured by tools/version1.py (named by title in 3 of 4 general textbooks, 25 passages, relevant in the writing order). The queue of tools/order.py names them first. The list is not edited by hand and is rebuilt only on Giovanni's word. (#de88f7)
 - [research.full-text-not-abstracts] Giovanni 2026-11-15: when checking facts against the literature, never settle for abstracts: they say almost nothing. Read the full article. Thousands of articles are open on the internet, and authors often post the full text themselves (e.g. on ResearchGate, institutional repositories, preprint servers); look for those copies. A claim supported only by an abstract counts as not verified. (#c4fea9)
 - [work.codex-back] Codex is live again (Giovanni 2026-11-06): run radiology steps C2-C5 with many parallel codex exec sessions, model gpt-6.1-sol wherever a Sonnet-class worker would be used; each session fresh --ephemeral under 250k tokens; heavy local jobs one at a time under flock /tmp/radiology-heavy.lock. (#4820c7)
 - [work.no-open-ends] Never leave open ends: fix every review finding, minor ones included, before moving on (Giovanni 2026-11-20, Ralexandria). (#d6fd0c)
