@@ -1,6 +1,6 @@
 # Rules tagged deploy
 
-Generated 2026-11-25 from 1668 events. Do not edit: record changes as events.
+Generated 2026-11-25 from 1671 events. Do not edit: record changes as events.
 
 installing, releasing, changing system, service or tool configuration
 
@@ -10,6 +10,7 @@ installing, releasing, changing system, service or tool configuration
 - [pipeline-check.merge-block] Merges to main are blocked by the local pre-push check (pipeline-check --pre-push, hook in tools/hooks, enabled with git config core.hooksPath tools/hooks) because private repositories on the free GitHub plan cannot use branch protection; pipeline-check is public so CI needs no token (decided 2026-10-24). (#eba53a)
 - [quiz.signing-key-backup] QuizApp signing key backup: german-quiz-release.jks is in Giovanni's Google Drive (My Drive root), uploaded 2026-10-22; original in ~/.android. Passwords are kept by Giovanni, not on Drive. (#8c714a)
 - [quiz.web-standalone-release] QuizWeb may ship a standalone maintenance release when it contains relevant changes, without waiting for another Android release. Ports of unreleased Android features still follow app promotion. (#3a001b)
+- [radiology.hold-services] Radiology on hold (Giovanni 2026-11-25, 'stop everything'): all radiology services are off and nothing starts at boot. Off: Funnel paths / and /assistant on port 8443; units radiology-plan-site, radiology-plan-updater, radiology-crawler, timers translation-check-trickle and translation-check-burn (all disabled); transient unit radiology-assistant-site stopped. Turn back on only when Giovanni restarts the project: systemctl --user enable --now radiology-plan-site radiology-plan-updater translation-check-trickle.timer translation-check-burn.timer; web/start.sh for the assistant; tailscale funnel --bg --https=8443 --set-path=/ http://127.0.0.1:4190 and --set-path=/assistant http://127.0.0.1:4107. Data untouched. (#423931)
 - [release.pool-promote] Question-pool updates (tools/data, i18n) that pass the automated pipeline (gate + mutation check, then beta) may be promoted to the stable app and the web version without asking again; app code releases still need Giovanni's go-ahead (2026-10-25). (#8c704c)
 - [release.promote] A version may be promoted to the user channel once it survives the automated tests updated for what it changes (gate with mutation + tests changed with the code); then promoting is Giovanni's decision. No minimum time in beta; do not argue for one. (#510e5a)
 - [repos.protection-state] State 2026-11-18: GitHub refuses a direct push to main, also from the owner, in german-quiz (tools/push_main.sh), german-quiz-web and machine-bootstrap (push the commit to a short branch, wait for CI, then push the same commit to main, delete the branch). processing-sketches, remote-terminal, status-quo and wiki keep the owner exception; private repositories and workflow-memory, pipeline-check, german-quiz-releases have no GitHub protection. There the local pre-push hook is the gate: never --no-verify for code. (#a05ba6)

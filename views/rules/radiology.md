@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-25 from 1668 events. Do not edit: record changes as events.
+Generated 2026-11-25 from 1671 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -67,6 +67,7 @@ radiology report matcher and crawler
 - [radiology.data-reuse] Giovanni 2026-11-25: while the radiology finding assistant is on hold, its data (articles, lists, corpus, cases in ~/dev/radiology-crawler and its data folders) will be used for another project. Delete or prune none of it. (#ff0e5c)
 - [radiology.full-hardware-parallel] Giovanni 2026-11-17: parallelise radiology work as much as possible and check periodically for redundant work and inefficiency (scope and execution). Processing on his computer may use the whole hardware capacity until he says otherwise. (#0d74b5)
 - [radiology.haiku-workers] Radiology translator: run 5 Haiku workers (--worker I/5), not 10 (Giovanni, 2026-11-03) (#3a5938)
+- [radiology.hold-services] Radiology on hold (Giovanni 2026-11-25, 'stop everything'): all radiology services are off and nothing starts at boot. Off: Funnel paths / and /assistant on port 8443; units radiology-plan-site, radiology-plan-updater, radiology-crawler, timers translation-check-trickle and translation-check-burn (all disabled); transient unit radiology-assistant-site stopped. Turn back on only when Giovanni restarts the project: systemctl --user enable --now radiology-plan-site radiology-plan-updater translation-check-trickle.timer translation-check-burn.timer; web/start.sh for the assistant; tailscale funnel --bg --https=8443 --set-path=/ http://127.0.0.1:4190 and --set-path=/assistant http://127.0.0.1:4107. Data untouched. (#423931)
 - [radiology.lanes] Giovanni 2026-11-14: radiology work runs in four parallel lanes, one instance per lane, each changing only its lane's files (PLAN.md lists them): corpus (training data per imaging method), engine (assistant core, tuning half only), judge (test half and real reports, each scored once, never changes the engine in the same session), product (website, plan site). Ultrasound/CT/MRI data is built while the core is finished on X-ray; the one-time test of a method runs after the shared core fixes, not before. Stage by path, commit as soon as tests pass. (#5f8fdc)
 - [radiology.merge-true-synonyms] Giovanni 2026-11-21: in ultrasound, CT and MRI, two entries that are only two names for the same finding (no qualifier, same descriptors, e.g. low T1 signal / T1 hypointensity, low ADC signal / restricted diffusion) are merged as in X-ray: the old id stays readable through replaces and aliases, each pair is checked by a second model. Variants with a qualifier (focal / diffuse) stay separate (#92269e). (#94f089)
 - [radiology.no-question-twice] The finding assistant never asks the same question twice (Giovanni 2026-11-24): it has only 5 questions, so a repeat to confirm an answer or to offer more options makes no sense. (#f95140)
