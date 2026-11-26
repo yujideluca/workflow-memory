@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-26 from 1764 events. Do not edit: record changes as events.
+Generated 2026-11-26 from 1765 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -61,6 +61,7 @@ radiology report matcher and crawler
 - [matcher.variants-per-method] Giovanni 2026-11-15 (correcting Claude, who had proposed merging them into one finding): variant entries of a finding in ultrasound, CT and MRI (e.g. focal / diffuse bladder wall thickening) are NOT merged. They are grouped as variants of the characterisation of the same finding inside the same imaging method. Each imaging method has its own nomenclature and is evaluated separately: nothing is merged, mapped or pooled across methods. (#92269e)
 - [matcher.website-decisions] Giovanni 2026-11-14, radiology website: (1) all four imaging methods stay selectable on the site now, not hidden until each reaches target; (2) the site is started manually (web/start.sh), no autostart service; (3) related diagnoses and everything else the product shows come from the corpus: the corpus is the project's database and is completed with whatever the product needs (so missing data is a corpus-lane task, never a second data store). (#4c37d5)
 - [radiology.act-dont-pause] Giovanni 2026-11-10: in the radiology project they were irritated by too many pauses and too little action: keep moving once a plan is approved. Also, last week's negligence on a project nearly destroyed the workflow: never touch shared workflow or memory systems carelessly; verify before and after any change to them. (#248388)
+- [radiology.basic-facts-findable] A basic normal-anatomy or normal-appearance fact (e.g. normal MRI signal of an organ) is never left as 'no source found': search PubMed/PMC full texts and the web with several wordings until two full-text sources are found; only then report a gap. (Giovanni 2026-11-26) (#b19884)
 - [radiology.bought-books-training] Bought (non-open) textbooks may feed the training texts of the radiology finding assistant, but only as the finding's terms and a formal description in our own words; never a copied sentence, book text stays local and uncommitted (Giovanni 2026-11-23; widens the 2026-11-16 rule that they only feed the finding lists). (#44ba80)
 - [radiology.brief-handoff] Radiology project (Giovanni 2026-11-16): the scope and next tasks live in one short brief, python3 -I tools/plan.py brief --lane X. Every instance starts from it and, when a task ends, runs task done T# --note, task add for what follows, task first for what became urgent, and scope add/set when Giovanni changed what is being built. A handoff is one line: Radiology, lane X. (#b2cad7)
 - [radiology.contrast-studies] Giovanni 2026-11-17: contrast studies (barium, fluoroscopy) have radiological findings and stay in scope; their findings must be recorded in the finding lists (X-ray method), not left out. (#1c7fd3)

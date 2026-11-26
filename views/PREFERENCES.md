@@ -1,6 +1,6 @@
 # Preferences in force
 
-Generated 2026-11-26 from 1764 events. Do not edit: record changes as events.
+Generated 2026-11-26 from 1765 events. Do not edit: record changes as events.
 
 - [project:wiki] auto.1bd01f1864: Instead of `wiki publish -m "pipeline-check: shellcheck, traceability and pre-push in program, v0.4.0"` I would have run that command. (harvester)
 - [project:work] auto.66c84cc3f2: You reported "configured correctly" while it was not displaying, removed fields that were requested, produced a separate window, ASCII bars in chat, and later explained a missing-fields problem instead of testing it. (harvester)
@@ -206,3 +206,4 @@ D1 evidence before claims; D2 investigate instead of resting; D3 encode requirem
 - [global] ralexandria.review-scope: Ralexandria review (Giovanni 2026-11-26): the second pass in a row is the pass; minors fixed after it are not reviewed again. Entries reviewed before the whole-entry tool (c5c5b27) are not rechecked; go on with the queue. (user)
 - [global] research.search-when-missing: When the sources read so far do not give a fact an entry needs, search for more sources (local corpus first, then the internet) until it is found; never leave it open for lack of a source without having searched. (user)
 - [global] ralexandria.checker-name: Giovanni 2026-11-26: the independent review of Ralexandria entries (tools/review.py, with --assist: precheck, evidence passages, model routing) is called the Ralexandria checker, in tools, reports, wiki and replies. (user)
+- [global] radiology.basic-facts-findable: A basic normal-anatomy or normal-appearance fact (e.g. normal MRI signal of an organ) is never left as 'no source found': search PubMed/PMC full texts and the web with several wordings until two full-text sources are found; only then report a gap. (Giovanni 2026-11-26) (user)
