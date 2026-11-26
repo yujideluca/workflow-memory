@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-26 from 1746 events. Do not edit: record changes as events.
+Generated 2026-11-26 from 1749 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -85,6 +85,7 @@ radiology report matcher and crawler
 - [ralexandria.fix-by-narrowing] Ralexandria review fixes (lesson 2026-11-21, not a rule from Giovanni; 3 blockers came from Claude's own additions while fixing): fix a finding by narrowing, re-citing or removing text; never add a new explanation, mechanism or 'because' while fixing unless a full text read for it states exactly that. (#c5ea5b)
 - [ralexandria.review-coverage] Ralexandria review (Giovanni 2026-11-26): two passes in a row with errors left means the test is not effective. Commit after two passes, but a pass must cover every item of the entry: tools/review.py numbers each sentence, figure marker and map node and fails a part whose report skips one (RV-6 to RV-9). When a later round finds errors the earlier passes missed, fix the test, not only the entry. (#167805)
 - [ralexandria.review-minors] Ralexandria review loop (Giovanni 2026-11-21): fix each minor finding once; a minor may stay open only when it is pure style, an already marked single-source statement, or the opposite of an earlier round's request; an entry is finished after two VERDICT: PASS in a row. This narrows work.no-open-ends for review minors (encoded in ralexandria CLAUDE.md decision 7). (#7c03e9)
+- [ralexandria.review-scope] Ralexandria review (Giovanni 2026-11-26): the second pass in a row is the pass; minors fixed after it are not reviewed again. Entries reviewed before the whole-entry tool (c5c5b27) are not rechecked; go on with the queue. (#ddb3f3)
 - [ralexandria.scope] Ralexandria (~/dev/ralexandria, started 2026-11-19): English-only radiology encyclopedia plus reference bank; one entry per concept incl. the biophysics behind the image; own words with citations; only whole articles count as sources, never abstracts; any source allowed, politely; inputs from the radiology crawler data are read-only. (#3a89e6)
 - [ralexandria.version1] Ralexandria (Giovanni 2026-11-25): Version 1 is a fixed list, based on the contents of the general radiology textbooks: docs/version1.tsv (485 concepts: 251 foundations, 234 diseases and findings), measured by tools/version1.py (named by title in 3 of 4 general textbooks, 25 passages, relevant in the writing order). The queue of tools/order.py names them first. The list is not edited by hand and is rebuilt only on Giovanni's word. (#de88f7)
 - [research.full-text-not-abstracts] Giovanni 2026-11-15: when checking facts against the literature, never settle for abstracts: they say almost nothing. Read the full article. Thousands of articles are open on the internet, and authors often post the full text themselves (e.g. on ResearchGate, institutional repositories, preprint servers); look for those copies. A claim supported only by an abstract counts as not verified. (#c4fea9)
