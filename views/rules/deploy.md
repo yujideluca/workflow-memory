@@ -1,6 +1,6 @@
 # Rules tagged deploy
 
-Generated 2026-11-26 from 1771 events. Do not edit: record changes as events.
+Generated 2026-11-26 from 1774 events. Do not edit: record changes as events.
 
 installing, releasing, changing system, service or tool configuration
 
