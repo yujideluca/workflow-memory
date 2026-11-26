@@ -1,6 +1,6 @@
 # Rules tagged radiology
 
-Generated 2026-11-26 from 1734 events. Do not edit: record changes as events.
+Generated 2026-11-26 from 1735 events. Do not edit: record changes as events.
 
 radiology report matcher and crawler
 
@@ -77,6 +77,7 @@ radiology report matcher and crawler
 - [radiology.records] Giovanni 2026-11-14 (chose 'one plan file'): in the radiology project a change gets only these records: one-line requirement row (max 300 characters, promise only), its test, a plan note; a scored test adds one results-registry entry; a real decision adds one DESIGN.md log row. Wiki pages and mem use once per closed milestone, not after every task. No handoff files or report documents unless Giovanni asks. Reason: about nine records per step made every version verbose. (#07fe96)
 - [radiology.timeline-3-months] Giovanni 2026-11-10: the radiology matcher (portfolio and possible product) must be fully built in about 3 months, all modalities (X-ray, ultrasound, CT, MRI), not a reduced X-ray-only version. Plan to that deadline; fewer pauses. (#e87bf7)
 - [radiology.translation-rate] Radiology crawler: translate (Codex) at the same rate as extraction, no daily cap; a cap would make it take too long. (#0c7d90)
+- [ralexandria-atlas-images] Ralexandria: radiological images (CT, MRI, plain films) are shown unfiltered, plain grey at their own size, never in the pixel palette (the palette made them too hard to see); the pictures of every body part, drawings and radiological sections, appear on that body part's entry page, not only in the Atlas: every new anatomy entry gets its sections in docs/atlas-sections.tsv. (Giovanni 2026-11-26) (#169530)
 - [ralexandria.anatomy-figures] Ralexandria (Giovanni 2026-11-21): every anatomy entry needs a labelled schematic drawn from an openly licensed original (Gray's 1918 public domain, Servier CC BY 4.0, Wikimedia CC BY/BY-SA; pixelized, numbered, legend as page text, credit in caption) and a structure map (tree of parts/segments/branches plus the course where there is one). Anatomy cannot be learnt without them. (#3e2bc3)
 - [ralexandria.figure-clarity] Ralexandria anatomy figures (Giovanni 2026-11-21): structures must be very clearly visible; an anatomy entry gets two or more figures (different views, sections or originals) to compare, each numbering only a few structures; keep the tones look of the original (flat posterized or outlined variants were worse); no blank boxes where labels were erased. (#68ea33)
 - [ralexandria.figure-sources] Ralexandria anatomy figures (Giovanni 2026-11-24, replaces Gray + Bassett of 2026-11-23): preferred originals are Gray's Anatomy 1918, Braune's atlas of frozen sections 1877 (Wellcome, Public Domain Mark) and the radiological images of the Visible Human Project (NLM, credit line in the caption). They are converted to the site style by code that uses no language model (tools/atlas_fetch.py, tools/atlas_build.py) and shown in the Atlas view and on entry pages where the figure title names the entry. Bassett (CC BY-SA 4.0) is no longer a preferred source. (#4405c5)
