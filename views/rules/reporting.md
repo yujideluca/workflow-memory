@@ -1,6 +1,6 @@
 # Rules tagged reporting
 
-Generated 2026-11-26 from 1803 events. Do not edit: record changes as events.
+Generated 2026-11-27 from 1804 events. Do not edit: record changes as events.
 
 how to answer, explain and report results or mistakes
 
